@@ -99,7 +99,7 @@ const char * enemy_get_name(Enemy* enemy) {
   if (!enemy) {
     return NULL;
   }
-  return enemy->name;
+  return enemy->name; 
 }
 
 /** It sets the id of an enemy location
