@@ -1,10 +1,10 @@
 /**
-* @brief An implementation to manage objects the
+* @brief An implementation to manage the
 * objects in the ant_game
 * @file object.c
 * @author Nicolas Victorino && Ignacio Nunnez
-* @version 1.0
-* @date 07/02/2022
+* @version 2.0
+* @date 07/03/2022
 * @copyright GNU Public License
 */
 
@@ -21,7 +21,6 @@
 struct _Object {
   Id id;                    /*!< Id number of the object, it must be unique */
   char name[WORD_SIZE + 1]; /*!< Name of the object */
-  char graphic_representation;
 };
 
 /** object_create allocates memory for a new object
@@ -111,14 +110,5 @@ STATUS object_print(Object* object) {
   fprintf(stdout, "--> Object (Id: %ld; Name: %s)\n", object->id, object->name);
 
   return OK;
-}
-
-STATUS object_set_graphic(Object *object, char symbol) {
-  object->graphic_representation = symbol;
-  return OK;
-}
-
-char object_get_graphic(Object *object) {
-  return object->graphic_representation;
 }
 

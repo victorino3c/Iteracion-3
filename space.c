@@ -324,7 +324,7 @@ int space_get_gdescY() {
 /*Creates empty gdesc*/
 char ** space_create_gdesc () {
 
-  char **gdesc_new;
+  char **gdesc_new = NULL;
   int i;
 
   /*Reserves memory for string of pointers*/
@@ -353,7 +353,7 @@ STATUS space_remove_gdesc(Space *space) {
   /*CONTROL ERROR*/
   if (!space)
   return ERROR;
-  
+
   if (!(space->gdesc))
   return ERROR;
 
@@ -388,6 +388,10 @@ STATUS space_remove_gdesc_game(char ** gdesc) {
       gdesc[i] = NULL;
     }
   }
+  if (gdesc != NULL) {
+    free(gdesc);
+    gdesc = NULL;
+  }
 
   return OK;
 }
@@ -415,7 +419,7 @@ STATUS space_remove_object_set(Space* space) {
 
 char ** space_copy_gdesc(char ** gdesc) {
   int i = 0; 
-  
+
   if (!gdesc)
   return NULL;
   

@@ -1,10 +1,10 @@
 /**
-* @brief It implements player module
+* @brief It implements player module to control the player in the ant game
 *
 * @file player.c
 * @author Nicolas Victorino && Ignacio Nunnez
-* @version 1.0
-* @date 08/02/2022
+* @version 3.0
+* @date 12/03/2022
 * @copyright GNU Public License
 */
 
@@ -161,7 +161,7 @@ Id player_get_object(Player* player) {
 STATUS player_set_health(Player * player, int health) {
 
   /* Error control */
-  if (!player || !health || health < 0) {
+  if (!player || health < 0) {
     return ERROR;
   }
   

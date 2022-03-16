@@ -1,5 +1,6 @@
+
 /** 
- * @brief It tests set module
+ * @brief It tests the set module
  * 
  * @file set_test.c
  * @author Ignacio Nunnez

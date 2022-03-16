@@ -1,10 +1,11 @@
+
 /** 
  * @brief It defines the set interface
  * 
  * @file set.h
- * @author Nicolas Victorino 
- * @version 1.0
- * @date 21-02-2022
+ * @author Nicolas Victorino && Ignacio Nunnez
+ * @version 2.2
+ * @date 08-03-2022
  * @copyright GNU Public License
  */
 
@@ -79,7 +80,7 @@ BOOL set_idInSet (Set* set, Id id);
   * @author Nicolas Victorino
   *
   * @param set a pointer to the given set
-  * @return TRUE if the set is empty or doesnt exist, FALS if contains an id
+  * @return TRUE if the set is empty or doesnt exist, FALSE if contains an id
   */
 BOOL set_is_empty(Set* set);
 

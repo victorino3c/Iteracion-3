@@ -3,8 +3,9 @@
  *
  * @file command.h
  * @author Profesores PPROG
- * @version 2.0
- * @date 14-02-2022
+ * Modified by Ignacio Nunnez && Nicolas Victorino
+ * @version 3.0
+ * @date 11-03-2022
  * @copyright GNU Public License
  */
 
@@ -12,7 +13,7 @@
 #define COMMAND_H
 
 #define N_CMDT 2
-#define N_CMD 9
+#define N_CMD 10
 
 typedef enum enum_CmdType {
   CMDS, // Abbrevation of the command 'e'
@@ -28,7 +29,8 @@ typedef enum enum_Command {
   RIGHT, // Move room at the right
   LEFT, // Move room at the left
   TAKE, // Take an object
-  DROP // Drop an object
+  DROP, // Drop an object
+  ATTACK //Attack an enemy
   } T_Command;
 
 /**

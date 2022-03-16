@@ -1,10 +1,9 @@
 /**
-* @brief An implementation to manage objects the
-* objects in the ant_game
+* @brief An implementation to manage objects interface
 * @file object.c
 * @author Nicolas Victorino && Ignacio Nunnez
-* @version 1.0
-* @date 07/02/2022
+* @version 2.0
+* @date 07/03/2022
 * @copyright GNU Public License
 */
 
@@ -53,11 +52,20 @@ Id object_get_id(Object* object);
   * @brief It sets the name of a object
   * @author Nicolas Victorino
   * 
-  * @param space a pointer to the object
+  * @param object a pointer to the object
   * @param name a string with the name to store
   * @return OK, if everything goes well or ERROR if there was some mistake 
   */
-STATUS object_set_name(Object* space, char* name);
+STATUS object_set_name(Object* object, char* name);
+
+/**
+  * @brief It gets the name of a object
+  * @author Nicolas Victorino
+  * 
+  * @param object a pointer to the object
+  * @return the name of the object
+  */
+const char* object_get_name(Object* object);
 
 /**
   * @brief It prints the object information
@@ -68,9 +76,5 @@ STATUS object_set_name(Object* space, char* name);
   * @return OK, if everything goes well or ERROR if there was some mistake
   */
 STATUS object_print(Object* object);
-
-STATUS object_set_graphic(Object *object, char symbol);
-
-char object_get_graphic(Object *object);
 
 #endif

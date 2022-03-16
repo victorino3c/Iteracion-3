@@ -18,7 +18,7 @@
 #include "types.h"
 #include "enemy.h"
 
-#define ROWS 23
+#define ROWS 30
 #define COLUMNS 80
 
 struct _Graphic_engine
@@ -38,11 +38,11 @@ Graphic_engine *graphic_engine_create()
   if (ge == NULL)
     return NULL;
 
-  ge->map = screen_area_init(1, 1, 48, 13);
-  ge->descript = screen_area_init(50, 1, 29, 13);
-  ge->banner = screen_area_init(28, 15, 23, 1);
-  ge->help = screen_area_init(1, 16, 78, 2);
-  ge->feedback = screen_area_init(1, 19, 78, 3);
+  ge->map = screen_area_init(1, 1, 48, 20);
+  ge->descript = screen_area_init(50, 1, 29, 20);
+  ge->banner = screen_area_init(28, 22, 23, 1);
+  ge->help = screen_area_init(1, 23, 78, 2);
+  ge->feedback = screen_area_init(1, 26, 78, 3);
 
   return ge;
 }
@@ -159,7 +159,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
 
     if (id_left != NO_ID && id_right != NO_ID) 
     {
-      for (i=0; i < space_get_gdescY() + 2; i++) {
+      for (i=0; i < (space_get_gdescY() + 2)*2; i++) {
         sprintf(str, " ");
         screen_area_puts(ge->map, str);
       }
@@ -207,7 +207,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game)
   screen_area_clear(ge->help);
   sprintf(str, " The commands you can use are:");
   screen_area_puts(ge->help, str);
-  sprintf(str, "     next or n , back or b , left or l , right or r , take or t , drop or d , attack or a , exit or e (put a space after each  command)");
+  sprintf(str, "     next or n , back or b , left or l , right or r , take or t , drop or d , attack or a , exit or e");
   screen_area_puts(ge->help, str);
 
   /* Paint in the feedback area */

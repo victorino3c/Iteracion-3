@@ -8,8 +8,8 @@
  * @copyright GNU Public License
  */
 
-#ifndef SPACE_TEST_H
-#define SPACE_TEST_H
+#ifndef ENEMY_TEST_H
+#define ENEMY_TEST_H
 
 void test1_enemy_create();
 void test2_enemy_create();

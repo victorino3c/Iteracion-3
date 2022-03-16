@@ -3,7 +3,7 @@
  * 
  * @file space_test.h
  * @author Profesores Pprog+
- * modify by Ignacio Nunnez
+ * modified by Ignacio Nunnez
  * @version 2.0 
  * @date 09-03-2021
  * @copyright GNU Public License

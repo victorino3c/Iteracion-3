@@ -29,7 +29,7 @@ Id game_get_space_id_at(Game *game, int position);
 STATUS game_set_player_location(Game *game, Id id);
 STATUS game_set_object_location(Game *game, Id id_obj, Id id_loc);
 
-void game_command_unknown(Game *game);
+STATUS game_command_unknown(Game *game);
 void game_command_exit(Game *game);
 STATUS game_command_next(Game *game);
 STATUS game_command_back(Game *game);
@@ -280,7 +280,7 @@ STATUS game_update(Game *game, T_Command cmd, char *arg)
   switch (cmd)
   {
     case UNKNOWN:
-      game_command_unknown(game);
+      return game_command_unknown(game);
       break;
 
     case EXIT:
@@ -370,9 +370,9 @@ BOOL game_is_over(Game *game)
 /**
    Calls implementation for each action 
 */
-void game_command_unknown(Game *game)
+STATUS game_command_unknown(Game *game)
 {
-
+  return ERROR;
 }
 
 void game_command_exit(Game *game)
@@ -609,10 +609,10 @@ STATUS game_command_attack(Game *game)
   if(player_get_location(game->player) != enemy_get_location(game->enemy))
   return ERROR;
 
-  /*Cheks if enemy is alive*/ 
+  /*Cheks if enemy is alive*/
   if (enemy_get_health(game->enemy) == 0)
-  return ERROR; 
-   
+  return ERROR;
+
   /*Generates random number*/
   srand(time(NULL));
   int i = rand() % 10;

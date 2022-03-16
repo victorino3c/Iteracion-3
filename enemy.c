@@ -1,9 +1,9 @@
 /**
-* @brief It implements enemy module
+* @brief It implements enemy module in the ant game
 *
 * @file enemy.c
 * @author Ignacio Nunnez
-* @version 1.0
+* @version 1.1
 * @date 22/02/2022
 * @copyright GNU Public License
 */
@@ -99,7 +99,7 @@ const char * enemy_get_name(Enemy* enemy) {
   if (!enemy) {
     return NULL;
   }
-  return enemy->name; 
+  return enemy->name;
 }
 
 /** It sets the id of an enemy location
@@ -133,7 +133,7 @@ Id enemy_get_location(Enemy* enemy) {
 STATUS enemy_set_health(Enemy * enemy, int health) {
 
   /* Error control */
-  if (!enemy || !health || health < 0) {
+  if (!enemy|| health < 0) {
     return ERROR;
   }
 

@@ -1,10 +1,10 @@
 /** 
- * @brief It implements the set module
+ * @brief It implements the set module to control different sets of ids
  * 
  * @file set.c
- * @author Nicolas Victorino 
- * @version 1.0
- * @date 21-02-2022
+ * @author Nicolas Victorino && Ignacio Nunnez
+ * @version 2.2
+ * @date 08-03-2022
  * @copyright GNU Public License
  */
 
@@ -48,8 +48,15 @@ STATUS set_destroy (Set *set)
         return ERROR;
     }
 
-    free(set);
-    set = NULL;
+    if (set->ids != NULL) {
+        free(set->ids);
+        set->ids = NULL;
+    }
+
+    if (set != NULL){
+        free(set);
+        set = NULL;
+    }
 
     return OK;
 }
@@ -61,7 +68,7 @@ STATUS set_add_id (Set *set, Id id)
 {
 
     /*Error control*/
-    if ((!set) || (!id) || (id==NO_ID) ) {
+    if ((!set) || (id==NO_ID) ) {
         return ERROR;
     }
 

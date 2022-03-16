@@ -1,5 +1,6 @@
+
 /** 
- * @brief It tests enemy module
+ * @brief It tests the enemy module
  * 
  * @file enemy_test.c
  * @author Ignacio Nunnez

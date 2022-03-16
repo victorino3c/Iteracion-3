@@ -1,10 +1,11 @@
 /**
- * @brief It defines the game loop
+ * @brief It defines the game loop to run the ant game
  *
  * @file game_loop.c
  * @author Profesores PPROG
- * @version 2.0
- * @date 30-11-2020
+ * Modified by Nicolas Victorino
+ * @version 2.2
+ * @date 11-03-2022
  * @copyright GNU Public License
  */
 
@@ -16,13 +17,14 @@
 #include "game_reader.h"
 
 int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name);
-void game_loop_run(Game game, Graphic_engine *gengine);
+void game_loop_run(Game game, Graphic_engine *gengine, STATUS cmd_st);
 void game_loop_cleanup(Game game, Graphic_engine *gengine);
 
 int main(int argc, char *argv[])
 {
   Game game;
   Graphic_engine *gengine;
+  STATUS cmd_st = OK;
 
   if (argc < 2)
   {
@@ -32,7 +34,7 @@ int main(int argc, char *argv[])
  
   if (!game_loop_init(&game, &gengine, argv[1]))
   {
-    game_loop_run(game, gengine);
+    game_loop_run(game, gengine, cmd_st);
     game_loop_cleanup(game, gengine);
   }
 
@@ -47,6 +49,8 @@ int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name)
     return 1;
   }
 
+  game_set_cmd_st(game, OK);
+
   if ((*gengine = graphic_engine_create()) == NULL)
   {
     fprintf(stderr, "Error while initializing graphic engine.\n");
@@ -57,7 +61,7 @@ int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name)
   return 0;
 }
 
-void game_loop_run(Game game, Graphic_engine *gengine)
+void game_loop_run(Game game, Graphic_engine *gengine, STATUS cmd_st)
 {
   char arg[10];
   T_Command command = NO_CMD;
@@ -66,7 +70,9 @@ void game_loop_run(Game game, Graphic_engine *gengine)
   {
     graphic_engine_paint_game(gengine, &game);
     command = command_get_user_input(&arg[0]);
-    game_update(&game, command, arg);
+    cmd_st = game_update(&game, command, arg);
+
+    game_set_cmd_st(&game, cmd_st);
   }
 }
 

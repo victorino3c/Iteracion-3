@@ -1,15 +1,17 @@
 /** 
- * @brief It defines all necessary 
- * to load the game
+ * @brief It defines all necessary to load the game
  * @file game_reader.c
  * @author Ignacio Nunnez && Nicolas Victorino
- * @version 1.0 
- * @date 03-02-2022 
+ * @version 3.0 
+ * @date 10-03-2022 
  * @copyright GNU Public License
  */
 
 #include "command.h"
 #include "space.h"
+#include "object.h"
+#include "enemy.h"
+#include "player.h"
 #include "types.h"
 #include "game.h"
 
@@ -40,6 +42,14 @@ STATUS game_load_players(Game *game, char *filename);
   */
 STATUS game_load_objects(Game *game, char *filename);
 
+/**
+  * @brief Loads the enemy from a file, and saves it in the game struct
+  * @author Nicolas Victorino
+  * 
+  * @param game a pointer to the struct Game, @param filename is the file from where the spaces are being loaded
+  * @return OK, if everything goes well or ERROR if there was some mistake
+  */
+STATUS game_load_enemy(Game *game, char *filename); 
 /**
   * @brief It creates the game from a file and loads the objects, players and spaces to the game
   * @author Nicolas Victorino

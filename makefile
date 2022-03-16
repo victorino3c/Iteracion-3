@@ -37,7 +37,7 @@ enemy_test.o: enemy_test.c
 
 
 
-antgame: game.o game_reader.o command.o graphic_engine.o object.o player.o space.o set.o libscreen.a game_loop.o
+antgame: game.o game_reader.o command.o graphic_engine.o object.o player.o space.o set.o libscreen.a game_loop.o enemy.o
 	$(CC) -g -Wall -o antgame $^
 
 command.o: command.c
@@ -70,9 +70,13 @@ enemy.o: enemy.c
 game_loop.o: game_loop.c
 	$(CC) $(CFLAGS) $^
 
+runv: 
+	valgrind --leak-check=full -s ./antgame hormiguero.dat
 
+runvt: 
+	valgrind --leak-check=full --track-origins=yes -s ./antgame hormiguero.dat
+	
 
 clean:
 	echo "cleaning..."
 	rm -rf *.o
-

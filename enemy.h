@@ -3,7 +3,7 @@
 *
 * @file enemy.h
 * @author Ignacio Nunnez
-* @version 1.0
+* @version 1.1
 * @date 22/02/2022
 * @copyright GNU Public License
 */
@@ -118,3 +118,4 @@ int enemy_get_health(Enemy *enemy);
 STATUS enemy_print(Enemy* enemy);
 
 #endif
+

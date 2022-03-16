@@ -3,8 +3,9 @@
  *
  * @file graphic_engine.h
  * @author Profesores PPROG
- * @version 2.0
- * @date 29-11-2021
+ * Modified by Nicolas Victorino
+ * @version 2.1
+ * @date 11-03-2022
  * @copyright GNU Public License
  */
 

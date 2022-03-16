@@ -1,9 +1,9 @@
 /** 
- * @brief It tests space module
+ * @brief It tests the space module
  * 
  * @file space_test.c
  * @author Profesores Pprog
- * modify by Ignacio Nunnez & Nicolas Victorino
+ * modified by Ignacio Nunnez
  * @version 3.0 
  * @date 09-03-2021
  * @copyright GNU Public License

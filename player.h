@@ -1,10 +1,10 @@
 /**
-* @brief It defines player module
+* @brief It defines player module interface
 *
 * @file player.h
 * @author Nicolas Victorino && Ignacio Nunnez
-* @version 1.0
-* @date 08/02/2022
+* @version 2.0
+* @date 06/03/2022
 * @copyright GNU Public License
 */
 

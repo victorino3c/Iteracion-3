@@ -57,6 +57,9 @@ T_Command command_get_user_input(char *arg)
   }
   
 
+  if (input[0] != 't')
+  input[strlen(input) -1] = 0;
+
     cmd = UNKNOWN;
     while (cmd == UNKNOWN && i < N_CMD)
     {

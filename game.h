@@ -1,10 +1,12 @@
+
 /** 
  * @brief It defines the game interface
  * 
  * @file game.h
  * @author Profesores PPROG
- * @version 2.0 
- * @date 29-11-2021 
+ * Modified by Nicolas Victorino && Ignacio Nunnez
+ * @version 3.1 
+ * @date 11-03-2022 
  * @copyright GNU Public License
  */
 
@@ -25,6 +27,7 @@ typedef struct _Game
   Space *spaces[MAX_SPACES];
   Enemy *enemy;
   T_Command last_cmd;
+  STATUS cmd_status;
 } Game;
 
 /**
@@ -124,10 +127,19 @@ STATUS game_add_space(Game *game, Space *space);
   * @brief adds a player to the game from game_load_player
   * @author Nicolas Victorino
   *
-  * @param game a pointer to the game, @param player a pointer to the space
+  * @param game a pointer to the game, @param player a pointer to the player
   * @return OK if it doesnt detect any error, in case it does it returns ERROR
   */
 STATUS game_add_player(Game *game, Player *player);
+
+/**
+  * @brief adds a enemy to the game from game_load_player
+  * @author Nicolas Victorino
+  *
+  * @param game a pointer to the game, @param enemy a pointer to the enemy
+  * @return OK if it doesnt detect any error, in case it does it returns ERROR
+  */
+STATUS game_add_enemy(Game *game, Enemy *enemy);
 
 /**
   * @brief adds a object to the game from game_load_object
@@ -167,4 +179,9 @@ STATUS game_set_player_location(Game *game, Id id);
 STATUS game_set_object_location(Game *game, Id id_obj, Id id_loc);
 
 int game_get_n_objects(Game *game);
+
+void game_set_cmd_st(Game *game, STATUS cmd_st);
+
+STATUS game_get_cmd_st(Game *game);
+
 #endif
