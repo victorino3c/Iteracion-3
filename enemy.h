@@ -77,7 +77,7 @@ const char *enemy_get_name(Enemy *enemy);
 Id enemy_get_location(Enemy *enemy);
 
 /**
- * @brief It gets an enemy's helath
+ * @brief It gets an enemy's health
  * @author Antonio Van-Oers
  * 
  * @param enemy a pointer to a certain enemy
