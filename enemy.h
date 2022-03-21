@@ -1,5 +1,5 @@
 /** 
- * @brief Implementa la interfaz del enemigo.
+ * @brief It implements the enemy interface
  * 
  * @file enemy.h
  * @author Antonio Van-Oers
@@ -20,115 +20,109 @@ typedef struct _Enemy Enemy;
 
 
 /**
- * @brief Crea un enemigo nuevo.
+ * @brief Creates a new enemy.
  * @author Antonio Van-Oers 
  *
- * enemy_create reserva memoria para un nuevo enemy e inicializa sus campos.
- * @param id el numero de identificacion del nuevo enemigo a crear.
- * @return un nuevo enemigo (tipo enemy) inicializado, o NULL si hubo algun error.
+ * enemy_create allocates memory for a new enemy and initializes all its members .
+ * @param id new enemy's identification number.
+ * @return a new enemy, initialized, or NULL in case of error.
  */
 Enemy *enemy_create(Id id);
 
 /**
- * @brief Destruye un enemigo.
+ * @brief It destroys an enemy
  * @author Antonio Van-Oers 
  * 
- * enemy_destroy libera la memoria previamente reservada de un enemigo.
- * @param enemy un puntero a enemy que necesita ser destruido.
- * @return OK, si ha funcionado correctamente o ERROR, si hubo algun error.
+ * enemy_destroy frees the previous memory allocation for an enemy
+ * @param enemy a pointer to the enemy that must be destroyed.
+ * @return OK, if everything goes well o ERROR, if there was some mistake.
  */
 STATUS enemy_destroy(Enemy *enemy);
 
 /**
- * @brief Obtiene el id de un enemigo.
+ * @brief It gets an enemy's id
  * @author Antonio Van-Oers
  * 
- * enemy_get_id devuelve el id de un enemigo(enemy).
- * @param enemy un puntero a enemy.
- * @return el id del enemigo, o NULL si hubo algun error.
+ * @param enemy a pointer to a certain enemy
+ * @return enemy id, or NULL if there was some mistake.
  */
 Id enemy_get_id(Enemy *enemy);
 
 /**
- * @brief Comprueba si el id recibido es el de un enemy
+ * @brief Tests whether the id is from an enemy or not
  * @author Miguel Soto
  * 
- * @param id el id que se quiere comprobar
- * @return OK, si es correcto o ERROR si no es correcto o hubo algun error.
+ * @param id, id to be tested
+ * @return OK, if it is indeed from an enemy, ERROR if it doesn't or anything goes wrong.
  */
 STATUS enemy_test_id(Id id);
 
 /**
- * @brief Obtiene el nombre de un enemigo.
+ * @brief It gets an enemy's name
  * @author Antonio Van-Oers
  * 
- * enemy_get_name devuelve el nombre de un enemigo (enemy).
- * @param enemy un puntero a enemy.
- * @return un string con el nombre del enemigo enemy, o NULL si hubo algun error.
+ * @param enemy a pointer to a certain enemy.
+ 
+ * @return a string with the enemy's name, or NULL if anything goes wrong.
  */
 const char *enemy_get_name(Enemy *enemy);
 
 /**
- * @brief Obtiene el nombre de un enemigo.
+ * @brief It gets an enemy's location
  * @author Antonio Van-Oers
  * 
- * enemy_get_location obtiene la localizacion de un enemigo (enemy).
- * @param enemy un puntero a enemy.
- * @return enemy->location, la id de la localizacion de un enemigo (enemy).
+ * @param enemy a pointer to a certain enemy
+ * @return enemy->location, enemy's location id or NO_ID if anything goes wrong.
  */
 Id enemy_get_location(Enemy *enemy);
 
 /**
- * @brief Obtiene la salud de un enemigo.
+ * @brief It gets an enemy's helath
  * @author Antonio Van-Oers
  * 
- * enemy_get_health obtiene la salud de un enemigo (enemy).
- * @param enemy un puntero a enemy.
- * @return enemy->health, obtiene la salud restante de un enemigo (enemy)
- * y -1 en caso de error.
+ * @param enemy a pointer to a certain enemy
+ * @return enemy->health, enemy's remaining health
+ * and -1 if anything goes wrong.
  */
 int enemy_get_health(Enemy *enemy);
 
 /**
- * @brief Establece la salud de un enemigo.
+ * @brief It sets an enemy's health
  * @author Antonio Van-Oers
  * 
- * enemy_set_health establece la salud de un enemigo (enemy).
- * @param enemy un puntero a enemy.
- * @param health es un entero con la salud del enemigo
- * @return OK, si ha funcionado correctamente o ERROR, si hubo algun error.
+ * enemy_set_health sets an enemy's helath to the value indicated.
+ * @param enemy a pointer to a certain enemy.
+ * @param health an integer with the amount of health.
+ * return OK, if everything goes well o ERROR, if there was some mistake.
  */
 STATUS enemy_set_health(Enemy *enemy, int health);
 
 /**
- * @brief Establece el nombre de un enemigo.
+ * @brief It sets an enemy's location.
  * @author Antonio Van-Oers
  * 
- * enemy_set_location establece la localizacion de un enemigo (enemy).
- * @param enemy un puntero a enemy.
- * @param location es la identificacion del espacio en el que esta el enemigo.
- * @return OK, si ha funcionado correctamente o ERROR, si hubo algun error.
+ * @param enemy a pointer to a certain enemy
+ * @param location is an enemy's location id.
+ *return OK, if everything goes well o ERROR, if there was some mistake.
  */
 STATUS enemy_set_location(Enemy *enemy, Id location);
 
 /**
- * @brief Establece un nombre a un enemigo.
+ * @brief It sets an enemy's name
  * @author Antonio Van-Oers
  * 
- * obj_set_name establece el nombre (name) de un enemigo (enemy).
- * @param enemy un puntero a enemy.
- * @param name un string con el nombre que se va a establecer al enemigo.
- * @return OK, si ha funcionado correctamente o ERROR, si hubo algun error.
+ * @param enemy a pointer to a certain enemy
+ * @param name un string with the name for the enemy
+ * return OK, if everything goes well o ERROR, if there was some mistake.
  */
 STATUS enemy_set_name(Enemy *enemy, char *name);
 
 /**
- * @brief Imprime la informacion de un enemigo.
+ * @brief Prints the info on the enemy's interface
  * @author Antonio Van-Oers
  * 
- * obj_print muestra el id y el nombre de un enemigo (enemy).
- * @param enemy un puntero a enemy.
- * @return OK, si ha funcionado correctamente o ERROR, si hubo algun error.
+ * @param enemy a pointer to a certain enemy
+ * return OK, if everything goes well o ERROR, if there was some mistake.
  */
 STATUS enemy_print(Enemy *enemy);
 
