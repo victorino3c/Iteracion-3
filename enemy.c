@@ -33,14 +33,14 @@ Enemy *enemy_create(Id id)
 {
   Enemy *new_enemy = NULL;
 
-  /* Control de errores */
+  /* Error control */
   if (id == NO_ID)
   {
       return NULL;
   }
 
   new_enemy = (Enemy *) malloc(sizeof(Enemy));
-	/* Control de errores */
+	/* Error control */
   if (new_enemy == NULL)
   {
     return NULL;
@@ -59,7 +59,7 @@ Enemy *enemy_create(Id id)
  */
 STATUS enemy_destroy(Enemy *enemy)
 {
-	/* Control de errores */
+	/* Error control */
   if (!enemy)
   {
     return ERROR;
@@ -74,7 +74,7 @@ STATUS enemy_destroy(Enemy *enemy)
  */
 Id enemy_get_id(Enemy *enemy)
 {
-	/* Control de errores */
+	/* Error control */
   if (!enemy)
   {
     return NO_ID;
@@ -90,16 +90,16 @@ STATUS enemy_test_id(Id id)
 {
   int first_digit, digits;
 
-  /* Control de errores */
+  /* Error control */
   if (id < 0)
   {
     return ERROR;
   }
 
-  /* Calcular numbero total de digitos - 1 */
+  /* Calculates the total digits -1 */
   digits = (int)log10(id); 
 
-  /* Obtener primer digito */
+  /* Getting the first digit */
   first_digit = (int)(id / pow(10, digits));
   
   if (first_digit == FD_ID_PLAYER)
@@ -112,11 +112,11 @@ STATUS enemy_test_id(Id id)
   }
 }
 
-/** enemy_get_name obtiene el nombre (name) de un enemigo (enemy).
+/** enemy_get_name  gets an enemy's name.
  */
 const char *enemy_get_name(Enemy *enemy)
 {
-	/* Control de errores */
+	/* Error control */
   if (!enemy)
   {
     return NULL;
@@ -125,11 +125,11 @@ const char *enemy_get_name(Enemy *enemy)
   return enemy->name;
 }
 
-/** enemy_get_location obtiene la posicion (location) de un enemigo (enemy).
+/** enemy_get_location  gets an enemy's location.
  */
 Id enemy_get_location(Enemy *enemy)
 {
-	/* Control de errores */
+	/* Error control */
   if (!enemy)
   {
     return NO_ID;
@@ -139,10 +139,11 @@ Id enemy_get_location(Enemy *enemy)
 }
 
 /**
- * enemy_get_health obtiene la salud de un enemigo (enemy).
+ * enemy_get_health It gets an enemy's health.
  */
 int enemy_get_health(Enemy *enemy)
 {
+  /* Error control */
   if (!enemy)
   {
     return -1;                  
@@ -153,11 +154,11 @@ int enemy_get_health(Enemy *enemy)
 
 
 /**
- * enemy_set_health establece la salud de un enemigo (enemy).
+ * enemy_set_health sets an enemy's health.
  */
 STATUS enemy_set_health(Enemy *enemy, int health)
 {
-	/* Control de errores */
+	/* Error control */
   if (!enemy)
   {
     return ERROR;
@@ -168,11 +169,11 @@ STATUS enemy_set_health(Enemy *enemy, int health)
 }
  
 
-/** enemy_set_name establece la posicion (location) de un enemigo (enemy).
+/** enemy_set_name sets an enemy's location.
  */
 STATUS enemy_set_location(Enemy *enemy, Id location)
 {
-	/* Control de errores */
+	/* Error control */
   if (!enemy)
   {
     return ERROR;
@@ -183,17 +184,17 @@ STATUS enemy_set_location(Enemy *enemy, Id location)
 }
 
 
-/** enemy_set_name establece el nombre (name) de un enemigo (enemy).
+/** enemy_set_name  sets an enemy's name.
  */
 STATUS enemy_set_name(Enemy *enemy, char *name)
 {
-	/* Control de errores */
+	/* Error control */
   if (!enemy || !name)
   {
     return ERROR;
   }
   
-	/* Control de errores */
+	/* Error control */
   if (!strcpy(enemy->name, name))
   {
     return ERROR;
@@ -203,11 +204,11 @@ STATUS enemy_set_name(Enemy *enemy, char *name)
 }
 
 
-/** enemy_print muestra por pantalla el id y el nombre de un enemigo(enemy).
+/** enemy_print  Prints the info on the enemy's interface.
  */
 STATUS enemy_print(Enemy *enemy)
 {
- /* Control de errores */
+ /* Error control */
   if (!enemy)
   {
       return ERROR;
