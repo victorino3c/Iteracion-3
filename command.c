@@ -1,9 +1,8 @@
 /** 
  * @brief It implements the command interpreter
  * 
- * escanea el cmd en busca de palabras clave que introduzca el usuario para interpretar y clasificar la info:
- * desconocida, si no introduce nada o cualquier otro caracter; exit, si introduce "e";
- * next, si introduce "n" y back si introduce "b";
+ * It scans the cmd searching for key words introduced by the user in order to interpret and clasify the commands
+ * as unknown, exit, up, down, left, right attack, take or drop depending on what string is typed.
  * 
  * @file command.c
  * @author Profesores PPROG
@@ -21,11 +20,11 @@
 
 char *cmd_to_str[N_CMD]
 [N_CMDT] = {{"", "No command"},    /*!< Al empezar, no hay comandos */
-			{"", "Unknown"},             /*!< Si no recibe nada o algun caracter desconocido, se interpreta como desconocido */
-			{"e", "Exit"},               /*!< Si recibe una e, se interpreta como Exit*/
-			{"s", "Down"},               /*!< Si recibe una s, se interpreta como Down/Next */
+      {"", "Unknown"},             /*!< Si no recibe nada o algun caracter desconocido, se interpreta como desconocido */
+      {"e", "Exit"},               /*!< Si recibe una e, se interpreta como Exit*/
+      {"s", "Down"},               /*!< Si recibe una s, se interpreta como Down/Next */
       {"a", "Left"},               /*!< Si recibe una a, se interpreta como Left */
-			{"w", "Up"},               /*!< Si recibe una w, se interpreta como Up/Back */
+      {"w", "Up"},               /*!< Si recibe una w, se interpreta como Up/Back */
       {"d", "Right"},              /*!< Si recibe una d, se interpreta como Right */
       {"c", "Take"},               /*!< Si recibe una z, se interpreta como Take */
       {"v", "Drop"},               /*!< Si recibe una x, se interpreta como Drop */
