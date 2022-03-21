@@ -1,5 +1,5 @@
 /** 
- * @brief Implementa el modulo del objeto.
+ * @brief Implements the enemy interface
  * 
  * @file enemy.c
  * @author Antonio Van-Oers
@@ -17,7 +17,7 @@
 /**
  * @brief Enemy
  *
- * Esta estructura almacena la informacion de un enemigo
+ * This structure stores all info that each enemy has
  */
 typedef struct _Enemy
 {
@@ -27,7 +27,7 @@ typedef struct _Enemy
   int health;
 } Enemy;
 
-/** enemy_create reserva memoria para un nuevo enemigo e inicializa sus miembros.
+/**enemy_create allocates memory for a new enemy and initializes all its members .
  */
 Enemy *enemy_create(Id id)
 {
@@ -46,7 +46,7 @@ Enemy *enemy_create(Id id)
     return NULL;
   }
   
-  /* Inicializacion del nuevo enemigo*/
+  /* Enemy's members initialization*/
   new_enemy->id = id;
   new_enemy->health = 3;
   new_enemy->name[0] = '\0';
@@ -55,7 +55,7 @@ Enemy *enemy_create(Id id)
   return new_enemy;
 }
 
-/** enemy_destroy libera la memoria previamente reservada de un enemigo.
+/** enemy_destroy frees the previous memory allocation for an enemy
  */
 STATUS enemy_destroy(Enemy *enemy)
 {
@@ -70,7 +70,7 @@ STATUS enemy_destroy(Enemy *enemy)
   return OK;
 }
 
-/** enemy_get_id devuelve el id de un enemigo (enemy).
+/**  It gets an enemy's id
  */
 Id enemy_get_id(Enemy *enemy)
 {
@@ -84,7 +84,7 @@ Id enemy_get_id(Enemy *enemy)
 }
 
 /**
- * Comprueba si el id recibido es el de un enemy
+ * Tests whether the id is from an enemy or not
  */
 STATUS enemy_test_id(Id id)
 {
