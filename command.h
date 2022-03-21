@@ -23,7 +23,7 @@ typedef enum enum_CmdType {
 /** 
 * @brief La enumeracion T_Command 
 *
-* Establece un valor inicial para NO_CMD y las posibles interpretaciones de lo que introduce el usuario
+* Intitializes No_CMD to -1 and includes every possible interpretation for the input 
 */
 typedef enum enum_Command {
   NO_CMD = -1,
@@ -41,9 +41,10 @@ typedef enum enum_Command {
   * @brief Obtiene el input del usuario 
   * @author Profesores PPROG
   *
-  * Escanea el cmd en busca de caracteres clave que introduzca el usuario para interpretar y clasificar la info
+  * It scans the cmd searching for key words introduced by the user 
+  * in order to interpret and clasify the info
   * 
-  * @return cmd, una variable tipo T_Command que varia segun lo introducido por el usuario
+  * @return cmd, a T_Command type variable that changes its value depending on the input
   */
 T_Command command_get_user_input();
 
