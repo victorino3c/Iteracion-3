@@ -3,42 +3,48 @@
  *
  * @file command.h
  * @author Profesores PPROG
- * Modified by Ignacio Nunnez && Nicolas Victorino
- * @version 3.0
- * @date 11-03-2022
+ * @version 2.0
+ * @date 29-11-2021
  * @copyright GNU Public License
  */
 
 #ifndef COMMAND_H
 #define COMMAND_H
 
+#include "types.h"
+
 #define N_CMDT 2
 #define N_CMD 10
 
 typedef enum enum_CmdType {
-  CMDS, // Abbrevation of the command 'e'
-  CMDL // Name of the command 'EXIT'
-  } T_CmdType;
+  CMDS,
+  CMDL} T_CmdType;
 
+/** 
+* @brief La enumeracion T_Command 
+*
+* Establece un valor inicial para NO_CMD y las posibles interpretaciones de lo que introduce el usuario
+*/
 typedef enum enum_Command {
   NO_CMD = -1,
-  UNKNOWN, // No command detected
-  EXIT, // Leaving the game
-  NEXT, // Move next room
-  BACK, // Move room at the back
-  RIGHT, // Move room at the right
-  LEFT, // Move room at the left
-  TAKE, // Take an object
-  DROP, // Drop an object
-  ATTACK //Attack an enemy
-  } T_Command;
+  UNKNOWN,
+  EXIT,
+  DOWN,
+  LEFT,
+  UP,
+  RIGHT,
+  TAKE,
+  DROP,
+  ATTACK} T_Command;
 
 /**
-  * @brief Scans input of the User
+  * @brief Obtiene el input del usuario 
   * @author Profesores PPROG
   *
-  * @return 'cmd' with the command scaned
+  * Escanea el cmd en busca de caracteres clave que introduzca el usuario para interpretar y clasificar la info
+  * 
+  * @return cmd, una variable tipo T_Command que varia segun lo introducido por el usuario
   */
-T_Command command_get_user_input(char *arg);
+T_Command command_get_user_input();
 
 #endif

@@ -1,11 +1,10 @@
 /**
- * @brief It defines the game loop to run the ant game
+ * @brief It defines the game loop
  *
  * @file game_loop.c
  * @author Profesores PPROG
- * Modified by Nicolas Victorino
- * @version 2.2
- * @date 11-03-2022
+ * @version 2.0
+ * @date 30-11-2020
  * @copyright GNU Public License
  */
 
@@ -16,15 +15,24 @@
 #include "command.h"
 #include "game_reader.h"
 
+
 int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name);
-void game_loop_run(Game game, Graphic_engine *gengine, STATUS cmd_st);
+void game_loop_run(Game game, Graphic_engine *gengine);
 void game_loop_cleanup(Game game, Graphic_engine *gengine);
 
+/**
+  * @brief Programa principal del game_loop
+  * @author Profesores PPROG
+  *
+  * Comprueba si el valor de argc y argv son correctos para decidir si inciar el juego y activar el cleanup
+  * @param argc un entero
+  * @param argv una cadena de caracteres
+  * @return 0 si se ejecuta el juego con exito y 1 si no se ha usado el game_data_file correcto
+  */
 int main(int argc, char *argv[])
 {
   Game game;
   Graphic_engine *gengine;
-  STATUS cmd_st = OK;
 
   if (argc < 2)
   {
@@ -34,22 +42,31 @@ int main(int argc, char *argv[])
  
   if (!game_loop_init(&game, &gengine, argv[1]))
   {
-    game_loop_run(game, gengine, cmd_st);
+    game_loop_run(game, gengine);
     game_loop_cleanup(game, gengine);
   }
 
   return 0;
 }
 
+/**
+  * @brief Inicializa el juego
+  * @author Profesores PPROG
+  *
+  * Comprueba si el valor de argc y argv son correctos para decidir si inciar el juego y activar el cleanup
+  * @param game es el puntero que apunta a la estructura tipo Game que contiene los datos de localización de objeto y jugador 
+  * junto con los espacios del juego y el ultimo comando
+  * @param gengine es un doble puntero para acceder al motor grafico
+  * @param file_name es un puntero al nombre del fichero para acceder a el tras haber ejecutado el juego e imprimir cualquier error que se haya dado
+  * @return 0 si se inicializa el juego con exito y 1 si no se ha producido un error
+  */
 int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name)
-{
+{  
   if (game_create_from_file(game, file_name) == ERROR)
   {
     fprintf(stderr, "Error while initializing game.\n");
     return 1;
   }
-
-  game_set_cmd_st(game, OK);
 
   if ((*gengine = graphic_engine_create()) == NULL)
   {
@@ -61,21 +78,39 @@ int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name)
   return 0;
 }
 
-void game_loop_run(Game game, Graphic_engine *gengine, STATUS cmd_st)
+/**
+  * @brief Ejecuta el juego
+  * @author Profesores PPROG
+  *
+  * Comprueba en bucle si no se ha introducido exit ni el juego se ha acabado para seguir ejecutando el juego
+  * @param game es el puntero que apunta a la estructura tipo Game que contiene los datos de localización de objeto y jugador 
+  * junto con los espacios del juego y el ultimo comando
+  * @param gengine es un puntero que apunta al motor grafico
+  */
+void game_loop_run(Game game, Graphic_engine *gengine)
 {
-  char arg[10];
   T_Command command = NO_CMD;
+  char arg[MAX_ARG];
+  int st = 5;
 
   while ((command != EXIT) && !game_is_over(&game))
   {
-    graphic_engine_paint_game(gengine, &game);
-    command = command_get_user_input(&arg[0]);
-    cmd_st = game_update(&game, command, arg);
-
-    game_set_cmd_st(&game, cmd_st);
+    graphic_engine_paint_game(gengine, &game, st);
+    command = command_get_user_input(arg);
+    st = game_update(&game, command, arg);
   }
 }
 
+
+/**
+  * @brief Termina y limpia el juego
+  * @author Profesores PPROG
+  *
+  * Tras terminar con la partida actual, destruye el juego y el motor grafico para limpiar estos procesos
+  * @param game es el puntero que apunta a la estructura tipo Game que contiene los datos de localización de objeto y jugador 
+  * junto con los espacios del juego y el ultimo comando
+  * @param gengine es un puntero que apunta al motor grafico
+  */
 void game_loop_cleanup(Game game, Graphic_engine *gengine)
 {
   game_destroy(&game);

@@ -1,13 +1,11 @@
-
 /** 
  * @brief It implements the game interface and all the associated calls
  * for each command
  * 
  * @file game.c
  * @author Profesores PPROG
- * Modified by Nicolas Victorino && Ignacio Nunnez
- * @version 5.0 
- * @date 13-03-2022 
+ * @version 2.1
+ * @date 12-02-2021 
  * @copyright GNU Public License
  */
 
@@ -16,34 +14,71 @@
 #include <string.h>
 #include <time.h>
 #include "game.h"
-#include "object.h"
-#include "player.h"
-#include "space.h"
-#include "set.h"
-#include "enemy.h"
 
+/**
+   Private functions
+*/
 STATUS game_add_space(Game *game, Space *space);
-STATUS game_add_player(Game *game, Player *player);
-STATUS game_add_object(Game *game, Object *object);
+STATUS game_add_object(Game *game, Object *obj);
+STATUS game_add_player(Game *game, Player *p);
+STATUS game_add_enemy(Game *game, Enemy *e);
 Id game_get_space_id_at(Game *game, int position);
-STATUS game_set_player_location(Game *game, Id id);
-STATUS game_set_object_location(Game *game, Id id_obj, Id id_loc);
+STATUS game_set_player_location(Game *game, Id player_id, Id space_id);
+STATUS game_set_object_location(Game *game, Id obj_id, Id space_id);
+STATUS game_set_enemy_location(Game *game, Id enemy_id, Id space_id);
 
-STATUS game_command_unknown(Game *game);
-void game_command_exit(Game *game);
-STATUS game_command_next(Game *game);
-STATUS game_command_back(Game *game);
-STATUS game_command_right(Game *game);
-STATUS game_command_left(Game *game);
-STATUS game_command_take(Game *game, char* obj);
-STATUS game_command_drop(Game *game);
-STATUS game_command_attack(Game *game);
+int game_command_unknown(Game *game, char *arg);
+STATUS game_command_exit(Game *game, char *arg);
+STATUS game_command_down(Game *game, char *arg);
+STATUS game_command_up(Game *game, char *arg);
+STATUS game_command_take(Game *game, char *arg);
+STATUS game_command_drop(Game *game, char *arg);
+STATUS game_command_attack(Game *game, char *arg);
+STATUS game_command_left(Game *game, char *arg);
+STATUS game_command_right(Game *game, char *arg);
+
 
 /**
    Game interface implementation
 */
+
+
+STATUS game_alloc(Game *game)
+{
+  Id id_player = 21, id_enemy = 41;
+  int i;
+
+  for (i = 0; i < MAX_PLAYERS; i++)
+  {
+    game->player[i] = player_create(id_player);
+    if (!game->player[i])
+    {
+      return ERROR;
+    }
+  }
+
+  for (i = 0; i < MAX_ENEMYS; i++)
+  {
+    game->enemy[i] = enemy_create(id_enemy);
+    if (!game->enemy[i])
+    {
+      return ERROR;
+    }
+  }
+  return OK;
+}
+
+
+/** game_create inicializa todas las variables necesarias para 
+  * el juego a valores vacios
+  */
 STATUS game_create(Game *game)
 {
+  /* Control de errores */
+  if (game == NULL)
+  {
+    return ERROR;
+  }
   int i;
 
   for (i = 0; i < MAX_SPACES; i++)
@@ -51,61 +86,89 @@ STATUS game_create(Game *game)
     game->spaces[i] = NULL;
   }
 
-  for (i = 0; i < MAX_OBJECTS; i++)
+  for (i = 0; i < MAX_OBJS; i++)
   {
     game->object[i] = NULL;
   }
 
-  game->player = NULL;
+  for (i = 0; i < MAX_PLAYERS; i++)
+  {
+    game->player[i] = NULL;
+  }
+
+  for (i = 0; i < MAX_ENEMYS; i++)
+  {
+    game->enemy[i] = NULL;
+  }
+  
   game->last_cmd = NO_CMD;
 
   return OK;
 }
 
-/*
-* Destroys the game and all its spaces, returning OK when done
-*/
+/** game_destroy destruye todos los espacios de la partida 
+  * llamando a space_destroy para cada uno de ellos
+  */
 STATUS game_destroy(Game *game)
 {
-  int i = 0;
+  /* Control de errores */
+  if(game == NULL)
+  {
+    return ERROR;
+  }
 
+  int i = 0;
+  
+  for (i = 0; i < MAX_OBJS && game->object[i] != NULL; i++)
+  {
+    obj_destroy(game->object[i]);  
+  }
+  
+  for (i = 0; i < MAX_PLAYERS && game->player[i] != NULL; i++)
+  {
+    player_destroy(game->player[i]);  
+  }
+
+  for (i = 0; i < MAX_ENEMYS && game->enemy[i] != NULL; i++)
+  {
+    enemy_destroy(game->enemy[i]);  
+  }
+      
   for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
   {
     space_destroy(game->spaces[i]);
   }
 
-  for (i = 0; i < MAX_OBJECTS && game->object[i] != NULL; i++)
-  {
-    object_destroy(game->object[i]);
-  }
-
-  player_destroy(game->player);
-
-  enemy_destroy(game->enemy);
-
   return OK;
 }
 
-/*
-*Adds a space to the game in the first available space position, and if there is none it returns ERROR
-*/
+/**
+  * @brief Agrega los espacios del juego
+  * @author Profesores PPROG
+  *
+  * game_add_space agrega uno a uno los espacios al juego
+  * @param game es el puntero que apunta a la estructura tipo Game
+  * @param space es el puntero que apunta a la estructura tipo espacio para anadir
+  * @return OK si todo ha ido bien y ERROR si ha habido algun problema
+  */
 STATUS game_add_space(Game *game, Space *space)
 {
+  /* Control de errores */
+  if (game == NULL)
+  {
+    return ERROR;
+  }
   int i = 0;
 
-  /*Error control*/
+  /* Control de errores */
   if (space == NULL)
   {
     return ERROR;
   }
 
-  /*Searches the first space position available*/
-  while (i < MAX_SPACES && game->spaces[i] != NULL)
-  {
-    i++;
-  }
+  for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++) {}
 
-  /*Error control (if there is no space position left)*/
+  /* Control de errores */
   if (i >= MAX_SPACES)
   {
     return ERROR;
@@ -116,70 +179,109 @@ STATUS game_add_space(Game *game, Space *space)
   return OK;
 }
 
-/*
-* Adds a given object to the game
-*/
-STATUS game_add_object(Game *game, Object *object) 
+/**
+ * @brief Agrega los objetos del juego
+ * @author Miguel Soto
+ * 
+ * game_add_obj agrega uno a uno los objetos al juego
+ * @param game es el puntero a Game del que se quiere incluir un objeto
+ * @param obj es el puntero a Object que se quiere incluir en el juego
+ * @return OK si todo ha ido bien y ERROR si ha habido algun problema
+ */
+STATUS game_add_object(Game *game, Object *obj)
 {
-  /*Error control*/
-  if (object == NULL)
-  return ERROR;
-
-  int i = 0;
-
-  /*Searches the first object position available*/
-  while (i < MAX_OBJECTS && game->object[i] != NULL)
-  {
-    i++;
-  }
-
-  /*Error control (if there is no space position left)*/
-  if (i >= MAX_SPACES)
+  if (!game || !obj)
   {
     return ERROR;
   }
 
-  game->object[i] = object;
+  int i;
 
-  return OK;    
-}
+  for (i = 0; i < MAX_OBJS && game->object[i] != NULL; i++) {}
 
-/*
-* Adds a given player to the game
-*/
-STATUS game_add_player(Game *game, Player *player) 
-{
-  /*Error control*/
-  if (player == NULL)
-    {
-      return ERROR;
-    }
+  if (i >= MAX_OBJS)
+  {
+    return ERROR;
+  }
 
-  game->player = player;
+  game->object[i] = obj;
 
   return OK;
 }
 
-STATUS game_add_enemy(Game *game, Enemy *enemy) 
+/**
+ * @brief Agrega jugadores al juego
+ * @author Miguel Soto
+ * 
+ * game_add_obj agrega uno a uno los objetos al juego
+ * @param game es el puntero a Game del que se quiere incluir un objeto
+ * @param obj es el puntero a Object que se quiere incluir en el juego
+ * @return OK si todo ha ido bien y ERROR si ha habido algun problema
+ */
+STATUS game_add_player(Game *game, Player *p)
 {
-  /*Error control*/
-  if (enemy == NULL)
-    {
-      return ERROR;
-    }
+  if (!game || !p)
+  {
+    return ERROR;
+  }
+  
+  int i;
+  for (i = 0; i < MAX_PLAYERS && game->player[i] != NULL; i++) {}
 
-  game->enemy = enemy;
+  if (i >= MAX_PLAYERS)
+  {
+    return ERROR;
+  }
+  
+  game->player[i] = p;
 
   return OK;
 }
 
-  /*
-  * Gets the id of a space, searching by its position
+/**
+ * @brief Agrega los objetos del juego
+ * @author Miguel Soto
+ * 
+ * game_add_obj agrega uno a uno los objetos al juego
+ * @param game es el puntero a Game del que se quiere incluir un objeto
+ * @param obj es el puntero a Object que se quiere incluir en el juego
+ * @return OK si todo ha ido bien y ERROR si ha habido algun problema
+ */
+STATUS game_add_enemy(Game *game, Enemy *e)
+{
+  if (!game || !e)
+  {
+    return ERROR;
+  }
+  
+  int i;
+  for (i = 0; i < MAX_ENEMYS && game->enemy[i] != NULL; i++) {}
+
+  if (i >= MAX_ENEMYS)
+  {
+    return ERROR;
+  }
+  
+  game->enemy[i] = e;
+
+  return OK;
+}
+
+/**
+  * @brief Comprueba si los espacios están o no fuera del rango establecido
+  * @author Profesores PPROG
+  *
+  * game_get_space_id_at Comprueba si un espacio esta o no fuera del juego y devuelve No_ID 
+  * para establecer que se encuentra fuera de limites o su id si este esta en el juego
+  * @param game es el puntero que apunta a la estructura tipo Game, que contiene los datos de localización de objeto y jugador 
+  * junto con los espacios del juego y el ultimo comando 
+  * @param position es el entero que indica la posicion del espacio a comprobar
+  * @return space_get_id(game->spaces[position]) Llamada a la funcion para obtener la id del espacio si este se encuentra en el juego
+  * y NO_ID si el espacio se encentra fuera del rango 
   */
 Id game_get_space_id_at(Game *game, int position)
 {
-
-  /*Error control*/
+  /* Control de errores */
   if (position < 0 || position >= MAX_SPACES)
   {
     return NO_ID;
@@ -188,15 +290,14 @@ Id game_get_space_id_at(Game *game, int position)
   return space_get_id(game->spaces[position]);
 }
 
-/*
-* Returns the space that coincides with the given id
-*/
+/** Comprueba uno a uno los espacios del juego para 
+  * ver si son nulos o coinciden con la id
+  */
 Space *game_get_space(Game *game, Id id)
 {
-  int i = 0;
+  int i;
 
-  /*Error control*/
-  if (id == NO_ID)
+  if (!game || id == NO_ID)
   {
     return NULL;
   }
@@ -212,444 +313,614 @@ Space *game_get_space(Game *game, Id id)
   return NULL;
 }
 
-/*
-*Moves the player to the space of the given id 
-*/
-STATUS game_set_player_location(Game *game, Id id)
+/**
+ * Comprueba uno a uno los objetos del juego para ver si coinciden con la id
+ */
+Object *game_get_object(Game *game, Id id)
 {
+  int i;
 
-  /*Error control*/
-  if (id == NO_ID)
+  if (!game || id == NO_ID)
+  {
+    return NULL;
+  }
+  
+  for (i = 0; i < MAX_OBJS && game->object[i] != NULL; i++)
+  {
+    if (id == obj_get_id(game->object[i]))
+    {
+      return game->object[i];
+    }
+  }
+  
+  return NULL;
+}
+
+/**
+ * Comprueba uno a uno los players del juego para ver si coinciden con la id
+ */
+Player *game_get_player(Game *game, Id id)
+{
+  int i;
+
+  if (!game || id == NO_ID)
+  {
+    return NULL;
+  }
+  
+  for (i = 0; i < MAX_PLAYERS && game->player[i] != NULL; i++)
+  {
+    if (id == player_get_id(game->player[i]))
+    {
+      return game->player[i];
+    }
+  }
+
+  return NULL;
+}
+
+/**
+ * Comprueba uno a uno los enemies del juego para ver si coinciden con la id
+ */
+Enemy *game_get_enemy(Game *game, Id id)
+{
+  int i;
+
+  if (!game || id == NO_ID)
+  {
+    return NULL;
+  }
+  
+  for (i = 0; i < MAX_ENEMYS && game->enemy[i] != NULL; i++)
+  {
+    if (id == enemy_get_id(game->enemy[i]))
+    {
+      return game->enemy[i];
+    }
+  }
+  
+  return NULL;
+}
+
+/**
+  * @brief Establece la id como la posicion del jugador
+  * @author Miguel Soto
+  *
+  * game_set_player_location establece la id como la posicion del jugador
+  * @param game es el puntero que apunta a game, que contiene los datos de localización de objeto y jugador 
+  * junto con los espacios del juego y el ultimo comando 
+  * @param id es el numero de identificacion del espacio en el que se establecera el jugador
+  * @return OK si a la posicion del jugador se le asigna la id con exito y ERROR si la id no esta definida
+  */
+STATUS game_set_player_location(Game *game, Id player_id, Id space_id)
+{
+  /* Control de errores */
+  if (!game || player_id == NO_ID || space_id == NO_ID)
+  {
+    return ERROR;
+  }
+
+  Player *p = NULL;
+  p = game_get_player(game, player_id);
+  if (!p)
   {
     return ERROR;
   }
   
-  player_set_location(game->player, id);
-
-  return OK;
+  return player_set_location(p, space_id);
 }
 
-/*
-* Places an object in the space of the given id
-*/
-STATUS game_set_object_location(Game *game, Id id_obj, Id id_loc)
+/**
+  * @brief Establece la id como la posicion del objeto
+  * @author Miguel Soto
+  *
+  * game_set_object_location establece la id como la posicion del objeto
+  * @param game es el puntero que apunta a game, que contiene los datos de localización de objeto y jugador 
+  * junto con los espacios del juego y el ultimo comando 
+  * @param id es el numero de identificacion del espacio en el que se establecera el objeto
+  * @return OK si a la posicion del objeto se le asigna la id con exito y ERROR si la id no esta definida
+  */
+STATUS game_set_object_location(Game *game, Id obj_id, Id space_id)
 {
-
-  if ( game_get_object_location(game, id_obj) == NO_ID){}
-  else{
-    space_delete_object(game_get_space(game, game_get_object_location(game, id_obj)), id_obj);
+  /* Control de errores */
+  if (!game || obj_id == NO_ID)
+  {
+    return ERROR;
   }
 
-  space_add_object(game_get_space(game, id_loc), id_obj);
+  Object *o = NULL;
 
-  return OK;
-
-}
-
-/*
-* Gets the location of the player
-*/
-Id game_get_player_location(Game *game)
-{
-  return player_get_location(game->player);
-}
-
-/*
-* Gets the location of an object
-*/
-Id game_get_object_location(Game *game, Id id_obj)
-{
-  int i;
-
-  /*Goes space from space if there's space with object*/
-  for (i=0 ; i < MAX_SPACES ; i++) {
-    if (set_idInSet(space_get_object(game->spaces[i]), id_obj) == TRUE) {
-      return space_get_id(game->spaces[i]);
-    }
+  o = game_get_object(game, obj_id);
+  if (!o)
+  {
+    return ERROR;
   }
-  return NO_ID;
+
+  return obj_set_location(o, space_id);
 }
 
-/*
-* Gets a command and depending of which one it is, it executes one of the following functions
-*/
-STATUS game_update(Game *game, T_Command cmd, char *arg)
+/**
+  * @brief Establece la id como la posicion del enemigo
+  * @author Antonio Van-Oers
+  *
+  * game_set_enemy_location establece la id como la posicion del enemigo
+  * @param game es el puntero que apunta a game, que contiene los datos de localización de objeto y jugador 
+  * junto con los espacios del juego y el ultimo comando 
+  * @param id es el numero de identificacion del espacio en el que se establecera el enemigo
+  * @return OK si a la posicion del enemigo se le asigna la id con exito y ERROR si la id no esta definida
+  */
+STATUS game_set_enemy_location(Game *game, Id enemy_id, Id space_id)
 {
-  game->last_cmd = cmd;
+  /* Control de errores */
+  if (!game || enemy_id == NO_ID || space_id == NO_ID)
+  {
+    return ERROR;
+  }
+
+  Enemy *e = NULL;
+  e = game_get_enemy(game, enemy_id);
+  if (!e)
+  {
+    return ERROR;
+  }
   
+  return enemy_set_location(game->enemy[MAX_PLAYERS-1], space_id);
+}
+
+
+/** Obtiene la posicion del player
+  */
+Id game_get_player_location(Game *game, Id player_id)
+{
+  /* Control de errores */
+  if (!game || player_id == NO_ID)
+  {
+    return NO_ID;
+  }
+
+  Player *p = NULL;
+  p = game_get_player(game, player_id);
+  if (!p)
+  {
+    return NO_ID;
+  }
+  
+  return player_get_location(p);
+}
+
+/** Obtiene la posicion del enemigo
+  */
+Id game_get_enemy_location(Game *game, Id enemy_id)
+{
+  /* Control de errores */
+  if (!game || enemy_id == NO_ID)
+  {
+    return NO_ID;
+  }
+
+  Enemy *e = NULL;
+  e = game_get_enemy(game, enemy_id);
+  if (!e)
+  {
+    return NO_ID;
+  }
+
+  return enemy_get_location(e);
+}
+
+/** Obtiene la posicion del objeto
+  */
+Id game_get_object_location(Game *game, Id obj_id)
+{
+  /* Control de errores */
+  if (!game || obj_id == NO_ID)
+  {
+    return NO_ID;
+  }
+
+  Object *o = NULL;
+  o = game_get_object(game, obj_id);
+  if (!o)
+  {
+    return ERROR;
+  }
+
+  return obj_get_location(o);
+}
+
+/** game_update utiliza la variable cmd del interprete de comandos para determinar que funcion debe llamar
+  * en cada caso
+  */
+int game_update(Game *game, T_Command cmd, char *arg)
+{
+  int st = 0;
+  game->last_cmd = cmd;
+
   switch (cmd)
   {
-    case UNKNOWN:
-      return game_command_unknown(game);
-      break;
+  case UNKNOWN:
+    st = game_command_unknown(game, arg);
+    break;
 
-    case EXIT:
-      game_command_exit(game);
-      break;
+  case EXIT:
+    st = (int) game_command_exit(game, arg);
+    break;
 
-    case NEXT:
-      return game_command_next(game);
-      break;
+  case DOWN:
+    st = (int) game_command_down(game, arg);
+    break;
 
-    case BACK:
-      return game_command_back(game);
-      break;
+  case RIGHT:
+    st = (int) game_command_right(game, arg);
+    break;
 
-    case RIGHT:
-      return game_command_right(game);
-      break;
+  case LEFT:
+    st = (int) game_command_left(game, arg);
+    break;
 
-    case LEFT:
-      return game_command_left(game);
-      break;
-    case TAKE:
-      return game_command_take(game, arg);
-      break;
-    case DROP:
-      return game_command_drop(game);
-      break;  
-    
-    case ATTACK:
-      return game_command_attack(game);
-      break;
+  case UP:
+    st = (int) game_command_up(game, arg);
+    break;
 
-    default:
-      break;
+  case TAKE:
+    st = (int) game_command_take(game, arg);
+    break;
+  
+  case DROP:
+    st = (int) game_command_drop(game, arg);
+    break;
+
+  case ATTACK:
+    st = (int) game_command_attack(game, arg);
+    break;
+
+  default:
+    break;
   }
 
-  return OK;
+  return st;
 }
 
-/*
-* Gets the last command that has been used
-*/
+/** Dentro de game, accede a la variable last_cmd para obtener el ultimo 
+  * comando introducido por el usuario en la partida
+  */
 T_Command game_get_last_command(Game *game)
 {
   return game->last_cmd;
 }
 
-/*
-* Prints all the information in the struct game (Spaces, oject location, player location)
-*/
+/** 
+  * game_print_data imprime en la interfaz los datos acerca de la posicion actual del jugador y objeto
+  */
 void game_print_data(Game *game)
 {
   int i = 0;
 
   printf("\n\n-------------\n\n");
 
-  /*1. Prints the spaces and the information of each one*/
   printf("=> Spaces: \n");
   for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
   {
     space_print(game->spaces[i]);
   }
 
-  /*2. Printf the object loaction*/
-  printf("=> Objects: \n");
-  for(i = 0 ; i < MAX_OBJECTS && game->object[i] != NULL ; i++)
+  printf("=> Objects:\n");
+  for (i = 0; i < MAX_OBJS && game->object[i] != NULL; i++)
   {
-    object_print(game->object[i]);
+    obj_print(game->object[i]);
   }
-
-  /*3. Printf the player loaction*/
-  printf("=> Player location: %d\n", (int)game_get_player_location(game));
+  
+  printf("=> Players:\n");
+  for (i = 0; i < MAX_PLAYERS && game->player[i] != NULL; i++)
+  {
+    player_print(game->player[i]);
+  }
+  
+  printf("=> Enemies:\n");
+  for (i = 0; i < MAX_ENEMYS && game->enemy[i] != NULL; i++)
+  {
+    enemy_print(game->enemy[i]);
+  }
 }
 
-/*
-* Finishes the game
-*/
+/** Devuelve FALSE cuando se llama a la funcion, 
+ * significando que la partida ha terminado
+ */
 BOOL game_is_over(Game *game)
 {
-  if (player_get_health(game->player) == 0) {
+  if (player_get_health(game->player[MAX_PLAYERS-1]) <= 0)
+  {
     return TRUE;
-  } else {
-  return FALSE;
   }
+  
+  return FALSE;
 }
 
 /**
    Calls implementation for each action 
 */
-STATUS game_command_unknown(Game *game)
+int game_command_unknown(Game *game, char *arg)
 {
-  return ERROR;
+  return 5;
 }
 
-void game_command_exit(Game *game)
+STATUS game_command_exit(Game *game, char *arg)
 {
+  return OK;
+}
+
+STATUS game_command_take(Game *game, char *arg)
+{
+  Id player_location = player_get_location(game->player[MAX_PLAYERS-1]);
+  Id id_obj_taken = NO_ID, obj_loc = NO_ID;
+
+  /* Control de errores */
+  if(player_get_object(game->player[MAX_PLAYERS-1])!= NULL)
+  {
+    printf("El player ya tiene un objeto, no puede coger otro\n");
+    return ERROR;
+  }
+
+  id_obj_taken = atol(arg);
+
+   /* Control de errores */
+  if (space_has_object(game_get_space(game, player_location), atol(arg)))
+  {
+    obj_loc = game_get_object_location(game, id_obj_taken);
+
+    /* Control de errores */
+    if (player_location != obj_loc)
+    {
+      return ERROR;
+    }
+
+    Space *s = game_get_space(game, player_location);
+    /* Control de errores */
+    if (s == NULL)
+    {
+      return ERROR;
+    }
+
+    Object *o = game_get_object(game, id_obj_taken);
+    /* Control de errores */
+    if (o == NULL)
+    {
+      return ERROR;
+    }
+    printf("obj_loc = %ld; player_loc = %ld", obj_loc, game_get_player_location(game, 21));
+    if (obj_loc != game_get_player_location(game, 21))
+    {
+      return ERROR;
+    }
+
+    if (game_set_object_location(game, id_obj_taken, NO_ID) == ERROR)
+    {
+      return ERROR;
+    }
+        
+    if (player_set_object(game->player[MAX_PLAYERS-1], o) == ERROR)
+    {
+      return ERROR;
+    }
+    if (space_del_objectid(s, id_obj_taken) == ERROR)
+    {
+      return ERROR;
+    }
+    return OK;
+  }
   
-}
+  return ERROR;
+} 
 
-/*
-* Command that moves the player one space position to thes south, in case there is one.
-* If not it doesnt move the player
-*/
-STATUS game_command_next(Game *game)
+STATUS game_command_drop(Game *game, char *arg)
 {
-  /*Initializes the private variables current_id and space_id*/
-  int i = 0;
-  Id current_id = NO_ID;
-  Id space_id = NO_ID;
 
-  /*Saves the current location of the player in space_id*/
-  space_id = game_get_player_location(game);
+  Id player_location = player_get_location(game->player[MAX_PLAYERS-1]);
+  Id obj_id = obj_get_id(player_get_object(game->player[MAX_PLAYERS-1]));
 
-  /*Error control. Checks if the id of the space of the player is correctly saved*/
-  if (space_id == NO_ID)
+  if (obj_id != atol(arg))
+  {
+    return ERROR;
+  }
+   
+  /* Control de errores */
+  if (player_get_object(game->player[MAX_PLAYERS-1]) == NULL)
   {
     return ERROR;
   }
 
-  /*Searches if there is a space south of the space of the player, and in case there is one, it moves the player to that space*/
+  Space *s = game_get_space(game, player_location);
+  /* Control de errores */
+  if (s == NULL)
+  {
+    return ERROR;
+  }
+  
+  Object *o = game_get_object(game, obj_id);
+  /* Control de errores */
+  if (o == NULL)
+  {
+    return ERROR;
+  }
+
+  if (space_add_objectid(s, obj_get_id(o)) == ERROR)
+  {
+    return ERROR;
+  }
+  if (game_set_object_location(game, obj_get_id(o), space_get_id(s)) == ERROR)
+  {
+    return ERROR;
+  }
+  if (player_set_object(game->player[MAX_PLAYERS-1], NULL) == ERROR)
+  {
+    return ERROR;
+  }
+
+  return OK;
+}
+
+/** Cuando el ultimo comando se ha interpretado como next
+ * desplaza al jugador hacia el sur, actualizando su posicion
+ */
+STATUS game_command_down(Game *game, char *arg)
+{
+  Id player_location = player_get_location(game->player[MAX_PLAYERS-1]);
+  Id player_id = player_get_id(game->player[MAX_PLAYERS-1]);
+  int i = 0;
+  Id current_id = NO_ID;
+  
+  if (player_id == NO_ID)
+  {
+    return ERROR;
+  }
+
   for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
   {
     current_id = space_get_id(game->spaces[i]);
-    if (current_id == space_id)
+    if (current_id == player_location) 
     {
       current_id = space_get_south(game->spaces[i]);
       if (current_id != NO_ID)
       {
-        game_set_player_location(game, current_id);
-      } else {
-        return ERROR;
+        game_set_player_location(game,player_id, current_id);
+        return OK;
       }
-    } 
+    }
   }
-  return OK;
+  return ERROR;
 }
 
-/*
-* Command that moves the player one space position to the north, in case there is one.
-* If not it doesnt move the player
-*/
-STATUS game_command_back(Game *game)
+/** Cuando el ultimo comando se ha interpretado como back
+ * desplaza al jugador hacia el norte, actualizando su posicion
+ */
+STATUS game_command_up(Game *game, char *arg)
 {
-
-    /*Initializes the private variables current_id and space_id*/
+  Id player_location = player_get_location(game->player[MAX_PLAYERS-1]);
+  Id player_id = player_get_id(game->player[MAX_PLAYERS-1]);
   int i = 0;
   Id current_id = NO_ID;
-  Id space_id = NO_ID;
-
-  /*Saves the current location of the player in space_id*/
-  space_id = game_get_player_location(game);
-
-  /*Error control. Checks if the id of the space of the player is correctly saved*/
-  if (NO_ID == space_id)
+  
+  if (player_id == NO_ID)
   {
     return ERROR;
   }
 
-/*Searches if there is a space north of the space of the player, and in case there is one, it moves the player to that space*/
   for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
   {
     current_id = space_get_id(game->spaces[i]);
-    if (current_id == space_id)
+    if (current_id == player_location) 
     {
       current_id = space_get_north(game->spaces[i]);
       if (current_id != NO_ID)
       {
-        game_set_player_location(game, current_id);
-        
-      } else {
-      return ERROR;
+        game_set_player_location(game,player_id, current_id);
+        return OK;
       }
-    } 
+    }
   }
-  return OK;
+  return ERROR;
 }
 
-/*
-* Command that moves the player one space position to the east, in case there is one.
-* If not it doesnt move the player
-*/
-STATUS game_command_right(Game *game)
+STATUS game_command_attack(Game *game, char *arg)
 {
-
-    /*Initializes the private variables current_id and space_id*/
-  int i = 0;
-  Id current_id = NO_ID;
-  Id space_id = NO_ID;
-
-  /*Saves the current location of the player in space_id*/
-  space_id = game_get_player_location(game);
-
-  /*Error control. Checks if the id of the space of the player is correctly saved*/
-  if (NO_ID == space_id)
+  srand (time(NULL)); 
+  int rand_num;
+  rand_num = rand() % 10; 
+  
+  Id player_loc = player_get_location(game->player[MAX_PLAYERS-1]);
+  Id enemy_loc= enemy_get_location(game->enemy[MAX_PLAYERS-1]);
+  
+  if(enemy_get_health(game->enemy[MAX_PLAYERS-1])==0)
   {
     return ERROR;
   }
 
-/*Searches if there is a space east of the space of the player, and in case there is one, it moves the player to that space*/
-  for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
+  if (player_loc == NO_ID || enemy_loc == NO_ID)
   {
-    current_id = space_get_id(game->spaces[i]);
-    if (current_id == space_id)
+    return ERROR;
+  }
+ 
+
+  /*En caso de que no se encuentren en el mismo espacio, el comando no hace nada */
+  if(player_loc != enemy_loc)
+  {
+    return ERROR;
+  }
+  /*El jugador gana si en rand_num es > 5, en caso contrario, pierde una vida ya que el enemigo ha ganado*/
+  if (rand_num > 5)
+  {
+    enemy_set_health(game->enemy[MAX_PLAYERS-1], (enemy_get_health(game->enemy[MAX_PLAYERS-1])-1)); 
+  }
+  else 
+  {
+    player_set_health(game->player[MAX_PLAYERS-1], (player_get_health(game->player[MAX_PLAYERS-1])-1)); 
+    if (player_get_health(game->player[MAX_PLAYERS-1])== 0 )
     {
-      current_id = space_get_east(game->spaces[i]);
-      if (current_id != NO_ID)
-      {
-        game_set_player_location(game, current_id);
+      game_is_over(game);
+    }
+  }
 
-      } else {
-      return ERROR;
-      }
-    } 
-  }        
   return OK;
 }
 
-/*
-* Command that moves the player one space position to the west, in case there is one.
-* If not it doesnt move the player
-*/
-STATUS game_command_left(Game *game)
+/** Cuando el ultimo comando se ha interpretado como left
+ * desplaza al jugador hacia el Oeste, actualizando su posicion
+ */
+STATUS game_command_left(Game *game, char *arg)        
 {
-
-    /*Initializes the private variables current_id and space_id*/
+  Id player_location = player_get_location(game->player[MAX_PLAYERS-1]);
+  Id player_id = player_get_id(game->player[MAX_PLAYERS-1]);
   int i = 0;
   Id current_id = NO_ID;
-  Id space_id = NO_ID;
-
-  /*Saves the current location of the player in space_id*/
-  space_id = game_get_player_location(game);
-
-  /*Error control. Checks if the id of the space of the player is correctly saved*/
-  if (NO_ID == space_id)
+  
+  if (player_id == NO_ID)
   {
     return ERROR;
   }
 
-/*Searches if there is a space west of the space of the player, and in case there is one, it moves the player to that space*/
   for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
   {
     current_id = space_get_id(game->spaces[i]);
-    if (current_id == space_id)
+    if (current_id == player_location) 
     {
       current_id = space_get_west(game->spaces[i]);
       if (current_id != NO_ID)
       {
-        game_set_player_location(game, current_id);
-      } else {
-      return ERROR;
-      } 
-    } 
+        game_set_player_location(game,player_id, current_id);
+        return OK;
+      }
+    }
   }
-  return OK;
+  return ERROR;
 }
 
-/*
-* Command that make the player take the object.
-* If the player and object aren't in the same room returns ERROR.
-*/
-STATUS game_command_take(Game *game, char *obj) 
+/** Cuando el ultimo comando se ha interpretado como right
+ * desplaza al jugador hacia el Este, actualizando su posicion
+ */
+STATUS game_command_right(Game *game, char *arg)
 {
-  if(obj[0] != 'o' && obj[0] != 'O')
-  return ERROR;
-
-  obj[0] = obj[1];
-  obj[1] = obj[2];
-  obj[2] = '\0';
-
-  Id id_obj = atoi(obj);
-  if(id_obj == 0){
-    return ERROR;
-  }
-
-  /*Check if Player and object are in the same place*/
-  if (game_get_object_location(game, id_obj) != game_get_player_location(game)) {
-    return ERROR;
-  }
-
-  if (player_get_object(game->player) != -1) {
-    return ERROR;
-  }
-
-  Id loc = game_get_object_location(game, id_obj);
-
-  /*Gives the object to the player*/
-  if (player_set_object(game->player, id_obj) == ERROR) {
-    return ERROR;
-  }
-
-  /*Removes the object from the space*/
-  if (space_delete_object(game_get_space(game, loc), id_obj) == ERROR) {
-    return ERROR;
-  }
-
-  return OK;
-}
-
-/*
-* Command that make the player drop the object on the space.
-* If player aint object, returns ERROR
-*/
-STATUS game_command_drop(Game *game)
-{
-  /*Checks the player has an object*/
-  if(player_get_object(game->player) == NO_ID)
-  return ERROR;
-
-  /*Leaves the object on the space*/
-  game_set_object_location(game, player_get_object(game->player), game_get_player_location(game));
-
-  /*Removes the object from the player*/
-  player_set_object(game->player, NO_ID);
-
-  return OK;
-}
-
-/*
-* Command that 50%-50% drops the HP of the player or the enemy
-* If player and enemy arent in the same room, returns ERROR
-*/
-STATUS game_command_attack(Game *game)
-{
-
-  /*Checks if player and enemy are in the same room*/
-  if(player_get_location(game->player) != enemy_get_location(game->enemy))
-  return ERROR;
-
-  /*Cheks if enemy is alive*/
-  if (enemy_get_health(game->enemy) == 0)
-  return ERROR;
-
-  /*Generates random number*/
-  srand(time(NULL));
-  int i = rand() % 10;
-
-  /*Depending on the value of i, player or enemy lose HP*/
-  if(i<5){
-    player_set_health(game->player, player_get_health(game->player) - 1);
-  }
-  else{
-    enemy_set_health(game->enemy, enemy_get_health(game->enemy) - 1);
-  }
-
-  return OK;
-}
-
-int game_get_n_objects(Game *game) {
-
+  Id player_location = player_get_location(game->player[MAX_PLAYERS-1]);
+  Id player_id = player_get_id(game->player[MAX_PLAYERS-1]);
   int i = 0;
-
-  if (!game)
-  return NO_ID;
-
-  while (i < MAX_OBJECTS && game->object[i] != NULL) {
-    i++;
+  Id current_id = NO_ID;
+  
+  if (player_id == NO_ID)
+  {
+    return ERROR;
   }
 
-  if (i > MAX_OBJECTS)
-  return NO_ID;
-
-  return i + 1;
+  for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
+  {
+    current_id = space_get_id(game->spaces[i]);
+    if (current_id == player_location) 
+    {
+      current_id = space_get_east(game->spaces[i]);
+      if (current_id != NO_ID)
+      {
+        game_set_player_location(game,player_id, current_id);
+        return OK;
+      }
+    }
+  }
+  return ERROR;
 }
-
-void game_set_cmd_st(Game* game, STATUS cmd_st) {
-  game->cmd_status = cmd_st;
-}
-
-STATUS game_get_cmd_st(Game *game) {
-  return game->cmd_status;
-}
-

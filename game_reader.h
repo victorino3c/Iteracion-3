@@ -1,60 +1,38 @@
 /** 
- * @brief It defines all necessary to load the game
- * @file game_reader.c
- * @author Ignacio Nunnez && Nicolas Victorino
- * @version 3.0 
- * @date 10-03-2022 
+ * @brief It defines the game's space loading
+ * 
+ * @file game_reader.h
+ * @author Miguel Soto
+ * @version 1.1
+ * @date 12-02-2022
  * @copyright GNU Public License
  */
 
+#ifndef GAME_READER
+#define GAME_READER
+
 #include "command.h"
 #include "space.h"
-#include "object.h"
-#include "enemy.h"
-#include "player.h"
 #include "types.h"
 #include "game.h"
 
-/**
-  * @brief Loads the spaces from a file, and saves them in the game struct
-  * @author Nicolas Victorino
-  * 
-  * @param game a pointer to the struct Game, @param filename is the file from where the spaces are being loaded
-  * @return OK, if everything goes well or ERROR if there was some mistake
-  */
-STATUS game_load_spaces(Game *game, char *filename);
+typedef enum
+{
+  IS_SPACE = FD_ID_SPACE,
+  IS_PLAYER = FD_ID_PLAYER,
+  IS_OBJECT = FD_ID_OBJ,
+  IS_ENEMY = FD_ID_ENEMY
+} GAME_IS_ELEMENT;
 
 /**
-  * @brief Loads the player from a file, and saves it in the game struct
-  * @author Nicolas Victorino
-  * 
-  * @param game a pointer to the struct Game, @param filename is the file from where the spaces are being loaded
-  * @return OK, if everything goes well or ERROR if there was some mistake
-  */
-STATUS game_load_players(Game *game, char *filename);
-
-/**
-  * @brief Loads the object from a file, and saves it in the game struct
-  * @author Nicolas Victorino
-  * 
-  * @param game a pointer to the struct Game, @param filename is the file from where the spaces are being loaded
-  * @return OK, if everything goes well or ERROR if there was some mistake
-  */
-STATUS game_load_objects(Game *game, char *filename);
-
-/**
-  * @brief Loads the enemy from a file, and saves it in the game struct
-  * @author Nicolas Victorino
-  * 
-  * @param game a pointer to the struct Game, @param filename is the file from where the spaces are being loaded
-  * @return OK, if everything goes well or ERROR if there was some mistake
-  */
-STATUS game_load_enemy(Game *game, char *filename); 
-/**
-  * @brief It creates the game from a file and loads the objects, players and spaces to the game
-  * @author Nicolas Victorino
+  * @brief Crea e inicializa una partida desde el fichero
+  * @author Profesores PPROG
   *
-  * @param game where it is going to save the struct of the game,@param filename from where it loads all the spaces, objects and players
-  * @return OK, if everything goes well or ERROR if there was some mistake
+  * game_create_from_file inicializa los campos necesarios del juego leidos desde el filename.dat
+  * @param game es el puntero que apunta a game
+  * @param filename es el puntero que apunta al nombre del fichero 
+  * @return OK, si todo va bien o ERROR si ha habido algun fallo
   */
 STATUS game_create_from_file(Game *game, char *filename);
+
+#endif

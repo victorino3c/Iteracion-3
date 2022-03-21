@@ -1,0 +1,7 @@
+#s:11|Entrada|-1|-1|12|-1
+#s:12|Pasillo|11|-1|13|-1
+#s:13|Despensa|12|-1|-1|-1
+#o:21|Grano1|11
+#o:22|Grano2|14
+#o:23|Grano3|124
+#o:24|Grano4|125

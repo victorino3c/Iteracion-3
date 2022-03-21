@@ -1,61 +1,108 @@
 /** 
- * @brief It implements all necessary functions to load the ant_game from a given file
+ * @brief Se encarga de la carga de espacios
+ * 
  * @file game_reader.c
- * @author Ignacio Nunnez && Nicolas Victorino
- * @version 4.0 
- * @date 10-03-2022 
+ * @author Miguel Soto
+ * @version 1.1
+ * @date 12-02-2022
  * @copyright GNU Public License
  */
 
-#include "game_reader.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
-/*
-* Loads the spaces and the information of each from a given file
-* In case debug is being used it prints the information of each space that is loaded
-* If anything has gonne wrong while using the file, it will change the exit status from OK to ERROR
+#include "game_reader.h"
+
+STATUS game_add_space(Game *game, Space *space);
+STATUS game_add_object(Game *game, Object *obj);
+STATUS game_add_player(Game *game, Player *p);
+STATUS game_add_enemy(Game *game, Enemy *e);
+Id game_get_space_id_at(Game *game, int position);
+STATUS game_set_player_location(Game *game, Id player_id, Id space_id);
+STATUS game_set_object_location(Game *game, Id obj_id, Id space_id);
+STATUS game_set_enemy_location(Game *game, Id enemy_id, Id space_id);
+
+/**
+  Funciones privadas
 */
+STATUS game_load_spaces(Game *game, char *filename);
+STATUS game_load_objs(Game *game, char *filename);
+GAME_IS_ELEMENT id_type(Id id);
+
+/**
+  Game_reader implementacion
+*/
+
+/** game_create_from_file inicializa la localizacion 
+  * del jugador y el objeto a 0, situandolos en el primer espacio
+  */
+STATUS game_create_from_file(Game *game, char *filename)
+{
+
+  if (game_create(game) == ERROR)
+  {
+    return ERROR;
+  }
+  if (game_alloc(game) == ERROR)
+  {
+    return ERROR;
+  }
+  
+  if (game_load_spaces(game, filename) == ERROR)
+  {
+    return ERROR;
+  }
+
+  if (game_load_objs(game, filename) == ERROR)
+  {
+    return ERROR;
+  }
+
+  /* The player and the object are located in the first space */
+  game_set_player_location(game, 21, game_get_space_id_at(game, 0));
+  game_set_enemy_location(game, 41, game_get_space_id_at(game, 1));
+
+  return OK;
+}
+
+/**
+  * @brief Carga los espacios del juego
+  * @author Profesores PPROG
+  *
+  * game_load_spaces carga la info de los espacios creados
+  * @param game es el puntero que apunta a game
+  * @param filename es el puntero que apunta al nombre del fichero 
+  * @return OK si todo va bien y ERROR si ha habido algun fallo de carga
+  */
 STATUS game_load_spaces(Game *game, char *filename)
 {
   FILE *file = NULL;
   char line[WORD_SIZE] = "";
   char name[WORD_SIZE] = "";
-  char *toks = NULL;
+  char *toks = NULL, *aux;
+  char **gdesc = NULL;
   Id id = NO_ID, north = NO_ID, east = NO_ID, south = NO_ID, west = NO_ID;
   Space *space = NULL;
   STATUS status = OK;
-  char **gdesc = space_create_gdesc();
-  char **gdesc_n = NULL;
-  int i;
-  /*Error control*/
+  int i, j;
+
   if (!filename)
   {
     return ERROR;
   }
 
   file = fopen(filename, "r");
-
-  /*Error control*/
   if (file == NULL)
   {
     return ERROR;
   }
 
-
-  /*
-  * While the loop reads information in the current line from the file: "hormiguero.dat", it divides that line in smaller tokens.
-  * Each token has a piece of information, in the following order:
-  * ID of the space, name, space at north, at east, at south, and at west.
-  */
   while (fgets(line, WORD_SIZE, file))
   {
     if (strncmp("#s:", line, 3) == 0)
     {
-
-
-
       toks = strtok(line + 3, "|");
       id = atol(toks);
       toks = strtok(NULL, "|");
@@ -68,21 +115,28 @@ STATUS game_load_spaces(Game *game, char *filename)
       south = atol(toks);
       toks = strtok(NULL, "|");
       west = atol(toks);
-      for (i = 0; i < space_get_gdescY(); i++) {
-        toks = strtok(NULL, "|");
-        strcpy(*(gdesc + i), toks);
+
+      gdesc = space_create_gdesc();
+      if (gdesc == NULL)
+      {
+        return ERROR;
       }
+      
+      for (i = 0; i < TAM_GDESC_Y; i++)
+      {
+        aux = strtok(NULL, "|");
+        for (j = 0; j < strlen(aux) && j < TAM_GDESC_X; j++)
+        {
+          gdesc[i][j] = aux[j];
+        }
+      }
+      
+      
 
-    /*If debug is being used, it will print all the information from the current space that is being loaded*/
 #ifdef DEBUG
-      printf("Leido: %ld|%s|%ld|%ld|%ld|%ld\n", id, name, north, east, south, west);
+      //printf("Leido: %ld|%s|%ld|%ld|%ld|%ld\n", id, name, north, east, south, west);
 #endif
-
-  /*Defines a private variable called "space" and saves a pointer to space with the given id in it*/
       space = space_create(id);
-      gdesc_n= space_copy_gdesc(gdesc);
-
-  /*Error control, and in case everything is fine, it saves the information gotten in the prior loop in the newly created space*/
       if (space != NULL)
       {
         space_set_name(space, name);
@@ -90,95 +144,12 @@ STATUS game_load_spaces(Game *game, char *filename)
         space_set_east(space, east);
         space_set_south(space, south);
         space_set_west(space, west);
-        space_set_gdesc(space, gdesc_n);
+        space_set_gdesc(space, gdesc);
         game_add_space(game, space);
       }
     }
   }
 
-  /*Error control, if it has given an error at any moment while using the file, ferror while make the if condition true.
-   This will change the private status variable declared at the beggining of the function from OK to ERROR. */
-  if (ferror(file))
-  {
-    status = ERROR;
-  }
-
-  fclose(file);
-
-  space_remove_gdesc_game(gdesc);
-
-  return status;
-}
-
-/*
-* Loads the player and its information
-* In case debug is being used it prints the information of the loaded player
-* If anything has gonne wrong while using the file, it will change the exit status from OK to ERROR
-*/
-STATUS game_load_players(Game *game, char *filename) 
-{
- FILE *file = NULL;
-  char line[WORD_SIZE] = "";
-  char name[WORD_SIZE] = "";
-  char *toks = NULL;
-  Id id = NO_ID, object = NO_ID, location = NO_ID;;
-  Player *player = NULL;
-  STATUS status = OK;
-
-  /*Error control*/
-  if (!filename)
-  {
-    return ERROR;
-  }
-
-  /*Error control*/
-  file = fopen(filename, "r");
-  if (file == NULL)
-  {
-    return ERROR;
-  }
-
-  
-  /*
-  * While the loop reads information in the current line from the file: "hormiguero.dat", it divides that line in smaller tokens.
-  * Each token has a piece of information, in the following order:
-  * ID of the player, name, Id of the object that the player has (NO_ID if it has no object), and location.
-  */
-  while (fgets(line, WORD_SIZE, file))
-  {
-    if (strncmp("#p:", line, 3) == 0)
-    {
-      toks = strtok(line + 3, "|");
-      id = atol(toks);
-      toks = strtok(NULL, "|");
-      strcpy(name, toks);
-      toks = strtok(NULL, "|");
-      object = atol(toks);
-      toks = strtok(NULL, "|");
-      location = atol(toks);
-
-  /*If debug is being used, it will print all the information from the current player that is being loaded*/
-#ifdef DEBUG
-      printf("Leido: %ld|%s|%ld|%ld\n", id, name, objet, location);
-#endif
-
-  /*Defines a private variable called "player" and saves a pointer to player with the given id in it*/
-      player = player_create(id);
-
-  /*Error control, and in case everything is fine, it saves the information gotten in the prior loop in the newly created player*/
-      if (player != NULL)
-      {
-        player_set_name(player, name);
-        player_set_object(player, object);
-        player_set_location(player, location);
-        player_set_health(player, MAX_HEALTH_PLAYER);
-        game_add_player(game, player); 
-      }
-    }
-  }
-
-  /*Error control, if it has given an error at any moment while using the file, ferror while make the if condition be true.
-   This will change the private status variable declared at the beggining of the function from OK to ERROR. */
   if (ferror(file))
   {
     status = ERROR;
@@ -189,39 +160,37 @@ STATUS game_load_players(Game *game, char *filename)
   return status;
 }
 
-/*
-* Loads the object and its information
-* In case debug is being used it prints the information of the loaded object
-* If anything has gonne wrong while using the file, it will change the exit status from OK to ERROR
-*/
-STATUS game_load_objects(Game *game, char *filename) 
+
+/**
+  * @brief Carga los objetos del juego
+  * @author Miguel Soto
+  *
+  * game_load_objs carga la info de los objetos creados
+  * @param game es el puntero que apunta a game
+  * @param filename es el puntero que apunta al nombre del fichero 
+  * @return OK si todo va bien y ERROR si ha habido algun fallo de carga
+  */
+STATUS game_load_objs(Game *game, char *filename)
 {
- FILE *file = NULL;
+  FILE *file = NULL;
   char line[WORD_SIZE] = "";
   char name[WORD_SIZE] = "";
   char *toks = NULL;
-  Id id = NO_ID, loc = NO_ID;
-  Object *object = NULL;
+  Id id = NO_ID, pos = NO_ID;
+  Object *obj = NULL;
   STATUS status = OK;
 
-  /*Error control*/
   if (!filename)
   {
     return ERROR;
   }
-
-  /*Error control*/
+   
   file = fopen(filename, "r");
   if (file == NULL)
   {
     return ERROR;
   }
 
-  /*
-  * While the loop reads information in the current line from the file: "hormiguero.dat", it divides that line in smaller tokens.
-  * Each token has a piece of information, in the following order:
-  * ID of the object, name.
-  */
   while (fgets(line, WORD_SIZE, file))
   {
     if (strncmp("#o:", line, 3) == 0)
@@ -231,28 +200,25 @@ STATUS game_load_objects(Game *game, char *filename)
       toks = strtok(NULL, "|");
       strcpy(name, toks);
       toks = strtok(NULL, "|");
-      loc = atol(toks);
+      pos = atol(toks);
 
-  /*If debug is being used, it will print all the information from the current object that is being loaded*/
 #ifdef DEBUG
-      printf("Leido: %ld|%s\n", id, name);
+      //printf("Leido: %ld|%s|%ld|%ld|%ld|%ld\n", id, name, north, east, south, west);
 #endif
-
-  /*Defines a private variable called "object" and saves a pointer to object with the given id in it*/
-      object = object_create(id);
-
-  /*Error control, and in case everything is fine, it saves the information gotten in the prior loop in the newly created object*/
-      if (object != NULL)
+      obj = obj_create(id);
+      if (obj != NULL)
       {
-        object_set_name(object, name);
-        game_add_object(game, object); 
-        game_set_object_location(game, id, loc);
+        obj_set_name(obj, name);
+        obj_set_location(obj, pos);
+        if (space_add_objectid(game_get_space(game, pos), id) == ERROR)
+        {
+          return ERROR;
+        }
+        game_add_object(game, obj);
       }
     }
   }
 
-  /*Error control, if it has given an error at any moment while using the file, ferror while make the if condition be true.
-   This will change the private status variable declared at the beggining of the function from OK to ERROR. */
   if (ferror(file))
   {
     status = ERROR;
@@ -263,111 +229,44 @@ STATUS game_load_objects(Game *game, char *filename)
   return status;
 }
 
-/*
-* Loads the enemy and its information
-* In case debug is being used it prints the information of the loaded enemy
-* If anything has gonne wrong while using the file, it will change the exit status from OK to ERROR
-*/
-STATUS game_load_enemy(Game *game, char *filename) 
-{
- FILE *file = NULL;
-  char line[WORD_SIZE] = "";
-  char name[WORD_SIZE] = "";
-  char *toks = NULL;
-  Id id = NO_ID, location = NO_ID;;
-  Enemy *enemy = NULL;
-  STATUS status = OK;
-
-  /*Error control*/
-  if (!filename)
-  {
-    return ERROR;
-  }
-
-  /*Error control*/
-  file = fopen(filename, "r");
-  if (file == NULL)
-  {
-    return ERROR;
-  }
-
-  
-  /*
-  * While the loop reads information in the current line from the file: "hormiguero.dat", it divides that line in smaller tokens.
-  * Each token has a piece of information, in the following order:
-  * ID of the player, name, Id of the object that the player has (NO_ID if it has no object), and location.
-  */
-  while (fgets(line, WORD_SIZE, file))
-  {
-    if (strncmp("#e:", line, 3) == 0)
-    {
-      toks = strtok(line + 3, "|");
-      id = atol(toks);
-      toks = strtok(NULL, "|");
-      strcpy(name, toks);
-      toks = strtok(NULL, "|");
-      location = atol(toks);
-
-  /*If debug is being used, it will print all the information from the current player that is being loaded*/
-#ifdef DEBUG
-      printf("Leido: %ld|%s|%ld|%ld\n", id, name, location);
-#endif
-
-  /*Defines a private variable called "player" and saves a pointer to player with the given id in it*/
-      enemy = enemy_create(id);
-
-  /*Error control, and in case everything is fine, it saves the information gotten in the prior loop in the newly created player*/
-      if (enemy != NULL)
-      {
-        enemy_set_name(enemy, name);
-        enemy_set_location(enemy, location);
-        enemy_set_health(enemy, MAX_HEALTH_ENEMY);
-        game_add_enemy(game, enemy); 
-      }
-    }
-  }
-
-  /*Error control, if it has given an error at any moment while using the file, ferror while make the if condition be true.
-   This will change the private status variable declared at the beggining of the function from OK to ERROR. */
-  if (ferror(file))
-  {
-    status = ERROR;
-  }
-
-  fclose(file);
-
-  return status;
-}
-
-
- /**
- * Creates a new game and loads the spaces from a file
- * Returns status expressions ERROR in case something goes wrong or OK if succesful
+/**
+ * @brief Indica de que elemento del juego es el id
+ * @author Miguel Soto
+ * 
+ * @param id que se quiere clasificar
+ * @return elemento del juego del que es el id
  */
-STATUS game_create_from_file(Game *game, char *filename)
+GAME_IS_ELEMENT id_type(Id id)
 {
-  /*Error control and creates the game*/
-  if (game_create(game) == ERROR)
-    return ERROR;
+  int first_digit, digits;
 
-/*Error control and load the spaces into the game from a file*/
-  if (game_load_spaces(game, filename) == ERROR)
-    return ERROR;
+  if (id < 0)
+  {
+    return '\0';
+  }
 
-/*Error control and load the player into the game from a file*/
-  if (game_load_players(game, filename) == ERROR)
-    return ERROR;
+  digits = (int)log10(id); 
 
-/*Error control and load the object into the game from a file*/
-  if (game_load_objects(game, filename) == ERROR)
-    return ERROR;
-
-  /*Error control and load the enemy into the game from a file*/
-  if (game_load_enemy(game, filename) == ERROR)
-    return ERROR;
-
-  /* The player and the object are located in the first space */
-  game_set_player_location(game, game_get_space_id_at(game, 0));
-
-  return OK;
+  first_digit = (int)(id / pow(10, digits));
+  
+  if (first_digit == FD_ID_SPACE)
+  {
+    return IS_SPACE;
+  }
+  else if (first_digit == FD_ID_PLAYER)
+  {
+    return IS_PLAYER;
+  }
+  else if (first_digit == FD_ID_OBJ)
+  {
+    return IS_OBJECT;
+  }
+  else if (first_digit == FD_ID_ENEMY)
+  {
+    return IS_ENEMY;
+  }
+  else
+  {
+    return '\0';
+  }
 }

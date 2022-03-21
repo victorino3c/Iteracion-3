@@ -3,6 +3,9 @@
 
 #pragma GCC diagnostic ignored "-Wpedantic"
 
+/*Este programa crea uan macro para utilizarla en los modulos test. Con ella, se imprimirá tanto el test 
+superado con PASS como el test no superado con NOT PASS así como la línea en la que se ejecuta y el porcentaje de 
+tests que se han aprobado*/
 #ifndef NOCOLOR
 #define KRED  "\x1B[31m"
 #define KGRN  "\x1B[32m"

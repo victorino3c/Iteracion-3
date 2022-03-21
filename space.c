@@ -1,28 +1,35 @@
 /** 
- * @brief It implements the space module to manage the spaces in the ant game (including location, name, set of objects, its gdesc...)
+ * @brief It implements the space module
  * 
  * @file space.c
  * @author Profesores PPROG
- * Modified by Nicolas Victorino & Ignacio Nunnez
- * @version 3.1 
- * @date 12-03-2022 
+ * @version 2.0 
+ * @date 29-11-2021 
  * @copyright GNU Public License
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
+
 #include "space.h"
 
+
+/**
+ * @brief Space
+ *
+ * This struct stores all the information of a space.
+ */
 struct _Space {
-  Id id;                    /*!< Id number of the space, it must be unique */
-  char name[WORD_SIZE + 1]; /*!< Name of the space */
-  Id north;                 /*!< Id of the space at the north */
-  Id south;                 /*!< Id of the space at the south */
-  Id east;                  /*!< Id of the space at the east */
-  Id west;                  /*!< Id of the space at the west */
-  Set *object;              /*!< Id of the object located in the space */
-  char **gdesc;             /*!< Matrix with the gdesc graphics*/
+  Id id;                                    /*!< Id number of the space, it must be unique */
+  char name[WORD_SIZE + 1];                 /*!< Name of the space */
+  Id north;                                 /*!< Id of the space at the north */
+  Id south;                                 /*!< Id of the space at the south */
+  Id east;                                  /*!< Id of the space at the east */
+  Id west;                                  /*!< Id of the space at the west */
+  Set *objects;                             /*!< Conjunto de ids de los objetos que se encuentran en el espacio */
+  char **gdesc;                             /*!< Array de 5 strings de 9 caracteres */
 };
 
 /** space_create allocates memory for a new space
@@ -47,7 +54,7 @@ Space* space_create(Id id) {
   newSpace->south = NO_ID;
   newSpace->east = NO_ID;
   newSpace->west = NO_ID;
-  newSpace->object = set_create();
+  newSpace->objects = set_create();
   newSpace->gdesc = NULL;
 
   return newSpace;
@@ -56,67 +63,75 @@ Space* space_create(Id id) {
 /** space_destroy frees the previous memory allocation 
   *  for a space
   */
-STATUS space_destroy(Space* space) {
+STATUS space_destroy(Space* space) 
+{
+  // Error control
   if (!space) {
     return ERROR;
   }
 
-  if(space->gdesc != NULL) {
-    space_remove_gdesc(space);
-    space->gdesc = NULL;
+  if (space->objects)
+  {
+    set_destroy(space->objects);
+    space->objects = NULL;
   }
 
-
-  if(space->object != NULL) {
-    space_remove_object_set(space);
-    //set_destroy(space->object);
-    space->object = NULL;
+  
+  if (space->gdesc)
+  {
+    if (space_destroy_gdesc(space->gdesc) == ERROR)
+    {
+      /*printf("ERROR liberando memoria gdesc\n");*/
+    }
   }
-
-  if (space != NULL){
-    free(space);
-    space = NULL;
-  }
+  
+ 
+  free(space);
+  space = NULL;
   return OK;
-}
-
-/*Set a given gdesc in a space*/
-STATUS space_set_gdesc(Space* space, char** gdesc) {
-
-  /*CONTROL ERROR*/
-  if (!space || !gdesc) {
-    return ERROR;
-  }
-
-  space->gdesc = gdesc;
-  return OK;
-
-}
-
-/*Returns the pointer to the gdesc_matrix*/
-const char** space_get_gdesc(Space* space) {
-
-  /*CONTROL ERROR*/
-  if(!space)
-  return NULL;
-
-  return (const char**)space->gdesc;
 }
 
 /** It gets the id of a space
   */
 Id space_get_id(Space* space) {
-  /*CONTROL ERROR*/
   if (!space) {
     return NO_ID;
   }
   return space->id;
 }
 
+/**
+ * Comprueba si el id recibido es el de un espacio
+ */
+STATUS space_test_id(Id id)
+{
+  int first_digit, digits;
+
+  // Control de errores
+  if (id < 0)
+  {
+    return ERROR;
+  }
+
+  // Calcular numbero total de digitos - 1
+  digits = (int)log10(id); 
+
+  // Obtener primer digito
+  first_digit = (int)(id / pow(10, digits));
+  
+  if (first_digit == FD_ID_SPACE)
+  {
+    return OK;
+  }
+  else
+  {
+    return ERROR;
+  }
+}
+
 /** It sets the name of a space
   */
 STATUS space_set_name(Space* space, char* name) {
-  /*CONTROL ERROR*/
   if (!space || !name) {
     return ERROR;
   }
@@ -126,11 +141,9 @@ STATUS space_set_name(Space* space, char* name) {
   }
   return OK;
 }
-
 /** It gets the name of a space
   */
 const char * space_get_name(Space* space) {
-  /*CONTROL ERROR*/
   if (!space) {
     return NULL;
   }
@@ -209,56 +222,193 @@ Id space_get_west(Space* space) {
   return space->west;
 }
 
-/** It sets the id of an object in the given space
-  */
-STATUS space_add_object(Space* space, Id id) {
-  if (!space) {
+/**
+ * It add an object id in the space's set of objects
+ */
+STATUS space_add_objectid(Space *s, Id id)
+{
+  // Error control
+  if (!s || !id)
+  {
     return ERROR;
   }
   
-  if(set_add_id(space->object, id)==ERROR)
-  return ERROR;
+  if (!set_add(s->objects, id))
+  {
+    return ERROR;
+  }
+
+  return OK;
+}
+
+/**
+ * It deletes an object id in the space's set of objects
+ */
+STATUS space_del_objectid(Space *s, Id id)
+{
+  // Error control
+  if (!s || !id)
+  {
+    return ERROR;
+  }
+  
+  if (!set_del_id(s->objects, id))
+  {
+    return ERROR;
+  }
   
   return OK;
 }
-/** It gets the id of the object in the given space
-  */
-Set *space_get_object (Space *space) // Deberia devolver set??
+
+/** 
+ * It gets a pointer to the set of objects in a space
+ */
+Set *space_get_objects(Space *space)
 {
+  // Error control
   if (!space) {
     return NULL;
   }
-  return space->object;
+  return space->objects;
 }
 
-/** It deletes one id of an object-set in the given space
-  */
-STATUS space_delete_object(Space* space, Id id) {
-  if (!space) {
+/**
+ * It gets a pointer to the id array of a set of objects that are in that space
+ */
+Id *space_get_objects_ids(Space *s)
+{
+  // Error control
+  if (!s)
+  {
+    return NULL;
+  }
+  
+  return set_get_ids(space_get_objects(s));
+}
+
+/**
+ * It sets the graphic description of a spaces.
+ */
+BOOL space_has_object(Space *s, Id id)
+{
+  Id *ids = NULL;
+  BOOL b = FALSE;
+  int i;
+
+  // Error control
+  if (!s)
+  {
+    return FALSE;
+  }
+  
+  ids = set_get_ids(s->objects);
+  if (ids == NULL)
+  {
+    return FALSE;
+  }
+  
+  for (i = 0; (i < set_get_nids(s->objects)) && (b == FALSE); i++)
+  {
+    if (*(ids+i) == id)
+    {
+      b = TRUE;
+    }
+  }
+  
+  return b;
+}
+
+char **space_create_gdesc()
+{
+  char **newgdesc = NULL;
+  int i, j;
+
+  newgdesc = (char **) malloc((TAM_GDESC_Y+1) * sizeof(char *));
+  if (!newgdesc)
+  {
+    return NULL;
+  }
+  for (i = 0; i < (TAM_GDESC_Y+1); i++)
+  {
+    newgdesc[i] = NULL;
+    newgdesc[i] = (char *) malloc((TAM_GDESC_X+2) * sizeof(char));
+    if (!newgdesc[i])
+    {
+      return NULL;
+    }
+    
+    for (j = 0; j < (TAM_GDESC_X+2); j++)
+    {
+      newgdesc[i][j] = '\0';
+    }
+    
+  }
+
+  return newgdesc;
+}
+
+
+STATUS space_destroy_gdesc(char **gdesc)
+{
+  int i;
+
+  // Error control
+  if (!gdesc)
+  {
+    return ERROR;
+  }
+  
+  if (gdesc)
+  {
+    for (i = TAM_GDESC_Y; i >= 0; i--)
+    {
+      if (gdesc[i])
+      {
+        free(gdesc[i]);
+        gdesc[i] = NULL;
+      }
+    }
+
+    free(gdesc);
+    gdesc = NULL;
+  }
+
+  return OK;
+}
+
+
+/**
+ * It gets the graphic description from a space.
+ */
+STATUS space_set_gdesc(Space *s, char **newgdesc)
+{
+  // Error control
+  if (!s || !newgdesc)
+  {
     return ERROR;
   }
 
-  if(set_del_id(space->object, id)==ERROR)
-  return ERROR;
+  s->gdesc = newgdesc;
 
   return OK;
 }
 
-/** It sets set of objects  the given space
-  */
-STATUS space_set_object(Space* space, Set *set) {
-  if(!space)
-  return ERROR;
+char **space_get_gdesc(Space *s)
+{
+  // Error control
+  if (!s)
+  {
+    return NULL;
+  }
 
-  set_destroy(space->object);
-  space->object = set;
-  return OK;
+  return s->gdesc;
 }
 
 /** It prints the space information
   */
 STATUS space_print(Space* space) {
   Id idaux = NO_ID;
+  int nobj, i, j;
 
   /* Error Control */
   if (!space) {
@@ -294,140 +444,29 @@ STATUS space_print(Space* space) {
     fprintf(stdout, "---> No west link.\n");
   }
 
-  /* 3. Print all objects in the space*/
-  printf("Set of objects:\n");
-  set_print(space->object);
+  /* 3. Print if there is an object in the space or not */
+  nobj = set_get_nids(space_get_objects(space));
+  if (nobj > 0) {
+    fprintf(stdout, "---> %d objects in the space.\n", nobj);
+  } else {
+    fprintf(stdout, "---> No object in the space.\n");
+  }
 
-  /* 4. Print the gdesc*/
-  int i, j;
-
-  for(i=0;i<GDESC_X;i++){
-    for(j=0;j<GDESC_Y;j++){
+  // 4. Print gdesc
+  printf("=> Gdesc:\n");
+  for (i = 0; i < TAM_GDESC_Y && space->gdesc[i]; i++)
+  {
+    for (j = 0; j < TAM_GDESC_X && space->gdesc[i][j]; j++)
+    {
       printf("%c", space->gdesc[i][j]);
     }
     printf("\n");
-  }
-
-  return OK;
-}
-
-/*ACCES TO MACRO*/
-int space_get_gdescX() {
-  return GDESC_X;
-}
-
-/*ACCES TO MACRO*/
-int space_get_gdescY() {
-  return GDESC_Y;
-}
-
-/*Creates empty gdesc*/
-char ** space_create_gdesc () {
-
-  char **gdesc_new = NULL;
-  int i;
-
-  /*Reserves memory for string of pointers*/
-  if ((gdesc_new = (char **)malloc(sizeof(char *)*GDESC_Y)) == NULL) {
-  return NULL;
-  }
-
-  /*Reserves memory for every pointer*/
-  for (i = 0; i < GDESC_Y; i++) {
-    if ( (gdesc_new[i] = (char *)malloc(sizeof(char) * (GDESC_X + 1))) == NULL ){
-      for (i--; i >= 0; i--) {
-        free(gdesc_new[i]);
-      }
-      return NULL;
-    }
-  }
-
-  return gdesc_new;
-}
-
-/*Frees gdesc of a space*/
-STATUS space_remove_gdesc(Space *space) {
-
-  int i = 0;
-
-  /*CONTROL ERROR*/
-  if (!space)
-  return ERROR;
-
-  if (!(space->gdesc))
-  return ERROR;
-
-
-  for (i = 0; i < GDESC_Y; i++) {
-    if (space->gdesc[i] != NULL) {
-      free(space->gdesc[i]);
-      space->gdesc[i] = NULL;
+    if (j != TAM_GDESC_X)
+    {
+      printf("ERROR IMPRIMIENDO space->gdesc[%d][%d] = NULL\n", i, j);
     }
   }
   
-  
-  if (space->gdesc != NULL) {
-    free(space->gdesc);
-    space->gdesc = NULL;
-  }
-  
   return OK;
 }
 
-STATUS space_remove_gdesc_game(char ** gdesc) {
-  int i = 0;
-
-  /*CONTROL ERROR*/
-  if (!gdesc)
-  return ERROR;
-
-
-  for (i = 0; i < GDESC_Y; i++) {
-    if (gdesc[i] != NULL) {
-      free(gdesc[i]);
-      gdesc[i] = NULL;
-    }
-  }
-  if (gdesc != NULL) {
-    free(gdesc);
-    gdesc = NULL;
-  }
-
-  return OK;
-}
-
-/*Returns number of objects a space has*/
-int space_get_n_objects(Space *space) {
-  /*CONTROL ERROR*/
-  if (!space)
-  return NO_ID;
-
-  return set_get_n_ids(space->object);
-}
-
-STATUS space_remove_object_set(Space* space) {
-
-  if(space == NULL)
-  return ERROR;
-
-  if(space->object != NULL) {
-    set_destroy(space->object);
-  }
-
-  return OK;
-}
-
-char ** space_copy_gdesc(char ** gdesc) {
-  int i = 0; 
-
-  if (!gdesc)
-  return NULL;
-  
-  char **gdesc_n = space_create_gdesc();
-
-  for (i = 0; i < GDESC_Y; i++) {
-    strcpy(gdesc_n[i], gdesc[i]);
-  }
-
-  return gdesc_n;
-}

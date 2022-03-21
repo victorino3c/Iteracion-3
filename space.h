@@ -1,32 +1,27 @@
-
 /**
  * @brief It defines the space interface
  *
  * @file space.h
  * @author Profesores PPROG
- * Modified by Nicolas Victorino && Ignacio Nunnez
- * @version 3.1
- * @date 12-03-2022
+ * @version 2.0
+ * @date 29-11-2021
  * @copyright GNU Public License
  */
 
 #ifndef SPACE_H
 #define SPACE_H
 
-#define GDESC_X 9
-#define GDESC_Y 5
-
-#include "types.h"
 #include "set.h"
+#include "types.h"
+#include "object.h"
 
 typedef struct _Space Space;
 
- /**
- * Constant used in space.c. 
- * MAX_SPACES defines the maximum spaces available and FIRST_SPACE defines the Id of the first space 
- */
 #define MAX_SPACES 100
 #define FIRST_SPACE 1
+
+#define TAM_GDESC_Y 5
+#define TAM_GDESC_X 9
 
 /**
   * @brief It creates a new space
@@ -51,25 +46,6 @@ Space* space_create(Id id);
 STATUS space_destroy(Space* space);
 
 /**
-  * @brief It sets the gdesc of a space
-  * @author Profesores PPROG
-  * 
-  * @param space a pointer to the space
-  * @param gdesc a matrix with the gdesc structure to store
-  * @return OK, if everything goes well or ERROR if there was some mistake 
-  */
-STATUS space_set_gdesc(Space* space, char **gdesc);
-
-/**
-  * @brief It gets the gdesc of a space
-  * @author Profesores PPROG
-  * 
-  * @param space a pointer to the space
-  * @return  a matrix with the gdesc structure of the space
-  */
-const char** space_get_gdesc(Space* space);
-
-/**
   * @brief It gets the id of a space
   * @author Profesores PPROG
   * 
@@ -77,6 +53,15 @@ const char** space_get_gdesc(Space* space);
   * @return the id of space
   */
 Id space_get_id(Space* space);
+
+/**
+ * @brief Comprueba si el id recibido es el de un espacio
+ * @author Miguel Soto
+ * 
+ * @param id el id que se quiere comprobar
+ * @return OK, si es correcto o ERROR si no es correcto o hubo algun error.
+ */
+STATUS space_test_id(Id id);
 
 /**
   * @brief It sets the name of a space
@@ -170,43 +155,89 @@ STATUS space_set_west(Space* space, Id id);
 Id space_get_west(Space* space);
 
 /**
-  * @brief It adds the id of an object in a given space
-  * @author Nicolas Victorino
-  *
-  * This function sets the id of an object in a given space
-  * @param space a pointer to the space, @param id id of the object we want to save in the space
-  * @return OK, if everything goes well or ERROR if something went wrong during the execution
-  */
-STATUS space_add_object (Space *space, Id id);
+ * @brief It add an object id in the space's set of objects
+ * @author Miguel Soto
+ * 
+ * @param s a pointer to the space 
+ * @param id from an object that wants to be added.
+ * @return OK, if everything goes well or ERROR if there was some mistake 
+ */
+STATUS space_add_objectid(Space *s, Id id);
 
 /**
-  * @brief It gets the id of an object in a given space
-  * @author Nicolas Victorino
+ * @brief It deletes an object id in the space's set of objects
+ * @author Miguel Soto
+ * 
+ * @param s a pointer to the space 
+ * @param id from an object that wants to be added.
+ * @return OK, if everything goes well or ERROR if there was some mistake 
+ */
+STATUS space_del_objectid(Space *s, Id id);
+
+/**
+  * @brief It gets a pointer to the set of objects in a space
+  * @author Miguel Soto
   *
   * @param space a pointer to the space
-  * @return In case the space given or the id of the object in the space is NULL, it returns NO_ID. If not it returns the id of the object in the space
+  * @return a pointer to Set with all objects id that are in that space or NULL if there was an error
   */
-Set *space_get_object (Space *space); // Deberia devolver set???
-
-
-/**
-  * @brief It deletes the id of an object to a given space
-  * @author Ignacio Nunnez
-  *
-  * This function sets the id of an object in a given space
-  * @param space a pointer to the space, @param id id of the object we want to delete from the space
-  * @return OK, if everything goes well or ERROR if something went wrong during the execution
-  */
-STATUS space_delete_object (Space *space, Id id);
+Set *space_get_objects(Space* space);
 
 /**
-  * @brief It sets a new set of objects to the given space
-  * @author Nicolas Victorino
+  * @brief It gets a pointer to the id array of a set of objects that are in that space
+  * @author Miguel Soto
   *
-  * @param space a pointer to the space @param set a pointer to the new set
-  * @return In case the space given or the id of the object in the space is NULL, it returns ERROR. If not it returns OK
+  * @param space a pointer to the space
+  * @return a pointer to Id with all objects id that are in that spacea or NULL if there was an error
   */
-STATUS space_set_object(Space* space, Set*set);
+Id *space_get_objects_ids(Space* space);
+
+/**
+ * @brief It gets if there is an object with id id in a space s.
+ * @author Miguel Soto
+ * 
+ * @param s a pointer to space
+ * @param id of an object
+ * @return TRUE if object is in space or FLASE if object is not in space. Returns FALSE if there has been an error.
+ */
+BOOL space_has_object(Space *s, Id id);
+
+/**
+ * @brief It alloc memory for the space_gdesc
+ * @author Miguel Soto
+ * 
+ * @return double pointer to char to the newgdesc or NULL if there has been an error
+ */
+char **space_create_gdesc();
+
+/**
+ * @brief It frees memory for the space_gdesc
+ * @author Miguel Soto
+ * 
+ * @param s pointer to space that gdesc must be destroy
+ * @return OK, if everything goes well or ERROR if there was some mistake 
+ */
+STATUS space_destroy_gdesc(char **gdesc);
+
+/**
+ * @brief It sets the graphic description of a space
+ * @author Miguel Soto
+ * 
+ * @param s a pointer to space
+ * @param newgdesc a double char array with the graphical description
+ * @return OK, if everything goes well or ERROR if there was some mistake 
+ */
+STATUS space_set_gdesc(Space *s, char **newgdesc);
+
+/**
+ * @brief It gets the graphic description from a space
+ * @author Miguel Soto
+ * 
+ * @param s a pointer to space
+ * @return a double char array with the graphical description, or NULL if there was some error.
+ */
+char **space_get_gdesc(Space *s);
+
 /**
   * @brief It prints the space information
   * @author Profesores PPROG
@@ -216,69 +247,5 @@ STATUS space_set_object(Space* space, Set*set);
   * @return OK, if everything goes well or ERROR if there was some mistake
   */
 STATUS space_print(Space* space);
-
-int space_get_gdescX();
-
-int space_get_gdescY();
-
-/**
-  * @brief It allocates memory for a new gdesc
-  * @author Nicolas Victorino
-  *
-  * 
-  * @param space a pointer to the space
-  * @return char**, if it creates the gdesc succesfully, NULL if something went wrong
-  */
-char ** space_create_gdesc ();
-
-/**
-  * @brief It frees the memory allocated for the gdesc in a given space
-  * @author Nicolas Victorino
-  *
-  * 
-  * @param space a pointer to the space
-  * @return OK, if everything goes well or ERROR if there was some mistake
-  */
- STATUS space_remove_gdesc(Space *space);
-
-/**
-  * @brief It returns the number of objects of an space
-  * @author Nicolas Victorino
-  *
-  * 
-  * @param space a pointer to the space
-  * @return OK, if everything goes well or ERROR if there was some mistake
-  */
-int space_get_n_objects(Space *space);
-
-/**
-  * @brief It removes the objects set of an space
-  * @author Nicolas Victorino
-  *
-  * 
-  * @param space a pointer to the space
-  * @return OK, if everything goes well or ERROR if there was some mistake
-  */
-STATUS space_remove_object_set(Space* space);
-
-/**
-  * @brief It frees the memory allocated for the gdesc given the gdesc
-  * @author Nicolas Victorino
-  *
-  * 
-  * @param gdesc a pointer to the gdesc
-  * @return OK, if everything goes well or ERROR if there was some mistake
-  */
-STATUS space_remove_gdesc_game(char ** gdesc);
-
-/**
-  * @brief It makes a hard copy of a gdesc in a differnt pointer
-  * @author Nicolas Victorino
-  *
-  * 
-  * @param gdesc a pointer to the gdesc we want to copy
-  * @return New pointer if everything went right, or NULL in case an error occured
-  */
-char ** space_copy_gdesc(char ** gdesc);
 
 #endif

@@ -1,96 +1,120 @@
-
 /** 
- * @brief It defines the set interface
+ * @brief Integra la funcionalidad necesaria para el manejo de conjuntos.
  * 
  * @file set.h
- * @author Nicolas Victorino && Ignacio Nunnez
- * @version 2.2
- * @date 08-03-2022
+ * @author Miguel Soto
+ * @version 2.0
+ * @date 08-03-2022 
  * @copyright GNU Public License
  */
 
 #ifndef SET_H
 #define SET_H
 
+#include <stdlib.h>
+#include <stdio.h>
 #include "types.h"
-
-/**
-* Defines the maximum number of ids that can be saved in a set
-*/
-#define MAX_IDS 20 //Temporal, no se cuanto tiene que ser el tope
 
 typedef struct _Set Set;
 
 /**
-  * @brief Creates a new set to save ids
-  * @author Nicolas Victorino
-  *
-  * @return a pointer to the newly created set, and in case of an error NULL.
-  */
-Set* set_create ();
+ * @brief Reserva memoria para un nuevo set.
+ * @author Miguel Soto
+ * 
+ * set_create reserva memoria para un nuevo set, e
+ * inicializa sus miembros.
+ *  
+ * @return un puntero a Set inicializado o NULL si ha habido algun error.
+ */
+Set *set_create();
 
 /**
-  * @brief Destroys a given set of ids
-  * @author Nicolas Victorino
-  *
-  * @param set a pointer to the set we want to destroy
-  * @return OK if everything went right, ERROR in case something went wrong
-  */
-STATUS set_destroy (Set *set);
+ * @brief Libera memoria de un tipo de dato set.
+ * @author Miguel Soto
+ * 
+ * set_destroy libera la memoria de un set y todos sus miembros.
+ * 
+ * @param set un puntero a Set que se quiere liberar.
+ * @return OK si ha funcionado correctamente, o ERROR si ha habido algun error.
+ */
+STATUS set_destroy(Set *s);
 
 /**
-  * @brief Adds an id to a given set
-  * @author Nicolas Victorino
-  *
-  * @param set a pointer to the given set, @param id id that we want to add to the set
-  * @return OK if everything went right, ERROR in case something went wrong
-  */
-STATUS set_add_id (Set *set, Id id);
+ * @brief Añade un id al set.
+ * @author Miguel Soto
+ * 
+ * set_add amplia el numero de ids guardados en el set 
+ * y guarda el nuevo id en la ultima posicion.
+ * 
+ * @param s un puntero a Set del que se quiere añadir a un id.
+ * @param id el id que se quiere añadir al set
+ * @return OK si ha funcionado correctamente, o ERROR si ha habido algun error.
+ */
+STATUS set_add(Set *s, Id id);
 
 /**
-  * @brief Deletes a given id of a set
-  * @author Nicolas Victorino
-  *
-  * @param set a pointer to the given set, @param id id that we want to delete from the set
-  * @return OK if everything went right, ERROR in case something went wrong
-  */
-STATUS set_del_id (Set *set, Id id);
+ * @brief Elimina un id del set
+ * @author Miguel Soto
+ * 
+ * set_del_id busca un id dentro del set y lo elimina.
+ * 
+ * @param s un puntero a Set del que se quiere eliminar un id.
+ * @param id el id que se quiere añadir al set
+ * @return OK si ha funcionado correctamente, o ERROR si ha habido algun error.
+ */
+STATUS set_del_id(Set *s, Id id);
 
 /**
-  * @brief Prints all the ids saved in a set (for debbuging purpouses)
-  * @author Nicolas Victorino
-  *
-  * @param set a pointer to the given set
-  * @return OK if everything went right, ERROR in case something went wrong
-  */
-STATUS set_print (Set *set);
+ * @brief Elimina un id del set por la posicion en la que se encuentra.
+ * @author Miguel Soto
+ * 
+ * set_del_pos elimina un id dentro del set a traves de la posicion que tenga dentro del set.
+ * 
+ * @param s un puntero a Set del que se quiere eliminar un id.
+ * @param pos la pos en el Set s del id que se quiere eliminar.
+ * @return OK si ha funcionado correctamente, o ERROR si ha habido algun error. 
+ */
+STATUS set_del_pos(Set *s, int pos);
 
 /**
-  * @brief Finds if a id is in a set or not
-  * @author Nicolas Victorino
-  *
-  * @param set a pointer to the given set
-  * @param id the id we want to find
-  * @return TRUE if the set contains the id, FALSE in opposite case
-  */
-BOOL set_idInSet (Set* set, Id id);
+ * @brief Devuelve el numero de ids en un set
+ * @author Miguel Soto
+ * 
+ * @param s un puntero a Set del que se quiere obtener el numero de ids
+ * @return int con el numero de ids en un set. En caso de error devuelve -1.
+ */
+int set_get_nids(Set *s);
 
 /**
-  * @brief Tells if a set is empty or not
-  * @author Nicolas Victorino
-  *
-  * @param set a pointer to the given set
-  * @return TRUE if the set is empty or doesnt exist, FALSE if contains an id
-  */
-BOOL set_is_empty(Set* set);
+ * @brief Devuelve un array con todos los ids del set
+ * @author Miguel Soto
+ * 
+ * @param s un puntero a Set del que se quiere obtener la lista de ids
+ * @return un puntero a Id con todos los ids guardados en un set.
+ */
+Id *set_get_ids(Set *s);
 
 /**
-  * @brief Returns the number of ids
-  * @author Nicolas Victorino
-  *
-  * @param set a pointer to the given set
-  * @return NO_ID if set doesnt exist or the number of ids
-  */
-int set_get_n_ids(Set* set);
+ * @brief Comprueba si un set esta bien definido
+ * @author Miguel Soto
+ * 
+ * Comprueba:
+ * - s no es NULL
+ * - No haya id == NO_ID
+ * - El numero de ids incluido es igual al guardado en la variable
+ * - Numero de ids no sea negativo
+ * 
+ * @param s un puntero a Set que se quiere comprobar si esta bien definido.
+ * @return OK si esta bien definido o ERROR si ha encontrado algun error.
+ */
+STATUS set_test(Set *s);
+
+/**
+ * @brief Imprime toda la informacion de un set
+ * 
+ * @param s puntero a Set que se quiere imprimir
+ * @return int el numero de caracteres que imprime
+ */
+int set_print(Set *s);
 
 #endif

@@ -1,12 +1,10 @@
-
 /** 
  * @brief It defines the game interface
  * 
  * @file game.h
  * @author Profesores PPROG
- * Modified by Nicolas Victorino && Ignacio Nunnez
- * @version 3.1 
- * @date 11-03-2022 
+ * @version 2.1
+ * @date 12-02-2021 
  * @copyright GNU Public License
  */
 
@@ -20,168 +18,173 @@
 #include "object.h"
 #include "enemy.h"
 
+
+/**
+ * @brief Juego o partida
+ *
+ * Esta estructura contiene todos los datos necesarios para un juego o partida
+ */
 typedef struct _Game
 {
-  Player *player;//Id player_location;
-  Object *object[MAX_OBJECTS];//Id object_location;
-  Space *spaces[MAX_SPACES];
-  Enemy *enemy;
-  T_Command last_cmd;
-  STATUS cmd_status;
+  Player *player[MAX_PLAYERS];      /*!< Pointer to player's array */
+  Object *object[MAX_OBJS];         /*!< Pointer to object's array */
+  Enemy *enemy[MAX_ENEMYS];         /*!< Pointer to enemy's array */
+  Space *spaces[MAX_SPACES];        /*!< Puntero a los espacios del juego */
+  T_Command last_cmd;               /*!< Ultimo comando introducido por el usuario */
 } Game;
 
 /**
-  * @brief Creates the base of a new game
+ * @brief Reserva memoria para Player y Object del Game
+ * @author Miguel Soto
+ * 
+ * @param game 
+ * @return STATUS 
+ */
+STATUS game_alloc(Game *game);
+/**
+  * @brief Crea el juego
   * @author Profesores PPROG
   *
-  * Sets to NO_ID all ids for he game
-  * @param game a pointer to the game
-  * @return allways Ok
+  * game_create inicializa todas las variables necesarias para el juego a valores vacios
+  * 
+  * @param game es el puntero que apunta a game, que contiene los datos de localización de objeto y jugador 
+  * junto con los espacios del juego y el ultimo comando
+  * @return OK si todo va bien
   */
 STATUS game_create(Game *game);
 
 /**
-  * @brief Updates the game
+  * @brief Comprueba si ha habido una actualizacion en el estado de la partida
   * @author Profesores PPROG
   *
-  * 
-  * @param game a pointer to the game
-  * @param cmd the cmd 
-  * @return allways Ok
+  * game_update utiliza la variable cmd del interprete de comandos para determinar que funcion debe llamar
+  * en cada caso
+  * @param game es el puntero que apunta a game, que contiene los datos de localización de objeto y jugador 
+  * junto con los espacios del juego y el ultimo comando
+  * @param cmd la variable tipo T_Command del interprete de comandos, varia segun el comando introducido por el usuario
+  * @return 0 if ERROR, 1 if OK, and 5 if OK but dont print condition
   */
-STATUS game_update(Game *game, T_Command cmd,  char*arg);
+int game_update(Game *game, T_Command cmd, char *arg);
 
 /**
-  * @brief Removes all the info of the game
+  * @brief Destruye la partida
   * @author Profesores PPROG
   *
-  * Sets all spaces to NULL
-  * @param game a pointer to the game
-  * @return allways Ok
+  * game_destroy destruye todos los espacios de la partida llamando a space_destroy para cada uno de ellos
+  * @param game es el puntero que apunta a game, que contiene los datos de localización de objeto y jugador 
+  * junto con los espacios del juego y el ultimo comando
+  * @return OK si se destruye con exito
   */
 STATUS game_destroy(Game *game);
 
 /**
-  * @brief Finish the game
+  * @brief Termina la partida
   * @author Profesores PPROG
   *
-  * @param game a pointer to the game
-  * @return allways FALSE
+  * Devuelve FALSE cuando se llama a la funcion, significando que la partida ha terminado
+  * 
+  * @param game es el puntero que apunta a game, que contiene los datos de localización de objeto y jugador 
+  * junto con los espacios del juego y el ultimo comando 
+  * @return FALSE 
   */
 BOOL game_is_over(Game *game);
 
 /**
-  * @brief Prints useful info about
-  * the game
+  * @brief Imprime la informacion de la partida
   * @author Profesores PPROG
   *
-  * @param game a pointer to the game
+  * game_print_data imprime en la interfaz los datos acerca de la posicion actual del jugador y objeto
+  * @param game es el puntero que apunta a game, que contiene los datos de localización de objeto y jugador 
+  * junto con los espacios del juego y el ultimo comando 
   */
 void game_print_data(Game *game);
 
 /**
-  * @brief returns the space by its id
+  * @brief Comprueba si existe un espacio
   * @author Profesores PPROG
   *
-  * @param game a pointer to the game
-  * @param id the id of the space
-  * @returns ERROR if no id
+  * Comprueba uno a uno los espacios del juego para ver si son nulos o coinciden con la id
+  * @param game es el puntero que apunta a game, que contiene los datos de localización de objeto y jugador 
+  * junto con los espacios del juego y el ultimo comando  
+  * @param id es el numero de identificacion del espacio
+  * @return un puntero al espacio que coincide con el id, o NULL en caso de error o de que no exista.
   */
 Space *game_get_space(Game *game, Id id);
 
 /**
-  * @brief returns player-location id
-  * @author Profesores PPROG
-  *
-  * @param game a pointer to the game
-  */
-Id game_get_player_location(Game *game);
+ * @brief Obtiene un objeto a traves de su id
+ * @author Miguel Soto
+ * 
+ * Comprueba uno a uno los objetos del juego para ver si coinciden con la id
+ * @param game es puntero un puntero a game
+ * @param id el id del objeto que se quiere obtener
+ * @return un puntero al objeto que coincide con el id, o NULL en caso de error o de que no exista.
+ */
+Object *game_get_object(Game *game, Id id);
 
 /**
-  * @brief returns the space where an object is located
-  * @author Profesores PPROG
-  *
-  * @param game a pointer to the game
-  * @return NO_ID if theres no object located
-  */
-Id game_get_object_location(Game *game, Id id_obj);
+ * @brief Obtiene un player a traves de su id
+ * @author Miguel Soto
+ * 
+ * Comprueba uno a uno los players del juego para ver si coinciden con la id
+ * @param game es puntero un puntero a game
+ * @param id el id del player que se quiere obtener
+ * @return un puntero al player que coincide con el id, o NULL en caso de error o de que no exista.
+ */
+Player *game_get_player(Game *game, Id id);
 
 /**
-  * @brief returns last cd_command
+ * @brief Obtiene un enemy a traves de su id
+ * @author Miguel Soto
+ * 
+ * Comprueba uno a uno los enemies del juego para ver si coinciden con la id
+ * @param game es puntero un puntero a game
+ * @param id el id del objeto que se quiere obtener
+ * @return un puntero al enemy que coincide con el id, o NULL en caso de error o de que no exista.
+ */
+Enemy *game_get_enemy(Game *game, Id id);
+
+/**
+  * @brief Obtiene la posicion de un player personaje 
+  * @author Miguel Soto
+  *
+  * Obtiene la posicion del player
+  * @param game es el puntero que apunta a game
+  * @param player_id es la id del player del que se quiere consultar su posicion.
+  * @return la id del espacio donde se encuentra el jugador en ese momento
+  */
+Id game_get_player_location(Game *game, Id player_id);
+
+/**
+  * @brief Obtiene la localizacion del enemigo
+  * @author Antonio Van-Oers Luis
+  *
+  * Obtiene la posicion del enemigo
+  * @param game es el puntero que apunta a game
+  * @param enemy_id es la id del enemy del que se quiere consultar su posicion.
+  * @return la id del espacio donde se encuentra el enemy en ese momento
+  */
+Id game_get_enemy_location(Game *game, Id enemy_id);
+
+/**
+  * @brief Obtiene la localizacion del objeto
+  * @author Miguel Soto
+  *
+  * Obtiene la posicion del objeto cuando se llama a la funcion
+  * @param game es el puntero que apunta a game
+  * @param obj_id es la id del objeto del que se quiere consultar su posicion.
+  * @return la id del espacio donde se encuentra el objeto en ese momento
+  */
+Id game_get_object_location(Game *game, Id obj_id);
+
+/**
+  * @brief Obtiene el ultimo comando introducido
   * @author Profesores PPROG
   *
-  * @param game a pointer to the game
+  * Dentro de la estructura Game, accede a la variable last_cmd para obtener el ultimo comando introducido por el usuario en la partida
+  * @param game es el puntero que apunta a game, que contiene los datos de localización de objeto y jugador 
+  * junto con los espacios del juego y el ultimo comando 
+  * @return OK, if everything goes well or ERROR if there was some mistake
   */
 T_Command game_get_last_command(Game *game);
-
-/**
-  * @brief adds a space to the game from game_load_space
-  * @author Nicolas Victorino
-  *
-  * @param game a pointer to the game, @param space a pointer to the space
-  * @return OK if it doesnt detect any error, in case it does it returns ERROR
-  */
-STATUS game_add_space(Game *game, Space *space);
-
-/**
-  * @brief adds a player to the game from game_load_player
-  * @author Nicolas Victorino
-  *
-  * @param game a pointer to the game, @param player a pointer to the player
-  * @return OK if it doesnt detect any error, in case it does it returns ERROR
-  */
-STATUS game_add_player(Game *game, Player *player);
-
-/**
-  * @brief adds a enemy to the game from game_load_player
-  * @author Nicolas Victorino
-  *
-  * @param game a pointer to the game, @param enemy a pointer to the enemy
-  * @return OK if it doesnt detect any error, in case it does it returns ERROR
-  */
-STATUS game_add_enemy(Game *game, Enemy *enemy);
-
-/**
-  * @brief adds a object to the game from game_load_object
-  * @author Nicolas Victorino
-  *
-  * @param game a pointer to the game, @param object a pointer to the space
-  * @return OK if it doesnt detect any error, in case it does it returns ERROR
-  */
-STATUS game_add_object(Game *game, Object *object);
-
-/**
-  * @brief Gets the id of a space, searching by its position
-  * @author Profesores PPROG
-  *
-  * @param game a pointer to the game, @param position position of the space
-  * @return NO_ID if the position value is not valid
-  */
-Id game_get_space_id_at(Game *game, int position);
-
-/**
-  * @brief sets the position of the player to a given space
-  * @author Ignacio Nuñez
-  *
-  * @param game a pointer to the game, @param id identifier of the object where you want to set the player
-  * @return OK if it doesnt detect any error, in case it does it returns ERROR
-  */
-STATUS game_set_player_location(Game *game, Id id);
-
-/**
-  * @brief sets the position of the object to a given space
-  * @author Ignacio Nuñez
-  *
-  * @param game a pointer to the game, @param id_obj identifier of the object
-  * @param id_loc identifier of the location to place de object
-  * @return OK if it doesnt detect any error, in case it does it returns ERROR
-  */
-STATUS game_set_object_location(Game *game, Id id_obj, Id id_loc);
-
-int game_get_n_objects(Game *game);
-
-void game_set_cmd_st(Game *game, STATUS cmd_st);
-
-STATUS game_get_cmd_st(Game *game);
-
 #endif

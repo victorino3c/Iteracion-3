@@ -1,174 +1,219 @@
-/**
-* @brief It implements enemy module in the ant game
-*
-* @file enemy.c
-* @author Ignacio Nunnez
-* @version 1.1
-* @date 22/02/2022
-* @copyright GNU Public License
-*/
+/** 
+ * @brief Implementa el modulo del objeto.
+ * 
+ * @file enemy.c
+ * @author Antonio Van-Oers
+ * @version 1.3 
+ * @date 12-02-2021
+ * @copyright GNU Public License
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "enemy.h"
 
 /**
  * @brief Enemy
  *
- * This struct stores all the information of a enemy.
+ * Esta estructura almacena la informacion de un enemigo
  */
-struct _Enemy {
-  Id id;                    /*!< Id number of the Enemy, it must be unique */
-  char name[WORD_SIZE + 1]; /*!< Name of the Enemy */
-  Id location;              /*!< Id number of the location where the Enemy is*/
-  int health;      /*!< The health points of the enemy */
-};
+typedef struct _Enemy
+{
+  Id id;
+  char name[Enemy_Name_lenght];
+  Id location;
+  int health;
+} Enemy;
 
-/** Enemy_create allocates memory for a new enemy
-  *  and initializes its members
-  */
-Enemy* enemy_create(Id id) {
-  Enemy *newEnemy = NULL;
+/** enemy_create reserva memoria para un nuevo enemigo e inicializa sus miembros.
+ */
+Enemy *enemy_create(Id id)
+{
+  Enemy *new_enemy = NULL;
 
-  /* Error control */
+  /* Control de errores */
   if (id == NO_ID)
-    return NULL;
-
-  newEnemy = (Enemy *) malloc(sizeof (Enemy));
-  if (newEnemy == NULL) {
-    return NULL;
+  {
+      return NULL;
   }
 
-  /* Initialization of an empty enemy*/
-  newEnemy->id = id;
-  newEnemy->name[0] = '\0';
-  newEnemy->location = NO_ID;
-  newEnemy->health = 0;
+  new_enemy = (Enemy *) malloc(sizeof(Enemy));
+	/* Control de errores */
+  if (new_enemy == NULL)
+  {
+    return NULL;
+  }
+  
+  /* Inicializacion del nuevo enemigo*/
+  new_enemy->id = id;
+  new_enemy->health = 3;
+  new_enemy->name[0] = '\0';
+  new_enemy->location = NO_ID;
 
-  return newEnemy;
+  return new_enemy;
 }
 
-/** enemy_enemy frees the previous memory allocation 
-  *  for an enemy
-  */
-STATUS enemy_destroy(Enemy* enemy) {
-  
-  /* Error control */
-  if (!enemy) {
+/** enemy_destroy libera la memoria previamente reservada de un enemigo.
+ */
+STATUS enemy_destroy(Enemy *enemy)
+{
+	/* Control de errores */
+  if (!enemy)
+  {
     return ERROR;
   }
-
+  
   free(enemy);
   enemy = NULL;
   return OK;
 }
 
-/** It gets the id of a enemy
-  */
-Id enemy_get_id(Enemy* enemy) {
-  
-  /* Error control */
-  if (!enemy) {
+/** enemy_get_id devuelve el id de un enemigo (enemy).
+ */
+Id enemy_get_id(Enemy *enemy)
+{
+	/* Control de errores */
+  if (!enemy)
+  {
     return NO_ID;
   }
+  
   return enemy->id;
 }
 
-/** It sets the name of an enemy
-  */
-STATUS enemy_set_name(Enemy* enemy, char* name) {
-  
-  /* Error control */
-  if (!enemy || !name) {
+/**
+ * Comprueba si el id recibido es el de un enemy
+ */
+STATUS enemy_test_id(Id id)
+{
+  int first_digit, digits;
+
+  /* Control de errores */
+  if (id < 0)
+  {
     return ERROR;
   }
 
-  /* Error control */
-  if (!strcpy(enemy->name, name)) {
+  /* Calcular numbero total de digitos - 1 */
+  digits = (int)log10(id); 
+
+  /* Obtener primer digito */
+  first_digit = (int)(id / pow(10, digits));
+  
+  if (first_digit == FD_ID_PLAYER)
+  {
+    return OK;
+  }
+  else
+  {
     return ERROR;
   }
-  return OK;
 }
 
-/** It returns the name of an enemy
-  */
-const char * enemy_get_name(Enemy* enemy) {
-  
-  /* Error control */
-  if (!enemy) {
+/** enemy_get_name obtiene el nombre (name) de un enemigo (enemy).
+ */
+const char *enemy_get_name(Enemy *enemy)
+{
+	/* Control de errores */
+  if (!enemy)
+  {
     return NULL;
   }
+  
   return enemy->name;
 }
 
-/** It sets the id of an enemy location
-  */
-STATUS enemy_set_location(Enemy * enemy, Id location) {
+/** enemy_get_location obtiene la posicion (location) de un enemigo (enemy).
+ */
+Id enemy_get_location(Enemy *enemy)
+{
+	/* Control de errores */
+  if (!enemy)
+  {
+    return NO_ID;
+  }
+  
+  return enemy->location;
+}
 
-  /* Error control */
-  if (!enemy || !location || location == NO_ID) {
+/**
+ * enemy_get_health obtiene la salud de un enemigo (enemy).
+ */
+int enemy_get_health(Enemy *enemy)
+{
+  if (!enemy)
+  {
+    return -1;                  
+  }
+  
+  return enemy->health;
+}
+
+
+/**
+ * enemy_set_health establece la salud de un enemigo (enemy).
+ */
+STATUS enemy_set_health(Enemy *enemy, int health)
+{
+	/* Control de errores */
+  if (!enemy)
+  {
+    return ERROR;
+  } 
+  
+  enemy->health = health;
+  return OK;
+}
+ 
+
+/** enemy_set_name establece la posicion (location) de un enemigo (enemy).
+ */
+STATUS enemy_set_location(Enemy *enemy, Id location)
+{
+	/* Control de errores */
+  if (!enemy)
+  {
     return ERROR;
   }
   
   enemy->location = location;
-
   return OK;
 }
 
-/** It returns the location of an enemy
-  */
-Id enemy_get_location(Enemy* enemy) {
 
-  /* Error control */
-  if (!enemy) {
+/** enemy_set_name establece el nombre (name) de un enemigo (enemy).
+ */
+STATUS enemy_set_name(Enemy *enemy, char *name)
+{
+	/* Control de errores */
+  if (!enemy || !name)
+  {
     return ERROR;
   }
-
-  return enemy->location;
-}
-
-/** It sets the health points of an enemy
-  */
-STATUS enemy_set_health(Enemy * enemy, int health) {
-
-  /* Error control */
-  if (!enemy|| health < 0) {
-    return ERROR;
-  }
-
-  /* Error control */
-  if(health > MAX_HEALTH_ENEMY)
-  return ERROR;
   
-  enemy->health = health;
-
+	/* Control de errores */
+  if (!strcpy(enemy->name, name))
+  {
+    return ERROR;
+  }
+  
   return OK;
 }
 
-/** It returns the HP of an enemy
-  */
-int enemy_get_health(Enemy* enemy) {
 
-  /* Error control */
-  if (!enemy) {
-    return ERROR;
+/** enemy_print muestra por pantalla el id y el nombre de un enemigo(enemy).
+ */
+STATUS enemy_print(Enemy *enemy)
+{
+ /* Control de errores */
+  if (!enemy)
+  {
+      return ERROR;
   }
-
-  return enemy->health;
-}
-
-/** It prints the enemy information
-  */
-STATUS enemy_print(Enemy* enemy) {
-
-  /* Error Control */
-  if (!enemy) {
-    return ERROR;
-  }
-
-  /* 1. Prints the Id, name, location and HP of the enemy*/
-  fprintf(stdout, "--> Enemy (Id: %ld; Name: %s; Location-id: %ld; Health Points: %d)\n", enemy->id, enemy->name, enemy->location, enemy->health);
+  
+  fprintf(stdout, "--> enemy (Id: %ld; Name: %s)\n", enemy->id, enemy->name);
 
   return OK;
 }

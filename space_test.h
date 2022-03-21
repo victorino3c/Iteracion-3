@@ -2,8 +2,7 @@
  * @brief It declares the tests for the space module
  * 
  * @file space_test.h
- * @author Profesores Pprog+
- * modified by Ignacio Nunnez
+ * @author Profesores Pprog
  * @version 2.0 
  * @date 09-03-2021
  * @copyright GNU Public License
@@ -18,7 +17,6 @@
  * @post Non NULL pointer to space 
  */
 void test1_space_create();
-
 /**
  * @test Test space creation
  * @pre Space ID 
@@ -26,75 +24,300 @@ void test1_space_create();
  */
 void test2_space_create();
 
+
+/**
+ * @test Test free space
+ * @pre pointer to space
+ * @post pointer to space = NULL
+ */
+void test1_space_destroy();
+/**
+ * @test Test free space
+ * @pre pointer to space = NULL
+ * @post Output == ERROR
+ */
+void test2_space_destroy();
+
+
 /**
  * @test Test function for space_name setting
  * @pre String with space name
  * @post Ouput==OK 
  */
 void test1_space_set_name();
-
 /**
  * @test Test function for space_name setting
  * @pre pointer to space = NULL 
  * @post Output==ERROR
  */
 void test2_space_set_name();
-
 /**
  * @test Test function for space_name setting
  * @pre pointer to space_name = NULL (point to space = NON NULL) 
  * @post Output==ERROR
  */
 void test3_space_set_name();
+
+
+/**
+ * @test Test function for space_north setting
+ * @pre Id from the north space (pointer to space != NULL)
+ * @post Output==OK
+ */
 void test1_space_set_north();
+/**
+ * @test Test function for space_north setting
+ * @pre pointer to space = NULL (Id from north space correct)
+ * @post Output==ERROR
+ */
 void test2_space_set_north();
+/**
+ * @test Test function for space_north setting
+ * @pre Id = NO_ID (pointer to space != NULL)
+ * @post Output==ERROR
+ */
 void test3_space_set_north();
 void test4_space_set_north();
+
+
+/**
+ * @test Test function for space_south setting
+ * @pre Id from the south space (pointer to space != NULL)
+ * @post Output==OK
+ */
 void test1_space_set_south();
+/**
+ * @test Test function for space_south setting
+ * @pre pointer to space = NULL (Id from south space correct)
+ * @post Output==ERROR
+ */
 void test2_space_set_south();
+/**
+ * @test Test function for space_south setting
+ * @pre Id = NO_ID (pointer to space != NULL)
+ * @post Output==ERROR
+ */
 void test3_space_set_south();
 void test4_space_set_south();
+
+
+/**
+ * @test Test function for space_east setting
+ * @pre Id from the east space (pointer to space != NULL)
+ * @post Output==OK
+ */
 void test1_space_set_east();
+/**
+ * @test Test function for space_east setting
+ * @pre pointer to space = NULL (Id from east space correct)
+ * @post Output==ERROR
+ */
 void test2_space_set_east();
+/**
+ * @test Test function for space_east setting
+ * @pre Id = NO_ID (pointer to space != NULL)
+ * @post Output==ERROR
+ */
 void test3_space_set_east();
 void test4_space_set_east();
+
+
+/**
+ * @test Test function for space_west setting
+ * @pre Id from the west space (pointer to space != NULL)
+ * @post Output==OK
+ */
 void test1_space_set_west();
+/**
+ * @test Test function for space_west setting
+ * @pre pointer to space = NULL (Id from west space correct)
+ * @post Output==ERROR
+ */
 void test2_space_set_west();
+/**
+ * @test Test function for space_west setting
+ * @pre Id = NO_ID (pointer to space != NULL)
+ * @post Output==ERROR
+ */
 void test3_space_set_west();
 void test4_space_set_west();
+
+
+/**
+ * @test Test function for getting space id
+ * @pre Space id = 5
+ * @post Output==5
+ */
 void test1_space_get_id();
+/**
+ * @test Test function for getting space id
+ * @pre pointer to space = NULL
+ * @post Output==NO_ID
+ */
 void test2_space_get_id();
-void test1_space_set_object();
-void test2_space_set_object();
-void test1_space_get_name();
-void test2_space_get_name();
-void test1_space_get_north();
-void test2_space_get_north();
-void test1_space_get_south();
-void test2_space_get_south();
-void test1_space_get_east();
-void test2_space_get_east();
-void test1_space_get_west();
-void test2_space_get_west();
-void test1_space_get_object();
-void test2_space_get_object();
-void test3_space_get_object();
+
+
+/**
+ * @test Test function for adding object to space setting
+ * @pre Id from Object (pointer to space != NULL)
+ * @post Output==OK
+ */
 void test1_space_add_object();
+/**
+ * @test Test function for adding object to space setting
+ * @pre pointer to space = NULL (Id from Object correct)
+ * @post Output==ERROR
+ */
 void test2_space_add_object();
+/**
+ * @test Test function for adding object to space setting
+ * @pre Id = NO_ID (pointer to space != NULL)
+ * @post Output==ERROR
+ */
 void test3_space_add_object();
-void test1_space_delete_object();
-void test2_space_delete_object();
-void test3_space_delete_object();
-void test1_space_create_gdesc();
-void test2_space_create_gdesc();
-void test1_space_destroy_gdesc();
-void test2_space_destroy_gdesc();
-void test3_space_destroy_gdesc();
-void test1_space_get_n_objects();
-void test2_space_get_n_objects();
-void test3_space_get_n_objects();
+
+
+/**
+ * @test Test function for deleting object to space setting
+ * @pre Id from Object (pointer to space != NULL)
+ * @post Output==OK
+ */
+void test1_space_del_object();
+/**
+ * @test Test function for deleting object to space setting
+ * @pre Id from Object not in space (pointer to space != NULL)
+ * @post Output==ERROR
+ */
+void test2_space_del_object();
+/**
+ * @test Test function for deleting object to space setting
+ * @pre pointer to space = NULL
+ * @post Output==ERROR
+ */
+void test3_space_del_object();
+
+
+/**
+ * @test Test function for checking if space has object
+ * @pre Id from Object not in space (pointer to space != NULL)
+ * @post Output==FALSE
+ */
+void test1_space_get_object();
+/**
+ * @test Test function for checking if space has object
+ * @pre Id from Object in space (pointer to space != NULL)
+ * @post Output==TRUE
+ */
+void test2_space_get_object();
+/**
+ * @test Test function for checking if space has object
+ * @pre pointer to space = NULL
+ * @post Output==FALSE
+ */
+void test3_space_get_object();
+
+
+/**
+ * @test Test function for getting space_name
+ * @pre string with space name = "adios" (pointer to space != NULL)
+ * @post Output=="adios"
+ */
+void test1_space_get_name();
+/**
+ * @test Test function for getting space_name
+ * @pre pointer to space = NULL
+ * @post Output==NULL
+ */
+void test2_space_get_name();
+
+
+/**
+ * @test Test function for getting space_north
+ * @pre pointer to space != NULL (space_north = 4)
+ * @post Output==4
+ */
+void test1_space_get_north();
+/**
+ * @test Test function for getting space_north
+ * @pre pointer to space = NULL
+ * @post Output==NO_ID
+ */
+void test2_space_get_north();
+
+
+/**
+ * @test Test function for getting space_south
+ * @pre pointer to space != NULL (space_south = 4)
+ * @post Output==FALSE
+ */
+void test1_space_get_south();
+/**
+ * @test Test function for getting space_south
+ * @pre pointer to space = NULL
+ * @post Output==NO_ID
+ */
+void test2_space_get_south();
+
+
+/**
+ * @test Test function for getting space_east
+ * @pre pointer to space != NULL (space_east = 4)
+ * @post Output==FALSE
+ */
+void test1_space_get_east();
+/**
+ * @test Test function for getting space_east
+ * @pre pointer to space = NULL
+ * @post Output==NO_ID
+ */
+void test2_space_get_east();
+
+
+/**
+ * @test Test function for getting space_west
+ * @pre pointer to space != NULL (space_west = 4)
+ * @post Output==FALSE
+ */
+void test1_space_get_west();
+/**
+ * @test Test function for getting space_west
+ * @pre pointer to space = NULL
+ * @post Output==NO_ID
+ */
+void test2_space_get_west();
+
+
+/**
+ * @test Test function for setting space_gdesc
+ * @pre pointer to space != NULL
+ * @post Output==OK
+ */
 void test1_space_set_gdesc();
+/**
+ * @test Test function for setting space_gdesc
+ * @pre pointer to space = NULL
+ * @post Output==ERROR
+ */
 void test2_space_set_gdesc();
+/**
+ * @test Test function for setting space_gdesc
+ * @pre pointer to space != NULL (char **gdesc = NULL)
+ * @post Output==ERROR
+ */
 void test3_space_set_gdesc();
+
+
+/**
+ * @test Test function for getting space_gdesc
+ * @pre pointer to space != NULL
+ * @post Output==gdesc
+ */
+void test1_space_get_gdesc();
+/**
+ * @test Test function for getting space_gdesc
+ * @pre pointer to space = NULL
+ * @post Output==NULL
+ */
+void test2_space_get_gdesc();
 
 #endif

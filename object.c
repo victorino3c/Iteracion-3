@@ -1,114 +1,179 @@
-/**
-* @brief An implementation to manage the
-* objects in the ant_game
-* @file object.c
-* @author Nicolas Victorino && Ignacio Nunnez
-* @version 2.0
-* @date 07/03/2022
-* @copyright GNU Public License
-*/
+/** 
+ * @brief Implementa el modulo del objeto.
+ * 
+ * @file object.c
+ * @author Miguel Soto
+ * @version 1.3 
+ * @date 12-02-2021
+ * @copyright GNU Public License
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
+
 #include "object.h"
 
 /**
  * @brief Object
  *
- * This struct stores all the information of a object.
+ * Esta estructura almacena la informacion de un objeto.
  */
-struct _Object {
-  Id id;                    /*!< Id number of the object, it must be unique */
-  char name[WORD_SIZE + 1]; /*!< Name of the object */
-};
+typedef struct _Object
+{
+  Id id;
+  char name[OBJ_NAME_LEN];
+  Id location;
+} Object;
 
-/** object_create allocates memory for a new object
-  *  and initializes its members
-  */
-Object* object_create(Id id) { 
-  Object *newObject = NULL;
+/** obj_create reserva memoria para un nuevo objeto e inicializa sus miembros.
+ */
+Object *obj_create(Id id)
+{
+  Object *new_obj = NULL;
 
-  /* Error control */
+  /* Control de errores */
   if (id == NO_ID)
-    return NULL;
-
-  newObject = (Object *) malloc(sizeof (Object));
-  if (newObject == NULL) {
+  {
     return NULL;
   }
 
-  /* Initialization of an empty object*/
-  newObject->id = id;
-  newObject->name[0] = '\0';
-
-  return newObject;
+  new_obj = (Object *) malloc(sizeof(Object));
+  if (new_obj == NULL)
+  {
+    return NULL;
+  }
+  
+  /* Inicializacion del objeto nuevo */
+  new_obj->id = id;
+  new_obj->name[0] = '\0';
+  return new_obj;
 }
 
-/** object_destroy frees the previous memory allocation 
-  *  for a object
-  */
-STATUS object_destroy(Object* object) {
-  
-  /* Error control */
-  if (!object) {
+/** obj_destroy libera la memoria previamente reservada de un objeto.
+ */
+STATUS obj_destroy(Object *obj)
+{
+	/* Control de errores */
+  if (!obj)
+  {
     return ERROR;
   }
-
-  free(object);
-  object = NULL;
+  
+  free(obj);
+  obj = NULL;
   return OK;
 }
 
-/** It gets the id of a object
-  */
-Id object_get_id(Object* object) {
+/**
+ * Comprueba si el id recibido es el de un objeto
+ */
+STATUS obj_test_id(Id id)
+{
+  int first_digit, digits;
+
+  /* Control de errores */
+  if (id < 0)
+  {
+    return ERROR;
+  }
+
+  /* Calcular numbero total de digitos - 1 */
+  digits = (int)log10(id); 
+
+  /* Obtener primer digito */
+  first_digit = (int)(id / pow(10, digits));
   
-  /* Error control */
-  if (!object) {
+  if (first_digit == FD_ID_OBJ)
+  {
+    return OK;
+  }
+  else
+  {
+    return ERROR;
+  }
+}
+
+/** obj_get_id devuelve el id de un Object (obj).
+ */
+Id obj_get_id(Object *obj)
+{
+	/* Control de errores */
+  if (!obj)
+  {
     return NO_ID;
   }
-  return object->id;
+  
+  return obj->id;
 }
 
-/** It sets the name of a object
-  */
-STATUS object_set_name(Object* object, char* name) {
-  
-  /* Error control */
-  if (!object || !name) {
-    return ERROR;
-  }
-
-  /* Error control */
-  if (!strcpy(object->name, name)) {
-    return ERROR;
-  }
-  return OK;
-}
-
-const char * object_get_name(Object* object) {
-  
-  /* Error control */
-  if (!object) {
+/** obj_set_name devuelve el nombre (name) de un Object (obj).
+ */
+const char *obj_get_name(Object *obj)
+{
+	/* Control de errores */
+  if (!obj)
+  {
     return NULL;
   }
-  return object->name;
+  
+  return obj->name;
 }
 
-/** It prints the object information
-  */
-STATUS object_print(Object* object) {
-  
-  /* Error Control */
-  if (!object) {
+/** obj_set_name establece el nombre (name) de un Object (obj).
+ */
+STATUS obj_set_name(Object *obj, char *name)
+{
+	/* Control de errores */
+  if (!obj || !name)
+  {
     return ERROR;
   }
-
-  /*Print the id and the name of the object */
   
-  fprintf(stdout, "--> Object (Id: %ld; Name: %s)\n", object->id, object->name);
-
+	/* Control de errores */
+  if (!strcpy(obj->name, name))
+  {
+    return ERROR;
+  }
+  
   return OK;
 }
 
+Id obj_get_location(Object *obj)
+{
+  /* Control de errores */
+  if (!obj)
+  {
+    return ERROR;
+  }
+  
+  return obj->location;
+}
+
+STATUS obj_set_location(Object *obj, Id id)
+{
+  /* Control de errores */
+  if (!obj)
+  {
+    return ERROR;
+  }
+  
+  obj->location = id;
+  return OK;
+}
+
+/** obj_print muestra el id y el nombre de un Object (obj).
+ */
+STATUS obj_print(Object *obj)
+{
+  /* Control de errores */
+  if (!obj)
+  {
+    return ERROR;
+  }
+  
+  fprintf(stdout, "--> Object (Id: %ld; Name: %s)\n", obj->id, obj->name);
+
+  return OK;
+}
