@@ -2,7 +2,7 @@
  * @brief Implementa el modulo del objeto.
  * 
  * @file object.c
- * @author Miguel Soto
+ * @author Miguel Soto, Antonio Van-Oers, Ignacio Nuñez and Nicolas Victorino
  * @version 1.3 
  * @date 12-02-2021
  * @copyright GNU Public License
