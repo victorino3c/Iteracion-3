@@ -24,14 +24,7 @@
  *
  * Esta estructura contiene todos los datos necesarios para un juego o partida
  */
-typedef struct _Game
-{
-  Player *player[MAX_PLAYERS];      /*!< Pointer to player's array */
-  Object *object[MAX_OBJS];         /*!< Pointer to object's array */
-  Enemy *enemy[MAX_ENEMYS];         /*!< Pointer to enemy's array */
-  Space *spaces[MAX_SPACES];        /*!< Puntero a los espacios del juego */
-  T_Command last_cmd;               /*!< Ultimo comando introducido por el usuario */
-} Game;
+typedef struct _Game Game;
 
 /**
  * @brief Reserva memoria para Player y Object del Game
@@ -187,4 +180,33 @@ Id game_get_object_location(Game *game, Id obj_id);
   * @return OK, if everything goes well or ERROR if there was some mistake
   */
 T_Command game_get_last_command(Game *game);
+
+/**
+ * @brief Function that gets the enemy id based on the position it is located in the enemy array located in the game structure
+ * @author Nicolas Victorino
+ * 
+ * @param game  pointer to game @param num number of the enemy position in the array 
+ * @return The id of the enemy, or in case it doesn't have one, NO_ID
+ */
+Id game_get_enemy_id(Game *game, int num);
+
+/**
+ * @brief Function that gets the player id 
+ * @author Nicolas Victorino
+ * 
+ * @param game  pointer to game  
+ * @return The id of the player, or in case it doesn't have one, NO_ID
+ */
+Id game_get_player_id(Game* game);
+
+/**
+ * @brief Function that gets the object id based on the position it is located in the object array located in the game structure
+ * @author Nicolas Victorino
+ * 
+ * @param game  pointer to game @param num number of the object position in the array 
+ * @return The id of the enemy, or in case it doesn't have one, NO_ID
+ */
+Id game_get_object_id(Game *game, int num);
+
 #endif
+
