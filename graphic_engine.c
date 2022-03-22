@@ -86,9 +86,9 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
 {
   /*Declaracion de variables a utilizar*/
   Id id_act = NO_ID, id_up = NO_ID, id_down = NO_ID, id_left= NO_ID, id_right= NO_ID;
-  Id obj_loc[MAX_OBJS] = {NO_ID}, player_loc = NO_ID, en_loc = NO_ID, obj_id[MAX_OBJS]= {NO_ID};
+  Id obj_loc[MAX_OBJS] = {NO_ID}, player_loc = NO_ID, en_loc[MAX_ENEMYS] = {NO_ID}, obj_id[MAX_OBJS]= {NO_ID};
   Object *player_obj = NULL;
-  int en_health = 0, player_health = 0;
+  int en_health[MAX_ENEMYS] = {0}, player_health = 0;
   Space *space_act = NULL;
   char obj = '\0';
   char str[255];
@@ -101,20 +101,29 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
   /*Asignacion de los valores correspondientes a las variables*/
   player_loc = game_get_player_location(game, 21);
   id_act = player_loc;
-  en_loc = enemy_get_location(game->enemy[MAX_PLAYERS-1]); 
-  player_obj = player_get_object(game->player[MAX_PLAYERS-1]);
-  player_health = player_get_health(game->player[MAX_PLAYERS-1]); 
-  en_health = enemy_get_health(game->enemy[MAX_PLAYERS-1]);
+  player_obj = player_get_object(game_get_player(game, game_get_player_id(game)));
+  player_health = player_get_health(game_get_player(game, game_get_player_id(game))); 
+
+  for(i=0;i<MAX_ENEMYS;i++)
+  { 
+    /* Control de errores */  
+    if (game_get_enemy(game, game_get_enemy_id(game, i))==NULL)
+    {
+      break;
+    }
+    en_health[i] = enemy_get_health(game_get_enemy(game, game_get_enemy_id(game, i)));
+    en_loc[i] = game_get_enemy_location(game, game_get_enemy_id(game, i));
+  }
 
   for(i=0;i<MAX_OBJS;i++)
   { 
     /* Control de errores */  
-    if (game->object[i]==NULL)
+    if (game_get_object(game, game_get_object_id(game, i))==NULL)
     {
       break;
     }
-    obj_id[i] = obj_get_id(game->object[i]);
-    obj_loc[i] = obj_get_location(game->object[i]);
+    obj_id[i] = game_get_object_id(game, i);
+    obj_loc[i] = obj_get_location(game_get_object(game, game_get_object_id(game, i)));
   }
 
   /* Paint the in the map area */
@@ -347,14 +356,14 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
   /* Paint in the description area */
   screen_area_clear(ge->descript);
   
-  if ((player_loc != NO_ID) && (en_loc != NO_ID))
+  if ((player_loc != NO_ID) && (en_loc[0] != NO_ID))
   {
     sprintf(str, "  Objects location:");
     screen_area_puts(ge->descript, str);
     
     for(i=0;i<MAX_OBJS;i++)
     { 
-      if (game->object[i]==NULL)
+      if (game_get_object(game, game_get_object_id(game, i))==NULL)
       {
         break;                     
       }
@@ -383,9 +392,9 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
     
     sprintf(str, "   ") ;
     screen_area_puts(ge->descript, str);
-    sprintf(str, "  Enemy location:%d", (int)en_loc);
+    sprintf(str, "  Enemy location:%d", (int)en_loc[0]);
     screen_area_puts(ge->descript, str);
-    sprintf(str, "  Enemy health:%d", (int)en_health);
+    sprintf(str, "  Enemy health:%d", (int)en_health[0]);
     screen_area_puts(ge->descript, str);
   }
 
