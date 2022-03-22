@@ -15,6 +15,15 @@
 #include <time.h>
 #include "game.h"
 
+struct _Game
+{
+  Player *player[MAX_PLAYERS];      /*!< Pointer to player's array */
+  Object *object[MAX_OBJS];         /*!< Pointer to object's array */
+  Enemy *enemy[MAX_ENEMYS];         /*!< Pointer to enemy's array */
+  Space *spaces[MAX_SPACES];        /*!< Puntero a los espacios del juego */
+  T_Command last_cmd;               /*!< Ultimo comando introducido por el usuario */
+};
+
 /**
    Private functions
 */
@@ -74,11 +83,12 @@ STATUS game_alloc(Game *game)
   */
 STATUS game_create(Game *game)
 {
-  /* Control de errores */
+  /* Control de errores*/
   if (game == NULL)
   {
     return ERROR;
   }
+  
   int i;
 
   for (i = 0; i < MAX_SPACES; i++)
@@ -924,3 +934,39 @@ STATUS game_command_right(Game *game, char *arg)
   }
   return ERROR;
 }
+
+/*Function that gets the enemy id based on the position it is located in the enemy array located in the game structure */
+Id game_get_enemy_id(Game *game, int num) 
+{
+
+  if ( !game || num < 0 || num > MAX_ENEMYS - 1) 
+  {
+    return NO_ID;
+  }
+
+  return (Id)enemy_get_id(game->enemy[num]);
+}
+
+Id game_get_player_id(Game* game) 
+{
+  
+  if (!game)
+  {
+    return NO_ID;
+  }
+
+  return (Id)player_get_id(game->player[MAX_PLAYERS-1]);
+}
+
+/*Function that gets the object id based on the position it is located in the object array located in the game structure */
+Id game_get_object_id(Game *game, int num) 
+{
+
+  if ( !game || num < 0 || num > MAX_ENEMYS - 1) 
+  {
+    return NO_ID;
+  }
+
+  return (Id)obj_get_id(game->object[num]);
+}
+
