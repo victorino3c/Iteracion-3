@@ -15,7 +15,7 @@
 #include <time.h>
 #include "game.h"
 
-struct _Game
+typedef struct _Game
 {
   Player *player[MAX_PLAYERS];      /*!< Pointer to player's array */
   Object *object[MAX_OBJS];         /*!< Pointer to object's array */
