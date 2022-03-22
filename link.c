@@ -1,0 +1,190 @@
+/**
+ * @file link.c
+ * @author Miguel Soto, Antonio Van-Oers, Nicolas VIctorino and Nacho
+ * @brief It implements the link between spaces
+ * @version 0.1
+ * @date 2022-03-17
+ * 
+ * @copyright Copyright (c) 2022
+ */
+
+#include <stdlib.h>
+#include <stdio.h>
+#include "link.h"
+
+
+struct _Link
+{
+    Id id;                      /*!< Link's id */
+    char name[LINK_NAME_LEN];   /*!< Link's name */
+    // Destination no se si debe ser Space * o Id
+    Id destination;             /*!< Id to space destination */
+    DIRECTION direction;        /*!< Defines direction (N, S, E, W or ND (Not defined) */
+    LINK_STATUS status;         /*!< Wether link is OPEN or CLOSE */
+};
+
+/**
+ * It allocs memory for a new link struct and initialize its members.
+ */
+Link *link_create(Id id)
+{
+    Link *l = NULL;
+    int i;
+
+    /* Error control */
+    if (id == NO_ID)
+    {
+        return NULL;
+    }
+    
+    /* Alloc memory for Link struct */
+    l = (Link *) malloc(sizeof(Link));
+    if (!l)     /* Error control in malloc */
+    {
+        return NULL;
+    }
+    
+    /* Initializing link's elements */
+    l->id = id;
+    for (i = 0; i < LINK_NAME_LEN; i++)
+    {
+        l->name[i] = '\0';
+    }
+    l->destination = NO_ID;
+    l->direction = ND;
+    l->status = CLOSE;
+
+    /* Return initialize link */
+    return l;
+}
+
+/**
+ * It frees the memory of a link's struct.
+ */
+STATUS link_destroy(Link * link)
+{
+    /* Error control */
+    if (!link)
+    {
+        return ERROR;
+    }
+    
+    /* Free pointer to link */
+    free(link);
+    link = NULL;
+
+    return OK;
+}
+
+/**
+ * It gets link's id.
+ */
+Id link_get_id(Link *link)
+{
+    /* Error control */
+    if (!link)
+    {
+        return NO_ID;
+    }
+    
+    return link->id;
+}
+
+/**
+ * It sets a name to a link.
+ */
+STATUS link_set_name(Link *link, char *name)
+{
+    /* Error control */
+    if (!link || !name)
+    {
+        return ERROR;
+    }
+    
+    if (!strcpy(link->name, name))
+    {
+        return ERROR;
+    }
+
+    return OK;
+}
+
+/**
+ * It gets link's name.
+ */
+char *link_get_name(Link *link)
+{
+    /* Error control */
+    if (!link)
+    {
+        return NULL;
+    }
+    
+    return link->name;
+}
+
+
+STATUS link_set_destination(Link *link, Id id_space_dest);
+Id link_get_destination(Link *link);
+STATUS link_set_direction(Link *link, DIRECTION dir);
+DIRECTION link_get_direction(Link *link);
+STATUS link_set_status(Link *link, LINK_STATUS st);
+LINK_STATUS link_get_status(Link *link);
+
+/**
+ * It prints link and its elements for debugging porpuses.
+ */
+int link_proint(Link *link)
+{
+    int n = 0;
+
+    /* Error Control */
+    if (!link)
+    {
+        return -1;
+    }
+    
+    /* Printing in terminal link info */
+    n = fprintf(stdout, "=> Link (Id: %ld):\n", link->id);
+    n += fprintf(stdout, "- Name: %s\n");
+    n += fprintf(stdout, "- Destination: %ld\n", link->destination);
+
+    /* Printing in terminal link's direction */
+    n += fprintf(stdout, "- Direction: ");
+    if (link->direction == N)
+    {
+        n += fprintf(stdout, "NORTH (N)\n");
+    }
+    else if (link->direction == E)
+    {
+        n += fprintf(stdout, "EAST (E)\n");
+    }
+    else if (link->destination == S)
+    {
+        n += fprintf(stdout, "SOUTH (S)\n");
+    }
+    else if (link->direction == W)
+    {
+        n += fprintf(stdout, "WEST (W)\n");
+    }
+    else
+    {
+        n += fprintf(stdout, "Not Defined (ND)\n");
+    }
+    
+    /* Printing in terminal link's status */
+    n += fprintf(stdout, "- Link_status: ");
+    if (link->status == OPEN)
+    {
+        n += fprintf(stdout, "OPEN\n");
+    }
+    else
+    {
+        n += fprintf(stdout, "CLOSE\n");
+    }
+    
+    fprintf(stdout, "\n");
+    
+    /* Return number of characters printed */
+    return n;
+}
