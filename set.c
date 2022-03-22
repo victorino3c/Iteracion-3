@@ -1,5 +1,5 @@
 /** 
- * @brief Integra la funcionalidad necesaria para el manejo de conjuntos.
+ * @brief Implements the necessary functions to work with sets
  * 
  * @file set.c
  * @author Miguel Soto
@@ -12,28 +12,27 @@
 
 struct _Set
 {
-    Id *ids;            /* !< Array de ids dentro del set */
-    int n_ids;          /* !< Longitud del array ids */
+    Id *ids;            /* !< Ids array */
+    int n_ids;          /* !< Number of ids stored*/
 };
 
 /**
- * Funciones privadas
+ * Private functions 
  */
 STATUS reorder_set_ids(Set *s, int pos);
 
 
 /**
- * @brief Elimina el hueco que hay en el conjunto de Sets
- * y lo sustituye por el ultimo id. No hace realloc.
+ * @brief Removes the last blank space in between sets
+ * and it changes it for the last id.
  * @author Miguel Soto
  * 
- * Elimina el hueco que hay en el conjunto de Sets
- * y lo sustituye por el ultimo id. No hace realloc.
- * Si se entrega un s vacio devuelve ERROR.
+ * Removes the last blank space in between sets
+ * and it changes it for the last id. It doesn't include realloc
  * 
- * @param s un puntero a set del que se quiere ordenar los ids.
- * @param pos la posición de un NO_ID conocida.
- * @return OK si ha funcionado correctamente, o ERROR si ha habido algun error.
+ * @param s a pointer to target set
+ * @param pos is a NO_ID known position
+ * @return OK if everything goes well, or ERROR if anything doesn't.
  */
 STATUS reorder_set_ids(Set *s, int pos)
 {
@@ -57,14 +56,10 @@ STATUS reorder_set_ids(Set *s, int pos)
     return OK;
 }
 
-/**
- * Funciones primitivas
- */
-
 
 /**
- * Reserva memoria para un nuevo set e
- * inicializa sus miembros.
+ * set_create Allocates memory for a new set and 
+ * has all its members initialized
  */
 Set *set_create()
 {
@@ -76,7 +71,6 @@ Set *set_create()
         return NULL;
     }
     
-    // Reserva memoria para los ids
     new_set->ids = NULL;
     new_set->n_ids = 0;
 
@@ -84,7 +78,8 @@ Set *set_create()
 }
 
 /**
- * Libera la memoria de un set y todos sus miembros.
+ * set_destroy Frees the previously allocated memory for a set and all 
+ * of its members
  */
 STATUS set_destroy(Set *s)
 {
@@ -106,7 +101,8 @@ STATUS set_destroy(Set *s)
 }
 
 /**
- * Añade un id al set.
+ * set_add increases the number of ids in the set 
+ * and stores the newest in the last position
  */
 STATUS set_add(Set *s, Id id)
 {
@@ -119,7 +115,7 @@ STATUS set_add(Set *s, Id id)
         return ERROR;
     }
     
-    /* Amplia el numero de ids guardado en el set*/
+    /* increasing the number of ids*/
     newlength = s->n_ids + 1;
     aux = (Id *) realloc(s->ids, newlength * sizeof(Id));
     if (!aux)
@@ -136,7 +132,8 @@ STATUS set_add(Set *s, Id id)
 }
 
 /**
- * Busca un id dentro del set y lo elimina.
+ * et_del_id searches for the indicated id on a set
+ * and has it removed
  */
 STATUS set_del_id(Set *s, Id id)
 {
@@ -182,7 +179,7 @@ STATUS set_del_id(Set *s, Id id)
 }
 
 /**
- * Elimina el id del set que se encuentra en pos
+ * set_del_pos Removes an id from the set by a position based search
  */
 STATUS set_del_pos(Set *s, int pos)
 {
@@ -218,7 +215,7 @@ STATUS set_del_pos(Set *s, int pos)
 }
 
 /**
- * Devuelve el numero de ids en un set
+ * Gets the amount of ids in a set
  */
 int set_get_nids(Set *s)
 {
@@ -232,7 +229,7 @@ int set_get_nids(Set *s)
 }
 
 /**
- * Devuelve un array con todos los ids del set
+ * Gets the array containing all ids from a set
  */
 Id *set_get_ids(Set *s)
 {
@@ -246,7 +243,7 @@ Id *set_get_ids(Set *s)
 }
 
 /**
- * Comprueba si un set esta bien definido
+ * Tests whether the set is well defined or not
  */
 STATUS set_test(Set *s)
 {
@@ -258,7 +255,7 @@ STATUS set_test(Set *s)
         return ERROR;
     }
     
-    /* Comprobar si s->n_ids coincide con el numero que hay*/
+    /* Testing correct amount of ids*/
     if (s->n_ids > 0)
     {
         size_s = (int) sizeof(s->ids) / sizeof(Id);
@@ -269,7 +266,7 @@ STATUS set_test(Set *s)
         
     }
     
-    /* Comprobar no haya NO_ID*/
+    /* Testing that there is no id == NO_ID*/
     for (i = 0; i < s->n_ids; i++)
     {
         if (s->ids[i] == NO_ID)
@@ -283,7 +280,7 @@ STATUS set_test(Set *s)
 }
 
 /**
- * Imprime toda la informacion de un set
+ * Prints all info regarding set
  */
 int set_print(Set *s)
 {

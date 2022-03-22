@@ -18,102 +18,105 @@
 typedef struct _Set Set;
 
 /**
- * @brief Reserva memoria para un nuevo set.
+ * @brief Allocates memory for a new set
  * @author Miguel Soto
  * 
- * set_create reserva memoria para un nuevo set, e
- * inicializa sus miembros.
+ * set_create Allocates memory for a new set and 
+ * has all its members initialized
  *  
- * @return un puntero a Set inicializado o NULL si ha habido algun error.
+ * @return a pointer to an initialized set or NULL if anything went wrong
  */
 Set *set_create();
 
 /**
- * @brief Libera memoria de un tipo de dato set.
+ * @brief Frees the previously allocated memory for a set
  * @author Miguel Soto
  * 
- * set_destroy libera la memoria de un set y todos sus miembros.
+ * set_destroy Frees the previously allocated memory for a set and all 
+ * of its members
  * 
- * @param set un puntero a Set que se quiere liberar.
- * @return OK si ha funcionado correctamente, o ERROR si ha habido algun error.
+ * @param s a pointer to target set
+ * @return OK if everything goes well, or ERROR if anything doesn't.
  */
 STATUS set_destroy(Set *s);
 
 /**
- * @brief Añade un id al set.
+ * @brief It adds a new id to a set
  * @author Miguel Soto
  * 
- * set_add amplia el numero de ids guardados en el set 
- * y guarda el nuevo id en la ultima posicion.
+ *set_add increases the number of ids in the set 
+ * and stores the newest in the last position
  * 
- * @param s un puntero a Set del que se quiere añadir a un id.
- * @param id el id que se quiere añadir al set
- * @return OK si ha funcionado correctamente, o ERROR si ha habido algun error.
+ * @param s a pointer to target set
+ * @param id target id to be assigned to a set
+ * @return OK if everything goes well, or ERROR if anything doesn't.
  */
 STATUS set_add(Set *s, Id id);
 
 /**
- * @brief Elimina un id del set
+ * @brief Removes a certain id from the set
  * @author Miguel Soto
  * 
- * set_del_id busca un id dentro del set y lo elimina.
+ * set_del_id searches for the indicated id on a set
+ * and has it removed
  * 
- * @param s un puntero a Set del que se quiere eliminar un id.
- * @param id el id que se quiere añadir al set
- * @return OK si ha funcionado correctamente, o ERROR si ha habido algun error.
+ * @param s a pointer to target set
+ * @param id target id to be removed from a set
+ * @return OK if everything goes well, or ERROR if anything doesn't.
  */
 STATUS set_del_id(Set *s, Id id);
 
 /**
- * @brief Elimina un id del set por la posicion en la que se encuentra.
+ * @brief Removes an id from the set, position wise
  * @author Miguel Soto
  * 
- * set_del_pos elimina un id dentro del set a traves de la posicion que tenga dentro del set.
+ * set_del_pos Removes an id from the set by a position based search
  * 
- * @param s un puntero a Set del que se quiere eliminar un id.
- * @param pos la pos en el Set s del id que se quiere eliminar.
- * @return OK si ha funcionado correctamente, o ERROR si ha habido algun error. 
+ * @param s a pointer to target set
+ * @param pos the position of the target id to be removed
+ * @return OK if everything goes well, or ERROR if anything doesn't. 
  */
 STATUS set_del_pos(Set *s, int pos);
 
 /**
- * @brief Devuelve el numero de ids en un set
+ * @brief Gets the amount of ids in a set
  * @author Miguel Soto
  * 
- * @param s un puntero a Set del que se quiere obtener el numero de ids
- * @return int con el numero de ids en un set. En caso de error devuelve -1.
+ * @param s a pointer to target set
+ * @return int with the amount of ids in a set. 
+ * -1 if anything goes wrong.
  */
 int set_get_nids(Set *s);
 
 /**
- * @brief Devuelve un array con todos los ids del set
+ * @brief gets the array containing all ids from a set
  * @author Miguel Soto
  * 
- * @param s un puntero a Set del que se quiere obtener la lista de ids
- * @return un puntero a Id con todos los ids guardados en un set.
+ * @param s a pointer to target set
+ * @return a pointer to the array containing all ids from a set
  */
 Id *set_get_ids(Set *s);
 
 /**
- * @brief Comprueba si un set esta bien definido
+ * @brief Tests whether the set is well defined or not
  * @author Miguel Soto
  * 
- * Comprueba:
- * - s no es NULL
- * - No haya id == NO_ID
- * - El numero de ids incluido es igual al guardado en la variable
- * - Numero de ids no sea negativo
+ * Tests made:
+ * - s is not NULL
+ * - That there is no id == NO_ID
+ * - correct amount of ids
+ * - That the id_num > 0
  * 
- * @param s un puntero a Set que se quiere comprobar si esta bien definido.
- * @return OK si esta bien definido o ERROR si ha encontrado algun error.
+ * @param s a pointer to target set
+ * @return OK if everything goes well, or ERROR if anything doesn't. 
  */
 STATUS set_test(Set *s);
 
 /**
- * @brief Imprime toda la informacion de un set
+ * @brief Prints all info regarding set
  * 
- * @param s puntero a Set que se quiere imprimir
- * @return int el numero de caracteres que imprime
+ * @param s a pointer to target set
+ * @return number of printed characters
  */
 int set_print(Set *s);
 

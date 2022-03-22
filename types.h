@@ -16,10 +16,10 @@
 #define MAX_ARG 20
 
 // Establecer norma primer digito (fd = first digit) de los ids
-#define FD_ID_SPACE 1       /* <! Primer digito id del space */
-#define FD_ID_PLAYER 2      /* <! Primer digito id del player */
-#define FD_ID_OBJ 3         /* <! Primer digito id del object */
-#define FD_ID_ENEMY 4       /* <! Primer digito id del enemy */
+#define FD_ID_SPACE 1       /* <! First digit of a space  */
+#define FD_ID_PLAYER 2      /* <! First digit of a player  */
+#define FD_ID_OBJ 3         /* <! First digit of an object*/
+#define FD_ID_ENEMY 4       /* <! First digit of an enemy*/
 
 
 
@@ -39,10 +39,10 @@ typedef enum
 
 typedef enum
 {
-  N,    /* !< Abreviatura para Norte */
-  S,    /* !< Abreviatura para Sur */
-  E,    /* !< Abreviatura para Este */
-  W     /* !< Abreviatura para Oeste */
+  N,    /* !< Short for North */
+  S,    /* !< Short for South */
+  E,    /* !< Short for East */
+  W     /* !< Short for West */
 } DIRECTION;
 
 #endif

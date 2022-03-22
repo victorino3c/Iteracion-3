@@ -111,7 +111,7 @@ int main(int argc, char **argv)
   return 1;
 }
 
-// enemy_create
+/* enemy_create */
 void test1_enemy_create()
 {
   int result;
@@ -129,7 +129,7 @@ void test2_enemy_create()
   enemy_destroy(s);
 }
 
-// enemy_destroy
+/* enemy_destroy */
 void test1_enemy_destroy()
 {
   Enemy *s = NULL;
@@ -142,7 +142,7 @@ void test2_enemy_destroy()
   PRINT_TEST_RESULT(enemy_destroy(s) == ERROR);
 }
 
-// enemy_set_name
+/* enemy_set_name */
 void test1_enemy_set_name()
 {
   Enemy *s;
@@ -165,7 +165,7 @@ void test3_enemy_set_name()
 
 
 
-// enemy_get_id
+/* enemy_get_id */
 void test1_enemy_get_id()
 {
   Enemy *s = NULL;
@@ -179,7 +179,7 @@ void test2_enemy_get_id()
   PRINT_TEST_RESULT(enemy_get_id(s) == NO_ID);
 }
 
-// enemy_get_name
+/* enemy_get_name */
 void test1_enemy_get_name()
 {
   Enemy *s;
@@ -195,7 +195,7 @@ void test2_enemy_get_name()
 }
 
 
-//enemy_test_id
+/*enemy_test_id */
 void test1_enemy_test_id()
 {
   PRINT_TEST_RESULT(enemy_test_id(-1)==ERROR);
@@ -211,7 +211,7 @@ void test3_enemy_test_id()
   PRINT_TEST_RESULT(enemy_test_id(42)==OK);
 } 
 
-//enemy_get_location
+/*enemy_get_location */
 void test1_enemy_get_location()
 {
   Enemy *s;
@@ -228,7 +228,7 @@ void test2_enemy_get_location()
 	PRINT_TEST_RESULT(enemy_get_location(s)==NO_ID);
 }
   
-//enemy_get_health
+/*enemy_get_health */
 void  test1_enemy_get_health()
 {
   Enemy *s;
@@ -245,7 +245,7 @@ void  test2_enemy_get_health()
 	PRINT_TEST_RESULT(enemy_get_health(s)==(-1));
 }
 
-//enemy_set_health
+/*enemy_set_health */
 void   test1_enemy_set_health()
 {
 	Enemy *s;
@@ -269,7 +269,7 @@ void  test3_enemy_set_health()
 	PRINT_TEST_RESULT(enemy_set_health(s,2)==ERROR);
 }
  
-//enemy_set_location  
+/*enemy_set_location  */
 void   test1_enemy_set_location()
 {
 	Enemy *s;

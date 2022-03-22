@@ -1,5 +1,5 @@
 /** 
- * @brief Implementa la interfaz del jugador.
+ * @brief Implements the player's interface
  * 
  * @file player.h
  * @author Antonio Van-Oers
@@ -21,136 +21,129 @@ typedef struct _Player Player;
 
 
 /**
- * @brief Crea un jugador nuevo.
+ * @brief Creates a new player.
  * @author Antonio Van-Oers 
  *
- * player_create reserva memoria para un nuevo Player e inicializa sus campos.
- * @param id el numero de identificacion del nuevo jugador a crear.
- * @return un nuevo jugador (tipo Player) inicializado, o NULL si hubo algun error.
+ * player_create player_create allocates memory for a new player
+ * and initializes all its members
+ * @param id is the target player's id
+ * @return a new, initialized player, or NULL if anything goes wrong.
  */
 Player *player_create(Id id);
 
 /**
- * @brief Destruye un jugador.
+ * @brief Frees all of a player's allocated memory
  * @author Antonio Van-Oers 
  * 
- * player_destroy libera la memoria previamente reservada de un jugador.
- * @param player un puntero a Player que necesita ser destruido.
- * @return OK, si ha funcionado correctamente o ERROR, si hubo algun error.
+ * player_destroy frees all previously allocated
+ * memory for a player
+ * @param player a pointer to target player
+ * @return OK, if the task was successfully completed or ERROR, if anything goes wrong.
  */
 STATUS player_destroy(Player *player);
 
 /**
- * @brief Obtiene el id de un jugador.
+ * @brief Gets a player's id
  * @author Antonio Van-Oers
  * 
- * player_get_id devuelve el id de un jugador(player).
- * @param player un puntero a Player.
- * @return el id del jugador, o NULL si hubo algun error.
+ * @param player a pointer to target player
+ * @return player's id if everything goes well, or NULL if anything goes wrong.
  */
 Id player_get_id(Player *player);
 
 /**
- * @brief Comprueba si el id recibido es el de un player
+ * @brief Tests whether an id is from a player or not
  * @author Miguel Soto
  * 
- * @param id el id que se quiere comprobar
- * @return OK, si es correcto o ERROR si no es correcto o hubo algun error.
+ *@param id is the target id
+ * @return OK, if everything goes well, or ERROR if anything goes wrong.
  */
 STATUS player_test_id(Id id);
 
 /**
- * @brief Obtiene el nombre de un jugador.
+ * @brief Gets a player's name
  * @author Antonio Van-Oers
  * 
- * player_get_name devuelve el nombre de un jugador (player).
- * @param player un puntero a Player.
- * @return un string con el nombre del jugador player, o NULL si hubo algun error.
+ * @param player a pointer to target player
+ * @return a string with the plyer's name, or NULL if anything goes wrong.
  */
 const char *player_get_name(Player *player);
 
 /**
- * @brief Obtiene el nombre de un jugador.
+ * @brief Gets a player's location
  * @author Antonio Van-Oers
  * 
  * player_get_location obtiene la localizacion de un jugador (player).
- * @param player un puntero a Player.
- * @param location es la identificacion del espacio en el que esta el jugador.
- * @return player->location, la id de la localizacion de un jugador (player).
+ * @param player a pointer to target player
+ * @param location is the space's id on which the player is located
+ * @return player->location, player's location id or NO_ID if anything goes wrong
  */
 Id player_get_location(Player *player);
 
 /**
- * @brief Obtiene el nombre de un objeto.
+ * @brief Gets a player's object
  * @author Antonio Van-Oers
  * 
- * player_get_object obtiene la id de un object perteneciente al jugador.
- * @param player un puntero a Player.
- * @return player->object, la id de la localizacion de un objeto o NULL si hay un error.
+ * @param player a pointer to target player
+ * @return player->object, an Object type variable from the 
+ * player's object or NULL if anything goes wrong.
  */
 Object *player_get_object(Player *player);
 
 /**
- * @brief Obtiene la salud de un jugador.
+ * @brief Gets a player's health.
  * @author Antonio Van-Oers
  * 
- * player_get_health obtiene la salud de un jugador (player).
- * @param player un puntero a player.
- * @return player->health, obtiene la salud restante de un jugador (player)
- * y -1 en caso de error.
+ * @param player a pointer to target player
+ * @return player->health, the remainig health on the 
+ * target player or -1 if anything goes wrong.
  */
 int player_get_health(Player *player);
 
 /**
- * @brief Establece la salud de un jugador.
+ * @brief Sets a player's health to the assigned value.
  * @author Antonio Van-Oers
  * 
- * player_set_health establece la salud de un jugador (player).
- * @param player un puntero a player.
- * @return player->health, establece la salud restante de un jugador (player)
- * y -1 en caso de error.
+ * @param player a pointer to target player
+ * @return OK if everything goes well or ERROR if anything goes wrong.
  */
 STATUS player_set_health(Player *player, int health);
 
 /**
- * @brief Establece el objeto de un jugador.
+ * @brief Assigns an object to a player
  * @author Antonio Van-Oers
  * 
- * player_set_object establece un objeto introducido como perteneciente al jugador
- * @param player un puntero a Player.
- * @param object es la identificacion del objeto del jugador.
- * @return OK, si ha funcionado correctamente o ERROR, si hubo algun error.
+ * @param player a pointer to target player
+ * @param object the object about to be added to the player's belongings
+ * @return OK, if the task was successfully completed or ERROR, if anything goes wrong.
  */
 STATUS player_set_object(Player *player, Object *object);
 /**
- * @brief Establece el nombre de un jugador.
+ * @brief Sets a player's location
  * @author Antonio Van-Oers
  * 
- * player_set_location establece la localizacion de un jugador (player).
- * @param player un puntero a Player.
- * @param location es la identificacion del espacio en el que esta el jugador.
- * @return OK, si ha funcionado correctamente o ERROR, si hubo algun error.
+ * @param player a pointer to target player
+ * @param location is the space's id on which the player is located
+ * @return OK, if the task was successfully completed or ERROR, if anything goes wrong.
  */
 STATUS player_set_location(Player *player, Id location);
 
 /**
- * @brief Establece un nombre a un jugador.
+ * @brief Sets the player's new name
  * @author Antonio Van-Oers
  * 
- * obj_set_name establece el nombre (name) de un jugador (player).
- * @param player un puntero a Player.
- * @param name un string con el nombre que se va a establecer al jugador.
- * @return OK, si ha funcionado correctamente o ERROR, si hubo algun error.
+ * @param player a pointer to target player
+ * @param name a string with the new name for the player
+ * @return OK, if the task was successfully completed or ERROR, if anything goes wrong.
  */
 STATUS player_set_name(Player *player, char *name);
 
 /**
- * @brief Imprime la informacion de un jugador.
+ * @brief Prints all player related info in a string
  * @author Antonio Van-Oers
  * 
- * obj_print muestra el id y el nombre de un jugador (player).
- * @param player un puntero a Player.
- * @return OK, si ha funcionado correctamente o ERROR, si hubo algun error.
+ * @param player a pointer to target player
+ * @return OK, if the task was successfully completed or ERROR, if anything goes wrong.
  */
 STATUS player_print(Player *player);
 

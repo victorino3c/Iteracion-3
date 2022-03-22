@@ -1,5 +1,5 @@
 /** 
- * @brief Implementa la interfaz del objeto.
+ * @brief Implements the object's interface
  * 
  * @file object.h
  * @author Miguel Soto
@@ -23,9 +23,9 @@ typedef struct _Object Object;
  * @brief Crea un objeto nuevo.
  * @author Miguel Soto
  *
- * obj_create reserva memoria para un nuevo Object e inicializa sus miembros.
- * @param id el numero de identificacion del nuevo objeto a crear.
- * @return un nuevo objeto (tipo Object) inicializado, o NULL si hubo algun error.
+ * obj_create allocates memory for a new object and initializes all its members
+ * @param id is the target object's id
+ * @return a new object (type Object) initialized, or NULL if anything goes wrong.
  */
 Object *obj_create(Id id);
 
@@ -33,80 +33,75 @@ Object *obj_create(Id id);
  * @brief Destruye un objeto.
  * @author Miguel Soto
  * 
- * obj_destroy libera la memoria previamente reservada de un objeto.
- * @param obj un puntero a Object que necesita ser destruido.
- * @return OK, si ha funcionado correctamente o ERROR, si hubo algun error.
+ * obj_destroy frees the previously allocated memory for an object
+ * @param obj is a pointer to the target object.
+ * @return Ok if it succesfully completed the task or ERROR, if anything goes wrong.
  */
 STATUS obj_destroy(Object *obj);
 
 /**
- * @brief Comprueba si el id recibido es el de un objeto
+ * @brief Tests whether the designated id is from an object or not
  * @author Miguel Soto
  * 
- * @param id el id que se quiere comprobar
+ * @param id is the target object's id
  * @return OK, si es correcto o ERROR si no es correcto o hubo algun error.
  */
 STATUS obj_test_id(Id id);
 
 /**
- * @brief Obtiene el id de un objeto.
+ * @brief  Gets an object's id
  * @author Miguel Soto
  * 
- * obj_get_id devuelve el id de un Object (obj).
- * @param obj un puntero a Object.
- * @return el id del objeto, o NULL si hubo algun error.
+ * @param obj is a pointer to the target object.
+ * @return el id del objeto, o NULL if anything goes wrong.
  */
 Id obj_get_id(Object *obj);
 
 /**
- * @brief Obtiene el nombre de un objeto.
+ * @brief Gets an object's name 
  * @author Miguel Soto
- * 
- * obj_get_name devuelve el nombre de un Object (obj).
- * @param obj un puntero a Object.
- * @return un string con el nombre del objeto obj, o NULL si hubo algun error.
+ *
+ * @param obj is a pointer to the target object.
+ * @return un string con el nombre del objeto obj, o NULL if anything goes wrong.
  */
 const char *obj_get_name(Object *obj);
 
 /**
- * @brief Establece un nombre a un objeto.
+ * @brief Sets an object's name
  * @author Miguel Soto
  * 
- * obj_set_name establece el nombre (name) de un Object (obj).
- * @param obj un puntero a Object.
- * @param name un string con el nombre que se va a establecer al objeto.
- * @return OK, si ha funcionado correctamente o ERROR, si hubo algun error.
+ * @param obj is a pointer to the target object.
+ * @param name a string containing the new object's name
+ * @return Ok if it succesfully completed the task or ERROR, if anything goes wrong.
  */
 STATUS obj_set_name(Object *obj, char *name);
 
 /**
- * @brief Obtiene la posicion de un objeto
+ * @brief Gets an object's position
  * @author Miguel Soto
  * 
- * obj_get_location devuelve la posicion de un Object (obj)
- * @param obj un puntero a Object.
- * @return el id del espacio donde se encuentra el objeto
+ * @param obj is a pointer to the target object.
+ * @return space's id where the object is located.
  */
 Id obj_get_location(Object *obj);
 
 /**
- * @brief Establece la posicion de un objeto
+ * @brief Sets an object's position
  * @author Miguel Soto
  * 
- * obj_set_location establece la posicion (location) de un Object (obj)
- * @param obj un puntero a Object.
- * @param id del espacio donde se va encontrar el objeto
- * @return OK, si ha funcionado correctamente o ERROR, si hubo algun error. 
+ * @param obj is a pointer to the target object.
+ * @param id is the target object's id
+ * @return Ok if it succesfully completed the task or ERROR, if anything goes wrong. 
  */
 STATUS obj_set_location(Object *obj, Id id);
 
 /**
- * @brief Imprime la informacion de un objeto.
+ * @brief Prints the info regarding an object 
  * @author Miguel Soto
  * 
- * obj_print muestra el id y el nombre de un Object (obj).
- * @param obj un puntero a Object.
- * @return OK, si ha funcionado correctamente o ERROR, si hubo algun error.
+ * obj_print prints an object's name and id
+ * @param obj is a pointer to the target object.
+ * @return Ok if it succesfully completed the task or ERROR, if anything goes wrong.
  */
 STATUS obj_print(Object *obj);
 

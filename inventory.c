@@ -17,7 +17,7 @@
  * @brief Inventory
  *
  * This struct stores all the 
- * informaction of an inventory.
+ * inventory's information
  */
 struct _Inventory {
   Set* objects;

@@ -1,5 +1,5 @@
 /** 
- * @brief Implementa el modulo del objeto.
+ * @brief Implements the player's interface
  * 
  * @file player.c
  * @author Antonio Van-Oers
@@ -17,7 +17,8 @@
 /**
  * @brief Player
  *
- * Esta estructura almacena la informacion de un ojugador
+ * This structure contains all relevant info 
+ * and members of a player
  */
 
 
@@ -30,26 +31,27 @@ typedef struct _Player
   int health;
 } Player;
 
-/** player_create reserva memoria para un nuevo jugador e inicializa sus miembros.
+/** player_create allocates memory for a new player
+ * and initializes all its members
  */
 Player *player_create(Id id)
 {
   Player *new_player = NULL;
 
-  /* Control de errores */
+  /*Error control */
   if (id == NO_ID)
   {
       return NULL;
   }
 
   new_player = (Player *) malloc(sizeof(Player));
-	/* Control de errores */
+	/*Error control */
   if (new_player == NULL)
   {
     return NULL;
   }
   
-  /* Inicializacion del nuevo jugador*/
+  /* Initializing all of player's members*/
   new_player->id = id;
   new_player->health = 3;
   new_player->name[0] = '\0';
@@ -59,11 +61,12 @@ Player *player_create(Id id)
   return new_player;
 }
 
-/** player_destroy libera la memoria previamente reservada de un jugador.
+/** player_destroy frees all previously allocated
+ * memory for a player
  */
 STATUS player_destroy(Player *player)
 {
-	/* Control de errores */
+	/*Error control */
   if (!player)
   {
     return ERROR;
@@ -74,11 +77,11 @@ STATUS player_destroy(Player *player)
   return OK;
 }
 
-/** player_get_id devuelve el id de un jugador (player).
+/** player_get_id gets a player's id
  */
 Id player_get_id(Player *player)
 {
-	/* Control de errores */
+	/*Error control */
   if (!player)
   {
     return NO_ID;
@@ -88,22 +91,22 @@ Id player_get_id(Player *player)
 }
 
 /**
- * Comprueba si el id recibido es el de un player
+ * Tests whether an id is from a player or not
  */
 STATUS player_test_id(Id id)
 {
   int first_digit, digits;
 
-  /* Control de errores */
+  /*Error control */
   if (id < 0)
   {
     return ERROR;
   }
 
-  /* Calcular numbero total de digitos - 1 */
+  /* Figuring out how many digits - 1 are there 
+  and which one is the first */
   digits = (int)log10(id); 
 
-  /* Obtener primer digito */
   first_digit = (int)(id / pow(10, digits));
   
   if (first_digit == FD_ID_PLAYER)
@@ -116,11 +119,11 @@ STATUS player_test_id(Id id)
   }
 }
 
-/** player_get_name obtiene el nombre (name) de un jugador (player).
+/** player_get_name gets a player's name
  */
 const char *player_get_name(Player *player)
 {
-	/* Control de errores */
+	/*Error control */
   if (!player)
   {
     return NULL;
@@ -129,11 +132,11 @@ const char *player_get_name(Player *player)
   return player->name;
 }
 
-/** player_get_location obtiene la posicion (location) de un jugador (player).
+/** player_get_location gets a player's location
  */
 Id player_get_location(Player *player)
 {
-	/* Control de errores */
+	/*Error control */
   if (!player)
   {
     return NO_ID;
@@ -142,11 +145,11 @@ Id player_get_location(Player *player)
   return player->location;
 }
 
-/** player_get_health obtiene la salud de un jugador (player).
+/** player_get_health gets a player's health.
  */
 int player_get_health(Player *player)
 {
-	/* Control de errores */
+	/*Error control */
   if (!player)
   {
     return -1;
@@ -155,11 +158,11 @@ int player_get_health(Player *player)
   return player->health;
 }
 
-/** player_set_health establece la salud de un jugador (player).
+/** player_set_health sets a player's health
  */
 STATUS player_set_health(Player *player, int health)
 { 
-	/* Control de errores */
+	/*Error control */
   if (!player)
   {
     return ERROR; 
@@ -171,11 +174,11 @@ STATUS player_set_health(Player *player, int health)
 
 
 
-/** player_set_name establece la posicion (location) de un jugador (player).
+/** player_set_name sets a player's location
  */
 STATUS player_set_location(Player *player, Id location)
 {
-	/* Control de errores */
+	/*Error control */
   if (!player)
   {
     return ERROR;
@@ -188,11 +191,11 @@ STATUS player_set_location(Player *player, Id location)
 
 
 
-/** player_get_name establece el objeto del player.
+/** player_get_name assigns an object to a player
  */
 STATUS player_set_object(Player *player, Object *object)
 {
-	/* Control de errores */
+	/*Error control */
   if (!player)
   {
     return ERROR;
@@ -202,9 +205,11 @@ STATUS player_set_object(Player *player, Object *object)
   return OK;
 }
 
+/** Gets a player's object 
+ */
 Object *player_get_object(Player *player)
 {
-	/* Control de errores */
+	/*Error control */
   if (!player)
   {
     return NULL;
@@ -215,17 +220,17 @@ Object *player_get_object(Player *player)
 
 
 
-/** player_set_name establece el nombre (name) de un jugador (player).
+/** player_set_name sets the player's new name
  */
 STATUS player_set_name(Player *player, char *name)
 {
-	/* Control de errores */
+	/*Error control */
   if (!player || !name)
   {
     return ERROR;
   }
   
-	/* Control de errores */
+	/*Error control */
   if (!strcpy(player->name, name))
   {
     return ERROR;
@@ -234,11 +239,11 @@ STATUS player_set_name(Player *player, char *name)
   return OK;
 }
 
-/** player_print muestra por pantalla el id y el nombre de un jugador(player).
+/** player_print prints all player related info in a string
  */
 STATUS player_print(Player *player)
 {
- /* Control de errores */
+ /*Error control */
   if (!player)
   {
       return ERROR;
