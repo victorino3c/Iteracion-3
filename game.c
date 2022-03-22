@@ -22,7 +22,7 @@ typedef struct _Game
   Enemy *enemy[MAX_ENEMYS];         /*!< Pointer to enemy's array */
   Space *spaces[MAX_SPACES];        /*!< Puntero a los espacios del juego */
   T_Command last_cmd;               /*!< Ultimo comando introducido por el usuario */
-};
+} Game;
 
 /**
    Private functions
