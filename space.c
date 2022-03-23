@@ -24,6 +24,7 @@
 struct _Space {
   Id id;                                    /*!< Id number of the space, it must be unique */
   char name[WORD_SIZE + 1];                 /*!< Name of the space */
+  char description[WORD_SIZE];              /*!< Description of the space*/
   Id north;                                 /*!< Id of the space at the north */
   Id south;                                 /*!< Id of the space at the south */
   Id east;                                  /*!< Id of the space at the east */
@@ -148,6 +149,39 @@ const char * space_get_name(Space* space) {
     return NULL;
   }
   return space->name;
+}
+
+/** space_get_description returns the description of a space.
+ */
+const char *space_get_description(Space *space)
+{
+	/*CONTROL ERRORS*/
+  if (!space)
+  {
+    return NULL;
+  }
+  
+  return space->description;
+}
+
+/** space_set_description set a new description for an space.
+ */
+STATUS space_set_description(Space *space, char *description)
+{
+	/* CONTROL ERROR */
+  if (!space || !description)
+  {
+    return ERROR;
+  }
+  
+  if (!strcpy(space->description, description))
+  {
+    /*CONTROL ERROR*/
+    return ERROR;
+  }
+  
+  return OK;
+
 }
 
 /** It sets the id of the space located at the north
@@ -469,4 +503,3 @@ STATUS space_print(Space* space) {
   
   return OK;
 }
-
