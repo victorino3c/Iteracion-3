@@ -77,6 +77,27 @@ const char *obj_get_name(Object *obj);
 STATUS obj_set_name(Object *obj, char *name);
 
 /**
+ * @brief Obtiene la descripcion de un objeto.
+ * @author Ignacio Nunnez
+ * 
+ * description_get_name devuelve la descripcion de un Object (obj).
+ * @param obj un puntero a Object.
+ * @return un string con la descripcion del objeto obj, o NULL si hubo algun error.
+ */
+const char *obj_get_description(Object *obj);
+
+/**
+ * @brief Establece una descripcion a un objeto.
+ * @author Miguel Soto
+ * 
+ * obj_set_descripcion establece la descripcion (description)) de un Object (obj).
+ * @param obj un puntero a Object.
+ * @param descripcion un string con la descripcion que se va a establecer al objeto.
+ * @return OK, si ha funcionado correctamente o ERROR, si hubo algun error.
+ */
+STATUS obj_set_description(Object *obj, char *descripcion);
+
+/**
  * @brief Gets an object's position
  * @author Miguel Soto
  * 
