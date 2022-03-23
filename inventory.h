@@ -60,6 +60,25 @@ Set *inventory_get_objects(Inventory* inventory);
 STATUS inventory_set_objects(Inventory* inventory, Set* set);
 
 /**
+  * @brief It sets the maximum number of objects an inventory can store
+  * @author Nicolas Victorino
+  * 
+  * @param inventory a pointer to the inventory
+  * @param num number that is going to be the new maximum
+  * @return OK, if everything goes well or ERROR if there was some mistake 
+  */
+STATUS inventory_set_maxObjs(Inventory* inventory, int num);
+
+/**
+  * @brief It gets the maximum number of objects an inventory can store
+  * @author Nicolas Victorino
+  * 
+  * @param inventory a pointer to the inventory
+  * @return -1 if something went wrong, or the number of objects it can store
+  */
+int inventory_get_maxObjs(Inventory *inventory);
+
+/**
   * @brief It adds an objects to the inventory
   * @author Ignacio Nunnez
   * 
