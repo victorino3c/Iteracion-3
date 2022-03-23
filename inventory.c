@@ -17,11 +17,10 @@
  * @brief Inventory
  *
  * This struct stores all the 
- * inventory's information
+ * informaction of an inventory.
  */
 struct _Inventory {
   Set* objects;
-  int max_objs;
 };
 
 /** inventory_create allocates memory for a new inventory
@@ -37,7 +36,6 @@ Inventory* inventory_create() {
 
   /* Initialization of an empty inventory*/
   newInventory->objects = set_create();
-  newInventory->max_objs = 0;
 
   return newInventory;
 }
@@ -71,32 +69,7 @@ Set *inventory_get_objects(Inventory* inventory) {
   return inventory->objects;
 }
 
-/** Sets the maximum number of objects an inventory can store
- */
-STATUS inventory_set_maxObjs(Inventory* inventory, int num)
-{
-  if (!inventory || num <= 0)
-  {
-    return ERROR;
-  }
-
-  inventory->max_objs = num;
-  return OK;
-}
-
-/** Gets the maximum number of objects an inventory can store
- */
-int inventory_get_maxObjs(Inventory *inventory)
-{
-  if (!inventory)
-  {
-    return NO_ID;
-  }
-
-  return inventory->max_objs;
-}
-
-/** It sets the objects of a player
+/** It sets the objects of an enemy
   */
 STATUS inventory_set_objects(Inventory* inventory, Set* set) {
 
@@ -118,7 +91,7 @@ STATUS inventory_add_object(Inventory* inventory, Id object) {
 		return ERROR;
 	}
 
-	if(set_get_nids(inventory->objects) == inventory->max_objs){
+	if(set_get_nids(inventory->objects) == MAX_INV_OBJ){
 		return ERROR;
 	}
 
@@ -126,6 +99,21 @@ STATUS inventory_add_object(Inventory* inventory, Id object) {
 
 	return OK;
 	
+}
+
+/* It tells if an inventory has an id or not
+*/
+BOOL inventory_has_id(Inventory* inventory, Id object){
+  
+  /*CONTROL ERROR*/
+  if(!inventory || object == NO_ID){
+    return FALSE;
+  }
+
+  if(set_idInSet(inventory->objects, object) == TRUE)
+  return TRUE;
+
+  return FALSE;
 }
 
 /* It removes an object of the inventory
