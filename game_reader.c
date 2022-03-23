@@ -248,7 +248,8 @@ STATUS game_load_players(Game *game, char *filename)
   char line[WORD_SIZE] = "";
   char name[WORD_SIZE] = "";
   char *toks = NULL;
-  Id id = NO_ID, object = NO_ID, location = NO_ID;;
+  Id id = NO_ID, location = NO_ID;
+  int objects, health;
   Player *player = NULL;
   STATUS status = OK;
 
@@ -280,9 +281,12 @@ STATUS game_load_players(Game *game, char *filename)
       toks = strtok(NULL, "|");
       strcpy(name, toks);
       toks = strtok(NULL, "|");
-      object = atol(toks);
-      toks = strtok(NULL, "|");
       location = atol(toks);
+      toks = strtok(NULL, "|");
+      health = atol(toks);
+      toks = strtok(NULL, "|");
+      objects = atol(toks);
+
 
   /*If debug is being used, it will print all the information from the current player that is being loaded*/
 #ifdef DEBUG
@@ -296,9 +300,9 @@ STATUS game_load_players(Game *game, char *filename)
       if (player != NULL)
       {
         player_set_name(player, name);
-        player_set_object(player, game_get_object(game, object));
+        player_set_max_inventory(player, objects);
         player_set_location(player, location);
-        player_set_health(player, 3); //Añadir MAX_HEALTH_PLAYER
+        player_set_health(player, health); 
         game_add_player(game, player); 
       } 
     }
@@ -330,7 +334,8 @@ STATUS game_load_enemy(Game *game, char *filename)
   char line[WORD_SIZE] = "";
   char name[WORD_SIZE] = "";
   char *toks = NULL;
-  Id id = NO_ID, location = NO_ID;;
+  Id id = NO_ID, location = NO_ID;
+  int health; 
   Enemy *enemy = NULL;
   STATUS status = OK;
 
@@ -363,6 +368,8 @@ STATUS game_load_enemy(Game *game, char *filename)
       strcpy(name, toks);
       toks = strtok(NULL, "|");
       location = atol(toks);
+      toks = strtok(NULL, "|");
+      health = atol(toks);
 
   /*If debug is being used, it will print all the information from the current enemy that is being loaded*/
 #ifdef DEBUG
@@ -377,7 +384,7 @@ STATUS game_load_enemy(Game *game, char *filename)
       {
         enemy_set_name(enemy, name);
         enemy_set_location(enemy, location);
-        enemy_set_health(enemy, 3); //Añadir MAX_HEALTH_ENEMY
+        enemy_set_health(enemy, health); 
         game_add_enemy(game, enemy); 
       } 
     }
