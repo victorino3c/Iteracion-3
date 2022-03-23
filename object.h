@@ -44,7 +44,7 @@ STATUS obj_destroy(Object *obj);
  * @author Miguel Soto
  * 
  * @param id is the target object's id
- * @return OK, si es correcto o ERROR si no es correcto o hubo algun error.
+ * @return Ok if it succesfully completed the task or ERROR, if anything goes wrong.
  */
 STATUS obj_test_id(Id id);
 
@@ -53,7 +53,7 @@ STATUS obj_test_id(Id id);
  * @author Miguel Soto
  * 
  * @param obj is a pointer to the target object.
- * @return el id del objeto, o NULL if anything goes wrong.
+ * @return object's id, or NULL if anything goes wrong.
  */
 Id obj_get_id(Object *obj);
 
@@ -62,7 +62,7 @@ Id obj_get_id(Object *obj);
  * @author Miguel Soto
  *
  * @param obj is a pointer to the target object.
- * @return un string con el nombre del objeto obj, o NULL if anything goes wrong.
+ * @return a string with the object's name, or NULL if anything goes wrong.
  */
 const char *obj_get_name(Object *obj);
 
