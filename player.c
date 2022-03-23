@@ -73,6 +73,11 @@ STATUS player_destroy(Player *player)
     return ERROR;
   }
   
+  if (player->inventory != NULL) {
+    inventory_destroy(player->inventory);
+    player->inventory = NULL;
+  }
+	
   free(player);
   player = NULL;
   return OK;
