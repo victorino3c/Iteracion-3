@@ -49,7 +49,15 @@ runv:
 
 juego_permisos: juego
 	chmod u+x ./juego
+	
+#OBJ_TEST
+object_test.o: object_test.c object_test.h object.h test.h
+	$(CC) $(FLAGS) $^ $(LIBRARY)
 
+object_test: object_test.o object.o 
+	$(CC) -o $@ -Wall $^ $(LIBRARY)
+	valgrind --leak-check=full ./object_test
+	
 #SET_TEST
 SET_TEST: set_test.o set_test
 	$(CC) $(FLAGS) set_test.c set_test.h set.h test.h
