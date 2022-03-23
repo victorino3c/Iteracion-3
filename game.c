@@ -398,7 +398,7 @@ Object *game_get_object(Game *game, Id id)
       return game->object[i];
     }
   }
-  
+
   return NULL;
 }
 
@@ -496,7 +496,12 @@ STATUS game_set_player_location(Game *game, Id player_id, Id space_id)
     return ERROR;
   }
   
-  return player_set_location(p, space_id);
+  if(player_set_location(p, space_id)==ERROR)
+  {
+    return ERROR;
+  }
+
+  return OK;
 }
 
 /**
@@ -525,7 +530,12 @@ STATUS game_set_object_location(Game *game, Id obj_id, Id space_id)
     return ERROR;
   }
 
-  return obj_set_location(o, space_id);
+  if(obj_set_location(o, space_id)==ERROR)
+  {
+    return ERROR;
+  }
+
+  return OK;
 }
 
 /**
@@ -744,12 +754,13 @@ STATUS game_command_take(Game *game, char *arg)
   Id id_obj_taken = NO_ID, obj_loc = NO_ID;
 
   id_obj_taken = atol(arg);
+  
 
    /* Control de errores */
   if (space_has_object(game_get_space(game, player_location), atol(arg)))
   {
     obj_loc = game_get_object_location(game, id_obj_taken);
-
+    
     /* Control de errores */
     if (player_location != obj_loc)
     {
@@ -769,18 +780,14 @@ STATUS game_command_take(Game *game, char *arg)
     {
       return ERROR;
     }
-    
-    if (obj_loc != game_get_player_location(game, 21))
-    {
-      return ERROR;
-    }
 
-    if (game_set_object_location(game, id_obj_taken, NO_ID) == ERROR)
+    if (game_set_object_location(game, obj_get_id(o), NO_ID) == ERROR)
     {
+      printf("Igual es la 786 o por ahi, %d", (int)obj_get_id(o));
       return ERROR;
     }
         
-    if (player_set_object(game->player[MAX_PLAYERS-1], o) == ERROR)
+    if (player_add_object(game->player[MAX_PLAYERS-1], o) == ERROR)
     {
       return ERROR;
     }
@@ -790,7 +797,7 @@ STATUS game_command_take(Game *game, char *arg)
     }
     return OK;
   }
-  
+
   return ERROR;
 } 
 
