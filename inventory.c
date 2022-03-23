@@ -21,6 +21,7 @@
  */
 struct _Inventory {
   Set* objects;
+  int max_objs;
 };
 
 /** inventory_create allocates memory for a new inventory
@@ -36,6 +37,7 @@ Inventory* inventory_create() {
 
   /* Initialization of an empty inventory*/
   newInventory->objects = set_create();
+  newInventory->max_objs = 0;
 
   return newInventory;
 }
@@ -69,7 +71,7 @@ Set *inventory_get_objects(Inventory* inventory) {
   return inventory->objects;
 }
 
-/** It sets the objects of an enemy
+/** It sets the objects of an player
   */
 STATUS inventory_set_objects(Inventory* inventory, Set* set) {
 
@@ -82,6 +84,31 @@ STATUS inventory_set_objects(Inventory* inventory, Set* set) {
 	return OK;
 }
 
+/** Sets the maximum number of objects an inventory can store
+ */
+STATUS inventory_set_maxObjs(Inventory* inventory, int num)
+{
+  if (!inventory || num <= 0)
+  {
+    return ERROR;
+  }
+
+  inventory->max_objs = num;
+  return OK;
+}
+
+/** Gets the maximum number of objects an inventory can store
+ */
+int inventory_get_maxObjs(Inventory *inventory)
+{
+  if (!inventory)
+  {
+    return NO_ID;
+  }
+
+  return inventory->max_objs;
+}
+
 /* It adds an object to the inventory if possible
 	*/
 STATUS inventory_add_object(Inventory* inventory, Id object) {
@@ -91,7 +118,7 @@ STATUS inventory_add_object(Inventory* inventory, Id object) {
 		return ERROR;
 	}
 
-	if(set_get_nids(inventory->objects) == MAX_INV_OBJ){
+	if(set_get_nids(inventory->objects) >= inventory->max_objs){
 		return ERROR;
 	}
 
