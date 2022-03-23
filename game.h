@@ -208,5 +208,14 @@ Id game_get_player_id(Game* game);
  */
 Id game_get_object_id(Game *game, int num);
 
+/**
+ * @brief Function that saves memory for the game in game_loop
+ * @author Nicolas Victorino
+ * 
+ * @return A pointer to the game
+ */
+Game* game_alloc2();
+
+
 #endif
 
