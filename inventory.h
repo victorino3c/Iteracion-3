@@ -100,6 +100,16 @@ STATUS inventory_add_object(Inventory* inventory, Id object);
 STATUS inventory_remove_object(Inventory* inventory, Id object);
 
 /**
+  * @brief It tells if an inventory has an object
+  * @author Ignacio Nunnez
+  * 
+  * @param inventory a pointer to the inventory
+  * @param object the id of a the object
+  * @return TRUE, if the inventory has it or FALSE if not
+  */
+BOOL inventory_has_id(Inventory* inventory, Id object);
+
+/**
   * @brief It prints the inventory information
   * @author Ignacio Nunnez
   *
