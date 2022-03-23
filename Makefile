@@ -13,7 +13,7 @@ enemy.o: enemy.c enemy.h
 game_reader.o: game_reader.c game_reader.h command.h space.h types.h game.h
 	$(CC) $(FLAGS) $<
 
-game.o: game.c game.h command.h space.h types.h
+game.o: game.c game.h command.h space.h types.h link.h player.h object.h enemy.h inventory.h
 	$(CC) $(FLAGS) $<
 	
 graphic_engine.o: graphic_engine.c graphic_engine.h libscreen.h command.h space.h types.h

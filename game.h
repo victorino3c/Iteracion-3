@@ -18,6 +18,7 @@
 #include "player.h"
 #include "object.h"
 #include "enemy.h"
+#include "inventory.h"
 
 #define MAX_LINKS 200
 

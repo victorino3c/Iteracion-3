@@ -192,7 +192,7 @@ STATUS player_set_location(Player *player, Id location)
 
 
 
-/** player_get_name assigns an object to a player
+/** player_set_object assigns an object to a player
  */
 STATUS player_set_object(Player *player, Object *object)
 {
@@ -206,7 +206,20 @@ STATUS player_set_object(Player *player, Object *object)
   return OK;
 }
 
-/** Gets a player's object 
+/** Removes an object from a player's inventory
+ */
+STATUS player_del_object(Player *player, Id id_obj){
+  /*Error control */
+  if (!player || id_obj==NO_ID)
+  {
+    return ERROR;
+  }
+  
+  inventory_remove_object(player->inventory, id_obj);
+  return OK;
+}
+
+/** Gets a player's inventory 
  */
 Inventory *player_get_inventory(Player *player)
 {

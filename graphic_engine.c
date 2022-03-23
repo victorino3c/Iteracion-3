@@ -87,7 +87,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
   /*Declaracion de variables a utilizar*/
   Id id_act = NO_ID, id_up = NO_ID, id_down = NO_ID, id_left= NO_ID, id_right= NO_ID;
   Id obj_loc[MAX_OBJS] = {NO_ID}, player_loc = NO_ID, en_loc[MAX_ENEMYS] = {NO_ID}, obj_id[MAX_OBJS]= {NO_ID};
-  Object *player_obj = NULL;
+  Inventory *player_inventory = NULL;
   int en_health[MAX_ENEMYS] = {0}, player_health = 0;
   Space *space_act = NULL;
   char obj = '\0';
@@ -101,7 +101,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
   /*Asignacion de los valores correspondientes a las variables*/
   player_loc = game_get_player_location(game, 21);
   id_act = player_loc;
-  player_obj = player_get_object(game_get_player(game, game_get_player_id(game)));
+  player_inventory = player_get_inventory(game_get_player(game, game_get_player_id(game)));
   player_health = player_get_health(game_get_player(game, game_get_player_id(game))); 
 
   for(i=0;i<MAX_ENEMYS;i++)
@@ -375,14 +375,14 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
     screen_area_puts(ge->descript, str);
     sprintf(str, "  Player location:%d", (int)player_loc);
     screen_area_puts(ge->descript, str);
-    if(obj_get_id(player_obj)==NO_ID)
+    if(player_inventory==NULL)  //parche
     {
       sprintf(str, "  Player object: No object" );
       screen_area_puts(ge->descript, str);
     }
     else
     {
-      sprintf(str, "  Player object:%d", (int)obj_get_id(player_obj));
+      sprintf(str, "  Player object:%d", 4); //parche, aquí falta poner los objs del player buscandolos en inventroy
       screen_area_puts(ge->descript, str);
     }
     

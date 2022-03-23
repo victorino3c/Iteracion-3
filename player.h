@@ -121,6 +121,17 @@ STATUS player_set_health(Player *player, int health);
 STATUS player_set_object(Player *player, Object *object);
 
 /**
+ * @brief Removes an object from a player's inventory
+ * @author Antonio Van-Oers
+ * 
+ * @param player a pointer to target player
+ * @param object the object about to be removed from the player's belongings
+ * @return OK, if the task was successfully completed or ERROR, if anything goes wrong.
+ */
+STATUS player_del_object(Player *player, Id id_obj);
+
+
+/**
  * @brief Assigns the maximum number of objects available in the inventory
  * @author Nicolas Victorino
  * 

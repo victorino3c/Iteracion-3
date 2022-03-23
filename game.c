@@ -743,13 +743,6 @@ STATUS game_command_take(Game *game, char *arg)
   Id player_location = player_get_location(game->player[MAX_PLAYERS-1]);
   Id id_obj_taken = NO_ID, obj_loc = NO_ID;
 
-  /* Control de errores */
-  if(player_get_object(game->player[MAX_PLAYERS-1])!= NULL)
-  {
-    printf("El player ya tiene un objeto, no puede coger otro\n");
-    return ERROR;
-  }
-
   id_obj_taken = atol(arg);
 
    /* Control de errores */
@@ -776,7 +769,7 @@ STATUS game_command_take(Game *game, char *arg)
     {
       return ERROR;
     }
-    printf("obj_loc = %ld; player_loc = %ld", obj_loc, game_get_player_location(game, 21));
+    
     if (obj_loc != game_get_player_location(game, 21))
     {
       return ERROR;
@@ -805,15 +798,15 @@ STATUS game_command_drop(Game *game, char *arg)
 {
 
   Id player_location = player_get_location(game->player[MAX_PLAYERS-1]);
-  Id obj_id = obj_get_id(player_get_object(game->player[MAX_PLAYERS-1]));
+  Id obj_id = atol(arg);
 
-  if (obj_id != atol(arg))
+  if (obj_id != atol(arg) || inventory_has_id(player_get_inventory(game->player[MAX_PLAYERS-1]), obj_id)==FALSE)
   {
     return ERROR;
   }
    
   /* Control de errores */
-  if (player_get_object(game->player[MAX_PLAYERS-1]) == NULL)
+  if (player_get_inventory(game->player[MAX_PLAYERS-1]) == NULL)
   {
     return ERROR;
   }
@@ -840,7 +833,7 @@ STATUS game_command_drop(Game *game, char *arg)
   {
     return ERROR;
   }
-  if (player_set_object(game->player[MAX_PLAYERS-1], NULL) == ERROR)
+  if (player_del_object(game->player[MAX_PLAYERS-1], obj_id) == ERROR)
   {
     return ERROR;
   }
