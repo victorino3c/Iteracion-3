@@ -123,18 +123,88 @@ char *link_get_name(Link *link)
     return link->name;
 }
 
+/** Sets the destination of target link
+ */
+STATUS link_set_destination(Link *link, Id id_space_dest){
+    /* Error control */
+    if (!link || id_space_dest<0) 
+    {
+        return ERROR;
+    }
 
-STATUS link_set_destination(Link *link, Id id_space_dest);
-Id link_get_destination(Link *link);
-STATUS link_set_direction(Link *link, DIRECTION dir);
-DIRECTION link_get_direction(Link *link);
-STATUS link_set_status(Link *link, LINK_STATUS st);
-LINK_STATUS link_get_status(Link *link);
+    link->destination = id_space_dest;
+    return OK;
+     
+}
+
+/** Gets a link's destination
+ */
+Id link_get_destination(Link *link){
+    /* Error control */
+    if (!link) 
+    {
+        return NO_ID;
+    }
+ 
+    return link->destination;
+}
+
+/** Sets the direction of target link
+ */
+STATUS link_set_direction(Link *link, DIRECTION dir){
+    
+    /* Error control */
+    if (!link || dir<0) 
+    {
+        return ERROR;
+    }
+
+    link->direction = dir;
+    return OK;
+
+}
+
+/** Gets a link's direction
+ */
+DIRECTION link_get_direction(Link *link){
+     /* Error control */
+    if (!link) 
+    {
+        return ND;
+    }
+ 
+    return link->direction;
+}
+
+/** Sets the status of target link
+ */
+STATUS link_set_status(Link *link, LINK_STATUS st)
+{
+     if (!link || (st != CLOSE && st != OPEN )) 
+    {
+        return ERROR;
+    }
+
+    link->status = st;
+    return OK;
+}
+
+/** Gets a link's status
+ */
+LINK_STATUS link_get_status(Link *link){
+
+     if (!link) 
+    {
+        return CLOSE;
+    }
+ 
+    return link->status;
+}
 
 /**
  * It prints link and its elements for debugging porpuses.
  */
-int link_proint(Link *link)
+int link_print(Link *link)
 {
     int n = 0;
 
@@ -146,7 +216,7 @@ int link_proint(Link *link)
     
     /* Printing in terminal link info */
     n = fprintf(stdout, "=> Link (Id: %ld):\n", link->id);
-    n += fprintf(stdout, "- Name: %s\n");
+    n += fprintf(stdout, "- Name: %s\n"); 
     n += fprintf(stdout, "- Destination: %ld\n", link->destination);
 
     /* Printing in terminal link's direction */

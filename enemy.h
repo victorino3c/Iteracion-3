@@ -53,7 +53,7 @@ Id enemy_get_id(Enemy *enemy);
  * @author Miguel Soto
  * 
  * @param id, id to be tested
- * @return OK, if it is indeed from an enemy, ERROR if it doesn't or anything goes wrong.
+ * @return OK, if it is indeed from an enemy, ERROR if it is not or anything goes wrong. 
  */
 STATUS enemy_test_id(Id id);
 

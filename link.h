@@ -37,7 +37,7 @@ Link *link_create(Id id);
  * @brief It frees the memory of a link's struct.
  * @author Miguel Soto
  * 
- * @param link a pointer to link that must be destroy
+ * @param link a pointer to target link.a pointer to link that must be destroy
  * @return OK, if everything goes well or ERROR if there was some mistake.
  */
 STATUS link_destroy(Link * link);
@@ -46,7 +46,7 @@ STATUS link_destroy(Link * link);
  * @brief It gets link's id.
  * @author Miguel Soto
  * 
- * @param link a pointer to link.
+ *@param link a pointer to target link.a pointer to target link.
  * @return link's id or NO_ID if there was some error.
  */
 Id link_get_id(Link *link);
@@ -55,7 +55,7 @@ Id link_get_id(Link *link);
  * @brief It sets a name to a link.
  * @author Miguel Soto
  * 
- * @param link a pointer to link.
+ *@param link a pointer to target link.a pointer to target link.
  * @param name string with link's new name.
  * @return OK, if everything goes well or ERROR if there was some mistake.
  */
@@ -65,65 +65,66 @@ STATUS link_set_name(Link *link, char *name);
  * @brief It gets link's name.
  * @author Miguel Soto
  * 
- * @param link a pointer to link.
+ *@param link a pointer to target link.a pointer to target link.
  * @return string with link's name or NULL if there was some error.
  */
 char *link_get_name(Link *link);
 
 /**
- * @brief 
- * @author
+ * @brief Sets the destination of target link
+ * @author Antonio Van-Oers
  * 
- * @param link 
- * @param id_space_dest 
- * @return STATUS 
+ * @param link a pointer to target link.
+ * @param id_space_dest space's id to which the link
+ * is heading to 
+ * @return STATUS OK, if everything goes well or ERROR if there was some mistake.
  */
 STATUS link_set_destination(Link *link, Id id_space_dest);
 
 /**
- * @brief 
- * @author
+ * @brief Gets a link's destination
+ * @author Antonio Van-Oers
  * 
- * @param link 
+ * @param link a pointer to target link.
  * @return Id 
  */
 Id link_get_destination(Link *link);
 
 /**
- * @brief 
- * @author
+ * @brief Sets the direction of target link
+ * @author Antonio Van-Oers
  * 
- * @param link 
+ * @param link a pointer to target link.
  * @param dir 
- * @return STATUS 
+ * @return STATUS OK, if everything goes well or ERROR if there was some mistake.
  */
 STATUS link_set_direction(Link *link, DIRECTION dir);
 
 /**
- * @brief 
- * @author
+ * @brief Gets a link's direction
+ * @author Antonio Van-Oers
  * 
- * @param link 
+ * @param link a pointer to target link.
  * @return DIRECTION 
  */
 DIRECTION link_get_direction(Link *link);
 
 /**
- * @brief 
- * @author
+ * @brief Sets the status of target link
+ * @author Antonio Van-Oers
  * 
- * @param link 
+ * @param link a pointer to target link.
  * @param st 
- * @return STATUS 
+ * @return STATUS OK, if everything goes well or ERROR if there was some mistake. 
  */
 STATUS link_set_status(Link *link, LINK_STATUS st);
 
 /**
- * @brief 
- * @author
+ * @brief Gets a link's status
+ * @author Antonio Van-Oers
  * 
- * @param link 
- * @return LINK_STATUS 
+ * @param link a pointer to target link.
+ * @return LINK_STATUS link->status if everything goes well and CLOSE if something doesn't 
  */
 LINK_STATUS link_get_status(Link *link);
 
@@ -134,4 +135,4 @@ LINK_STATUS link_get_status(Link *link);
  * @param link a ponter to link struct
  * @return the number of characters written or -1 in caseof error.
  */
-int link_proint(Link *link);
+int link_print(Link *link);
