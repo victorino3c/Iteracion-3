@@ -42,7 +42,8 @@ typedef enum
   N,    /* !< Short for North */
   S,    /* !< Short for South */
   E,    /* !< Short for East */
-  W     /* !< Short for West */
+  W,     /* !< Short for West */
+  ND    /* !< Short for Not Defined */
 } DIRECTION;
 
 #endif
