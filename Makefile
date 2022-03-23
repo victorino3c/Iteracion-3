@@ -19,6 +19,9 @@ game.o: game.c game.h command.h space.h types.h
 graphic_engine.o: graphic_engine.c graphic_engine.h libscreen.h command.h space.h types.h
 	$(CC) $(FLAGS) $< $(LIBRARY)
 
+link.o: link.c link.h
+	$(CC) $(FLAGS) $<
+	
 object.o: object.c object.h types.h
 	$(CC) $(FLAGS) $< $(LIBRARY)
 	
@@ -37,7 +40,7 @@ space.o: space.c space.h types.h set.h object.h
 game_loop.o: game_loop.c game.h command.h graphic_engine.h
 	$(CC) $(FLAGS) $< 
 
-juego: command.o game.o game_reader.o graphic_engine.o object.o player.o space.o game_loop.o libscreen.a enemy.o set.o inventory.o
+juego: command.o game.o game_reader.o graphic_engine.o object.o link.o player.o space.o game_loop.o libscreen.a enemy.o set.o inventory.o
 	$(CC) -o $@ -Wall $^ $(LIBRARY)
 
 #GAME
