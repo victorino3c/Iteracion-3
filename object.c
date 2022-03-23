@@ -2,7 +2,7 @@
  * @brief Implementa el modulo del objeto.
  * 
  * @file object.c
- * @author Miguel Soto, Antonio Van-Oers, Ignacio Nuñez and Nicolas Victorino
+ * @author Miguel Soto
  * @version 1.3 
  * @date 12-02-2021
  * @copyright GNU Public License
@@ -24,6 +24,7 @@ typedef struct _Object
 {
   Id id;
   char name[OBJ_NAME_LEN];
+  char description[WORD_SIZE];
   Id location;
 } Object;
 
@@ -48,6 +49,7 @@ Object *obj_create(Id id)
   /* Inicializacion del objeto nuevo */
   new_obj->id = id;
   new_obj->name[0] = '\0';
+  new_obj->description[0] = '\0';
   return new_obj;
 }
 
@@ -140,12 +142,44 @@ STATUS obj_set_name(Object *obj, char *name)
   return OK;
 }
 
+/** obj_get_description returns the description of an object.
+ */
+const char *obj_get_description(Object *obj)
+{
+	/*CONTROL ERRORS*/
+  if (!obj)
+  {
+    return NULL;
+  }
+  
+  return obj->description;
+}
+
+/** obj_set_description set a new description for an object.
+ */
+STATUS obj_set_description(Object *obj, char *description)
+{
+	/* CONTROL ERROR */
+  if (!obj || !description)
+  {
+    return ERROR;
+  }
+  
+  if (!strcpy(obj->description, description))
+  {
+    /*CONTROL ERROR*/
+    return ERROR;
+  }
+  
+  return OK;
+}
+
 Id obj_get_location(Object *obj)
 {
   /* Control de errores */
   if (!obj)
   {
-    return NO_ID;
+    return ERROR;
   }
   
   return obj->location;
@@ -154,7 +188,7 @@ Id obj_get_location(Object *obj)
 STATUS obj_set_location(Object *obj, Id id)
 {
   /* Control de errores */
-  if (!obj || id == NO_ID)
+  if (!obj)
   {
     return ERROR;
   }
