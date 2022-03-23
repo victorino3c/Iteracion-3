@@ -279,6 +279,33 @@ STATUS set_test(Set *s)
     return OK;
 }
 
+/*Function that tells if an object is or not in a set*/
+BOOL set_idInSet (Set* set, Id id)
+{
+    int i = 0; 
+
+    /*Error control*/
+    if ((!set) || (!id)) {
+        return FALSE;
+    }
+
+
+    /*Checks the position where the id coincides*/
+    while (i < set->n_ids) {
+        if(set->ids[i]==id){
+            break;
+        }
+        i++;
+    }
+
+    /*If it has not located the position, it reaches MAX_IDS and returns ERROR*/
+    if ( i == set->n_ids) {
+        return FALSE;
+    } else {
+        return TRUE;
+    }
+}
+
 /**
  * Prints all info regarding set
  */
