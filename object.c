@@ -18,8 +18,7 @@
 /**
  * @brief Object
  *
- * This structure contains all relevant info
- * and members regarding an object
+ * Esta estructura almacena la informacion de un objeto.
  */
 typedef struct _Object
 {
@@ -28,14 +27,13 @@ typedef struct _Object
   Id location;
 } Object;
 
-/** obj_create allocates memory for a new 
- * object and initializes all its members
+/** obj_create reserva memoria para un nuevo objeto e inicializa sus miembros.
  */
 Object *obj_create(Id id)
 {
   Object *new_obj = NULL;
 
-  /* Error contol  */
+  /* Control de errores */
   if (id == NO_ID)
   {
     return NULL;
@@ -47,18 +45,17 @@ Object *obj_create(Id id)
     return NULL;
   }
   
-  /* Initializing all of object's members */
+  /* Inicializacion del objeto nuevo */
   new_obj->id = id;
   new_obj->name[0] = '\0';
   return new_obj;
 }
 
-/** obj_destroy frees the previously allocated 
- * memory for an object
+/** obj_destroy libera la memoria previamente reservada de un objeto.
  */
 STATUS obj_destroy(Object *obj)
 {
-	/* Error contol  */
+	/* Control de errores */
   if (!obj)
   {
     return ERROR;
@@ -70,22 +67,22 @@ STATUS obj_destroy(Object *obj)
 }
 
 /**
- * Tests whether the designated id is from an object or not
+ * Comprueba si el id recibido es el de un objeto
  */
 STATUS obj_test_id(Id id)
 {
   int first_digit, digits;
 
-  /* Error contol  */
+  /* Control de errores */
   if (id < 0)
   {
     return ERROR;
   }
 
-  /* It figures out how many digits - 1 are there */
+  /* Calcular numbero total de digitos - 1 */
   digits = (int)log10(id); 
 
-  /* Gets the first digit */
+  /* Obtener primer digito */
   first_digit = (int)(id / pow(10, digits));
   
   if (first_digit == FD_ID_OBJ)
@@ -98,11 +95,11 @@ STATUS obj_test_id(Id id)
   }
 }
 
-/** obj_get_id gets an object's id
+/** obj_get_id devuelve el id de un Object (obj).
  */
 Id obj_get_id(Object *obj)
 {
-	/* Error contol  */
+	/* Control de errores */
   if (!obj)
   {
     return NO_ID;
@@ -111,11 +108,11 @@ Id obj_get_id(Object *obj)
   return obj->id;
 }
 
-/** obj_get_name gets the name (name) from an object (obj).
+/** obj_set_name devuelve el nombre (name) de un Object (obj).
  */
 const char *obj_get_name(Object *obj)
 {
-	/* Error contol  */
+	/* Control de errores */
   if (!obj)
   {
     return NULL;
@@ -124,17 +121,17 @@ const char *obj_get_name(Object *obj)
   return obj->name;
 }
 
-/** obj_set_name sets the name (name) of an object (obj).
+/** obj_set_name establece el nombre (name) de un Object (obj).
  */
 STATUS obj_set_name(Object *obj, char *name)
 {
-	/* Error contol  */
+	/* Control de errores */
   if (!obj || !name)
   {
     return ERROR;
   }
   
-	/* Error contol  */
+	/* Control de errores */
   if (!strcpy(obj->name, name))
   {
     return ERROR;
@@ -143,25 +140,21 @@ STATUS obj_set_name(Object *obj, char *name)
   return OK;
 }
 
-/** obj_get_location Gets an object's position
- */
 Id obj_get_location(Object *obj)
 {
-  /* Error contol  */
+  /* Control de errores */
   if (!obj)
   {
-    return ERROR;
+    return NO_ID;
   }
   
   return obj->location;
 }
 
-/** obj_set_location sets an object's position
- */
 STATUS obj_set_location(Object *obj, Id id)
 {
-  /* Error contol  */
-  if (!obj)
+  /* Control de errores */
+  if (!obj || id == NO_ID)
   {
     return ERROR;
   }
@@ -170,11 +163,11 @@ STATUS obj_set_location(Object *obj, Id id)
   return OK;
 }
 
-/** obj_print prints an object's name and id
+/** obj_print muestra el id y el nombre de un Object (obj).
  */
 STATUS obj_print(Object *obj)
 {
-  /* Error contol  */
+  /* Control de errores */
   if (!obj)
   {
     return ERROR;
