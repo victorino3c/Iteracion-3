@@ -13,6 +13,7 @@
 
 #include "types.h"
 #include "object.h"
+#include "inventory.h"
 
 #define Player_Name_lenght 60
 #define MAX_PLAYERS 1
@@ -81,14 +82,14 @@ const char *player_get_name(Player *player);
 Id player_get_location(Player *player);
 
 /**
- * @brief Gets a player's object
+ * @brief Gets a player's array of objects
  * @author Antonio Van-Oers
  * 
  * @param player a pointer to target player
- * @return player->object, an Object type variable from the 
- * player's object or NULL if anything goes wrong.
+ * @return player->inventory, an inventory type variable from the 
+ * player or NULL if anything goes wrong.
  */
-Object *player_get_object(Player *player);
+Inventory *player_get_inventory(Player *player);
 
 /**
  * @brief Gets a player's health.

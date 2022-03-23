@@ -2,7 +2,7 @@ CC = gcc
 FLAGS = -c -Wall
 LIBRARY = -lm
 
-all: command.o game.o game_reader.o graphic_engine.o object.o space.o game_loop.o juego enemy.o set.o clean
+all: juego clean
 
 command.o: command.c command.h
 	$(CC) $(FLAGS) $<
@@ -22,10 +22,13 @@ graphic_engine.o: graphic_engine.c graphic_engine.h libscreen.h command.h space.
 object.o: object.c object.h types.h
 	$(CC) $(FLAGS) $< $(LIBRARY)
 	
-player.o: player.c player.h
+player.o: player.c player.h object.h inventory.h
 	$(CC) $(FLAGS) $< $(LIBRARY)
 	
 set.o: set.c set.h
+	$(CC) $(FLAGS) $<
+
+inventory.o: inventory.c inventory.h set.h
 	$(CC) $(FLAGS) $<
 
 space.o: space.c space.h types.h set.h object.h
@@ -34,7 +37,7 @@ space.o: space.c space.h types.h set.h object.h
 game_loop.o: game_loop.c game.h command.h graphic_engine.h
 	$(CC) $(FLAGS) $< 
 
-juego: command.o game.o game_reader.o graphic_engine.o object.o player.o space.o game_loop.o libscreen.a enemy.o set.o
+juego: command.o game.o game_reader.o graphic_engine.o object.o player.o space.o game_loop.o libscreen.a enemy.o set.o inventory.o
 	$(CC) -o $@ -Wall $^ $(LIBRARY)
 
 #GAME

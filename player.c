@@ -26,7 +26,7 @@ typedef struct _Player
 {
   Id id;
   char name[Player_Name_lenght];
-  Object *object;
+  Inventory *inventory;
   Id location;
   int health;
 } Player;
@@ -56,7 +56,7 @@ Player *player_create(Id id)
   new_player->health = 3;
   new_player->name[0] = '\0';
   new_player->location = NO_ID;
-  new_player->object = NULL;
+  new_player->inventory = inventory_create();
 
   return new_player;
 }
@@ -196,18 +196,18 @@ STATUS player_set_location(Player *player, Id location)
 STATUS player_set_object(Player *player, Object *object)
 {
 	/*Error control */
-  if (!player)
+  if (!player|| !object)
   {
     return ERROR;
   }
   
-  player->object = object;
+  inventory_add_object(player->inventory, obj_get_id(object));
   return OK;
 }
 
 /** Gets a player's object 
  */
-Object *player_get_object(Player *player)
+Inventory *player_get_inventory(Player *player)
 {
 	/*Error control */
   if (!player)
@@ -215,7 +215,7 @@ Object *player_get_object(Player *player)
     return NULL;
   }
   
-  return player->object;
+  return player->inventory;
 }
 
 
