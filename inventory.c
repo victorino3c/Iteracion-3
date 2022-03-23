@@ -160,6 +160,25 @@ STATUS inventory_remove_object(Inventory* inventory, Id object) {
 	
 }
 
+/* It adds an object to the inventory if possible
+	*/
+STATUS inventory_add_object(Inventory* inventory, Id object) {
+
+	/*CONTROL ERROR*/
+	if(!inventory || !object){
+		return ERROR;
+	}
+
+	if(set_get_nids(inventory->objects) == MAX_INV_OBJ){
+		return ERROR;
+	}
+
+	set_add(inventory->objects, object);
+
+	return OK;
+	
+}
+
 /** It prints the enemy information
   */
 STATUS inventory_print(Inventory* inventory) {
