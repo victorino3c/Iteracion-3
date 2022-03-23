@@ -119,6 +119,16 @@ STATUS player_set_health(Player *player, int health);
  * @return OK, if the task was successfully completed or ERROR, if anything goes wrong.
  */
 STATUS player_set_object(Player *player, Object *object);
+
+/**
+ * @brief Assigns the maximum number of objects available in the inventory
+ * @author Nicolas Victorino
+ * 
+ * @param player a pointer to target player
+ * @param num new maximum number of objects the player can have
+ * @return OK, if the task was successfully completed or ERROR, if anything goes wrong.
+ */
+STATUS player_set_max_inventory(Player* player, int num);
 /**
  * @brief Sets a player's location
  * @author Antonio Van-Oers
