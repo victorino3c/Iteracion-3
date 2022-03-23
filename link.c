@@ -217,7 +217,7 @@ int link_print(Link *link)
     
     /* Printing in terminal link info */
     n = fprintf(stdout, "=> Link (Id: %ld):\n", link->id);
-    n += fprintf(stdout, "- Name: %s\n"); 
+    n += fprintf(stdout, "- Name: %s\n", link->name); 
     n += fprintf(stdout, "- Destination: %ld\n", link->destination);
 
     /* Printing in terminal link's direction */
