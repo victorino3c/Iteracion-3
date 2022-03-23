@@ -1,102 +1,133 @@
 /** 
- * @brief It declares the tests for the test module
+ * @brief Integra la funcionalidad necesaria para el manejo de conjuntos.
  * 
- * @file set_test.h
- * @author Profesores Pprog y Miguel Soto
- * @version 2.0 
- * @date 09-03-2021
+ * @file set.h
+ * @author Miguel Soto
+ * @version 2.0
+ * @date 08-03-2022 
  * @copyright GNU Public License
  */
 
-#ifndef SET_TEST_H
-#define SET_TEST_H
+#ifndef SET_H
+#define SET_H
+
+#include <stdlib.h>
+#include <stdio.h>
+#include "types.h"
+
+typedef struct _Set Set;
 
 /**
- * @test Test set creation
- * @pre pointer to set = NULL
- * @post Non NULL pointer to set 
+ * @brief Allocates memory for a new set
+ * @author Miguel Soto
+ * 
+ * set_create Allocates memory for a new set and 
+ * has all its members initialized
+ *  
+ * @return a pointer to an initialized set or NULL if anything went wrong
  */
-void test1_set_create();
-
-
-/**
- * @test Test free set
- * @pre pointer to set
- * @post pointer to set = NULL
- */
-void test1_set_destroy();
-/**
- * @test Test free set
- * @pre pointer to set = NULL
- * @post Output == ERROR
- */
-void test2_set_destroy();
-
+Set *set_create();
 
 /**
- * @test Test function for adding an id
- * @pre pointer to set and id correct
- * @post Ouput==OK 
+ * @brief Frees the previously allocated memory for a set
+ * @author Miguel Soto
+ * 
+ * set_destroy Frees the previously allocated memory for a set and all 
+ * of its members
+ * 
+ * @param s a pointer to target set
+ * @return OK if everything goes well, or ERROR if anything doesn't.
  */
-void test1_set_add();
-/**
- * @test Test function for adding an id
- * @pre pointer to set = NULL
- * @post Output==ERROR
- */
-void test2_set_add();
-/**
- * @test Test function for adding an id
- * @pre id = NO_ID 
- * @post Output==ERROR
- */
-void test3_set_add();
-
+STATUS set_destroy(Set *s);
 
 /**
- * @test Test function for adding an id
- * @pre pointer to set and id correct
- * @post Ouput==OK 
+ * @brief It adds a new id to a set
+ * @author Miguel Soto
+ * 
+ *set_add increases the number of ids in the set 
+ * and stores the newest in the last position
+ * 
+ * @param s a pointer to target set
+ * @param id target id to be assigned to a set
+ * @return OK if everything goes well, or ERROR if anything doesn't.
  */
-void test1_set_del_id();
-/**
- * @test Test function for adding an id
- * @pre pointer to set = NULL
- * @post Output==ERROR
- */
-void test2_set_del_id();
-/**
- * @test Test function for adding an id
- * @pre id = NO_ID 
- * @post Output==ERROR
- */
-void test3_set_del_id();
+STATUS set_add(Set *s, Id id);
 
 /**
- * @test Test function for getting the number of ids in set
- * @pre added 1 id
- * @post Output==1
+ * @brief Removes a certain id from the set
+ * @author Miguel Soto
+ * 
+ * set_del_id searches for the indicated id on a set
+ * and has it removed
+ * 
+ * @param s a pointer to target set
+ * @param id target id to be removed from a set
+ * @return OK if everything goes well, or ERROR if anything doesn't.
  */
-void test1_set_get_nids();
-/**
- * @test Test function for getting the number of ids in set
- * @pre pointer to set = NULL
- * @post Output==-1
- */
-void test2_set_get_nids();
+STATUS set_del_id(Set *s, Id id);
 
+/**
+ * @brief Removes an id from the set, position wise
+ * @author Miguel Soto
+ * 
+ * set_del_pos Removes an id from the set by a position based search
+ * 
+ * @param s a pointer to target set
+ * @param pos the position of the target id to be removed
+ * @return OK if everything goes well, or ERROR if anything doesn't. 
+ */
+STATUS set_del_pos(Set *s, int pos);
 
 /**
- * @test Test function for getting ids from set
- * @pre added 1 id
- * @post Output!=NULL
+ * @brief Gets the amount of ids in a set
+ * @author Miguel Soto
+ * 
+ * @param s a pointer to target set
+ * @return int with the amount of ids in a set. 
+ * -1 if anything goes wrong.
  */
-void test1_set_get_ids();
+int set_get_nids(Set *s);
+
 /**
- * @test Test function for getting ids from set
- * @pre pointer to set = NULL
- * @post Output==NULL
+ * @brief gets the array containing all ids from a set
+ * @author Miguel Soto
+ * 
+ * @param s a pointer to target set
+ * @return a pointer to the array containing all ids from a set
  */
-void test2_set_get_ids();
+Id *set_get_ids(Set *s);
+
+/**
+  * @brief Finds if a id is in a set or not
+  * @author Nicolas Victorino
+  *
+  * @param set a pointer to the given set
+  * @param id the id we want to find
+  * @return TRUE if the set contains the id, FALSE in opposite case
+  */
+BOOL set_idInSet (Set* set, Id id);
+
+/**
+ * @brief Tests whether the set is well defined or not
+ * @author Miguel Soto
+ * 
+ * Tests made:
+ * - s is not NULL
+ * - That there is no id == NO_ID
+ * - correct amount of ids
+ * - That the id_num > 0
+ * 
+ * @param s a pointer to target set
+ * @return OK if everything goes well, or ERROR if anything doesn't. 
+ */
+STATUS set_test(Set *s);
+
+/**
+ * @brief Prints all info regarding set
+ * 
+ * @param s a pointer to target set
+ * @return number of printed characters
+ */
+int set_print(Set *s);
 
 #endif
