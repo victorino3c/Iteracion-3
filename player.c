@@ -1,3 +1,4 @@
+
 /** 
  * @brief Implements the player's interface
  * 
@@ -251,6 +252,18 @@ STATUS player_print(Player *player)
   
   fprintf(stdout, "--> Player (Id: %ld; Name: %s)\n", player->id, player->name);
 
+  return OK;
+}
+
+STATUS player_set_max_inventory(Player* player, int num) 
+{
+
+  if (!player)
+  {
+    return ERROR;
+  }
+
+  inventory_set_maxObjs(player->inventory, num);
   return OK;
 }
 
