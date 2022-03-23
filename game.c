@@ -755,7 +755,6 @@ STATUS game_command_take(Game *game, char *arg)
 
   id_obj_taken = atol(arg);
   
-
    /* Control de errores */
   if (space_has_object(game_get_space(game, player_location), atol(arg)))
   {
@@ -783,7 +782,6 @@ STATUS game_command_take(Game *game, char *arg)
 
     if (game_set_object_location(game, obj_get_id(o), NO_ID) == ERROR)
     {
-      printf("Igual es la 786 o por ahi, %d", (int)obj_get_id(o));
       return ERROR;
     }
         
