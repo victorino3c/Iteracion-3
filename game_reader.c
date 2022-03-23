@@ -29,6 +29,9 @@ STATUS game_set_enemy_location(Game *game, Id enemy_id, Id space_id);
 */
 STATUS game_load_spaces(Game *game, char *filename);
 STATUS game_load_objs(Game *game, char *filename);
+STATUS game_load_players(Game *game, char *filename);
+STATUS game_load_enemy(Game *game, char *filename);
+
 GAME_IS_ELEMENT id_type(Id id);
 
 /**
@@ -45,10 +48,6 @@ STATUS game_create_from_file(Game *game, char *filename)
   {
     return ERROR;
   }
-  if (game_alloc(game) == ERROR)
-  {
-    return ERROR;
-  }
   
   if (game_load_spaces(game, filename) == ERROR)
   {
@@ -60,21 +59,28 @@ STATUS game_create_from_file(Game *game, char *filename)
     return ERROR;
   }
 
+  if (game_load_players(game, filename) == ERROR)
+  {
+    return ERROR;
+  } 
+
+  if (game_load_enemy(game, filename) == ERROR)
+  {
+    return ERROR;
+  } 
+
   /* The player and the object are located in the first space */
-  game_set_player_location(game, 21, game_get_space_id_at(game, 0));
-  game_set_enemy_location(game, 41, game_get_space_id_at(game, 1));
 
   return OK;
 }
 
 /**
-  * @brief Carga los espacios del juego
+  * @brief Loads the spaces of the game
   * @author Profesores PPROG
   *
-  * game_load_spaces carga la info de los espacios creados
-  * @param game es el puntero que apunta a game
-  * @param filename es el puntero que apunta al nombre del fichero 
-  * @return OK si todo va bien y ERROR si ha habido algun fallo de carga
+  * @param game pointer to the game
+  * @param filename pointer to the file from where spaces are being loaded
+  * @return OK if everything goes right ERROR if something goes wrong
   */
 STATUS game_load_spaces(Game *game, char *filename)
 {
@@ -160,7 +166,6 @@ STATUS game_load_spaces(Game *game, char *filename)
   return status;
 }
 
-
 /**
   * @brief Carga los objetos del juego
   * @author Miguel Soto
@@ -228,6 +233,168 @@ STATUS game_load_objs(Game *game, char *filename)
 
   return status;
 }
+
+/**
+  * @brief Loads the player into the game
+  * @author Nicolas Victorino
+  *
+  * @param game pointer to game
+  * @param filename pointer to the file from where it is going to load the player
+  * @return OK if everything is right ERROR if something went wrong
+  */
+STATUS game_load_players(Game *game, char *filename) 
+{
+ FILE *file = NULL;
+  char line[WORD_SIZE] = "";
+  char name[WORD_SIZE] = "";
+  char *toks = NULL;
+  Id id = NO_ID, object = NO_ID, location = NO_ID;;
+  Player *player = NULL;
+  STATUS status = OK;
+
+  /*Error control*/
+  if (!filename)
+  {
+    return ERROR;
+  }
+
+  /*Error control*/
+  file = fopen(filename, "r");
+  if (file == NULL)
+  {
+    return ERROR;
+  }
+
+  
+  /*
+  * While the loop reads information in the current line from the file: "hormiguero.dat", it divides that line in smaller tokens.
+  * Each token has a piece of information, in the following order:
+  * ID of the player, name, Id of the object that the player has (NO_ID if it has no object), and location.
+  */
+  while (fgets(line, WORD_SIZE, file))
+  {
+    if (strncmp("#p:", line, 3) == 0)
+    {
+      toks = strtok(line + 3, "|");
+      id = atol(toks);
+      toks = strtok(NULL, "|");
+      strcpy(name, toks);
+      toks = strtok(NULL, "|");
+      object = atol(toks);
+      toks = strtok(NULL, "|");
+      location = atol(toks);
+
+  /*If debug is being used, it will print all the information from the current player that is being loaded*/
+#ifdef DEBUG
+      printf("Leido: %ld|%s|%ld|%ld\n", id, name, objet, location);
+#endif
+
+  /*Defines a private variable called "player" and saves a pointer to player with the given id in it*/
+      player = player_create(id);
+
+  /*Error control, and in case everything is fine, it saves the information gotten in the prior loop in the newly created player*/
+      if (player != NULL)
+      {
+        player_set_name(player, name);
+        player_set_object(player, game_get_object(game, object));
+        player_set_location(player, location);
+        player_set_health(player, 3); //Añadir MAX_HEALTH_PLAYER
+        game_add_player(game, player); 
+      } 
+    }
+  }
+
+  /*Error control, if it has given an error at any moment while using the file, ferror while make the if condition be true.
+   This will change the private status variable declared at the beggining of the function from OK to ERROR. */
+  if (ferror(file))
+  {
+    status = ERROR;
+  }
+
+  fclose(file);
+
+  return status;
+}
+
+/**
+  * @brief Loads the enemy into the game
+  * @author Nicolas Victorino
+  *
+  * @param game pointer to game
+  * @param filename pointer to the file from where it is going to load the enemy
+  * @return OK if everything is right ERROR if something went wrong
+  */
+STATUS game_load_enemy(Game *game, char *filename) 
+{
+ FILE *file = NULL;
+  char line[WORD_SIZE] = "";
+  char name[WORD_SIZE] = "";
+  char *toks = NULL;
+  Id id = NO_ID, location = NO_ID;;
+  Enemy *enemy = NULL;
+  STATUS status = OK;
+
+  /*Error control*/
+  if (!filename)
+  {
+    return ERROR;
+  }
+
+  /*Error control*/
+  file = fopen(filename, "r");
+  if (file == NULL)
+  {
+    return ERROR;
+  }
+
+  
+  /*
+  * While the loop reads information in the current line from the file: "hormiguero.dat", it divides that line in smaller tokens.
+  * Each token has a piece of information, in the following order:
+  * ID of the enemy, name, and location.
+  */
+  while (fgets(line, WORD_SIZE, file))
+  {
+    if (strncmp("#e:", line, 3) == 0)
+    {
+      toks = strtok(line + 3, "|");
+      id = atol(toks);
+      toks = strtok(NULL, "|");
+      strcpy(name, toks);
+      toks = strtok(NULL, "|");
+      location = atol(toks);
+
+  /*If debug is being used, it will print all the information from the current enemy that is being loaded*/
+#ifdef DEBUG
+      printf("Leido: %ld|%s|%ld|%ld\n", id, name, objet, location);
+#endif
+
+  /*Defines a private variable called "enemy" and saves a pointer to player with the given id in it*/
+      enemy = enemy_create(id);
+
+  /*Error control, and in case everything is fine, it saves the information gotten in the prior loop in the newly created enemy*/
+      if (enemy != NULL)
+      {
+        enemy_set_name(enemy, name);
+        enemy_set_location(enemy, location);
+        enemy_set_health(enemy, 3); //Añadir MAX_HEALTH_ENEMY
+        game_add_enemy(game, enemy); 
+      } 
+    }
+  }
+
+  /*Error control, if it has given an error at any moment while using the file, ferror while make the if condition be true.
+   This will change the private status variable declared at the beggining of the function from OK to ERROR. */
+  if (ferror(file))
+  {
+    status = ERROR;
+  }
+
+  fclose(file);
+
+  return status;
+}
+
 
 /**
  * @brief Indica de que elemento del juego es el id
