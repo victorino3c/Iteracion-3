@@ -13,11 +13,13 @@
 
 #include "command.h"
 #include "space.h"
+#include "link.h"
 #include "types.h"
 #include "player.h"
 #include "object.h"
 #include "enemy.h"
 
+#define MAX_LINKS 200
 
 /**
  * @brief Juego o partida
@@ -138,6 +140,17 @@ Player *game_get_player(Game *game, Id id);
 Enemy *game_get_enemy(Game *game, Id id);
 
 /**
+ * @brief Obtiene un link a traves de su id
+ * @author Miguel Soto
+ * 
+ * Comprueba uno a uno los links del juego para ver si coinciden con la id
+ * @param game es puntero un puntero a game
+ * @param id el id del objeto que se quiere obtener
+ * @return un puntero al link que coincide con el id, o NULL en caso de error o de que no exista.
+ */
+Link *game_get_link(Game *game, Id id);
+
+/**
   * @brief Obtiene la posicion de un player personaje 
   * @author Miguel Soto
   *
@@ -218,4 +231,3 @@ Game* game_alloc2();
 
 
 #endif
-
