@@ -17,8 +17,6 @@
 
 typedef struct _Inventory Inventory;
 
-#define MAX_INV_OBJ 27
-
 /**
   * @brief It creates a new inventory
   * @author Ignacio Nunnez
