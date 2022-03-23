@@ -20,7 +20,8 @@ typedef struct _Game
   Player *player[MAX_PLAYERS];      /*!< Pointer to player's array */
   Object *object[MAX_OBJS];         /*!< Pointer to object's array */
   Enemy *enemy[MAX_ENEMYS];         /*!< Pointer to enemy's array */
-  Space *spaces[MAX_SPACES];        /*!< Puntero a los espacios del juego */
+  Space *spaces[MAX_SPACES];        /*!< Pointer to space's array */
+  Link *links[MAX_LINKS];           /*!< Pointer to link's array */
   T_Command last_cmd;               /*!< Ultimo comando introducido por el usuario */
 }Game; 
 
@@ -31,6 +32,7 @@ STATUS game_add_space(Game *game, Space *space);
 STATUS game_add_object(Game *game, Object *obj);
 STATUS game_add_player(Game *game, Player *p);
 STATUS game_add_enemy(Game *game, Enemy *e);
+STATUS game_add_link(Game *game, Link *l);
 Id game_get_space_id_at(Game *game, int position);
 STATUS game_set_player_location(Game *game, Id player_id, Id space_id);
 STATUS game_set_object_location(Game *game, Id obj_id, Id space_id);
@@ -48,7 +50,7 @@ STATUS game_command_right(Game *game, char *arg);
 
 
 /**
-   Game interface implementation
+  Game interface implementation
 */
 
 
@@ -117,6 +119,11 @@ STATUS game_create(Game *game)
   {
     game->enemy[i] = NULL;
   }
+
+  for (i = 0; i < MAX_LINKS; i++)
+  {
+    game->links[i] = NULL;
+  }
   
   game->last_cmd = NO_CMD;
 
@@ -138,25 +145,36 @@ STATUS game_destroy(Game *game)
   
   for (i = 0; i < MAX_OBJS && game->object[i] != NULL; i++)
   {
-    obj_destroy(game->object[i]);  
+    obj_destroy(game->object[i]);
+    game->object[i] = NULL;
   }
   
   for (i = 0; i < MAX_PLAYERS && game->player[i] != NULL; i++)
   {
-    player_destroy(game->player[i]);  
+    player_destroy(game->player[i]);
+    game->player[i] = NULL;
   }
 
   for (i = 0; i < MAX_ENEMYS && game->enemy[i] != NULL; i++)
   {
-    enemy_destroy(game->enemy[i]);  
+    enemy_destroy(game->enemy[i]);
+    game->enemy[i] = NULL;
   }
       
   for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
   {
     space_destroy(game->spaces[i]);
+    game->spaces[i] = NULL;
   }
 
+  for (i = 0; i < MAX_LINKS; i++)
+  {
+    link_destroy(game->links[i]);
+    game->links[i] = NULL;
+  }
+  
   free(game);
+  game = NULL;
 
   return OK;
 }
@@ -287,6 +305,35 @@ STATUS game_add_enemy(Game *game, Enemy *e)
 }
 
 /**
+ * @brief Agrega los objetos del juego
+ * @author Miguel Soto
+ * 
+ * game_add_obj agrega uno a uno los objetos al juego
+ * @param game es el puntero a Game del que se quiere incluir un objeto
+ * @param obj es el puntero a Object que se quiere incluir en el juego
+ * @return OK si todo ha ido bien y ERROR si ha habido algun problema
+ */
+STATUS game_add_link(Game *game, Link *l)
+{
+  if (!game || !l)
+  {
+    return ERROR;
+  }
+  
+  int i;
+  for (i = 0; i < MAX_LINKS && game->links[i] != NULL; i++) {}
+
+  if (i >= MAX_LINKS)
+  {
+    return ERROR;
+  }
+  
+  game->links[i] = l;
+
+  return OK;
+}
+
+/**
   * @brief Comprueba si los espacios están o no fuera del rango establecido
   * @author Profesores PPROG
   *
@@ -395,6 +442,29 @@ Enemy *game_get_enemy(Game *game, Id id)
     if (id == enemy_get_id(game->enemy[i]))
     {
       return game->enemy[i];
+    }
+  }
+  
+  return NULL;
+}
+
+/**
+ * Comprueba uno a uno los enemies del juego para ver si coinciden con la id
+ */
+Link *game_get_link(Game *game, Id id)
+{
+  int i;
+
+  if (!game || id == NO_ID)
+  {
+    return NULL;
+  }
+  
+  for (i = 0; i < MAX_LINKS && game->links[i] != NULL; i++)
+  {
+    if (id == link_get_id(game->links[i]))
+    {
+      return game->links[i];
     }
   }
   
