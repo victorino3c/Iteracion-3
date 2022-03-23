@@ -179,7 +179,7 @@ Id obj_get_location(Object *obj)
   /* Control de errores */
   if (!obj)
   {
-    return ERROR;
+    return NO_ID;
   }
   
   return obj->location;
@@ -188,7 +188,7 @@ Id obj_get_location(Object *obj)
 STATUS obj_set_location(Object *obj, Id id)
 {
   /* Control de errores */
-  if (!obj)
+  if (!obj || id == NO_ID)
   {
     return ERROR;
   }
