@@ -83,6 +83,25 @@ STATUS space_set_name(Space* space, char* name);
 const char* space_get_name(Space* space);
 
 /**
+  * @brief It sets the description of a space
+  * @author Ignacio Nunnez
+  * 
+  * @param space a pointer to the space
+  * @param description a string with the description to store
+  * @return OK, if everything goes well or ERROR if there was some mistake 
+  */
+STATUS space_set_description(Space* space, char* description);
+
+/**
+  * @brief It gets the description of a space
+  * @author Ignacio Nunnez
+  * 
+  * @param space a pointer to the space
+  * @return  a string with the description of the space
+  */
+const char* space_get_description(Space* space);
+
+/**
   * @brief It sets the id of the space located at the north
   * @author Profesores PPROG
   * 
