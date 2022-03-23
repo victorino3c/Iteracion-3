@@ -22,7 +22,7 @@ typedef struct _Game
   Enemy *enemy[MAX_ENEMYS];         /*!< Pointer to enemy's array */
   Space *spaces[MAX_SPACES];        /*!< Puntero a los espacios del juego */
   T_Command last_cmd;               /*!< Ultimo comando introducido por el usuario */
-} Game;
+}Game; 
 
 /**
    Private functions
@@ -54,6 +54,12 @@ STATUS game_command_right(Game *game, char *arg);
 
 STATUS game_alloc(Game *game)
 {
+
+  if (!game)
+  {
+    fprintf(stderr, "Error saving memory for game (game_alloc)");
+    return ERROR;
+  }
   Id id_player = 21, id_enemy = 41;
   int i;
 
@@ -63,7 +69,7 @@ STATUS game_alloc(Game *game)
     if (!game->player[i])
     {
       return ERROR;
-    }
+    }  
   }
 
   for (i = 0; i < MAX_ENEMYS; i++)
@@ -88,6 +94,7 @@ STATUS game_create(Game *game)
   {
     return ERROR;
   }
+  
   
   int i;
 
@@ -148,6 +155,8 @@ STATUS game_destroy(Game *game)
   {
     space_destroy(game->spaces[i]);
   }
+
+  free(game);
 
   return OK;
 }
@@ -970,3 +979,17 @@ Id game_get_object_id(Game *game, int num)
   return (Id)obj_get_id(game->object[num]);
 }
 
+Game* game_alloc2() 
+{
+
+  Game* game = NULL;
+
+  game = (Game*)malloc(sizeof(Game));
+  if (!game)
+  {
+    fprintf(stderr, "Error saving memory for game(game_create)");
+    return ERROR;
+  }
+
+  return game;
+}
