@@ -98,6 +98,16 @@ int set_get_nids(Set *s);
 Id *set_get_ids(Set *s);
 
 /**
+  * @brief Finds if a id is in a set or not
+  * @author Nicolas Victorino
+  *
+  * @param set a pointer to the given set
+  * @param id the id we want to find
+  * @return TRUE if the set contains the id, FALSE in opposite case
+  */
+BOOL set_idInSet (Set* set, Id id);
+
+/**
  * @brief Tests whether the set is well defined or not
  * @author Miguel Soto
  * 
