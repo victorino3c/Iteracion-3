@@ -1,3 +1,4 @@
+
 /**
 * @brief It implements enemy module in the ant game
 *
@@ -157,25 +158,6 @@ STATUS inventory_remove_object(Inventory* inventory, Id object) {
 	}
 
 	return ERROR;
-	
-}
-
-/* It adds an object to the inventory if possible
-	*/
-STATUS inventory_add_object(Inventory* inventory, Id object) {
-
-	/*CONTROL ERROR*/
-	if(!inventory || !object){
-		return ERROR;
-	}
-
-	if(set_get_nids(inventory->objects) == MAX_INV_OBJ){
-		return ERROR;
-	}
-
-	set_add(inventory->objects, object);
-
-	return OK;
 	
 }
 
