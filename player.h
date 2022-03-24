@@ -118,7 +118,7 @@ STATUS player_set_health(Player *player, int health);
  * @param object the object about to be added to the player's belongings
  * @return OK, if the task was successfully completed or ERROR, if anything goes wrong.
  */
-STATUS player_set_object(Player *player, Object *object);
+STATUS player_add_object(Player *player, Object *object);
 
 /**
  * @brief Removes an object from a player's inventory

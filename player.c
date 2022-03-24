@@ -199,7 +199,7 @@ STATUS player_set_location(Player *player, Id location)
 
 /** player_set_object assigns an object to a player
  */
-STATUS player_set_object(Player *player, Object *object)
+STATUS player_add_object(Player *player, Object *object)
 {
 	/*Error control */
   if (!player|| !object)
