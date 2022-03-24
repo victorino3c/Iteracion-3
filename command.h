@@ -14,7 +14,7 @@
 #include "types.h"
 
 #define N_CMDT 2
-#define N_CMD 10
+#define N_CMD 11
 
 typedef enum enum_CmdType {
   CMDS,
@@ -32,10 +32,11 @@ typedef enum enum_Command {
   DOWN,
   LEFT,
   UP,
-  RIGHT,
+  RIGHT,  
   TAKE,
   DROP,
-  ATTACK} T_Command;
+  ATTACK,
+  MOVE,} T_Command;
 
 /**
   * @brief Obtiene el input del usuario 

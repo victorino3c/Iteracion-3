@@ -2,7 +2,7 @@
  * @brief It implements the command interpreter
  * 
  * It scans the cmd searching for key words introduced by the user in order to interpret and clasify the commands
- * as unknown, exit, up, down, left, right attack, take or drop depending on what string is typed.
+ * as unknown, exit, up, down, left, right attack, take, drop or move depending on what string is typed.
  * 
  * @file command.c
  * @author Profesores PPROG
@@ -28,8 +28,9 @@ char *cmd_to_str[N_CMD]
       {"d", "Right"},              /*!< If a d is received, it is interpreted as Right */
       {"c", "Take"},               /*!<  If a c is received, it is interpreted as Take */
       {"v", "Drop"},               /*!<  If a v is received, it is interpreted as Drop */
-      {"q", "Attack"}};            /*!<  If a s is received, it is interpreted as Attack */
-
+      {"q", "Attack"},             /*!<  If a s is received, it is interpreted as Attack */
+      {"m", "Move"},               /*!<  If an m is received, it is interpreted as move */
+      };           
 /**It scans the cmd searching for key words introduced by the user 
   *in order to interpret and clasify the info
   */
@@ -53,7 +54,7 @@ T_Command command_get_user_input(char *arg)
       if (!strcasecmp(input, cmd_to_str[i][CMDS]) || !strcasecmp(input, cmd_to_str[i][CMDL]))
       {
         cmd = i + NO_CMD;                   /*!< If any differences are detected between CMDS, CMDL and the input, cmd is modified */
-        if (cmd == TAKE || cmd == DROP )
+        if (cmd == TAKE || cmd == DROP || cmd == MOVE )
         {
           if (scanf("%s", arg) < 0)
           {

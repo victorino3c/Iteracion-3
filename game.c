@@ -47,6 +47,7 @@ STATUS game_command_drop(Game *game, char *arg);
 STATUS game_command_attack(Game *game, char *arg);
 STATUS game_command_left(Game *game, char *arg);
 STATUS game_command_right(Game *game, char *arg);
+STATUS game_command_move(Game *game, char *arg);
 
 
 /**
@@ -672,6 +673,10 @@ int game_update(Game *game, T_Command cmd, char *arg)
   case ATTACK:
     st = (int) game_command_attack(game, arg);
     break;
+  
+  case MOVE:
+    st = (int) game_command_move(game, arg);
+    break;
 
   default:
     break;
@@ -1062,4 +1067,67 @@ Game* game_alloc2()
   }
 
   return game;
+}
+
+/** Forma alternativa para moverse, segun sea move n,s,e,w
+ * a norte, sur, este y oeste
+ */
+STATUS game_command_move(Game *game, char *arg)        
+{
+  Id player_location = player_get_location(game->player[MAX_PLAYERS-1]);
+  Id player_id = player_get_id(game->player[MAX_PLAYERS-1]);
+  int i = 0;
+  Id current_id = NO_ID;
+  char c[10];
+  char west[10]={'w','\0'};
+  char north[10]={'n','\0'};
+  char south[10]={'s','\0'};
+  char east[10]={'e','\0'};
+
+  strcpy(c, arg);
+  c[1]='\0';
+
+  if (player_id == NO_ID)
+  {
+    return ERROR;
+  }
+
+  for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
+  {
+    current_id = space_get_id(game->spaces[i]);
+    if (current_id == player_location) 
+    {
+      /*Move west*/
+      
+      if(strcmp(c, west)==0){
+      current_id = space_get_west(game->spaces[i]);
+      }
+
+      /*Move north*/
+      
+     if(strcmp(c, north)==0){
+      current_id = space_get_north(game->spaces[i]);
+      }
+
+      /*Move south*/
+     
+      if(strcmp(c, south)==0){
+      current_id = space_get_south(game->spaces[i]);
+      }
+
+      /*Move east*/
+      
+      if(strcmp(c, east)==0){
+      current_id = space_get_east(game->spaces[i]);
+      }
+
+      if (current_id != NO_ID)
+      {
+        game_set_player_location(game,player_id, current_id);
+        return OK;
+      }
+    }
+  }
+  
+  return ERROR;
 }
