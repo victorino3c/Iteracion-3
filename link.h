@@ -71,6 +71,26 @@ STATUS link_set_name(Link *link, char *name);
 char *link_get_name(Link *link);
 
 /**
+ * @brief Sets the start of target link
+ * @author Nicolas Victorino
+ * 
+ * @param link a pointer to target link.
+ * @param id_space_start space's id from which the link
+ * is coming from 
+ * @return STATUS OK, if everything goes well or ERROR if there was some mistake.
+ */
+STATUS link_set_start(Link *link, Id id_space_start);
+
+/**
+ * @brief Gets a link's start
+ * @author Nicolas Victorino
+ * 
+ * @param link a pointer to target link.
+ * @return Id 
+ */
+Id link_get_start(Link *link);
+
+/**
  * @brief Sets the destination of target link
  * @author Antonio Van-Oers
  * 

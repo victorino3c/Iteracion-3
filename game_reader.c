@@ -19,6 +19,7 @@ STATUS game_add_space(Game *game, Space *space);
 STATUS game_add_object(Game *game, Object *obj);
 STATUS game_add_player(Game *game, Player *p);
 STATUS game_add_enemy(Game *game, Enemy *e);
+STATUS game_add_link(Game *game, Link *l);
 Id game_get_space_id_at(Game *game, int position);
 STATUS game_set_player_location(Game *game, Id player_id, Id space_id);
 STATUS game_set_object_location(Game *game, Id obj_id, Id space_id);
@@ -31,6 +32,7 @@ STATUS game_load_spaces(Game *game, char *filename);
 STATUS game_load_objs(Game *game, char *filename);
 STATUS game_load_players(Game *game, char *filename);
 STATUS game_load_enemy(Game *game, char *filename);
+STATUS game_load_link(Game *game,char *filename);
 
 GAME_IS_ELEMENT id_type(Id id);
 
@@ -68,6 +70,11 @@ STATUS game_create_from_file(Game *game, char *filename)
   {
     return ERROR;
   } 
+
+  if (game_load_link(game, filename) == ERROR)
+   {
+    return ERROR;
+  }
 
   /* The player and the object are located in the first space */
 
@@ -290,7 +297,7 @@ STATUS game_load_players(Game *game, char *filename)
 
   /*If debug is being used, it will print all the information from the current player that is being loaded*/
 #ifdef DEBUG
-      printf("Leido: %ld|%s|%ld|%ld\n", id, name, objet, location);
+      printf("Leido: %ld|%s|%ld|%ld\n", id, name, object, location);
 #endif
 
   /*Defines a private variable called "player" and saves a pointer to player with the given id in it*/
@@ -373,7 +380,7 @@ STATUS game_load_enemy(Game *game, char *filename)
 
   /*If debug is being used, it will print all the information from the current enemy that is being loaded*/
 #ifdef DEBUG
-      printf("Leido: %ld|%s|%ld|%ld\n", id, name, objet, location);
+      printf("Leido: %ld|%s|%ld\n", id, name, location);
 #endif
 
   /*Defines a private variable called "enemy" and saves a pointer to player with the given id in it*/
@@ -402,6 +409,93 @@ STATUS game_load_enemy(Game *game, char *filename)
   return status;
 }
 
+/**
+  * @brief Loads the links into the game
+  * @author Nicolas Victorino
+  *
+  * @param game pointer to game
+  * @param filename pointer to the file from where it is going to load the enemy
+  * @return OK if everything is right ERROR if something went wrong
+  */
+STATUS game_load_link(Game *game, char *filename) 
+{
+ FILE *file = NULL;
+  char line[WORD_SIZE] = "";
+  char name[WORD_SIZE] = "";
+  char *toks = NULL;
+  Id id = NO_ID, id_start = NO_ID, id_dest = NO_ID;
+  int dir, status;
+  Link *link = NULL;
+  STATUS st = OK;
+
+  /*Error control*/
+  if (!filename)
+  {
+    return ERROR;
+  }
+
+  /*Error control*/
+  file = fopen(filename, "r");
+  if (file == NULL)
+  {
+    return ERROR;
+  }
+
+  
+  /*
+  * While the loop reads information in the current line from the file: "hormiguero.dat", it divides that line in smaller tokens.
+  * Each token has a piece of information, in the following order:
+  * ID of the enemy, name, and location.
+  */
+  while (fgets(line, WORD_SIZE, file))
+  {
+    if (strncmp("#l:", line, 3) == 0)
+    {
+      toks = strtok(line + 3, "|");
+      id = atol(toks);
+      toks = strtok(NULL, "|");
+      strcpy(name, toks);
+      toks = strtok(NULL, "|");
+      id_start = atol(toks);
+      toks = strtok(NULL, "|");
+      id_dest = atol(toks);
+      toks = strtok(NULL, "|");
+      dir = atol(toks);
+      toks = strtok(NULL, "|");
+      status = atol(toks);
+
+  /*If debug is being used, it will print all the information from the current enemy that is being loaded*/
+#ifdef DEBUG
+      printf("Leido: %ld|%s|%ld|%ld|%ld|%ld\n", id, name, id_start, id_end, dir, status);
+#endif
+
+  /*Defines a private variable called "enemy" and saves a pointer to player with the given id in it*/
+      link = link_create(id);
+
+  /*Error control, and in case everything is fine, it saves the information gotten in the prior loop in the newly created enemy*/
+      if (link != NULL)
+      {
+        link_set_name(link, name);
+        link_set_start(link, id_start);
+        link_set_destination(link, id_dest);
+        link_set_direction(link, dir);
+        link_set_status(link, status); 
+        game_add_link(game, link); 
+      } 
+    }
+  }
+
+  /*Error control, if it has given an error at any moment while using the file, ferror while make the if condition be true.
+   This will change the private status variable declared at the beggining of the function from OK to ERROR. */
+  if (ferror(file))
+  {
+    st = ERROR;
+  }
+
+  fclose(file);
+
+  return st;
+}
 
 /**
  * @brief Indica de que elemento del juego es el id

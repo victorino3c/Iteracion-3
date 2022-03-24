@@ -19,6 +19,7 @@ struct _Link
     Id id;                      /*!< Link's id */
     char name[LINK_NAME_LEN];   /*!< Link's name */
     // Destination no se si debe ser Space * o Id
+    Id start;
     Id destination;             /*!< Id to space destination */
     DIRECTION direction;        /*!< Defines direction (N, S, E, W or ND (Not defined) */
     LINK_STATUS status;         /*!< Wether link is OPEN or CLOSE */
@@ -122,6 +123,32 @@ char *link_get_name(Link *link)
     }
     
     return link->name;
+}
+
+/** Sets the start of target link
+ */
+STATUS link_set_start(Link *link, Id id_space_start){
+    /* Error control */
+    if (!link || id_space_start<0) 
+    {
+        return ERROR;
+    }
+
+    link->start = id_space_start;
+    return OK;
+     
+}
+
+/** Gets a link's start
+ */
+Id link_get_start(Link *link){
+    /* Error control */
+    if (!link) 
+    {
+        return NO_ID;
+    }
+ 
+    return link->start;
 }
 
 /** Sets the destination of target link
