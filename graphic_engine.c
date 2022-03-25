@@ -51,7 +51,7 @@ Graphic_engine *graphic_engine_create()
 
   ge->map = screen_area_init(1, 1, 55, 23);
   ge->descript = screen_area_init(57, 1, 35, 23);
-  ge->banner = screen_area_init(42, 26, 23, 1);
+  ge->banner = screen_area_init(32, 25, 23, 1);
   ge->help = screen_area_init(1, 28, 90, 3);
   ge->feedback = screen_area_init(1, 32, 90, 3);
 
@@ -96,13 +96,15 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
   extern char *cmd_to_str[N_CMD][N_CMDT];
   int i;
   char **gdesc;
+  char *description;
 
 
   /*Asignacion de los valores correspondientes a las variables*/
   player_loc = game_get_player_location(game, 21);
   id_act = player_loc;
   player_inventory = player_get_inventory(game_get_player(game, game_get_player_id(game)));
-  player_health = player_get_health(game_get_player(game, game_get_player_id(game))); 
+  player_health = player_get_health(game_get_player(game, game_get_player_id(game)));
+  description = game_get_description(game);
 
   for(i=0;i<MAX_ENEMYS;i++)
   { 
@@ -396,6 +398,14 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
     screen_area_puts(ge->descript, str);
     sprintf(str, "  Enemy health:%d", (int)en_health[0]);
     screen_area_puts(ge->descript, str);
+
+    sprintf(str, "   ");
+    screen_area_puts(ge->descript, str);
+    sprintf(str, "  Descriptions:");
+    screen_area_puts(ge->descript, str);
+    sprintf(str, "  %s", description);
+    screen_area_puts(ge->descript, str);
+
   }
 
   /* Paint in the banner area */
@@ -405,7 +415,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
   screen_area_clear(ge->help);
   sprintf(str, " The commands you can use are:");
   screen_area_puts(ge->help, str);
-  sprintf(str, " w(UP), s(DOWN), a(LEFT), d(RIGHT), c(TAKE), v(DROP), q(ATTACK), e(EXIT)");
+  sprintf(str, " w(UP), s(DOWN), a(LEFT), d(RIGHT), c(TAKE), v(DROP), q(ATTACK), i(INSPECT), e(EXIT)");
   screen_area_puts(ge->help, str);
   /*
   sprintf(str, " Player object will be -1 as long as it doesn't carry one");
