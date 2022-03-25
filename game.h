@@ -29,6 +29,8 @@
  */
 typedef struct _Game Game;
 
+char *game_get_description(Game *game);
+
 /**
  * @brief Reserva memoria para Player y Object del Game
  * @author Miguel Soto
