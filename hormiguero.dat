@@ -1,17 +1,17 @@
-#s:11|Entrada|-1|-1|121|-1|  ____   _|_/    \_/ |     o 0\|mo'_ 0o8/|__     _/
-#s:121|Pasillo1|11|-1|122|-1|__     __| /    \_/ |/ /\o0o/\|\   o  8/| _     _/
-#s:122|Pasillo2|121|125|123|-1|__     __| /    \_/ |/     o 0\|\   o  8/| _     _/
-#s:123|Pasillo3|122|-1|124|-1|__     __| /    \_/ |/     o 0\|\   o  8/| _     _/
-#s:124|Pasillo4|123|-1|13|-1|__     __| /    \_/ |/     o 0\|\   o  8/| _     _/
-#s:13|Despensa|124|-1|-1|-1|    ____ _|\     \_/ |\    o 0 |/        |/     __/
-#s:125|Pasillo5|-1|126|-1|122|  ___    _|_/    \_/ |     o 0 |mo'_ 0o8o|__/ \___/
-#s:126|Pasillo6|-1|127|-1|125|  ___    _|_/    \_/ |     o 0 |mo'_ 0o8o|__/ \___/
-#s:127|Pasillo7|-1|14|-1|126|  ___    _|_/    \_/ |     o 0 |mo'_ 0o8o|__/ \___/
-#s:14|Agujero|-1|-1|-1|127|  ___     |_/    \__ |    o o )|mo^ _ 0o]|___/ \__)
-#o:31|Grano1|11
-#o:32|Grano2|14
-#o:33|Grano3|124
-#o:34|Grano4|125
+#s:11|Entrada|Primera habitacion|-1|-1|121|-1|  ____   _|_/    \_/ |     o 0\|mo'_ 0o8/|__     _/
+#s:121|Pasillo1|Primera habitacion||11|-1|122|-1|__     __| /    \_/ |/ /\o0o/\|\   o  8/| _     _/
+#s:122|Pasillo2|Segunda habitacion|121|125|123|-1|__     __| /    \_/ |/     o 0\|\   o  8/| _     _/
+#s:123|Pasillo3|Tercera habitacion|122|-1|124|-1|__     __| /    \_/ |/     o 0\|\   o  8/| _     _/
+#s:124|Pasillo4|Cuarta habitacion|123|-1|13|-1|__     __| /    \_/ |/     o 0\|\   o  8/| _     _/
+#s:13|Despensa|Main habitacion|124|-1|-1|-1|    ____ _|\     \_/ |\    o 0 |/        |/     __/
+#s:125|Pasillo5|Quinta habitacion|-1|126|-1|122|  ___    _|_/    \_/ |     o 0 |mo'_ 0o8o|__/ \___/
+#s:126|Pasillo6|Sexta habitacion|-1|127|-1|125|  ___    _|_/    \_/ |     o 0 |mo'_ 0o8o|__/ \___/
+#s:127|Pasillo7|Septima habitacion|-1|14|-1|126|  ___    _|_/    \_/ |     o 0 |mo'_ 0o8o|__/ \___/
+#s:14|Agujero|Cuidado no te caigas|-1|-1|-1|127|  ___     |_/    \__ |    o o )|mo^ _ 0o]|___/ \__)
+#o:31|Grano1|Un grano de trigo comun|11
+#o:32|Grano2|Un grano de trigo bueno|14
+#o:33|Grano3|Un grano de trigo extraordinario|124
+#o:34|Grano4|Un grano de trigo legendario|125
 #p:21|Player|11|5|3|
 #e:41|Enemy|13|5|
 #l:31|Entrada|11|121|1|0|
