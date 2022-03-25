@@ -22,6 +22,7 @@ typedef struct _Game
   Enemy *enemy[MAX_ENEMYS];         /*!< Pointer to enemy's array */
   Space *spaces[MAX_SPACES];        /*!< Pointer to space's array */
   Link *links[MAX_LINKS];           /*!< Pointer to link's array */
+  char *description;                /*!< Description that should be shown*/
   T_Command last_cmd;               /*!< Ultimo comando introducido por el usuario */
 }Game; 
 
@@ -48,6 +49,7 @@ STATUS game_command_attack(Game *game, char *arg);
 STATUS game_command_left(Game *game, char *arg);
 STATUS game_command_right(Game *game, char *arg);
 STATUS game_command_move(Game *game, char *arg);
+STATUS game_command_inspect(Game *game, char *arg);
 
 
 /**
@@ -83,6 +85,8 @@ STATUS game_alloc(Game *game)
       return ERROR;
     }
   }
+
+  game->description = " ";
   return OK;
 }
 
@@ -404,6 +408,29 @@ Object *game_get_object(Game *game, Id id)
 }
 
 /**
+ * Finds an object with the same name
+ */
+Object *game_get_object_byName(Game *game, char* name)
+{
+  int i;
+
+  if (!game || name == NULL)
+  {
+    return NULL;
+  }
+  
+  for (i = 0; i < MAX_OBJS && game->object[i] != NULL; i++)
+  {
+    if (strcmp(name, obj_get_name(game->object[i])) == 0)
+    {
+      return game->object[i];
+    }
+  }
+
+  return NULL;
+}
+
+/**
  * Comprueba uno a uno los players del juego para ver si coinciden con la id
  */
 Player *game_get_player(Game *game, Id id)
@@ -447,6 +474,19 @@ Enemy *game_get_enemy(Game *game, Id id)
   }
   
   return NULL;
+}
+
+/**
+ * returns description that is on screen
+ */
+char *game_get_description(Game *game)
+{
+  if (!game)
+  {
+    return NULL;
+  }
+  
+  return game->description;
 }
 
 /**
@@ -677,6 +717,8 @@ int game_update(Game *game, T_Command cmd, char *arg)
   case MOVE:
     st = (int) game_command_move(game, arg);
     break;
+  case INSPECT:
+    st = (int) game_command_inspect(game, arg);
 
   default:
     break;
@@ -1129,5 +1171,33 @@ STATUS game_command_move(Game *game, char *arg)
     }
   }
   
+  return ERROR;
+}
+
+/*Changes the description of game to the one user wanted
+*/
+STATUS game_command_inspect(Game *game, char *arg){
+
+  /*SPACE CASE*/
+  if(strcmp(arg, "space")==0 || strcmp(arg, "s")==0){
+    game->description = (char*) space_get_description(game_get_space(game, player_get_location(game->player[MAX_PLAYERS-1])));
+    return OK;
+  }
+
+  /*OBJECT CASE*/
+  else{
+    if(arg == NULL){
+      game->description = " ";
+      return ERROR;
+    }
+    Object* obj = game_get_object_byName(game, arg);
+    if(obj==NULL){
+      game->description = " ";
+      return ERROR;
+    }
+    /*FALTA AÑADIR QUE EL OBJETO ESTE EN LA SALA O EN EL INVENTARIO*/
+    game->description = (char*) obj_get_description(obj);
+    return OK;
+  }
   return ERROR;
 }
