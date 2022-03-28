@@ -232,5 +232,27 @@ Id game_get_object_id(Game *game, int num);
  */
 Game* game_alloc2();
 
+/**
+ * @brief It get if link is open or close giving an space and a specific direction
+ * @author Miguel Soto
+ * 
+ * @param game pointer to game
+ * @param act_spaceid id from space (normaly it would be actual player location)
+ * @param dir link's direction
+ * @return OPEN if link is open or CLOSE if link is close. In case of error, returns CLOSE 
+ */
+LINK_STATUS game_get_connection_status(Game *game, Id act_spaceid, DIRECTION dir);
+
+/**
+ * @brief It get id from the space destination of a link
+ * @author Miguel Soto
+ * 
+ * @param game pointer to game
+ * @param act_spaceid id from space (normaly it would be actual player location)
+ * @param dir link's direction
+ * @return Id from the space destination of a link
+ */
+Id game_get_connection(Game *game, Id act_spaceid, DIRECTION dir);
+
 
 #endif
