@@ -8,9 +8,14 @@
  * @copyright Copyright (c) 2022
  */
 
+
+#ifndef LINK_H 
+#define LINK_H
+
 #include "types.h"
 
 #define LINK_NAME_LEN 40
+
 
 typedef enum
 {
@@ -156,3 +161,5 @@ LINK_STATUS link_get_status(Link *link);
  * @return the number of characters written or -1 in caseof error.
  */
 int link_print(Link *link);
+
+#endif
