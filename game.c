@@ -1201,7 +1201,9 @@ STATUS game_command_inspect(Game *game, char *arg){
       game->description = " ";
       return ERROR;
     }
-    /*FALTA AÑADIR QUE EL OBJETO ESTE EN LA SALA O EN EL INVENTARIO*/
+    if(player_has_object(game->player[0], obj_get_id(obj)) == FALSE && player_get_location(game->player[0]) != obj_get_location(obj)){
+      return ERROR;
+    }
     game->description = (char*) obj_get_description(obj);
     return OK;
   }
