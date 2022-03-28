@@ -2,7 +2,7 @@
  * @brief It defines the game's space loading
  * 
  * @file game_reader.h
- * @author Miguel Soto
+ * @author Miguel Soto, Nicolas Victorino, Ignacio Nunez, Antonio Van-Oers
  * @version 1.1
  * @date 12-02-2022
  * @copyright GNU Public License
@@ -25,13 +25,13 @@ typedef enum
 } GAME_IS_ELEMENT;
 
 /**
-  * @brief Crea e inicializa una partida desde el fichero
+  * @brief Creates and initializes a game from a file
   * @author Profesores PPROG
   *
-  * game_create_from_file inicializa los campos necesarios del juego leidos desde el filename.dat
-  * @param game es el puntero que apunta a game
-  * @param filename es el puntero que apunta al nombre del fichero 
-  * @return OK, si todo va bien o ERROR si ha habido algun fallo
+  * game_create_from_file initializes all of game's members from the filename.dat
+  * @param game pionter to game
+  * @param filename pointer to the file's name 
+  * @return OK, if everything goes well or ERROR if something didn't
   */
 STATUS game_create_from_file(Game *game, char *filename);
 
