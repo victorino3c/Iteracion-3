@@ -675,6 +675,7 @@ int game_update(Game *game, T_Command cmd, char *arg)
 {
   int st = 0;
   game->last_cmd = cmd;
+  game->description = 0;
 
   switch (cmd)
   {
