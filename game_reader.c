@@ -40,8 +40,8 @@ GAME_IS_ELEMENT id_type(Id id);
   Game_reader implementacion
 */
 
-/** game_create_from_file inicializa la localizacion 
-  * del jugador y el objeto a 0, situandolos en el primer espacio
+/** game_create_from_file  game_create_from_file initializes 
+  * all of game's members from the filename.dat
   */
 STATUS game_create_from_file(Game *game, char *filename)
 {
@@ -184,7 +184,7 @@ STATUS game_load_spaces(Game *game, char *filename)
   * game_load_objs carga la info de los objetos creados
   * @param game es el puntero que apunta a game
   * @param filename es el puntero que apunta al nombre del fichero 
-  * @return OK si todo va bien y ERROR si ha habido algun fallo de carga
+  * @return OK if everything goes right ERROR if something goes wrong
   */
 STATUS game_load_objs(Game *game, char *filename)
 {
@@ -283,9 +283,11 @@ STATUS game_load_players(Game *game, char *filename)
 
   
   /*
-  * While the loop reads information in the current line from the file: "hormiguero.dat", it divides that line in smaller tokens.
+  * While the loop reads information in the current line from the file: 
+  "hormiguero.dat", it divides that line in smaller tokens.
   * Each token has a piece of information, in the following order:
-  * ID of the player, name, Id of the object that the player has (NO_ID if it has no object), and location.
+  * ID of the player, name, Id of the object that the player has 
+  * (NO_ID if it has no object), and location.
   */
   while (fgets(line, WORD_SIZE, file))
   {
@@ -303,7 +305,8 @@ STATUS game_load_players(Game *game, char *filename)
       objects = atol(toks);
 
 
-  /*If debug is being used, it will print all the information from the current player that is being loaded*/
+  /*If debug is being used, it will print all the information from 
+    the current player that is being loaded*/
 #ifdef DEBUG
       printf("Leido: %ld|%s|%ld|%ld\n", id, name, object, location);
 #endif
@@ -311,7 +314,8 @@ STATUS game_load_players(Game *game, char *filename)
   /*Defines a private variable called "player" and saves a pointer to player with the given id in it*/
       player = player_create(id);
 
-  /*Error control, and in case everything is fine, it saves the information gotten in the prior loop in the newly created player*/
+  /*Error control, and in case everything is fine, it saves the 
+    information gotten in the prior loop in the newly created player*/
       if (player != NULL)
       {
         player_set_name(player, name);
@@ -323,8 +327,10 @@ STATUS game_load_players(Game *game, char *filename)
     }
   }
 
-  /*Error control, if it has given an error at any moment while using the file, ferror while make the if condition be true.
-   This will change the private status variable declared at the beggining of the function from OK to ERROR. */
+  /*Error control, if it has given an error at any moment while using the file, 
+  ferror while make the if condition be true.
+  This will change the private status variable declared at the beggining 
+  of the function from OK to ERROR. */
   if (ferror(file))
   {
     status = ERROR;
@@ -369,7 +375,8 @@ STATUS game_load_enemy(Game *game, char *filename)
 
   
   /*
-  * While the loop reads information in the current line from the file: "hormiguero.dat", it divides that line in smaller tokens.
+  * While the loop reads information in the current line from the file:
+  * "hormiguero.dat", it divides that line in smaller tokens.
   * Each token has a piece of information, in the following order:
   * ID of the enemy, name, and location.
   */
@@ -386,15 +393,18 @@ STATUS game_load_enemy(Game *game, char *filename)
       toks = strtok(NULL, "|");
       health = atol(toks);
 
-  /*If debug is being used, it will print all the information from the current enemy that is being loaded*/
+  /*If debug is being used, it will print all the information 
+  from the current enemy that is being loaded*/
 #ifdef DEBUG
       printf("Leido: %ld|%s|%ld\n", id, name, location);
 #endif
 
-  /*Defines a private variable called "enemy" and saves a pointer to player with the given id in it*/
+  /*Defines a private variable called "enemy" and saves 
+  a pointer to player with the given id in it*/
       enemy = enemy_create(id);
 
-  /*Error control, and in case everything is fine, it saves the information gotten in the prior loop in the newly created enemy*/
+  /*Error control, and in case everything is fine, it saves 
+  the information gotten in the prior loop in the newly created enemy*/
       if (enemy != NULL)
       {
         enemy_set_name(enemy, name);
@@ -405,8 +415,10 @@ STATUS game_load_enemy(Game *game, char *filename)
     }
   }
 
-  /*Error control, if it has given an error at any moment while using the file, ferror while make the if condition be true.
-   This will change the private status variable declared at the beggining of the function from OK to ERROR. */
+  /*Error control, if it has given an error at any moment 
+  while using the file, ferror while make the if condition be true.
+   This will change the private status variable declared at 
+   the beggining of the function from OK to ERROR. */
   if (ferror(file))
   {
     status = ERROR;
@@ -451,7 +463,8 @@ STATUS game_load_link(Game *game, char *filename)
 
   
   /*
-  * While the loop reads information in the current line from the file: "hormiguero.dat", it divides that line in smaller tokens.
+  * While the loop reads information in the current line from the file: 
+  "hormiguero.dat", it divides that line in smaller tokens.
   * Each token has a piece of information, in the following order:
   * ID of the enemy, name, and location.
   */
@@ -472,15 +485,18 @@ STATUS game_load_link(Game *game, char *filename)
       toks = strtok(NULL, "|");
       status = atol(toks);
 
-  /*If debug is being used, it will print all the information from the current enemy that is being loaded*/
+  /*If debug is being used, it will print all the information 
+  from the current enemy that is being loaded*/
 #ifdef DEBUG
       printf("Leido: %ld|%s|%ld|%ld|%ld|%ld\n", id, name, id_start, id_end, dir, status);
 #endif
 
-  /*Defines a private variable called "enemy" and saves a pointer to player with the given id in it*/
+  /*Defines a private variable called "enemy" and saves a 
+  pointer to player with the given id in it*/
       link = link_create(id);
 
-  /*Error control, and in case everything is fine, it saves the information gotten in the prior loop in the newly created enemy*/
+  /*Error control, and in case everything is fine, it saves 
+  the information gotten in the prior loop in the newly created enemy*/
       if (link != NULL)
       {
         link_set_name(link, name);
@@ -493,8 +509,10 @@ STATUS game_load_link(Game *game, char *filename)
     }
   }
 
-  /*Error control, if it has given an error at any moment while using the file, ferror while make the if condition be true.
-   This will change the private status variable declared at the beggining of the function from OK to ERROR. */
+  /*Error control, if it has given an error at any moment
+   while using the file, ferror while make the if condition be true.
+   This will change the private status variable declared 
+   at the beggining of the function from OK to ERROR. */
   if (ferror(file))
   {
     st = ERROR;
