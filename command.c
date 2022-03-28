@@ -59,7 +59,7 @@ T_Command command_get_user_input(char *arg)
         {
           if (scanf("%s", arg) < 0)
           {
-            fprintf(stdout, "Comando incorrecto. Los comandos TAKE DROP necesitan un argumento mas con la id.\n");
+            fprintf(stdout, "Comando incorrecto. Los comandos TAKE DROP necesitan un argumento mas como el nombre del objeto .\n");
           }
         }
         
