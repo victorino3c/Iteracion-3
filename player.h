@@ -161,6 +161,16 @@ STATUS player_set_location(Player *player, Id location);
 STATUS player_set_name(Player *player, char *name);
 
 /**
+ * @brief If a player has an object or not
+ * @author Ignacio Nunnez
+ * 
+ * @param player a pointer to target player
+ * @param obj_id id of the object to find
+ * @return TRUE if player has it, FALSE if not or there was a mistake
+ */
+BOOL player_has_object(Player *player, Id obj_id);
+
+/**
  * @brief Prints all player related info in a string
  * @author Antonio Van-Oers
  * 
