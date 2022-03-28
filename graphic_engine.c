@@ -403,9 +403,10 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
     screen_area_puts(ge->descript, str);
     sprintf(str, "  Descriptions:");
     screen_area_puts(ge->descript, str);
-    sprintf(str, "  %s", description);
-    screen_area_puts(ge->descript, str);
-
+    if(description){
+      sprintf(str, "  %s", description);
+      screen_area_puts(ge->descript, str);
+    }
   }
 
   /* Paint in the banner area */
