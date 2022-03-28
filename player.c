@@ -237,6 +237,20 @@ Inventory *player_get_inventory(Player *player)
   return player->inventory;
 }
 
+/*Tells if a player has an object in his
+inventory or not
+  */
+BOOL player_has_object(Player *player, Id obj_id){
+  BOOL b;
+
+  if(!player || obj_id == NO_ID){
+    return FALSE;
+  }
+  
+  b = inventory_has_id(player->inventory, obj_id);
+
+  return b;
+}
 
 
 /** player_set_name sets the player's new name
