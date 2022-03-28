@@ -13,7 +13,7 @@
 #o:33|Grano3|Un grano de trigo extraordinario|124
 #o:34|Grano4|Un grano de trigo legendario|125
 #p:21|Player|11|5|3|
-#e:41|Enemy|13|5|
+#e:41|Enemy|123|5|
 #l:510|Entrada_i|11|121|1|1|
 #l:511|Entrada_o|121|11|0|1|
 #l:512|Hab1_i|121|122|1|1|
@@ -32,3 +32,4 @@
 #l:525|Hab6_o|127|126|3|1|
 #l:526|Agujero_i|127|14|2|1|
 #l:527|Agujero_o|14|127|3|1|
+#l:528|Agujero_o|14|13|1|1|
