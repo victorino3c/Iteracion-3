@@ -668,6 +668,70 @@ Id game_get_object_location(Game *game, Id obj_id)
   return obj_get_location(o);
 }
 
+/**
+ * It get if link is open or close giving an space and a specific direction
+ */
+LINK_STATUS game_get_connection_status(Game *game, Id act_spaceid, DIRECTION dir)
+{
+  Id link_id = -1;
+  Space *s = NULL;
+  LINK_STATUS linkst = CLOSE;
+
+  /* Error control */
+  if (!game || act_spaceid == NO_ID || dir == ND)
+  {
+    return CLOSE;
+  }
+
+  s = game_get_space(game, act_spaceid);
+  if (!s)
+  {
+    return CLOSE;
+  }
+  
+  link_id = space_get_link(s, dir);
+  if (link_id < 0)
+  {
+    return CLOSE;
+  }
+  
+  linkst = link_get_status(game_get_link(game, link_id));
+
+  return linkst;
+}
+
+/**
+ * It get id from the space destination of a link
+ */
+Id game_get_connection(Game *game, Id act_spaceid, DIRECTION dir)
+{
+  Id link_id = -1, dest_id = -1;
+  Space *s = NULL;
+
+  /* Error control */
+  if (!game || act_spaceid == NO_ID || dir == ND)
+  {
+    return CLOSE;
+  }
+
+  s = game_get_space(game, act_spaceid);
+  if (!s)
+  {
+    return CLOSE;
+  }
+  
+  link_id = space_get_link(s, dir);
+  if (link_id < 0)
+  {
+    return CLOSE;
+  }
+
+  dest_id = link_get_destination(game_get_link(game, link_id));
+
+  return dest_id;
+}
+
+
 /** game_update utiliza la variable cmd del interprete de comandos para determinar que funcion debe llamar
   * en cada caso
   */
