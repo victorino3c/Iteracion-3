@@ -91,6 +91,18 @@ vspace_test: space_test
 	valgrind --leak-check=full ./space_test
 
 
+#INVENTORY_TEST
+inventory_test.o: test/inventory_test.c test/inventory_test.h test/test.h inventory.h
+	$(CC) $(FLAGS) $<
+
+inventory_test: inventory_test.o inventory.o object.o set.o
+	$(CC) -o $@ -Wall $^ $(LIBRARY)
+	make testclean
+
+vinventory_test: inventory_test
+	valgrind --leak-check=full ./inventory_test
+	
+
 #OBJECT_TEST
 object_test.o: test/object_test.c test/object_test.h test/test.h object.h
 	$(CC) $(FLAGS) $<
@@ -101,6 +113,19 @@ object_test: object_test.o space.o object.o set.o
 
 vobject_test: object_test
 	valgrind --leak-check=full ./object_test
+	
+	
+#PLAYER_TEST
+player_test.o: test/player_test.c test/player_test.h test/test.h player.h
+	$(CC) $(FLAGS) $<
+
+player_test: player_test.o player.o object.o set.o inventory.o
+	$(CC) -o $@ -Wall $^ $(LIBRARY)
+	make testclean
+
+vplayer_test: player_test
+	valgrind --leak-check=full ./player_test
+
 
 #CLEAN
 clean:
