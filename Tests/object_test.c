@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "test.h"
-#include "object.h"
+#include "../object.h"
 #include "object_test.h"
 
 #define MAX_TESTS 19
