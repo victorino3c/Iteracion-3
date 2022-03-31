@@ -14,6 +14,7 @@
 #include "set.h"
 #include "types.h"
 #include "object.h"
+#include "link.h"
 
 typedef struct _Space Space;
 
@@ -29,6 +30,7 @@ typedef struct _Space Space;
   *
   * space_create allocates memory for a new space
   *  and initializes its members
+  * 
   * @param id the identification number for the new space
   * @return a new space, initialized
   */
@@ -102,76 +104,25 @@ STATUS space_set_description(Space* space, char* description);
 const char* space_get_description(Space* space);
 
 /**
-  * @brief It sets the id of the space located at the north
-  * @author Profesores PPROG
-  * 
-  * @param space a pointer to the space
-  * @param id the id number of the space located at the north
-  * @return OK, if everything goes well or ERROR if there was some mistake 
-  */
-STATUS space_set_north(Space* space, Id id);
-/**
-  * @brief It gets the id of the space located at the north
-  * @author Profesores PPROG
-  *
-  * @param space a pointer to the space
-  * @return the id number of the space located at the north 
-  */
-Id space_get_north(Space* space);
+ * @brief It sets the link of the space in an specific direction
+ * @author Miguel Soto
+ * 
+ * @param space pointer to space
+ * @param link id of the link that need to be added into space
+ * @param dir link's direction
+ * @return OK, if everything goes well or ERROR if there was some mistake
+ */
+STATUS space_set_link(Space *space, Id link, DIRECTION dir);
 
 /**
-  * @brief It sets the id of the space located at the south
-  * @author Profesores PPROG
-  *
-  * @param space a pointer to the space
-  * @param id the id number of the space located at the south
-  * @return OK, if everything goes well or ERROR if there was some mistake 
-  */
-STATUS space_set_south(Space* space, Id id);
-/**
-  * @brief It gets the id of the space located at the south
-  * @author Profesores PPROG
-  *
-  * @param space a pointer to the space
-  * @return the id number of the space located at the south 
-  */
-Id space_get_south(Space* space);
-
-/**
-  * @brief It sets the id of the space located at the east
-  * @author Profesores PPROG
-  *
-  * @param space a pointer to the space
-  * @param id the id number of the space located at the east
-  * @return OK, if everything goes well or ERROR if there was some mistake 
-  */
-STATUS space_set_east(Space* space, Id id);
-/**
-  * @brief It gets the id of the space located at the east
-  * @author Profesores PPROG
-  *
-  * @param space a pointer to the space
-  * @return the id number of the space located at the east
-  */
-Id space_get_east(Space* space);
-
-/**
-  * @brief It sets the id of the space located at the west
-  * @author Profesores PPROG
-  *
-  * @param space a pointer to the space
-  * @param id the id number of the space located at the west
-  * @return OK, if everything goes well or ERROR if there was some mistake 
-  */
-STATUS space_set_west(Space* space, Id id);
-/**
-  * @brief It gets the id of the space located at the west
-  * @author Profesores PPROG
-  *
-  * @param space a pointer to the space
-  * @return the id number of the space located at the west
-  */
-Id space_get_west(Space* space);
+ * @brief It gets link's id that starts in this space with an specific direction
+ * @author Miguel Soto
+ * 
+ * @param space pointer to space
+ * @param dir link's direction
+ * @return Id link in space in dir direction.
+ */
+Id space_get_link(Space *space, DIRECTION dir);
 
 /**
  * @brief It add an object id in the space's set of objects
