@@ -56,7 +56,7 @@ STATUS game_command_inspect(Game *game, char *arg);
   Game interface implementation
 */
 
-/** game_create allocs memory for all necessary game's members
+/** game_create allocs memory for some necessary game's members
   */
 STATUS game_alloc(Game *game)
 {
@@ -93,7 +93,7 @@ STATUS game_alloc(Game *game)
 
 
 /** game_create initializes all necessary game's members
- * to a NULL value
+ * to a empty value
   */
 STATUS game_create(Game *game)
 {
