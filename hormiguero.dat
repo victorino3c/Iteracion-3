@@ -8,10 +8,10 @@
 #s:126|Pasillo6|Sexta habitacion|-1|127|-1|125|  ___    _|_/    \_/ |     o 0 |mo'_ 0o8o|__/ \___/
 #s:127|Pasillo7|Septima habitacion|-1|14|-1|126|  ___    _|_/    \_/ |     o 0 |mo'_ 0o8o|__/ \___/
 #s:14|Agujero|Cuidado no te caigas|-1|-1|-1|127|  ___     |_/    \__ |    o o )|mo^ _ 0o]|___/ \__)
-#o:31|Grano1|Un grano de trigo comun|11
-#o:32|Grano2|Un grano de trigo bueno|14
-#o:33|Grano3|Un grano de trigo extraordinario|124
-#o:34|Grano4|Un grano de trigo legendario|125
+#o:31|Grano|Un grano de trigo comun|11
+#o:32|Hoja|Una hoja buena|14
+#o:33|Pipa|Una pipa extraordinaria|124
+#o:34|Manzana|Una manzana legendaria|125
 #p:21|Player|11|5|3|
 #e:41|Enemy|123|5|
 #l:510|Entrada_i|11|121|1|1|
