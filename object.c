@@ -112,7 +112,7 @@ Id obj_get_id(Object *obj)
 
 /** obj_set_name devuelve el nombre (name) de un Object (obj).
  */
-const char *obj_get_name(Object *obj)
+char *obj_get_name(Object *obj)
 {
 	/* Control de errores */
   if (!obj)
