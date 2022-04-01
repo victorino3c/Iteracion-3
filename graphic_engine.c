@@ -97,6 +97,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
   int i;
   char **gdesc;
   char *description;
+  char *obj_name[MAX_OBJS];
 
 
   /*Asignacion de los valores correspondientes a las variables*/
@@ -126,6 +127,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
     }
     obj_id[i] = game_get_object_id(game, i);
     obj_loc[i] = obj_get_location(game_get_object(game, game_get_object_id(game, i)));
+    obj_name[i] = obj_get_name(game_get_object(game, game_get_object_id(game, i)));
   }
 
   /* Paint the in the map area */
@@ -369,7 +371,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
       {
         break;                     
       }
-     sprintf(str, "  %d:%d, ", (int)obj_id[i], (int)obj_loc[i]);
+     sprintf(str, "  %s:%d, ", obj_name[i], (int)obj_loc[i]);
      screen_area_puts(ge->descript, str);
     }
 
