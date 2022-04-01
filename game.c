@@ -136,7 +136,7 @@ STATUS game_create(Game *game)
   return OK;
 }
 
-/** game_destroy frees/destroys all of game's spaces  
+/** game_destroy frees/destroys all of game's members  
   * calling space_destroy for each one of them
   */
 STATUS game_destroy(Game *game)
