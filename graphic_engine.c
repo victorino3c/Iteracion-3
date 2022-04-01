@@ -19,6 +19,9 @@
 #include "enemy.h"
 #include "player.h"
 #include "object.h"
+#include "inventory.h"
+#include "set.h"
+
 
 #define ROWS 37
 #define COLUMNS 96
