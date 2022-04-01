@@ -84,7 +84,7 @@ STATUS obj_set_name(Object *obj, char *name);
  * @param obj un puntero a Object.
  * @return un string con la descripcion del objeto obj, o NULL si hubo algun error.
  */
-const char *obj_get_description(Object *obj);
+char *obj_get_description(Object *obj);
 
 /**
  * @brief Establece una descripcion a un objeto.
