@@ -2,7 +2,7 @@
  * @brief It defines a textual graphic engine
  *
  * @file graphic_engine.c
- * @author Profesores PPROG
+ * @author Miguel Soto, Antonio Van-Oers, Nicolas Victorino and Ignacio Nunez
  * @version 2.0
  * @date 29-11-2021
  * @copyright GNU Public License
@@ -101,7 +101,12 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
   char **gdesc;
   char *description;
   char *obj_name[MAX_OBJS];
+  char link_up = '\0', link_down = '\0';
 
+  /*
+  char *left[10];
+  char *right[10];
+  */
 
   /*Asignacion de los valores correspondientes a las variables*/
   player_loc = game_get_player_location(game, 21);
@@ -130,7 +135,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
     }
     obj_id[i] = game_get_object_id(game, i);
     obj_loc[i] = obj_get_location(game_get_object(game, game_get_object_id(game, i)));
-    obj_name[i] = obj_get_name(game_get_object(game, game_get_object_id(game, i)));
+    obj_name[i] = (char *) obj_get_name(game_get_object(game, game_get_object_id(game, i)));
   }
 
   /* Paint the in the map area */
@@ -139,10 +144,12 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
   if (id_act != NO_ID)
   {
     space_act = game_get_space(game, id_act);
-    id_up = space_get_north(space_act);
-    id_down = space_get_south(space_act);
-    id_left = space_get_west(space_act );
-    id_right = space_get_east(space_act);
+    id_up = space_get_link(space_act, N);
+    id_down = space_get_link(space_act, S);
+    id_left = space_get_link(space_act, W);
+    id_right = space_get_link(space_act, E);
+
+    space_print(space_act);
 
     /* ESPACIO ARRIBA */
     if (id_up != NO_ID)
@@ -161,9 +168,16 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         }
       }
 
-      
-      sprintf(str, "  |                %2d|", (int)id_up);
+      if (id_up < 100)
+      {
+        sprintf(str, "  | gpp0^        %2d |", (int)id_act);
+      }
+      else
+      {
+        sprintf(str, "  | gpp0^        %2d|", (int)id_act);
+      }
       screen_area_puts(ge->map, str);
+
       sprintf(str, "  |                  |");
       screen_area_puts(ge->map, str);
       sprintf(str, "  |        %c         |", obj);
@@ -172,12 +186,52 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
       screen_area_puts(ge->map, str);
       sprintf(str, "  +-----------------+");
       screen_area_puts(ge->map, str);
-      sprintf(str, "        ^");
+      
+      // FALTA PONER ESTO EN EL RESTO
+      if (game_get_connection_status(game, id_act, N) == OPEN)
+      {
+        link_up = '^';
+      }
+      else
+      {
+        link_up = ' ';
+      }
+      if (game_get_connection_status(game, id_up, S) == OPEN)
+      {
+        link_down = 'v';
+      }
+      else
+      {
+        link_down = ' ';
+      }
+      sprintf(str, "      %c  %c", link_up, link_down);
       screen_area_puts(ge->map, str);
     }
 
     /* ESPACIO ACTUAL */
 
+    /*
+    if (id_left != NO_ID)
+    {
+      for(i=0;i<MAX_OBJS;i++)
+      {   
+        /*Comprobar si el objeto se encuentra en el espacio
+        if (space_has_object(game_get_space(game, id_left), obj_id[i]) == FALSE)
+        {         
+          obj = ' ';
+        }
+        else
+        {
+          obj = '*';
+          break;
+        }
+      }
+
+      left[0] = "+-----------------+";
+      printf("left[0] = %s\n", left[0]);
+    }
+    */
+  
     if (id_act != NO_ID)
     {
       
@@ -343,7 +397,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
           break;
         }
       }
-    
+
       sprintf(str, "        v");
       screen_area_puts(ge->map, str);
       sprintf(str, "  +-----------------+");
