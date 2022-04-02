@@ -1,6 +1,7 @@
 CC = gcc 
 FLAGS = -c -Wall
 LIBRARY = -lm
+T = Tests/
 
 all: juego clean
 
@@ -64,7 +65,7 @@ juego_permisos: juego
 	chmod u+x ./juego
 
 #ENEMY_TEST
-enemy_test.o: test/enemy_test.c test/enemy_test.h test/test.h enemy.h
+enemy_test.o: $(T)enemy_test.c $(T)enemy_test.h $(T)test.h enemy.h
 	$(CC) $(FLAGS) $<
 
 enemy_test: enemy_test.o enemy.o 
@@ -76,7 +77,7 @@ venemy_test: enemy_test
 
 
 #SET_TEST
-set_test.o: test/set_test.c test/set_test.h test/test.h set.h
+set_test.o: $(T)set_test.c $(T)set_test.h $(T)test.h set.h
 	$(CC) $(FLAGS) $<
 
 set_test: set_test.o set.o 
@@ -88,7 +89,7 @@ vset_test: set_test
 
 
 #SPACE_TEST
-space_test.o: test/space_test.c test/space_test.h test/test.h space.h
+space_test.o: $(T)space_test.c $(T)space_test.h $(T)test.h space.h
 	$(CC) $(FLAGS) $<
 
 space_test: space_test.o space.o object.o set.o
@@ -100,7 +101,7 @@ vspace_test: space_test
 
 
 #INVENTORY_TEST
-inventory_test.o: test/inventory_test.c test/inventory_test.h test/test.h inventory.h
+inventory_test.o: $(T)inventory_test.c $(T)inventory_test.h $(T)test.h inventory.h
 	$(CC) $(FLAGS) $<
 
 inventory_test: inventory_test.o inventory.o object.o set.o
@@ -112,7 +113,7 @@ vinventory_test: inventory_test
 	
 
 #OBJECT_TEST
-object_test.o: test/object_test.c test/object_test.h test/test.h object.h
+object_test.o: $(T)object_test.c $(T)object_test.h $(T)test.h object.h
 	$(CC) $(FLAGS) $<
 
 object_test: object_test.o space.o object.o set.o
@@ -124,7 +125,7 @@ vobject_test: object_test
 	
 	
 #PLAYER_TEST
-player_test.o: test/player_test.c test/player_test.h test/test.h player.h
+player_test.o: $(T)player_test.c $(T)player_test.h $(T)test.h player.h
 	$(CC) $(FLAGS) $<
 
 player_test: player_test.o player.o object.o set.o inventory.o
@@ -135,6 +136,20 @@ vplayer_test: player_test
 	valgrind --leak-check=full ./player_test
 
 
+#LINK_TEST
+link_test.o: $(T)link_test.c $(T)link_test.h $(T)test.h link.h
+	$(CC) $(FLAGS) $<
+
+link_test: link_test.o link.o
+	$(CC) -o $@ -Wall $^ $(LIBRARY)
+	make testclean
+
+vlink_test: link_test
+	valgrind --leak-check=full ./link_test
+
+
+all_test: player_test object_test inventory_test set_test enemy_test link_test
+
 #CLEAN
 clean:
 	rm -f *.o
@@ -142,11 +157,9 @@ clean:
 
 xclean:
 	rm -f juego
-	rm -f space_test
-	rm -f set_test
-	rm -f enemy_test
+	rm -f *_test
 
 sclean: clean xclean
 
 testclean: clean
-	rm -f test/*.h.gch
+	rm -f $(T)*.h.gch
