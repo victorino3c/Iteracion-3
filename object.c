@@ -1,10 +1,10 @@
-/** 
+/**
  * @brief Implementa el modulo del objeto.
- * 
+ *
  * @file object.c
- * @author Miguel Soto
- * @version 1.3 
- * @date 12-02-2021
+ * @author Miguel Soto, Antonio Van-Oers, Nicolas Victorino & Ignacio Nunnez
+ * @version 2.0
+ * @date 02-04-2022
  * @copyright GNU Public License
  */
 
@@ -40,12 +40,12 @@ Object *obj_create(Id id)
     return NULL;
   }
 
-  new_obj = (Object *) malloc(sizeof(Object));
+  new_obj = (Object *)malloc(sizeof(Object));
   if (new_obj == NULL)
   {
     return NULL;
   }
-  
+
   /* Inicializacion del objeto nuevo */
   new_obj->id = id;
   new_obj->name[0] = '\0';
@@ -57,12 +57,12 @@ Object *obj_create(Id id)
  */
 STATUS obj_destroy(Object *obj)
 {
-	/* Control de errores */
+  /* Control de errores */
   if (!obj)
   {
     return ERROR;
   }
-  
+
   free(obj);
   obj = NULL;
   return OK;
@@ -82,11 +82,11 @@ STATUS obj_test_id(Id id)
   }
 
   /* Calcular numbero total de digitos - 1 */
-  digits = (int)log10(id); 
+  digits = (int)log10(id);
 
   /* Obtener primer digito */
   first_digit = (int)(id / pow(10, digits));
-  
+
   if (first_digit == FD_ID_OBJ)
   {
     return OK;
@@ -101,25 +101,25 @@ STATUS obj_test_id(Id id)
  */
 Id obj_get_id(Object *obj)
 {
-	/* Control de errores */
+  /* Control de errores */
   if (!obj)
   {
     return NO_ID;
   }
-  
+
   return obj->id;
 }
 
 /** obj_set_name devuelve el nombre (name) de un Object (obj).
  */
-char *obj_get_name(Object *obj)
+const char *obj_get_name(Object *obj)
 {
-	/* Control de errores */
+  /* Control de errores */
   if (!obj)
   {
     return NULL;
   }
-  
+
   return obj->name;
 }
 
@@ -127,18 +127,18 @@ char *obj_get_name(Object *obj)
  */
 STATUS obj_set_name(Object *obj, char *name)
 {
-	/* Control de errores */
+  /* Control de errores */
   if (!obj || !name)
   {
     return ERROR;
   }
-  
-	/* Control de errores */
+
+  /* Control de errores */
   if (!strcpy(obj->name, name))
   {
     return ERROR;
   }
-  
+
   return OK;
 }
 
@@ -146,12 +146,12 @@ STATUS obj_set_name(Object *obj, char *name)
  */
 const char *obj_get_description(Object *obj)
 {
-	/*CONTROL ERRORS*/
+  /*CONTROL ERRORS*/
   if (!obj)
   {
     return NULL;
   }
-  
+
   return obj->description;
 }
 
@@ -159,18 +159,18 @@ const char *obj_get_description(Object *obj)
  */
 STATUS obj_set_description(Object *obj, char *description)
 {
-	/* CONTROL ERROR */
+  /* CONTROL ERROR */
   if (!obj || !description)
   {
     return ERROR;
   }
-  
+
   if (!strcpy(obj->description, description))
   {
     /*CONTROL ERROR*/
     return ERROR;
   }
-  
+
   return OK;
 }
 
@@ -181,7 +181,7 @@ Id obj_get_location(Object *obj)
   {
     return NO_ID;
   }
-  
+
   return obj->location;
 }
 
@@ -192,7 +192,7 @@ STATUS obj_set_location(Object *obj, Id id)
   {
     return ERROR;
   }
-  
+
   obj->location = id;
   return OK;
 }
@@ -206,7 +206,7 @@ STATUS obj_print(Object *obj)
   {
     return ERROR;
   }
-  
+
   fprintf(stdout, "--> Object (Id: %ld; Name: %s)\n", obj->id, obj->name);
 
   return OK;
