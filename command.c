@@ -119,3 +119,4 @@ T_Command command_get_file_input(char *command, char *arg) //Funciona bien, pero
   }
   
   return cmd;
+}
