@@ -2,9 +2,9 @@
  * @brief It implements the space module
  *
  * @file space.c
- * @author Profesores PPROG
+ * @author Miguel Soto, Antonio Van-Oers, Nicolas Victorino and Ignacio Nunez
  * @version 2.0
- * @date 29-11-2021
+ * @date 02-04-2022
  * @copyright GNU Public License
  */
 
@@ -24,12 +24,12 @@
  */
 struct _Space
 {
-  Id id;                         /*!< Id number of the space, it must be unique */
-  char name[WORD_SIZE + 1];      /*!< Name of the space */
-  char description[WORD_SIZE];   /*!< Description of the space*/
-  Id link[MAX_LINKS_SPACE];      /*!< Id from links between space with this space as origin */
-  Set *objects;                  /*!< Conjunto de ids de los objetos que se encuentran en el espacio */
-  char **gdesc;                  /*!< Array de 5 strings de 9 caracteres */
+  Id id;                       /*!< Id number of the space, it must be unique */
+  char name[WORD_SIZE + 1];    /*!< Name of the space */
+  char description[WORD_SIZE]; /*!< Description of the space*/
+  Id link[MAX_LINKS_SPACE];    /*!< Id from links between space with this space as origin */
+  Set *objects;                /*!< Conjunto de ids de los objetos que se encuentran en el espacio */
+  char **gdesc;                /*!< Array de 5 strings de 9 caracteres */
 };
 
 /**
@@ -40,20 +40,20 @@ int _dir2i(DIRECTION dir);
 /**
  * @brief Given a direction returns position of links array
  * @author Miguel Soto
- * 
+ *
  * LINK ARRAY INDEXES:
- * (NORTH) link[0]; 
- * (EAST) link[1]; 
- * (SOUTH) link[2]; 
+ * (NORTH) link[0];
+ * (EAST) link[1];
+ * (SOUTH) link[2];
  * (WEST) link[3];
- * 
- * @param dir direccion 
+ *
+ * @param dir direccion
  * @return index input in link array
  */
 int _dir2i(DIRECTION dir)
 {
   int n;
-  
+
   if (dir == N)
   {
     n = 0;
@@ -74,7 +74,7 @@ int _dir2i(DIRECTION dir)
   {
     n = -1;
   }
-  
+
   return n;
 }
 
@@ -102,7 +102,7 @@ Space *space_create(Id id)
   newSpace->description[0] = '\0';
   for (i = 0; i < 4; i++)
   {
-    newSpace->link[i] = NULL;
+    newSpace->link[i] = NO_ID;
   }
   newSpace->objects = set_create();
   newSpace->gdesc = NULL;
@@ -116,9 +116,8 @@ Space *space_create(Id id)
 STATUS space_destroy(Space *space)
 {
   int i;
-  STATUS st = OK;
 
-  // Error control
+  /* Error control */
   if (!space)
   {
     return ERROR;
@@ -126,15 +125,14 @@ STATUS space_destroy(Space *space)
 
   for (i = 0; i < 4; i++)
   {
-    link_destroy(space->link[i]);
-    space->link[i] = NULL;
+    space->link[i] = NO_ID;
   }
-  
+
   if (space->objects)
   {
     if (!set_destroy(space->objects))
     {
-      return NULL;
+      return ERROR;
     }
     space->objects = NULL;
   }
@@ -144,7 +142,7 @@ STATUS space_destroy(Space *space)
     if (space_destroy_gdesc(space->gdesc) == ERROR)
     {
       /*printf("ERROR liberando memoria gdesc\n");*/
-      return NULL;
+      return ERROR;
     }
   }
 
@@ -261,13 +259,13 @@ STATUS space_set_link(Space *space, Id link, DIRECTION dir)
   {
     return ERROR;
   }
-  
+
   int n = _dir2i(dir);
   if (n < 0)
   {
     return ERROR;
   }
-  
+
   space->link[n] = link;
   return OK;
 }
@@ -281,13 +279,13 @@ Id space_get_link(Space *space, DIRECTION dir)
   {
     return -1;
   }
-  
+
   int n = _dir2i(dir);
   if (n < 0)
   {
     return -1;
   }
-  
+
   return space->link[n];
 }
 
@@ -488,7 +486,7 @@ STATUS space_print(Space *space)
   fprintf(stdout, "--> Space (Id: %ld; Name: %s)\n", space->id, space->name);
 
   /* 2. For each direction, print its link */
-  idaux = space_get_north(space);
+  idaux = space_get_link(space, N);
   if (NO_ID != idaux)
   {
     fprintf(stdout, "---> North link: %ld.\n", idaux);
@@ -497,7 +495,7 @@ STATUS space_print(Space *space)
   {
     fprintf(stdout, "---> No north link.\n");
   }
-  idaux = space_get_south(space);
+  idaux = space_get_link(space, S);
   if (NO_ID != idaux)
   {
     fprintf(stdout, "---> South link: %ld.\n", idaux);
@@ -506,7 +504,7 @@ STATUS space_print(Space *space)
   {
     fprintf(stdout, "---> No south link.\n");
   }
-  idaux = space_get_east(space);
+  idaux = space_get_link(space, E);
   if (NO_ID != idaux)
   {
     fprintf(stdout, "---> East link: %ld.\n", idaux);
@@ -515,7 +513,7 @@ STATUS space_print(Space *space)
   {
     fprintf(stdout, "---> No east link.\n");
   }
-  idaux = space_get_west(space);
+  idaux = space_get_link(space, W);
   if (NO_ID != idaux)
   {
     fprintf(stdout, "---> West link: %ld.\n", idaux);
