@@ -48,6 +48,14 @@ run:
 	@echo ">>>>>>Running main"
 	./juego hormiguero.dat
 
+run1:
+	@echo ">>>>>>Running main from partida1.cmd"
+	./juego hormiguero.dat partida1.cmd 
+
+run2:
+	@echo ">>>>>>Running main from partida2.cmd"
+	./juego hormiguero.dat partida2.cmd 
+
 runv:
 	@echo ">>>>>>Running main with valgrind"
 	valgrind --leak-check=full ./juego hormiguero.dat
