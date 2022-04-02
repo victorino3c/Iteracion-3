@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
 #include "../test.h"
 #include "../link.h"
 #include "link_test.h"
@@ -297,7 +298,7 @@ link_destroy(link);
 
 void test2_link_set_status(){
 Link *link = NULL;
-PRINT_TEST_RESULT(link_set_status(link, "patata") == ERROR);
+PRINT_TEST_RESULT(link_set_status(link, INT_MAX) == ERROR);
 }
 
 void test1_link_get_status(){
