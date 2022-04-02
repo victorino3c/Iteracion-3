@@ -1231,7 +1231,10 @@ Id game_get_player_id(Game *game)
   return (Id)player_get_id(game->player[MAX_PLAYERS - 1]);
 }
 
-/*Function that gets the object id based on the position it is located in the object array located in the game structure */
+/** 
+ * Function that gets the object id based on the position it is located in 
+ * the object array located in the game structure 
+ */
 Id game_get_object_id(Game *game, int num)
 {
 
@@ -1266,74 +1269,40 @@ Game *game_alloc2()
  */
 STATUS game_command_move(Game *game, char *arg)
 {
-  Id player_location = player_get_location(game->player[MAX_PLAYERS - 1]);
-  Id player_id = player_get_id(game->player[MAX_PLAYERS - 1]);
-  int i = 0;
-  Id current_id = NO_ID;
-  char c[10];
-  char west[10] = {'w', '\0'};
-  char north[10] = {'n', '\0'};
-  char south[10] = {'s', '\0'};
-  char east[10] = {'e', '\0'};
+  char *west[2] = {"w", "West"};
+  char *north[2] = {"n", "North"};
+  char *south[2] = {"s", "South"};
+  char *east[2] = {"e", "East"};
+  STATUS st = ERROR;
 
-  strcpy(c, arg);
-  c[1] = '\0';
-
-  /* Error control */
-  if (player_id == NO_ID)
+  if (strcasecmp(arg, west[0]) == 0 || strcasecmp(arg, west[1]) == 0)
   {
-    return ERROR;
+    st = game_command_left(game, NULL);
+  }
+  else if (strcasecmp(arg, north[0]) == 0 || strcasecmp(arg, north[1]) == 0)
+  {
+    st = game_command_up(game, NULL);
+  }
+  else if (strcasecmp(arg, south[0]) == 0 || strcasecmp(arg, south[1]) == 0)
+  {
+    st = game_command_down(game, NULL);
+  }
+  else if (strcasecmp(arg, east[0]) == 0 || strcasecmp(arg, east[1]) == 0)
+  {
+    st = game_command_right(game, NULL);
+  }
+  else
+  {
+    st = ERROR;
   }
 
-  for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
-  {
-    current_id = space_get_id(game->spaces[i]);
-    if (current_id == player_location)
-    {
-      /*Move west*/
-
-      if (strcmp(c, west) == 0)
-      {
-        current_id = space_get_west(game->spaces[i]);
-      }
-
-      /*Move north*/
-
-      if (strcmp(c, north) == 0)
-      {
-        current_id = space_get_north(game->spaces[i]);
-      }
-
-      /*Move south*/
-
-      if (strcmp(c, south) == 0)
-      {
-        current_id = space_get_south(game->spaces[i]);
-      }
-
-      /*Move east*/
-
-      if (strcmp(c, east) == 0)
-      {
-        current_id = space_get_east(game->spaces[i]);
-      }
-
-      if (current_id != NO_ID)
-      {
-        game_set_player_location(game, player_id, current_id);
-        return OK;
-      }
-    }
-  }
-
-  return ERROR;
+  return st;
 }
 
 /*Changes the description of game to the one user wanted
  */
 STATUS game_command_inspect(Game *game, char *arg)
 {
-
   /*SPACE CASE*/
   if (strcmp(arg, "space") == 0 || strcmp(arg, "s") == 0)
   {
