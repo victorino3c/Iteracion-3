@@ -17,7 +17,6 @@ struct _Link
 {
     Id id;                    /*!< Link's id */
     char name[LINK_NAME_LEN]; /*!< Link's name */
-    // Destination no se si debe ser Space * o Id
     Id start;
     Id destination;      /*!< Id to space destination */
     DIRECTION direction; /*!< Defines direction (N, S, E, W or ND (Not defined) */
