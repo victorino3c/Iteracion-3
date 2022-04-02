@@ -4,7 +4,7 @@
  * @brief It implements the link between spaces
  * @version 0.1
  * @date 2022-03-17
- * 
+ *
  * @copyright Copyright (c) 2022
  */
 
@@ -13,16 +13,15 @@
 #include <string.h>
 #include "link.h"
 
-
 struct _Link
 {
-    Id id;                      /*!< Link's id */
-    char name[LINK_NAME_LEN];   /*!< Link's name */
+    Id id;                    /*!< Link's id */
+    char name[LINK_NAME_LEN]; /*!< Link's name */
     // Destination no se si debe ser Space * o Id
     Id start;
-    Id destination;             /*!< Id to space destination */
-    DIRECTION direction;        /*!< Defines direction (N, S, E, W or ND (Not defined) */
-    LINK_STATUS status;         /*!< Wether link is OPEN or CLOSE */
+    Id destination;      /*!< Id to space destination */
+    DIRECTION direction; /*!< Defines direction (N, S, E, W or ND (Not defined) */
+    LINK_STATUS status;  /*!< Wether link is OPEN or CLOSE */
 };
 
 /**
@@ -38,14 +37,14 @@ Link *link_create(Id id)
     {
         return NULL;
     }
-    
+
     /* Alloc memory for Link struct */
-    l = (Link *) malloc(sizeof(Link));
-    if (!l)     /* Error control in malloc */
+    l = (Link *)malloc(sizeof(Link));
+    if (!l) /* Error control in malloc */
     {
         return NULL;
     }
-    
+
     /* Initializing link's elements */
     l->id = id;
     for (i = 0; i < LINK_NAME_LEN; i++)
@@ -63,14 +62,14 @@ Link *link_create(Id id)
 /**
  * It frees the memory of a link's struct.
  */
-STATUS link_destroy(Link * link)
+STATUS link_destroy(Link *link)
 {
     /* Error control */
     if (!link)
     {
         return ERROR;
     }
-    
+
     /* Free pointer to link */
     free(link);
     link = NULL;
@@ -88,7 +87,7 @@ Id link_get_id(Link *link)
     {
         return NO_ID;
     }
-    
+
     return link->id;
 }
 
@@ -102,7 +101,7 @@ STATUS link_set_name(Link *link, char *name)
     {
         return ERROR;
     }
-    
+
     if (!strcpy(link->name, name))
     {
         return ERROR;
@@ -121,86 +120,89 @@ char *link_get_name(Link *link)
     {
         return NULL;
     }
-    
+
     return link->name;
 }
 
 /** Sets the start of target link
  */
-STATUS link_set_start(Link *link, Id id_space_start){
+STATUS link_set_start(Link *link, Id id_space_start)
+{
     /* Error control */
-    if (!link || id_space_start<0) 
+    if (!link || id_space_start < 0)
     {
         return ERROR;
     }
 
     link->start = id_space_start;
     return OK;
-     
 }
 
 /** Gets a link's start
  */
-Id link_get_start(Link *link){
+Id link_get_start(Link *link)
+{
     /* Error control */
-    if (!link) 
+    if (!link)
     {
         return NO_ID;
     }
- 
+
     return link->start;
 }
 
 /** Sets the destination of target link
  */
-STATUS link_set_destination(Link *link, Id id_space_dest){
+STATUS link_set_destination(Link *link, Id id_space_dest)
+{
     /* Error control */
-    if (!link || id_space_dest<0) 
+    if (!link || id_space_dest < 0)
     {
         return ERROR;
     }
 
     link->destination = id_space_dest;
     return OK;
-     
 }
 
 /** Gets a link's destination
  */
-Id link_get_destination(Link *link){
+Id link_get_destination(Link *link)
+{
     /* Error control */
-    if (!link) 
+    if (!link)
     {
         return NO_ID;
     }
- 
+
     return link->destination;
 }
 
 /** Sets the direction of target link
  */
-STATUS link_set_direction(Link *link, DIRECTION dir){
-    
+STATUS link_set_direction(Link *link, DIRECTION dir)
+{
+
     /* Error control */
-    if (!link || dir<0) 
+    if (!link || dir == ND)
     {
         return ERROR;
     }
 
     link->direction = dir;
     return OK;
-
 }
 
 /** Gets a link's direction
  */
-DIRECTION link_get_direction(Link *link){
-     /* Error control */
-    if (!link) 
+DIRECTION link_get_direction(Link *link)
+{
+    /* Error control */
+    if (!link)
     {
         return ND;
     }
- 
+
     return link->direction;
 }
 
@@ -208,7 +210,7 @@ DIRECTION link_get_direction(Link *link){
  */
 STATUS link_set_status(Link *link, LINK_STATUS st)
 {
-     if (!link || (st != CLOSE && st != OPEN )) 
+    if (!link || (st != CLOSE && st != OPEN))
     {
         return ERROR;
     }
@@ -219,13 +221,14 @@ STATUS link_set_status(Link *link, LINK_STATUS st)
 
 /** Gets a link's status
  */
-LINK_STATUS link_get_status(Link *link){
+LINK_STATUS link_get_status(Link *link)
+{
 
-     if (!link) 
+    if (!link)
     {
         return CLOSE;
     }
- 
+
     return link->status;
 }
 
@@ -241,10 +244,11 @@ int link_print(Link *link)
     {
         return -1;
     }
-    
+
     /* Printing in terminal link info */
     n = fprintf(stdout, "=> Link (Id: %ld):\n", link->id);
-    n += fprintf(stdout, "- Name: %s\n", link->name); 
+    n += fprintf(stdout, "- Name: %s\n", link->name);
+    n += fprintf(stdout, "- Origen: %ld\n", link->start);
     n += fprintf(stdout, "- Destination: %ld\n", link->destination);
 
     /* Printing in terminal link's direction */
@@ -257,7 +261,7 @@ int link_print(Link *link)
     {
         n += fprintf(stdout, "EAST (E)\n");
     }
-    else if (link->destination == S)
+    else if (link->direction == S)
     {
         n += fprintf(stdout, "SOUTH (S)\n");
     }
@@ -269,7 +273,7 @@ int link_print(Link *link)
     {
         n += fprintf(stdout, "Not Defined (ND)\n");
     }
-    
+
     /* Printing in terminal link's status */
     n += fprintf(stdout, "- Link_status: ");
     if (link->status == OPEN)
@@ -280,9 +284,9 @@ int link_print(Link *link)
     {
         n += fprintf(stdout, "CLOSE\n");
     }
-    
+
     fprintf(stdout, "\n");
-    
+
     /* Return number of characters printed */
     return n;
 }
