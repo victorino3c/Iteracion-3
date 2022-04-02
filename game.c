@@ -1258,7 +1258,7 @@ Game *game_alloc2()
   if (!game)
   {
     fprintf(stderr, "Error saving memory for game(game_create)");
-    return ERROR;
+    return NULL;
   }
 
   return game;
