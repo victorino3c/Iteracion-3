@@ -18,6 +18,7 @@
 
 int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name);
 void game_loop_run(Game *game, Graphic_engine *gengine);
+void game_loop_run_from_file(Game *game, Graphic_engine *gengine, char *f);
 void game_loop_cleanup(Game *game, Graphic_engine *gengine);
 
 /**
@@ -38,12 +39,21 @@ int main(int argc, char *argv[])
   {
     fprintf(stderr, "Use: %s <game_data_file>\n", argv[0]);
     return 1;
-  }
+  } else if (argc > 2) { /*Loads game from a file*/
+
+      if (!game_loop_init(game, &gengine, argv[1]))
+      {
+        game_loop_run_from_file(game, gengine, argv[2]);
+        game_loop_cleanup(game, gengine);
+      }
+
+  } else if (argc == 2) { /*Loads game and waits for player interaction*/
  
-  if (!game_loop_init(game, &gengine, argv[1]))
-  {
-    game_loop_run(game, gengine);
-    game_loop_cleanup(game, gengine);
+      if (!game_loop_init(game, &gengine, argv[1]))
+      {
+        game_loop_run(game, gengine);
+        game_loop_cleanup(game, gengine);
+      }
   }
 
   return 0;
@@ -99,6 +109,32 @@ void game_loop_run(Game *game, Graphic_engine *gengine)
     command = command_get_user_input(arg);
     st = game_update(game, command, arg);
   }
+}
+
+/**
+  * @brief Executes the game from a file
+  * @author Nicolas Victorino
+  *
+  * Reads a file in a loop and executes the commands that are on the file
+  * @param game is a gamem type pointer that points to the structure that contains all the player and object location data along 
+  * with the game spaces, the last command, the enemies and the links between said spaces
+  * @param gengine es un puntero que apunta al motor grafico
+  */
+void game_loop_run_from_file(Game *game, Graphic_engine *gengine, char *file)
+{
+  T_Command command = NO_CMD;
+  char arg[MAX_ARG], input[MAX_ARG];
+  int st = 5;
+  FILE *f;
+  f = fopen(file, "r");
+
+  while ((command != EXIT) && !game_is_over(game) && fgets(input, MAX_ARG, f) > 0)
+  {
+    graphic_engine_paint_game(gengine, game, st);
+    command = command_get_file_input(input, arg);
+    st = game_update(game, command, arg);
+  }
+  fclose(f);
 }
 
 
