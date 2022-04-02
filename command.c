@@ -41,7 +41,7 @@ T_Command command_get_user_input(char *arg)
   char input[CMD_LENGHT] = "";
   int i = UNKNOWN - NO_CMD + 1;
   
-  // Error control
+  /* Error control*/
   if (!arg)
   {
     return NO_CMD;
@@ -59,7 +59,7 @@ T_Command command_get_user_input(char *arg)
         {
           if (scanf("%s", arg) < 0)
           {
-            fprintf(stdout, "Comando incorrecto. Los comandos TAKE DROP necesitan un argumento mas como el nombre del objeto .\n");
+            fprintf(stdout, "Comando incorrecto. Los comandos TAKE DROP INSPECT MOVE necesitan un argumento mas como el nombre del objeto .\n");
           }
         }
         
@@ -73,3 +73,49 @@ T_Command command_get_user_input(char *arg)
   
   return cmd;
 }
+
+T_Command command_get_file_input(char *command, char *arg) //Funciona bien, pero necesita un espacio al final del segundo argumento en el file desde el que se carga
+{
+  T_Command cmd = NO_CMD; 
+  char input[CMD_LENGHT] = "";
+  int i = UNKNOWN - NO_CMD + 1, j = 0, z = 0;
+  
+  /* Error control*/
+  if (!arg)
+  {
+    return NO_CMD;
+  }
+  
+  if (command != NULL)
+  {
+    cmd = UNKNOWN;
+    for (j = 0; command[j] != ' '; j++) { /*Reads first part of command*/
+      input[j] = command[j];
+    }
+    input[j] = '\0';
+    while (cmd == UNKNOWN && i < N_CMD)     /*!< Condition to continue reading */
+    {
+      if (!strcasecmp(input, cmd_to_str[i][CMDS]) || !strcasecmp(input, cmd_to_str[i][CMDL]))
+      {
+        cmd = i + NO_CMD;                   /*!< If any differences are detected between CMDS, CMDL and the input, cmd is modified */
+        if (cmd == TAKE || cmd == DROP || cmd == MOVE || cmd == INSPECT)
+        {
+          for (j++, z = 0; command[j] != ' '; j++, z++) { /*Reads the second argument of command and saves it in arg*/ //Funciona si hay un espacio al final del argumento
+            arg[z] = command[j];
+          } 
+          arg[z] = '\0';
+          if (arg == NULL)
+          {
+            fprintf(stdout, "Comando incorrecto. Los comandos TAKE DROP INSPECT MOVE necesitan un argumento mas como el nombre del objeto .\n");
+          }
+        }
+        
+      }
+      else                                  /*!< In any other case, continue reading >! */
+      {
+        i++;                                 
+      }
+    }
+  }
+  
+  return cmd;
