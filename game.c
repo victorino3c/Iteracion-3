@@ -1,11 +1,11 @@
-/** 
+/**
  * @brief It implements the game interface and all the associated calls
  * for each command
- * 
+ *
  * @file game.c
  * @author Antonio Van-Oers, Miguel Soto, Nicolas Victorino, Ignacio Nunez
  * @version 2.1
- * @date 12-02-2021 
+ * @date 02-04-2022
  * @copyright GNU Public License
  */
 
@@ -17,14 +17,14 @@
 
 typedef struct _Game
 {
-  Player *player[MAX_PLAYERS];      /*!< Pointer to player's array */
-  Object *object[MAX_OBJS];         /*!< Pointer to object's array */
-  Enemy *enemy[MAX_ENEMYS];         /*!< Pointer to enemy's array */
-  Space *spaces[MAX_SPACES];        /*!< Pointer to space's array */
-  Link *links[MAX_LINKS];           /*!< Pointer to link's array */
-  char *description;                /*!< Description that should be shown*/
-  T_Command last_cmd;               /*!< Last command input */
-}Game; 
+  Player *player[MAX_PLAYERS]; /*!< Pointer to player's array */
+  Object *object[MAX_OBJS];    /*!< Pointer to object's array */
+  Enemy *enemy[MAX_ENEMYS];    /*!< Pointer to enemy's array */
+  Space *spaces[MAX_SPACES];   /*!< Pointer to space's array */
+  Link *links[MAX_LINKS];      /*!< Pointer to link's array */
+  char *description;           /*!< Description that should be shown*/
+  T_Command last_cmd;          /*!< Last command input */
+} Game;
 
 /**
    Private functions
@@ -51,13 +51,12 @@ STATUS game_command_right(Game *game, char *arg);
 STATUS game_command_move(Game *game, char *arg);
 STATUS game_command_inspect(Game *game, char *arg);
 
-
 /**
   Game interface implementation
 */
 
 /** game_create allocs memory for some necessary game's members
-  */
+ */
 STATUS game_alloc(Game *game)
 {
 
@@ -75,7 +74,7 @@ STATUS game_alloc(Game *game)
     if (!game->player[i])
     {
       return ERROR;
-    }  
+    }
   }
 
   for (i = 0; i < MAX_ENEMYS; i++)
@@ -91,10 +90,9 @@ STATUS game_alloc(Game *game)
   return OK;
 }
 
-
 /** game_create initializes all necessary game's members
  * to a empty value
-  */
+ */
 STATUS game_create(Game *game)
 {
   /* Error control*/
@@ -102,8 +100,7 @@ STATUS game_create(Game *game)
   {
     return ERROR;
   }
-  
-  
+
   int i;
 
   for (i = 0; i < MAX_SPACES; i++)
@@ -130,31 +127,31 @@ STATUS game_create(Game *game)
   {
     game->links[i] = NULL;
   }
-  
+
   game->last_cmd = NO_CMD;
 
   return OK;
 }
 
-/** game_destroy frees/destroys all of game's members  
-  * calling space_destroy for each one of them
-  */
+/** game_destroy frees/destroys all of game's members
+ * calling space_destroy for each one of them
+ */
 STATUS game_destroy(Game *game)
 {
   /* Error control*/
-  if(game == NULL)
+  if (game == NULL)
   {
     return ERROR;
   }
 
   int i = 0;
-  
+
   for (i = 0; i < MAX_OBJS && game->object[i] != NULL; i++)
   {
     obj_destroy(game->object[i]);
     game->object[i] = NULL;
   }
-  
+
   for (i = 0; i < MAX_PLAYERS && game->player[i] != NULL; i++)
   {
     player_destroy(game->player[i]);
@@ -166,7 +163,7 @@ STATUS game_destroy(Game *game)
     enemy_destroy(game->enemy[i]);
     game->enemy[i] = NULL;
   }
-      
+
   for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
   {
     space_destroy(game->spaces[i]);
@@ -178,7 +175,7 @@ STATUS game_destroy(Game *game)
     link_destroy(game->links[i]);
     game->links[i] = NULL;
   }
-  
+
   free(game);
   game = NULL;
 
@@ -186,13 +183,13 @@ STATUS game_destroy(Game *game)
 }
 
 /**
-  * @brief Adds all spaces of the game
-  * @author Antonio Van-Oers, Miguel Soto, Nicolas Victorino, Ignacio Nunez
-  *
-  * @param game pointer to game
-  * @param space pointer to the target space
-  * @return OK if everything worked correctly and ERROR if there was any mistake
-  */
+ * @brief Adds all spaces of the game
+ * @author Antonio Van-Oers, Miguel Soto, Nicolas Victorino, Ignacio Nunez
+ *
+ * @param game pointer to game
+ * @param space pointer to the target space
+ * @return OK if everything worked correctly and ERROR if there was any mistake
+ */
 STATUS game_add_space(Game *game, Space *space)
 {
   /* Error control*/
@@ -208,7 +205,9 @@ STATUS game_add_space(Game *game, Space *space)
     return ERROR;
   }
 
-  for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++) {}
+  for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
+  {
+  }
 
   /* Error control*/
   if (i >= MAX_SPACES)
@@ -224,14 +223,14 @@ STATUS game_add_space(Game *game, Space *space)
 /**
  * @brief Adds all game's objects
  * @author Miguel Soto
- * 
+ *
  * @param game pointer to game
  * @param obj pointer to target object
  * @return OK if everything worked correctly and ERROR if there was any mistake
  */
 STATUS game_add_object(Game *game, Object *obj)
 {
-   /* Error control*/
+  /* Error control*/
   if (!game || !obj)
   {
     return ERROR;
@@ -239,9 +238,11 @@ STATUS game_add_object(Game *game, Object *obj)
 
   int i;
 
-  for (i = 0; i < MAX_OBJS && game->object[i] != NULL; i++) {}
+  for (i = 0; i < MAX_OBJS && game->object[i] != NULL; i++)
+  {
+  }
 
-   /* Error control*/
+  /* Error control*/
   if (i >= MAX_OBJS)
   {
     return ERROR;
@@ -255,7 +256,7 @@ STATUS game_add_object(Game *game, Object *obj)
 /**
  * @brief Adds all game's players
  * @author Miguel Soto
- * 
+ *
  * game_add_obj agrega uno a uno los objetos al juego
  * @param game pointer to game
  * @param obj pointer to target object
@@ -263,21 +264,23 @@ STATUS game_add_object(Game *game, Object *obj)
  */
 STATUS game_add_player(Game *game, Player *p)
 {
-   /* Error control*/
+  /* Error control*/
   if (!game || !p)
   {
     return ERROR;
   }
-  
+
   int i;
-  for (i = 0; i < MAX_PLAYERS && game->player[i] != NULL; i++) {}
+  for (i = 0; i < MAX_PLAYERS && game->player[i] != NULL; i++)
+  {
+  }
 
   if (i >= MAX_PLAYERS)
-   /* Error control*/
+  /* Error control*/
   {
     return ERROR;
   }
-  
+
   game->player[i] = p;
 
   return OK;
@@ -286,28 +289,30 @@ STATUS game_add_player(Game *game, Player *p)
 /**
  * @brief Adds all game's enemies
  * @author Miguel Soto
- * 
+ *
  * @param game pointer to game
  * @param obj pointer to target object
  * @return OK if everything worked correctly and ERROR if there was any mistake
  */
 STATUS game_add_enemy(Game *game, Enemy *e)
 {
-   /* Error control*/
+  /* Error control*/
   if (!game || !e)
   {
     return ERROR;
   }
-  
+
   int i;
-  for (i = 0; i < MAX_ENEMYS && game->enemy[i] != NULL; i++) {}
+  for (i = 0; i < MAX_ENEMYS && game->enemy[i] != NULL; i++)
+  {
+  }
 
   /* Error control*/
   if (i >= MAX_ENEMYS)
   {
     return ERROR;
   }
-  
+
   game->enemy[i] = e;
 
   return OK;
@@ -316,7 +321,7 @@ STATUS game_add_enemy(Game *game, Enemy *e)
 /**
  * @brief Adds all game's links
  * @author Miguel Soto
- * 
+ *
  * @param game pointer to game
  * @param obj pointer to target object
  * @return OK if everything worked correctly and ERROR if there was any mistake
@@ -328,32 +333,34 @@ STATUS game_add_link(Game *game, Link *l)
   {
     return ERROR;
   }
-  
+
   int i;
-  for (i = 0; i < MAX_LINKS && game->links[i] != NULL; i++) {}
+  for (i = 0; i < MAX_LINKS && game->links[i] != NULL; i++)
+  {
+  }
 
   /* Error control*/
   if (i >= MAX_LINKS)
   {
     return ERROR;
   }
-  
+
   game->links[i] = l;
 
   return OK;
 }
 
 /**
-  * @brief Checks if the spaces are within the appropiate range 
-  * @author Antonio Van-Oers, Miguel Soto, Nicolas Victorino, Ignacio Nunez
-  *
-  * game_get_space_id_at Checks if the spaces are within the appropiate range, output will be No_ID 
-  * whenever it is located outside this range or its id if it belongs to the game
-  * @param game pointer to game
-  * @param position integer that marks the position of the space to check
-  * @return space_get_id(game->spaces[position]) output will be No_ID 
-  * whenever it is located outside this range or its id if it belongs to the game.
-  */
+ * @brief Checks if the spaces are within the appropiate range
+ * @author Antonio Van-Oers, Miguel Soto, Nicolas Victorino, Ignacio Nunez
+ *
+ * game_get_space_id_at Checks if the spaces are within the appropiate range, output will be No_ID
+ * whenever it is located outside this range or its id if it belongs to the game
+ * @param game pointer to game
+ * @param position integer that marks the position of the space to check
+ * @return space_get_id(game->spaces[position]) output will be No_ID
+ * whenever it is located outside this range or its id if it belongs to the game.
+ */
 Id game_get_space_id_at(Game *game, int position)
 {
   /* Error control*/
@@ -366,7 +373,7 @@ Id game_get_space_id_at(Game *game, int position)
 }
 
 /** Gets game's space with target id
-  */
+ */
 Space *game_get_space(Game *game, Id id)
 {
   int i;
@@ -400,7 +407,7 @@ Object *game_get_object(Game *game, Id id)
   {
     return NULL;
   }
-  
+
   for (i = 0; i < MAX_OBJS && game->object[i] != NULL; i++)
   {
     if (id == obj_get_id(game->object[i]))
@@ -415,7 +422,7 @@ Object *game_get_object(Game *game, Id id)
 /**
  * Finds an object with the same name
  */
-Object *game_get_object_byName(Game *game, char* name)
+Object *game_get_object_byName(Game *game, char *name)
 {
   int i;
 
@@ -424,7 +431,7 @@ Object *game_get_object_byName(Game *game, char* name)
   {
     return NULL;
   }
-  
+
   for (i = 0; i < MAX_OBJS && game->object[i] != NULL; i++)
   {
     if (strcmp(name, obj_get_name(game->object[i])) == 0)
@@ -448,7 +455,7 @@ Player *game_get_player(Game *game, Id id)
   {
     return NULL;
   }
-  
+
   for (i = 0; i < MAX_PLAYERS && game->player[i] != NULL; i++)
   {
     if (id == player_get_id(game->player[i]))
@@ -472,7 +479,7 @@ Enemy *game_get_enemy(Game *game, Id id)
   {
     return NULL;
   }
-  
+
   for (i = 0; i < MAX_ENEMYS && game->enemy[i] != NULL; i++)
   {
     if (id == enemy_get_id(game->enemy[i]))
@@ -480,7 +487,7 @@ Enemy *game_get_enemy(Game *game, Id id)
       return game->enemy[i];
     }
   }
-  
+
   return NULL;
 }
 
@@ -489,12 +496,12 @@ Enemy *game_get_enemy(Game *game, Id id)
  */
 char *game_get_description(Game *game)
 {
-/* Error control*/ 
+  /* Error control*/
   if (!game)
   {
     return NULL;
   }
-  
+
   return game->description;
 }
 
@@ -510,7 +517,7 @@ Link *game_get_link(Game *game, Id id)
   {
     return NULL;
   }
-  
+
   for (i = 0; i < MAX_LINKS && game->links[i] != NULL; i++)
   {
     if (id == link_get_id(game->links[i]))
@@ -518,18 +525,18 @@ Link *game_get_link(Game *game, Id id)
       return game->links[i];
     }
   }
-  
+
   return NULL;
 }
 
 /**
-  * @brief Sets the player's location to target id
-  * @author Miguel Soto
-  *
-  * @param game pointer to game
-  * @param id target id where it needs to be placed at
-  *  @return OK if everything worked correctly or ERROR if there was any mistake
-  */
+ * @brief Sets the player's location to target id
+ * @author Miguel Soto
+ *
+ * @param game pointer to game
+ * @param id target id where it needs to be placed at
+ *  @return OK if everything worked correctly or ERROR if there was any mistake
+ */
 STATUS game_set_player_location(Game *game, Id player_id, Id space_id)
 {
   /* Error control*/
@@ -545,8 +552,8 @@ STATUS game_set_player_location(Game *game, Id player_id, Id space_id)
     return ERROR;
   }
 
-  /* Error control*/  
-  if(player_set_location(p, space_id)==ERROR)
+  /* Error control*/
+  if (player_set_location(p, space_id) == ERROR)
   {
     return ERROR;
   }
@@ -555,13 +562,13 @@ STATUS game_set_player_location(Game *game, Id player_id, Id space_id)
 }
 
 /**
-  * @brief Sets the object's location to target id
-  * @author Miguel Soto
-  *
-  * @param game pointer to game
-  * @param id target id where it needs to be placed at
-  * @return OK if everything worked correctly or ERROR if there was any mistake
-  */
+ * @brief Sets the object's location to target id
+ * @author Miguel Soto
+ *
+ * @param game pointer to game
+ * @param id target id where it needs to be placed at
+ * @return OK if everything worked correctly or ERROR if there was any mistake
+ */
 STATUS game_set_object_location(Game *game, Id obj_id, Id space_id)
 {
   /* Error control*/
@@ -580,7 +587,7 @@ STATUS game_set_object_location(Game *game, Id obj_id, Id space_id)
   }
 
   /* Error control*/
-  if(obj_set_location(o, space_id)==ERROR)
+  if (obj_set_location(o, space_id) == ERROR)
   {
     return ERROR;
   }
@@ -589,13 +596,13 @@ STATUS game_set_object_location(Game *game, Id obj_id, Id space_id)
 }
 
 /**
-  * @brief Sets the enemy's location to target id
-  * @author Antonio Van-Oers
-  *
-  * @param game pointer to game
-  * @param id target id where it needs to be placed at
-  * @return OK if everything goes well or ERROR if there was any mistake
-  */
+ * @brief Sets the enemy's location to target id
+ * @author Antonio Van-Oers
+ *
+ * @param game pointer to game
+ * @param id target id where it needs to be placed at
+ * @return OK if everything goes well or ERROR if there was any mistake
+ */
 STATUS game_set_enemy_location(Game *game, Id enemy_id, Id space_id)
 {
   /* Error control*/
@@ -611,13 +618,12 @@ STATUS game_set_enemy_location(Game *game, Id enemy_id, Id space_id)
   {
     return ERROR;
   }
-  
-  return enemy_set_location(game->enemy[MAX_PLAYERS-1], space_id);
+
+  return enemy_set_location(game->enemy[MAX_PLAYERS - 1], space_id);
 }
 
-
 /** Gets an player's position
-  */
+ */
 Id game_get_player_location(Game *game, Id player_id)
 {
   /* Error control*/
@@ -633,12 +639,12 @@ Id game_get_player_location(Game *game, Id player_id)
   {
     return NO_ID;
   }
-  
+
   return player_get_location(p);
 }
 
 /** Gets an enemy's position
-  */
+ */
 Id game_get_enemy_location(Game *game, Id enemy_id)
 {
   /* Error control*/
@@ -659,7 +665,7 @@ Id game_get_enemy_location(Game *game, Id enemy_id)
 }
 
 /** Gets an object's position
-  */
+ */
 Id game_get_object_location(Game *game, Id obj_id)
 {
   /* Error control*/
@@ -700,14 +706,14 @@ LINK_STATUS game_get_connection_status(Game *game, Id act_spaceid, DIRECTION dir
   {
     return CLOSE;
   }
-  
+
   link_id = space_get_link(s, dir);
   /* Error control*/
   if (link_id < 0)
   {
     return CLOSE;
   }
-  
+
   linkst = link_get_status(game_get_link(game, link_id));
 
   return linkst;
@@ -734,7 +740,7 @@ Id game_get_connection(Game *game, Id act_spaceid, DIRECTION dir)
   {
     return CLOSE;
   }
-  
+
   link_id = space_get_link(s, dir);
   /* Error control */
   if (link_id < 0)
@@ -747,11 +753,10 @@ Id game_get_connection(Game *game, Id act_spaceid, DIRECTION dir)
   return dest_id;
 }
 
-
-/** game_update updates cmd whenever something is typed in, this is where 
- * every known case gets interpreted as the various actions on the game, 
+/** game_update updates cmd whenever something is typed in, this is where
+ * every known case gets interpreted as the various actions on the game,
  * any other input would be considered unknown
-  */
+ */
 int game_update(Game *game, T_Command cmd, char *arg)
 {
   int st = 0;
@@ -765,42 +770,44 @@ int game_update(Game *game, T_Command cmd, char *arg)
     break;
 
   case EXIT:
-    st = (int) game_command_exit(game, arg);
+    st = (int)game_command_exit(game, arg);
     break;
 
   case DOWN:
-    st = (int) game_command_down(game, arg);
+    st = (int)game_command_down(game, arg);
     break;
 
   case RIGHT:
-    st = (int) game_command_right(game, arg);
+    st = (int)game_command_right(game, arg);
     break;
 
   case LEFT:
-    st = (int) game_command_left(game, arg);
+    st = (int)game_command_left(game, arg);
     break;
 
   case UP:
-    st = (int) game_command_up(game, arg);
+    st = (int)game_command_up(game, arg);
     break;
 
   case TAKE:
-    st = (int) game_command_take(game, arg);
+    st = (int)game_command_take(game, arg);
     break;
-  
+
   case DROP:
-    st = (int) game_command_drop(game, arg);
+    st = (int)game_command_drop(game, arg);
     break;
 
   case ATTACK:
-    st = (int) game_command_attack(game, arg);
+    st = (int)game_command_attack(game, arg);
     break;
-  
+
   case MOVE:
-    st = (int) game_command_move(game, arg);
+    st = (int)game_command_move(game, arg);
     break;
+
   case INSPECT:
-    st = (int) game_command_inspect(game, arg);
+    st = (int)game_command_inspect(game, arg);
+    break;
 
   default:
     break;
@@ -809,16 +816,16 @@ int game_update(Game *game, T_Command cmd, char *arg)
   return st;
 }
 
-/** Gets the last command in the input 
-  */
+/** Gets the last command in the input
+ */
 T_Command game_get_last_command(Game *game)
 {
   return game->last_cmd;
 }
 
-/** 
-  * game_print_data prints all game related relevant data
-  */
+/**
+ * game_print_data prints all game related relevant data
+ */
 void game_print_data(Game *game)
 {
   int i = 0;
@@ -836,13 +843,13 @@ void game_print_data(Game *game)
   {
     obj_print(game->object[i]);
   }
-  
+
   printf("=> Players:\n");
   for (i = 0; i < MAX_PLAYERS && game->player[i] != NULL; i++)
   {
     player_print(game->player[i]);
   }
-  
+
   printf("=> Enemies:\n");
   for (i = 0; i < MAX_ENEMYS && game->enemy[i] != NULL; i++)
   {
@@ -850,22 +857,22 @@ void game_print_data(Game *game)
   }
 }
 
-/** False is the output when called 
+/** False is the output when called
  * meaning game has ended
  */
 BOOL game_is_over(Game *game)
 {
-  if (player_get_health(game->player[MAX_PLAYERS-1]) <= 0)
+  if (player_get_health(game->player[MAX_PLAYERS - 1]) <= 0)
   {
     return TRUE;
   }
-  
+
   return FALSE;
 }
 
 /**
-  *Calls implementation for each action 
-  */
+ *Calls implementation for each action
+ */
 int game_command_unknown(Game *game, char *arg)
 {
   return 5;
@@ -882,19 +889,18 @@ STATUS game_command_exit(Game *game, char *arg)
  */
 STATUS game_command_take(Game *game, char *arg)
 {
-  Id player_location = player_get_location(game->player[MAX_PLAYERS-1]);
+  Id player_location = player_get_location(game->player[MAX_PLAYERS - 1]);
   Id id_obj_taken = NO_ID, obj_loc = NO_ID;
   Object *obj_taken;
 
   obj_taken = game_get_object_byName(game, arg);
   id_obj_taken = obj_get_id(obj_taken);
-  
 
-   /* Error control*/
+  /* Error control*/
   if (space_has_object(game_get_space(game, player_location), id_obj_taken))
   {
     obj_loc = game_get_object_location(game, id_obj_taken);
-    
+
     /* Error control*/
     if (player_location != obj_loc)
     {
@@ -921,8 +927,8 @@ STATUS game_command_take(Game *game, char *arg)
       return ERROR;
     }
 
-    /* Error control */      
-    if (player_add_object(game->player[MAX_PLAYERS-1], o) == ERROR)
+    /* Error control */
+    if (player_add_object(game->player[MAX_PLAYERS - 1], o) == ERROR)
     {
       return ERROR;
     }
@@ -935,7 +941,7 @@ STATUS game_command_take(Game *game, char *arg)
   }
 
   return ERROR;
-} 
+}
 
 /** This command is for dropping the object that carries the player
  * on the current position. It requires the name of the object to be dropped
@@ -943,8 +949,7 @@ STATUS game_command_take(Game *game, char *arg)
  */
 STATUS game_command_drop(Game *game, char *arg)
 {
-
-  Id player_location = player_get_location(game->player[MAX_PLAYERS-1]);
+  Id player_location = player_get_location(game->player[MAX_PLAYERS - 1]);
   Id obj_id = NO_ID;
   Object *obj;
 
@@ -952,13 +957,13 @@ STATUS game_command_drop(Game *game, char *arg)
   obj_id = obj_get_id(obj);
 
   /* Error control */
-  if (obj_id != obj_get_id(obj) || inventory_has_id(player_get_inventory(game->player[MAX_PLAYERS-1]), obj_id)==FALSE)
+  if (obj_id != obj_get_id(obj) || inventory_has_id(player_get_inventory(game->player[MAX_PLAYERS - 1]), obj_id) == FALSE)
   {
     return ERROR;
   }
-   
+
   /* Error control*/
-  if (player_get_inventory(game->player[MAX_PLAYERS-1]) == NULL)
+  if (player_get_inventory(game->player[MAX_PLAYERS - 1]) == NULL)
   {
     return ERROR;
   }
@@ -969,7 +974,7 @@ STATUS game_command_drop(Game *game, char *arg)
   {
     return ERROR;
   }
-  
+
   Object *o = game_get_object(game, obj_id);
   /* Error control*/
   if (o == NULL)
@@ -983,13 +988,13 @@ STATUS game_command_drop(Game *game, char *arg)
     return ERROR;
   }
 
-  /* Error control */ 
+  /* Error control */
   if (game_set_object_location(game, obj_get_id(o), space_get_id(s)) == ERROR)
   {
     return ERROR;
   }
   /* Error control */
-  if (player_del_object(game->player[MAX_PLAYERS-1], obj_id) == ERROR)
+  if (player_del_object(game->player[MAX_PLAYERS - 1], obj_id) == ERROR)
   {
     return ERROR;
   }
@@ -998,87 +1003,99 @@ STATUS game_command_drop(Game *game, char *arg)
 }
 
 /** When the las command is interpreted as down, move
- * the player to the space South to its current position, 
+ * the player to the space South to its current position,
  * updating it afterwards
  */
 STATUS game_command_down(Game *game, char *arg)
 {
-  Id player_location = player_get_location(game->player[MAX_PLAYERS-1]);
-  Id player_id = player_get_id(game->player[MAX_PLAYERS-1]);
-  int i = 0;
-  Id current_id = NO_ID;
+  Id player_location = player_get_location(game->player[MAX_PLAYERS - 1]);
+  Id player_id = player_get_id(game->player[MAX_PLAYERS - 1]);
 
   /* Error control */
-  if (player_id == NO_ID)
+  if (player_id == NO_ID || player_location == NO_ID)
   {
     return ERROR;
   }
 
-  for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
+  Space *s = game_get_space(game, player_location);
+  if (!s)
   {
-    current_id = space_get_id(game->spaces[i]);
-    if (current_id == player_location) 
-    {
-      current_id = space_get_south(game->spaces[i]);
-      if (current_id != NO_ID)
-      {
-        game_set_player_location(game,player_id, current_id);
-        return OK;
-      }
-    }
+    return ERROR;
   }
-  return ERROR;
+
+  /* S is south */
+  Link *l = game_get_link(game, space_get_link(s, S));
+  if (!l)
+  {
+    return ERROR;
+  }
+
+  if (link_get_status(l) == OPEN)
+  {
+    game_set_player_location(game, player_id, link_get_destination(l));
+    return OK;
+  }
+  else
+  {
+    return ERROR;
+  }
 }
 
 /** When the las command is interpreted as up, move
- * the player to the space North to its current position, 
+ * the player to the space North to its current position,
  * updating it afterwards
  */
 STATUS game_command_up(Game *game, char *arg)
 {
-  Id player_location = player_get_location(game->player[MAX_PLAYERS-1]);
-  Id player_id = player_get_id(game->player[MAX_PLAYERS-1]);
-  int i = 0;
-  Id current_id = NO_ID;
+  Id player_location = player_get_location(game->player[MAX_PLAYERS - 1]);
+  Id player_id = player_get_id(game->player[MAX_PLAYERS - 1]);
 
   /* Error control */
-  if (player_id == NO_ID)
+  if (player_id == NO_ID || player_location == NO_ID)
   {
     return ERROR;
   }
 
-  for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
+  Space *s = game_get_space(game, player_location);
+  if (!s)
   {
-    current_id = space_get_id(game->spaces[i]);
-    if (current_id == player_location) 
-    {
-      current_id = space_get_north(game->spaces[i]);
-      if (current_id != NO_ID)
-      {
-        game_set_player_location(game,player_id, current_id);
-        return OK;
-      }
-    }
+    return ERROR;
   }
-  return ERROR;
+
+  /* N is north */
+  Link *l = game_get_link(game, space_get_link(s, N));
+  if (!l)
+  {
+    return ERROR;
+  }
+
+  if (link_get_status(l) == OPEN)
+  {
+    game_set_player_location(game, player_id, link_get_destination(l));
+    return OK;
+  }
+  else
+  {
+    return ERROR;
+  }
 }
 
-/** This command allows the player to engage in combat with an enemy. 
+/** This command allows the player to engage in combat with an enemy.
  * The deciding factor is up to chance, a random number will determine
  * whether the player or the enemy won that round resulting in the loser
  * getting his health reduced by 1
  */
 STATUS game_command_attack(Game *game, char *arg)
 {
-  srand (time(NULL)); 
+  srand(time(NULL));
   int rand_num;
-  rand_num = rand() % 10; 
-  
-  Id player_loc = player_get_location(game->player[MAX_PLAYERS-1]);
-  Id enemy_loc= enemy_get_location(game->enemy[MAX_PLAYERS-1]);
+  rand_num = rand() % 10;
+
+  Id player_loc = player_get_location(game->player[MAX_PLAYERS - 1]);
+  Id enemy_loc = enemy_get_location(game->enemy[MAX_PLAYERS - 1]);
 
   /* Error control */
-  if(enemy_get_health(game->enemy[MAX_PLAYERS-1])==0)
+  if (enemy_get_health(game->enemy[MAX_PLAYERS - 1]) == 0)
   {
     return ERROR;
   }
@@ -1088,22 +1105,21 @@ STATUS game_command_attack(Game *game, char *arg)
   {
     return ERROR;
   }
- 
 
   /* Error control */
-  if(player_loc != enemy_loc)
+  if (player_loc != enemy_loc)
   {
     return ERROR;
   }
   /*Player wins if rand_num es > 5, else, they lose a life as the enemy won that round*/
   if (rand_num > 5)
   {
-    enemy_set_health(game->enemy[MAX_PLAYERS-1], (enemy_get_health(game->enemy[MAX_PLAYERS-1])-1)); 
+    enemy_set_health(game->enemy[MAX_PLAYERS - 1], (enemy_get_health(game->enemy[MAX_PLAYERS - 1]) - 1));
   }
-  else 
+  else
   {
-    player_set_health(game->player[MAX_PLAYERS-1], (player_get_health(game->player[MAX_PLAYERS-1])-1)); 
-    if (player_get_health(game->player[MAX_PLAYERS-1])== 0 )
+    player_set_health(game->player[MAX_PLAYERS - 1], (player_get_health(game->player[MAX_PLAYERS - 1]) - 1));
+    if (player_get_health(game->player[MAX_PLAYERS - 1]) == 0)
     {
       game_is_over(game);
     }
@@ -1113,77 +1129,89 @@ STATUS game_command_attack(Game *game, char *arg)
 }
 
 /** When the las command is interpreted as left, move
- * the player to the space West to its current position, 
+ * the player to the space West to its current position,
  * updating it afterwards
  */
-STATUS game_command_left(Game *game, char *arg)        
+STATUS game_command_left(Game *game, char *arg)
 {
-  Id player_location = player_get_location(game->player[MAX_PLAYERS-1]);
-  Id player_id = player_get_id(game->player[MAX_PLAYERS-1]);
-  int i = 0;
-  Id current_id = NO_ID;
+  Id player_location = player_get_location(game->player[MAX_PLAYERS - 1]);
+  Id player_id = player_get_id(game->player[MAX_PLAYERS - 1]);
 
   /* Error control */
-  if (player_id == NO_ID)
+  if (player_id == NO_ID || player_location == NO_ID)
   {
     return ERROR;
   }
 
-  for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
+  Space *s = game_get_space(game, player_location);
+  if (!s)
   {
-    current_id = space_get_id(game->spaces[i]);
-    if (current_id == player_location) 
-    {
-      current_id = space_get_west(game->spaces[i]);
-      if (current_id != NO_ID)
-      {
-        game_set_player_location(game,player_id, current_id);
-        return OK;
-      }
-    }
+    return ERROR;
   }
-  return ERROR;
+
+  /* W is west */
+  Link *l = game_get_link(game, space_get_link(s, W));
+  if (!l)
+  {
+    return ERROR;
+  }
+
+  if (link_get_status(l) == OPEN)
+  {
+    game_set_player_location(game, player_id, link_get_destination(l));
+    return OK;
+  }
+  else
+  {
+    return ERROR;
+  }
 }
 
 /** When the las command is interpreted as right, move
- * the player to the space East to its current position, 
+ * the player to the space East to its current position,
  * updating it afterwards
  */
 STATUS game_command_right(Game *game, char *arg)
 {
-  Id player_location = player_get_location(game->player[MAX_PLAYERS-1]);
-  Id player_id = player_get_id(game->player[MAX_PLAYERS-1]);
-  int i = 0;
-  Id current_id = NO_ID;
+  Id player_location = player_get_location(game->player[MAX_PLAYERS - 1]);
+  Id player_id = player_get_id(game->player[MAX_PLAYERS - 1]);
 
-  /* Error control */  
+  /* Error control */
   if (player_id == NO_ID)
   {
     return ERROR;
   }
 
-  for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
+  Space *s = game_get_space(game, player_location);
+  if (!s)
   {
-    current_id = space_get_id(game->spaces[i]);
-    if (current_id == player_location) 
-    {
-      current_id = space_get_east(game->spaces[i]);
-      if (current_id != NO_ID)
-      {
-        game_set_player_location(game,player_id, current_id);
-        return OK;
-      }
-    }
+    return ERROR;
   }
-  return ERROR;
+
+  /* E is east */
+  Link *l = game_get_link(game, space_get_link(s, E));
+  if (!l)
+  {
+    return ERROR;
+  }
+
+  if (link_get_status(l) == OPEN)
+  {
+    game_set_player_location(game, player_id, link_get_destination(l));
+    return OK;
+  }
+  else
+  {
+    return ERROR;
+  }
 }
 
 /*Function that gets the enemy id based on the position it is located in the enemy array located in the game structure */
-Id game_get_enemy_id(Game *game, int num) 
+Id game_get_enemy_id(Game *game, int num)
 {
 
   /* Error control */
-  if ( !game || num < 0 || num > MAX_ENEMYS - 1) 
+  if (!game || num < 0 || num > MAX_ENEMYS - 1)
   {
     return NO_ID;
   }
@@ -1191,24 +1219,24 @@ Id game_get_enemy_id(Game *game, int num)
   return (Id)enemy_get_id(game->enemy[num]);
 }
 
-Id game_get_player_id(Game* game) 
+Id game_get_player_id(Game *game)
 {
 
-  /* Error control */  
+  /* Error control */
   if (!game)
   {
     return NO_ID;
   }
 
-  return (Id)player_get_id(game->player[MAX_PLAYERS-1]);
+  return (Id)player_get_id(game->player[MAX_PLAYERS - 1]);
 }
 
 /*Function that gets the object id based on the position it is located in the object array located in the game structure */
-Id game_get_object_id(Game *game, int num) 
+Id game_get_object_id(Game *game, int num)
 {
 
   /* Error control */
-  if ( !game || num < 0 || num > MAX_ENEMYS - 1) 
+  if (!game || num < 0 || num > MAX_ENEMYS - 1)
   {
     return NO_ID;
   }
@@ -1216,12 +1244,12 @@ Id game_get_object_id(Game *game, int num)
   return (Id)obj_get_id(game->object[num]);
 }
 
-Game* game_alloc2() 
+Game *game_alloc2()
 {
 
-  Game* game = NULL;
+  Game *game = NULL;
 
-  game = (Game*)malloc(sizeof(Game));
+  game = (Game *)malloc(sizeof(Game));
 
   /* Error control */
   if (!game)
@@ -1236,20 +1264,20 @@ Game* game_alloc2()
 /** Another way to move, commands move n,s,e,w
  * to north, south, east or west respectively
  */
-STATUS game_command_move(Game *game, char *arg)        
+STATUS game_command_move(Game *game, char *arg)
 {
-  Id player_location = player_get_location(game->player[MAX_PLAYERS-1]);
-  Id player_id = player_get_id(game->player[MAX_PLAYERS-1]);
+  Id player_location = player_get_location(game->player[MAX_PLAYERS - 1]);
+  Id player_id = player_get_id(game->player[MAX_PLAYERS - 1]);
   int i = 0;
   Id current_id = NO_ID;
   char c[10];
-  char west[10]={'w','\0'};
-  char north[10]={'n','\0'};
-  char south[10]={'s','\0'};
-  char east[10]={'e','\0'};
+  char west[10] = {'w', '\0'};
+  char north[10] = {'n', '\0'};
+  char south[10] = {'s', '\0'};
+  char east[10] = {'e', '\0'};
 
   strcpy(c, arg);
-  c[1]='\0';
+  c[1] = '\0';
 
   /* Error control */
   if (player_id == NO_ID)
@@ -1260,68 +1288,78 @@ STATUS game_command_move(Game *game, char *arg)
   for (i = 0; i < MAX_SPACES && game->spaces[i] != NULL; i++)
   {
     current_id = space_get_id(game->spaces[i]);
-    if (current_id == player_location) 
+    if (current_id == player_location)
     {
       /*Move west*/
-      
-      if(strcmp(c, west)==0){
-      current_id = space_get_west(game->spaces[i]);
+
+      if (strcmp(c, west) == 0)
+      {
+        current_id = space_get_west(game->spaces[i]);
       }
 
       /*Move north*/
-      
-     if(strcmp(c, north)==0){
-      current_id = space_get_north(game->spaces[i]);
+
+      if (strcmp(c, north) == 0)
+      {
+        current_id = space_get_north(game->spaces[i]);
       }
 
       /*Move south*/
-     
-      if(strcmp(c, south)==0){
-      current_id = space_get_south(game->spaces[i]);
+
+      if (strcmp(c, south) == 0)
+      {
+        current_id = space_get_south(game->spaces[i]);
       }
 
       /*Move east*/
-      
-      if(strcmp(c, east)==0){
-      current_id = space_get_east(game->spaces[i]);
+
+      if (strcmp(c, east) == 0)
+      {
+        current_id = space_get_east(game->spaces[i]);
       }
 
       if (current_id != NO_ID)
       {
-        game_set_player_location(game,player_id, current_id);
+        game_set_player_location(game, player_id, current_id);
         return OK;
       }
     }
   }
-  
+
   return ERROR;
 }
 
 /*Changes the description of game to the one user wanted
-*/
-STATUS game_command_inspect(Game *game, char *arg){
+ */
+STATUS game_command_inspect(Game *game, char *arg)
+{
 
   /*SPACE CASE*/
-  if(strcmp(arg, "space")==0 || strcmp(arg, "s")==0){
-    game->description = (char*) space_get_description(game_get_space(game, player_get_location(game->player[MAX_PLAYERS-1])));
+  if (strcmp(arg, "space") == 0 || strcmp(arg, "s") == 0)
+  {
+    game->description = (char *)space_get_description(game_get_space(game, player_get_location(game->player[MAX_PLAYERS - 1])));
     return OK;
   }
 
   /*OBJECT CASE*/
-  else{
-    if(arg == NULL){
+  else
+  {
+    if (arg == NULL)
+    {
       game->description = " ";
       return ERROR;
     }
-    Object* obj = game_get_object_byName(game, arg);
-    if(obj==NULL){
+    Object *obj = game_get_object_byName(game, arg);
+    if (obj == NULL)
+    {
       game->description = " ";
       return ERROR;
     }
-    if(player_has_object(game->player[0], obj_get_id(obj)) == FALSE && player_get_location(game->player[0]) != obj_get_location(obj)){
+    if (player_has_object(game->player[0], obj_get_id(obj)) == FALSE && player_get_location(game->player[0]) != obj_get_location(obj))
+    {
       return ERROR;
     }
-    game->description = (char*) obj_get_description(obj);
+    game->description = (char *)obj_get_description(obj);
     return OK;
   }
   return ERROR;
