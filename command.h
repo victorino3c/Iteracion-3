@@ -50,4 +50,16 @@ typedef enum enum_Command {
   */
 T_Command command_get_user_input();
 
+/**
+  * @brief Obtiene el input del usuario 
+  * @author Nicolas Victorino
+  *
+  * It scans the cmd searching for key words introduced by the file 
+  * in order to interpret and clasify the info
+  * 
+  * @return cmd, a T_Command type variable that changes its value depending on the input
+  */
+T_Command command_get_file_input(char *command, char *arg);
+
+
 #endif
