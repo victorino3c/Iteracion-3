@@ -142,7 +142,7 @@ STATUS game_load_spaces(Game *game, char *filename)
       
 
 #ifdef DEBUG
-      //printf("Leido: %ld|%s\n", id, name);
+      //printf("Leido: %ld|%s|%s\n", id, name, description);
 #endif
       space = space_create(id);
       if (space != NULL)
