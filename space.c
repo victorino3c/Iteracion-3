@@ -163,22 +163,22 @@ Id space_get_id(Space *space)
 }
 
 /**
- * Comprueba si el id recibido es el de un espacio
+ * Checks if the id reciven corresponds with a space
  */
 STATUS space_test_id(Id id)
 {
   int first_digit, digits;
 
-  // Control de errores
+  /*Error control*/
   if (id < 0)
   {
     return ERROR;
   }
 
-  // Calcular numbero total de digitos - 1
+  // Calculates the total number of digits -1
   digits = (int)log10(id);
 
-  // Obtener primer digito
+  /* Obtaines first digit*/
   first_digit = (int)(id / pow(10, digits));
 
   if (first_digit == FD_ID_SPACE)
