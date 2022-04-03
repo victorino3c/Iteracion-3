@@ -551,3 +551,12 @@ STATUS space_print(Space *space)
 
   return OK;
 }
+
+Id space_get_id_dest_by_link (Link *l)
+{
+  if (!l)
+  return -1;
+
+  return (Id)link_get_destination(l);
+
+}
