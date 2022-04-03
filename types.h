@@ -4,7 +4,7 @@
  * @file types.h
  * @author Miguel Soto, Nicolas Victorino, Antonio Van-Oers, Ignacio Nunez
  * @version 2.0
- * @date 29-11-2021
+ * @date 02-04-2022
  * @copyright GNU Public License
  */
 
@@ -31,8 +31,8 @@ typedef enum
 
 typedef enum
 {
-  ERROR,
-  OK
+  ERROR = 0,
+  OK = 1
 } STATUS;
 
 typedef enum
