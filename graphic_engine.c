@@ -187,7 +187,6 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
       sprintf(str, "  +-----------------+");
       screen_area_puts(ge->map, str);
       
-      // FALTA PONER ESTO EN EL RESTO
       if (game_get_connection_status(game, id_act, N) == OPEN)
       {
         link_up = '^';
