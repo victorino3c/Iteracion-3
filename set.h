@@ -130,4 +130,14 @@ STATUS set_test(Set *s);
  */
 int set_print(Set *s);
 
+/**
+ * @brief Gets an object id determined by a given number
+ * 
+ * @author Nicolas Victorino
+ * 
+ * @param s a pointer to target set @param n the number that determines the id that is returned
+ * @return id of the object
+ */
+Id set_get_ids_by_number(Set* set, int n);
+
 #endif
