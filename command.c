@@ -74,7 +74,7 @@ T_Command command_get_user_input(char *arg)
   return cmd;
 }
 
-T_Command command_get_file_input(char *command, char *arg) //Funciona bien, pero necesita un espacio al final del segundo argumento en el file desde el que se carga
+T_Command command_get_file_input(char *command, char *arg) 
 {
   T_Command cmd = NO_CMD; 
   char input[CMD_LENGHT] = "";
@@ -100,7 +100,7 @@ T_Command command_get_file_input(char *command, char *arg) //Funciona bien, pero
         cmd = i + NO_CMD;                   /*!< If any differences are detected between CMDS, CMDL and the input, cmd is modified */
         if (cmd == TAKE || cmd == DROP || cmd == MOVE || cmd == INSPECT)
         {
-          for (j++, z = 0; command[j] != ' '; j++, z++) { /*Reads the second argument of command and saves it in arg*/ //Funciona si hay un espacio al final del argumento
+          for (j++, z = 0; command[j] != ' '; j++, z++) { /*Reads the second argument of command and saves it in arg*/ 
             arg[z] = command[j];
           } 
           arg[z] = '\0';
