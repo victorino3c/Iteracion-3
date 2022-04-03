@@ -897,7 +897,7 @@ STATUS game_command_take(Game *game, char *arg)
   id_obj_taken = obj_get_id(obj_taken);
 
   /* Error control*/
-  if (space_has_object(game_get_space(game, player_location), id_obj_taken))
+  if (space_has_object(game_get_space(game, player_location), id_obj_taken) && set_get_nids(inventory_get_objects(player_get_inventory(game->player[0]))) < inventory_get_maxObjs(player_get_inventory(game->player[0])))
   {
     obj_loc = game_get_object_location(game, id_obj_taken);
 
