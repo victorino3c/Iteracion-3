@@ -420,7 +420,7 @@ Object *game_get_object(Game *game, Id id)
 }
 
 /**
- * Finds an object with the same name
+ * Finds an object with the same name. Case is ignore.
  */
 Object *game_get_object_byName(Game *game, char *name)
 {
@@ -434,7 +434,7 @@ Object *game_get_object_byName(Game *game, char *name)
 
   for (i = 0; i < MAX_OBJS && game->object[i] != NULL; i++)
   {
-    if (strcmp(name, obj_get_name(game->object[i])) == 0)
+    if (strcasecmp(name, obj_get_name(game->object[i])) == 0)
     {
       return game->object[i];
     }
