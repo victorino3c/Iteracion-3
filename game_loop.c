@@ -34,10 +34,8 @@ int main(int argc, char *argv[])
 {
   Game *game = NULL;
   Graphic_engine *gengine;
-
   /* Used to able to save commands in log */
   char *wlog_name = NULL, *cmdf_name = NULL;
-
   int i; /* Used in loops */
 
   /* Alloc game's struct in memory */
@@ -68,14 +66,22 @@ int main(int argc, char *argv[])
     /*Loads game from a file*/
     wlog_name = NULL;
     cmdf_name = NULL;
+    if (argc == 3)
+    {
+      fprintf(stderr, "\nWrong syntax. Argument %s unidentified.\n", argv[2]);
+      print_syntaxinfo(argv);
+      return 1;
+    }
+    
     for (i = 2; i < (argc - 1); i++)
     {
-      if (!strcmp(argv[i], "-l"))
+      printf("argv[%d] = %s\n", i, argv[i]);
+      if (strcmp(argv[i], "-l\0") == 0)
       {
         i++;
         wlog_name = argv[(i)];
       }
-      else if (!strcmp(argv[i], "<"))
+      else if (strcmp(argv[i], "<\0") == 0)
       {
         i++;
         cmdf_name = argv[i];
@@ -250,4 +256,6 @@ void print_syntaxinfo(char *argv[])
   fprintf(stderr, "\nUse: %s <game_data_file>.\n", argv[0]);
   fprintf(stderr, "If you want to save inserted commands use the flag \"-l\" with the file name\n");
   fprintf(stderr, "Also, if you want to execute commands from a file use \"<\" with the file name\n \n");
+  fprintf(stderr, "\tGlobal syntax: %s <game_data_file> [-l <log_file>] [< <command_file>]\n", argv[0]);
+  fprintf(stderr, "\tArguments between [ ] are optional.\n \n");
 }
