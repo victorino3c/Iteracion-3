@@ -321,3 +321,12 @@ int set_print(Set *s)
     
     return n;
 }
+
+Id set_get_ids_by_number(Set* set, int n)
+{
+    /*Error control*/
+    if (!set || n < 0 || n > set->n_ids + 1)
+    return -1;
+
+    return set->ids[n];
+}
