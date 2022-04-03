@@ -5,7 +5,7 @@ d
 d 
 d 
 i s 
-c Grano2 
-i Grano2 
-v Grano2 
+c Hoja 
+i Hoja 
+v Hoja 
 exit 
