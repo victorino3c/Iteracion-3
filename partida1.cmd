@@ -5,7 +5,7 @@ move e
 move e 
 move e 
 inspect s 
-take Grano2 
-inspect Grano2 
-drop Grano2 
+take Hoja 
+inspect Hoja 
+drop Hoja 
 exit 
