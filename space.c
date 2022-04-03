@@ -313,7 +313,7 @@ STATUS space_add_objectid(Space *s, Id id)
  */
 STATUS space_del_objectid(Space *s, Id id)
 {
-  // Error control
+  /* Error control*/
   if (!s || !id)
   {
     return ERROR;
