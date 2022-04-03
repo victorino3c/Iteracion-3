@@ -332,7 +332,7 @@ STATUS space_del_objectid(Space *s, Id id)
  */
 Set *space_get_objects(Space *space)
 {
-  // Error control
+  /* Error control*/
   if (!space)
   {
     return NULL;
@@ -345,7 +345,7 @@ Set *space_get_objects(Space *space)
  */
 Id *space_get_objects_ids(Space *s)
 {
-  // Error control
+  /* Error control*/
   if (!s)
   {
     return NULL;
@@ -363,7 +363,7 @@ BOOL space_has_object(Space *s, Id id)
   BOOL b = FALSE;
   int i;
 
-  // Error control
+  /* Error control*/
   if (!s)
   {
     return FALSE;
@@ -418,7 +418,7 @@ STATUS space_destroy_gdesc(char **gdesc)
 {
   int i;
 
-  // Error control
+  /* Error control*/
   if (!gdesc)
   {
     return ERROR;
@@ -447,7 +447,7 @@ STATUS space_destroy_gdesc(char **gdesc)
  */
 STATUS space_set_gdesc(Space *s, char **newgdesc)
 {
-  // Error control
+  /* Error control*/
   if (!s || !newgdesc)
   {
     return ERROR;
@@ -460,7 +460,7 @@ STATUS space_set_gdesc(Space *s, char **newgdesc)
 
 char **space_get_gdesc(Space *s)
 {
-  // Error control
+  /* Error control*/
   if (!s)
   {
     return NULL;
@@ -534,7 +534,7 @@ STATUS space_print(Space *space)
     fprintf(stdout, "---> No object in the space.\n");
   }
 
-  // 4. Print gdesc
+  /* 4. Print gdesc*/
   printf("=> Gdesc:\n");
   for (i = 0; i < TAM_GDESC_Y && space->gdesc[i]; i++)
   {
@@ -554,6 +554,7 @@ STATUS space_print(Space *space)
 
 Id space_get_id_dest_by_link (Link *l)
 {
+  /*Error control*/
   if (!l)
   return -1;
 
