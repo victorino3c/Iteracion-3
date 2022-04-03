@@ -218,4 +218,13 @@ char **space_get_gdesc(Space *s);
   */
 STATUS space_print(Space* space);
 
+/**
+  * @brief It returns the destination id of a given link
+  * @author Nicolas Victorino
+  *
+  * @param l a pointer to the link
+  * @return -1 if problem, if not Id of the link destination
+  */
+Id space_get_id_dest_by_link (Link *l);
+
 #endif
