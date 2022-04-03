@@ -15,7 +15,6 @@
 #define NO_ID -1
 #define MAX_ARG 20
 
-// Establecer norma primer digito (fd = first digit) de los ids
 #define FD_ID_SPACE 1  /* <! First digit of a space  */
 #define FD_ID_PLAYER 2 /* <! First digit of a player  */
 #define FD_ID_OBJ 3    /* <! First digit of an object*/
