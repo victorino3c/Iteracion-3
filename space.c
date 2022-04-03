@@ -175,7 +175,7 @@ STATUS space_test_id(Id id)
     return ERROR;
   }
 
-  // Calculates the total number of digits -1
+  /* Calculates the total number of digits -1*/
   digits = (int)log10(id);
 
   /* Obtaines first digit*/
