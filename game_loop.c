@@ -184,7 +184,7 @@ void game_loop_run(Game *game, Graphic_engine *gengine, char *flog_name, char *f
       }
       else
       {
-        // Si hay error al inicio de ejecutarse es aqui
+        /* Si hay error al inicio de ejecutarse es aqui*/
         command = EXIT;
       }
     }
