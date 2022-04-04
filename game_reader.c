@@ -1,5 +1,5 @@
 /**
- * @brief Se encarga de la carga de espacios
+ * @brief It defines all the game's members loading
  *
  * @file game_reader.c
  * @author Miguel Soto, Nicolas Victorino, Antonio Van-Oers, Ignacio Nunez
@@ -87,7 +87,7 @@ STATUS game_create_from_file(Game *game, char *filename)
  *
  * @param game pointer to the game
  * @param filename pointer to the file from where spaces are being loaded
- * @return OK if everything goes right ERROR if something goes wrong
+ * @return OK if everything goes right or ERROR if something goes wrong
  */
 STATUS game_load_spaces(Game *game, char *filename)
 {
@@ -164,13 +164,12 @@ STATUS game_load_spaces(Game *game, char *filename)
 }
 
 /**
- * @brief Carga los objetos del juego
+ * @brief Loads the objects of the game
  * @author Miguel Soto
  *
- * game_load_objs carga la info de los objetos creados
- * @param game es el puntero que apunta a game
- * @param filename es el puntero que apunta al nombre del fichero
- * @return OK if everything goes right ERROR if something goes wrong
+ * @param game pointer to game
+ * @param filename pointer to the file's name
+ * @return OK if everything goes right or ERROR if something goes wrong
  */
 STATUS game_load_objs(Game *game, char *filename)
 {
@@ -189,6 +188,7 @@ STATUS game_load_objs(Game *game, char *filename)
   }
 
   file = fopen(filename, "r");
+  /*Error control*/
   if (file == NULL)
   {
     return ERROR;
@@ -216,6 +216,7 @@ STATUS game_load_objs(Game *game, char *filename)
         obj_set_name(obj, name);
         obj_set_description(obj, description);
         obj_set_location(obj, pos);
+        /*Error control*/
         if (space_add_objectid(game_get_space(game, pos), id) == ERROR)
         {
           return ERROR;
@@ -541,16 +542,17 @@ STATUS game_load_link(Game *game, char *filename)
 }
 
 /**
- * @brief Indica de que elemento del juego es el id
+ * @brief It indicates which element of the game has the target id
  * @author Miguel Soto
  *
- * @param id que se quiere clasificar
- * @return elemento del juego del que es el id
+ * @param id target id 
+ * @return game elements with the target id
  */
 GAME_IS_ELEMENT id_type(Id id)
 {
   int first_digit, digits;
 
+  /*Error control*/
   if (id < 0)
   {
     return '\0';
@@ -576,6 +578,7 @@ GAME_IS_ELEMENT id_type(Id id)
   {
     return IS_ENEMY;
   }
+  /*Error control*/
   else
   {
     return '\0';

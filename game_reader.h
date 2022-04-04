@@ -1,5 +1,5 @@
 /** 
- * @brief It defines the game's space loading
+ * @brief It defines the game's members loading
  * 
  * @file game_reader.h
  * @author Miguel Soto, Nicolas Victorino, Ignacio Nunez, Antonio Van-Oers
@@ -12,7 +12,7 @@
 #define GAME_READER
 
 #include "command.h"
-#include "space.h"
+#include "space.h" 
 #include "types.h"
 #include "game.h"
 
