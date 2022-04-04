@@ -39,8 +39,6 @@ void test1_obj_destroy();
  */
 void test2_obj_destroy();
 
-
-// STATUS obj_test_id(Id id);
 /**
  * @test Test object id classification
  * @pre Id = Object id
@@ -55,7 +53,6 @@ void test1_obj_test_id();
 void test2_obj_test_id();
 
 
-// Id obj_get_id(Object *obj);
 /**
  * @test Test function for getting Object id
  * @pre Object id = FD_ID_OBJ*10 + 1
@@ -70,7 +67,6 @@ void test1_obj_get_id();
 void test2_obj_get_id();
 
 
-// STATUS obj_set_name(Object *obj, char *name);
 /**
  * @test Test function for object_name setting
  * @pre String with object name
@@ -91,7 +87,6 @@ void test2_obj_set_name();
 void test3_obj_set_name();
 
 
-// const char *obj_get_name(Object *obj);
 /**
  * @test Test function for getting Object_name
  * @pre string with Object name = "adios" (pointer to Object != NULL)
@@ -106,7 +101,6 @@ void test1_obj_get_name();
 void test2_obj_get_name();
 
 
-// STATUS obj_set_location(Object *obj, Id id);
 /**
  * @test Test function for obj_location setting
  * @pre Id from the location object (pointer to object != NULL)
@@ -126,7 +120,6 @@ void test2_obj_set_location();
  */
 void test3_obj_set_location();
 
-// Id obj_get_location(Object *obj);
 /**
  * @test Test function for getting obj_location
  * @pre pointer to Object != NULL (obj_location = space_id)
