@@ -29,6 +29,13 @@
  */
 typedef struct _Game Game;
 
+/**
+  * @brief returns description' pointer
+  * @author Antonio Van-Oers, Miguel Soto, Nicolas Victorino, Ignacio Nunez
+  * 
+  * @param game a pointer to game
+  * @return description pointer (can be NULL)
+  */
 char *game_get_description(Game *game);
 
 /**
