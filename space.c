@@ -30,7 +30,7 @@ struct _Space
   Id link[MAX_LINKS_SPACE];    /*!< Id from links between space with this space as origin */
   Set *objects;                /*!< Conjunto de ids de los objetos que se encuentran en el espacio */
   char **gdesc;                /*!< Array de 5 strings de 9 caracteres */
-};
+} ;
 
 /**
  * Private functions
