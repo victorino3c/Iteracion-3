@@ -304,8 +304,13 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         
         for (i = 0; i < TAM_GDESC_Y; i++)
         {
-          sprintf(str, "  |     %s    |   |    %s    |", gdesc[i], gdesc_right[i]);
-          screen_area_puts(ge->map, str);
+          if (i != 3) {
+            sprintf(str, "  |     %s    |   |    %s    |", gdesc[i], gdesc_right[i]);
+            screen_area_puts(ge->map, str);
+          } else {
+            sprintf(str, "  |     %s    | > |    %s    |", gdesc[i], gdesc_right[i]);
+            screen_area_puts(ge->map, str);
+          }
         }
         
         sprintf(str, "  |                  |   |                 |");
@@ -342,8 +347,13 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         
         for (i = 0; i < TAM_GDESC_Y; i++)
         {
-          sprintf(str, "  |    %s    |   |    %s    |   |    %s    |", gdesc_left[i], gdesc[i], gdesc_right[i]);
-          screen_area_puts(ge->map, str);
+          if (i != 3) {
+            sprintf(str, "  |    %s    |   |    %s    |   |    %s    |", gdesc_left[i], gdesc[i], gdesc_right[i]);
+            screen_area_puts(ge->map, str);
+          } else {
+            sprintf(str, "  |    %s    | > |    %s    | > |    %s    |", gdesc_left[i], gdesc[i], gdesc_right[i]);
+            screen_area_puts(ge->map, str);
+          }
         }
         
         sprintf(str, "  |                 |   |                 |   |                 |");
@@ -381,8 +391,13 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         
         for (i = 0; i < TAM_GDESC_Y; i++)
         {
-          sprintf(str, "  |     %s   |   |     %s   |", gdesc_left[i], gdesc[i]);
-          screen_area_puts(ge->map, str);
+          if (i != 3) {
+            sprintf(str, "  |     %s   |   |     %s   |", gdesc_left[i], gdesc[i]);
+            screen_area_puts(ge->map, str);
+          }else {
+            sprintf(str, "  |     %s   | > |     %s   |", gdesc_left[i], gdesc[i]);
+            screen_area_puts(ge->map, str);
+          }
         }
         
         sprintf(str, "  |                 |   |                 |");
@@ -528,7 +543,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
   screen_area_clear(ge->help);
   sprintf(str, " The commands you can use are:");
   screen_area_puts(ge->help, str);
-  sprintf(str, " w(UP), s(DOWN), a(LEFT), d(RIGHT), c(TAKE), v(DROP), q(ATTACK), i(INSPECT), e(EXIT)");
+  sprintf(str, " w(UP), s(DOWN), a(LEFT), d(RIGHT), c(TAKE), v(DROP), q(ATTACK), i(INSPECT), m(MOVE), e(EXIT)");
   screen_area_puts(ge->help, str);
   /*
   sprintf(str, " Player object will be -1 as long as it doesn't carry one");
