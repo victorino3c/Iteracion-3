@@ -1,5 +1,5 @@
 CC = gcc 
-FLAGS = -c -Wall -ansi
+FLAGS = -c -Wall -ansi -pedantic
 LIBRARY = -lm
 T = Tests/
 
