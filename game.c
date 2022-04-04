@@ -1277,6 +1277,7 @@ Game *game_alloc2()
     fprintf(stderr, "Error saving memory for game(game_create)");
     return NULL;
   }
+  game->description = "\0";
 
   return game;
 }
