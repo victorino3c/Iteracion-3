@@ -1,3 +1,4 @@
+
 /** 
  * @brief Implements the enemy interface
  * 
@@ -102,7 +103,7 @@ STATUS enemy_test_id(Id id)
   /* Getting the first digit */
   first_digit = (int)(id / pow(10, digits));
   
-  if (first_digit == FD_ID_PLAYER)
+  if (first_digit == FD_ID_ENEMY)
   {
     return OK;
   }
@@ -161,6 +162,10 @@ STATUS enemy_set_health(Enemy *enemy, int health)
 	/* Error control */
   if (!enemy)
   {
+    return ERROR;
+  }
+
+  if(health<0){
     return ERROR;
   } 
   
