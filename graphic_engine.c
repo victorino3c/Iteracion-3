@@ -325,7 +325,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
             sprintf(str, "  |    %s    |   |    %s    |   |    %s    |", gdesc_left[i], gdesc[i], gdesc_right[i]);
             screen_area_puts(ge->map, str);
           } else {
-            sprintf(str, "  |    %s    | > |    %s    | > |    %s    |", gdesc_left[i], gdesc[i], gdesc_right[i]);
+            sprintf(str, "  |    %s    | < |    %s    | > |    %s    |", gdesc_left[i], gdesc[i], gdesc_right[i]);
             screen_area_puts(ge->map, str);
           }
         }
