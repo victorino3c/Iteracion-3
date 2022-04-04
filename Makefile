@@ -68,7 +68,7 @@ juego_permisos: juego
 enemy_test.o: $(T)enemy_test.c $(T)enemy_test.h $(T)test.h enemy.h
 	$(CC) $(FLAGS) $<
 
-enemy_test: enemy_test.o enemy.o 
+enemy_test: enemy_test.o enemy.o
 	$(CC) -o $@ -Wall $^ $(LIBRARY)
 	make testclean
 
@@ -116,7 +116,7 @@ vinventory_test: inventory_test
 object_test.o: $(T)object_test.c $(T)object_test.h $(T)test.h object.h
 	$(CC) $(FLAGS) $<
 
-object_test: object_test.o space.o object.o set.o
+object_test: object_test.o space.o object.o set.o link.o
 	$(CC) -o $@ -Wall $^ $(LIBRARY)
 	make testclean
 
@@ -140,7 +140,7 @@ vplayer_test: player_test
 link_test.o: $(T)link_test.c $(T)link_test.h $(T)test.h link.h
 	$(CC) $(FLAGS) $<
 
-link_test: link_test.o link.o
+link_test: link_test.o link.o space.o set.o
 	$(CC) -o $@ -Wall $^ $(LIBRARY)
 	make testclean
 
@@ -148,7 +148,13 @@ vlink_test: link_test
 	valgrind --leak-check=full ./link_test
 
 
-all_test: player_test object_test inventory_test set_test enemy_test link_test
+all_test:
+	make player_test
+	make object_test
+	make inventory_test
+	make set_test
+	make enemy_test
+	make link_test
 
 #CLEAN
 clean:
