@@ -13,6 +13,11 @@
 #include <string.h>
 #include "link.h"
 
+/**
+ * @brief Link
+ * 
+ * This struct stores all the information of a link between spaces.
+ */
 struct _Link
 {
     Id id;                    /*!< Link's id */
