@@ -29,7 +29,7 @@ typedef enum
   * @author Profesores PPROG
   *
   * game_create_from_file initializes all of game's members from the filename.dat
-  * @param game pionter to game
+  * @param game pointer to game
   * @param filename pointer to the file's name 
   * @return OK, if everything goes well or ERROR if something didn't
   */
