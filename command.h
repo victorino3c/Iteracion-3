@@ -37,7 +37,7 @@ typedef enum enum_Command {
   DROP,
   ATTACK,
   MOVE,
-  INSPECT,} T_Command;
+  INSPECT} T_Command;
 
 /**
   * @brief Obtiene el input del usuario 
