@@ -422,10 +422,11 @@ void test2_player_del_object()
 {
   Player *p = NULL;
 	Object *o = NULL;  
+  Id id;
   p = player_create(24);
   player_set_max_inventory(p, 5);
 	player_add_object(p, o);
-	Id id = obj_get_id(o);
+	id = obj_get_id(o);
   PRINT_TEST_RESULT( player_del_object(p, id) == ERROR);
   player_destroy(p);
 }
@@ -457,11 +458,12 @@ void test1_player_has_object()
 void test2_player_has_object()
 {
   Player *p = NULL;
+  Object *o = NULL;
+  Id id;
   p = player_create(24);
-	Object *o = NULL;
   player_set_max_inventory(p, 5);
 	player_add_object(p, o);
-	Id id = obj_get_id(o);
+	id = obj_get_id(o);
   PRINT_TEST_RESULT( player_has_object(p, id) == FALSE);
   player_destroy(p);
 }
