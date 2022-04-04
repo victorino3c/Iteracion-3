@@ -10,6 +10,11 @@
 
 #include "set.h"
 
+/**
+ * @brief Set
+ * 
+ * This struct stores a set of ids and the number of ids stored.
+ */
 struct _Set
 {
     Id *ids;            /* !< Ids array */
