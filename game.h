@@ -21,6 +21,7 @@
 #include "inventory.h"
 
 #define MAX_LINKS 200
+#define MAX_SPACES 100
 
 /**
  * @brief Game's structucture
