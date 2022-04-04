@@ -81,6 +81,8 @@ STATUS inventory_set_objects(Inventory* inventory, Set* set) {
 		return ERROR;
 	}
 
+  set_destroy(inventory->objects);
+
 	inventory->objects = set;
 	return OK;
 }
