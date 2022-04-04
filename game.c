@@ -902,6 +902,8 @@ STATUS game_command_take(Game *game, char *arg)
   Id player_location = player_get_location(game->player[MAX_PLAYERS - 1]);
   Id id_obj_taken = NO_ID, obj_loc = NO_ID;
   Object *obj_taken;
+  Space *s = NULL;
+  Object *o = NULL;
 
   obj_taken = game_get_object_byName(game, arg);
   id_obj_taken = obj_get_id(obj_taken);
@@ -909,8 +911,8 @@ STATUS game_command_take(Game *game, char *arg)
   /* Error control*/
   if (space_has_object(game_get_space(game, player_location), id_obj_taken) && set_get_nids(inventory_get_objects(player_get_inventory(game->player[0]))) < inventory_get_maxObjs(player_get_inventory(game->player[0])))
   {
-    Space *s = game_get_space(game, player_location);
-    Object *o = game_get_object(game, id_obj_taken);
+    s = game_get_space(game, player_location);
+    o = game_get_object(game, id_obj_taken);
     obj_loc = game_get_object_location(game, id_obj_taken);
 
     /* Error control*/
@@ -963,8 +965,8 @@ STATUS game_command_drop(Game *game, char *arg)
   Id obj_id = NO_ID;
   Object *obj;
 
-  Space *s = game_get_space(game, player_location);
-  Object *o = game_get_object(game, obj_id);
+  Space *s = NULL;
+  Object *o = NULL;
 
   obj = game_get_object_byName(game, arg);
   obj_id = obj_get_id(obj);
@@ -981,12 +983,14 @@ STATUS game_command_drop(Game *game, char *arg)
     return ERROR;
   }
 
+  s = game_get_space(game, player_location);
   /* Error control*/
   if (s == NULL)
   {
     return ERROR;
   }
 
+  o = game_get_object(game, obj_id);
   /* Error control*/
   if (o == NULL)
   {
