@@ -191,3 +191,4 @@ void test2_set_get_ids()
   Set *s = NULL;
   PRINT_TEST_RESULT(set_get_ids(s) == NULL);
 }
+
