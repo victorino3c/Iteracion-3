@@ -109,7 +109,8 @@ int main(int argc, char **argv)
 
   if (all || test == i) test1_link_print();
   i++;
-
+  
+  PRINT_PASSED_PERCENTAGE;
 
   return 0;
 }
