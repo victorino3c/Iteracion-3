@@ -103,11 +103,6 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
   char *obj_name[MAX_OBJS];
   char link_up = '\0', link_down = '\0';
 
-  /*
-  char *left[10];
-  char *right[10];
-  */
-
   /*Asignacion de los valores correspondientes a las variables*/
   player_loc = game_get_player_location(game, 21);
   id_act = player_loc;
@@ -208,27 +203,6 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
     }
 
     /* ESPACIO ACTUAL */
-
-    /*
-    if (id_left != NO_ID)
-    {
-      for(i=0;i<MAX_OBJS;i++)
-      {   
-        *//*Comprobar si el objeto se encuentra en el espacio*//*
-        if (space_has_object(game_get_space(game, id_left), obj_id[i]) == FALSE)
-        {         
-          obj = ' ';
-        }
-        else
-        {
-          obj = '*';
-          break;
-        }
-      }
-      left[0] = "+-----------------+";
-      printf("left[0] = %s\n", left[0]);
-    }
-    */
   
     if (id_act != NO_ID)
     {
