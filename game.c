@@ -15,7 +15,7 @@
 #include <time.h>
 #include "game.h"
 
-typedef struct _Game
+struct _Game
 {
   Player *player[MAX_PLAYERS]; /*!< Pointer to player's array */
   Object *object[MAX_OBJS];    /*!< Pointer to object's array */
@@ -24,7 +24,7 @@ typedef struct _Game
   Link *links[MAX_LINKS];      /*!< Pointer to link's array */
   char *description;           /*!< Description that should be shown*/
   T_Command last_cmd;          /*!< Last command input */
-} Game;
+} ;
 
 /**
    Private functions
