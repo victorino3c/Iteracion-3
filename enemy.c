@@ -19,13 +19,13 @@
  *
  * This structure stores all info that each enemy has
  */
-typedef struct _Enemy
+struct _Enemy
 {
   Id id;
   char name[Enemy_Name_lenght];
   Id location;
   int health;
-} Enemy;
+} ;
 
 /**enemy_create allocates memory for a new enemy and initializes all its members .
  */
