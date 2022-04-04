@@ -20,13 +20,13 @@
  *
  * Esta estructura almacena la informacion de un objeto.
  */
-typedef struct _Object
+struct _Object
 {
   Id id;
   char name[OBJ_NAME_LEN];
   char description[WORD_SIZE];
   Id location;
-} Object;
+} ;
 
 /** obj_create reserva memoria para un nuevo objeto e inicializa sus miembros.
  */
