@@ -22,13 +22,13 @@ void game_loop_cleanup(Game *game, Graphic_engine *gengine);
 void print_syntaxinfo(char *argv[]);
 
 /**
- * @brief Programa principal del game_loop
- * @author Miguel Soto Y Nicolas Victorino
+ * @brief Main funcion of the game 
+ * @author Miguel Soto && Nicolas Victorino
  *
- * Comprueba si el valor de argc y argv son correctos para decidir si inciar el juego y activar el cleanup
- * @param argc un entero
- * @param argv una cadena de caracteres
- * @return 0 si se ejecuta el juego con exito y 1 si no se ha usado el game_data_file correcto
+ * Checks if the value of argc and argv are right to decide if it initializes the game and actives the cleanup
+ * @param argc an integer that checks how many arguments the user has introduced
+ * @param argv a string that contains the arguments the player has introduced
+ * @return 0 if the game executes correctly 1 if the user hasnt used the right game_data_file 
  */
 int main(int argc, char *argv[])
 {
@@ -105,24 +105,24 @@ int main(int argc, char *argv[])
 }
 
 /**
- * @brief Inicializa el juego
+ * @brief Initializes the game
  * @author Profesores PPROG
  *
- * Comprueba si el valor de argc y argv son correctos para decidir si inciar el juego y activar el cleanup
- * @param game es el puntero que apunta a la estructura tipo Game que contiene los datos de localización de objeto y jugador
- * junto con los espacios del juego y el ultimo comando
- * @param gengine es un doble puntero para acceder al motor grafico
- * @param file_name es un puntero al nombre del fichero para acceder a el tras haber ejecutado el juego e imprimir cualquier error que se haya dado
- * @return 0 si se inicializa el juego con exito y 1 si no se ha producido un error
+ * @param game Pointer to the game type struct that contains the information of the enemies, player, object, links spaces and the last command 
+ * @param gengine doble pointer to access the graphic engine
+ * @param file_name is a pointer to the name of the file from which the game is initialized
+ * @return 0 if the game initializes correctly 1 if there has been an error
  */
 int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name)
 {
+  /*Error control(Creates game)*/
   if (game_create_from_file(game, file_name) == ERROR)
   {
     fprintf(stderr, "Error while initializing game.\n");
     return 1;
   }
 
+  /*Error control(Creates graphic engine)*/
   if ((*gengine = graphic_engine_create()) == NULL)
   {
     fprintf(stderr, "Error while initializing graphic engine.\n");
@@ -134,13 +134,12 @@ int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name)
 }
 
 /**
- * @brief Ejecuta el juego
- * @author Miguel Soto and Nicolas Victorino
+ * @brief Executes the game
+ * @author Miguel Soto && Nicolas Victorino
  *
- * Comprueba en bucle si no se ha introducido exit ni el juego se ha acabado para seguir ejecutando el juego
- * @param game es el puntero que apunta a la estructura tipo Game que contiene los datos de localización de objeto y jugador
- * junto con los espacios del juego y el ultimo comando
- * @param gengine es un puntero que apunta al motor grafico
+ * Cheks in a loop if the last command is not exit or if the game has not ended, to keep executing the game
+ * @param game Pointer to the game type struct that contains the information of the enemies, player, object, links spaces and the last command 
+ * @param gengine pointer to the graphi engine
  */
 void game_loop_run(Game *game, Graphic_engine *gengine, char *flog_name, char *fcmd_name)
 {
@@ -151,20 +150,25 @@ void game_loop_run(Game *game, Graphic_engine *gengine, char *flog_name, char *f
   T_Command last_cmd;
   extern char *cmd_to_str[N_CMD][N_CMDT];
 
+  /*Cheks if the game has been initialized with the flag -l, that outputs a log with the commands used during the execution of the game*/
   if (flog_name)
   {
     wlog = 1;
     flog = fopen(flog_name, "w");
+    /*Error control*/
     if (!flog)
     {
       fprintf(stderr, "There was an error opening log_file.\n");
       return;
     }
   }
+
+  /*Checks if the game has been initialized with the flag <, that loads a list of commands to the game from a given file*/
   if (fcmd_name)
   {
     rcmd = 1;
     fcmd = fopen(fcmd_name, "r");
+    /*Error control*/
     if (!fcmd)
     {
       fprintf(stderr, "There was an error opening cmd_file.\n");
@@ -184,7 +188,7 @@ void game_loop_run(Game *game, Graphic_engine *gengine, char *flog_name, char *f
       }
       else
       {
-        /* Si hay error al inicio de ejecutarse es aqui*/
+        /* If there  is an error at the beggining of the execution is here, so it exits the game*/
         command = EXIT;
       }
     }
@@ -195,6 +199,7 @@ void game_loop_run(Game *game, Graphic_engine *gengine, char *flog_name, char *f
 
     st = game_update(game, command, arg);
 
+    /*Cheks if the game is working in "log-mode" and if true it prints the commands in the output file*/
     if (wlog == 1)
     {
       last_cmd = game_get_last_command(game);
@@ -223,11 +228,14 @@ void game_loop_run(Game *game, Graphic_engine *gengine, char *flog_name, char *f
 
   fprintf(stdout, "\n");
 
+  /*Closes flog (output of "log-mode")*/
   if (flog)
   {
     fclose(flog);
     flog = NULL;
   }
+
+  /*Closes command file (input of "<-mode")*/
   if (fcmd)
   {
     fclose(fcmd);
@@ -239,13 +247,12 @@ void game_loop_run(Game *game, Graphic_engine *gengine, char *flog_name, char *f
 
 
 /**
- * @brief Termina y limpia el juego
+ * @brief Ends and cleans the game
  * @author Profesores PPROG
  *
- * Tras terminar con la partida actual, destruye el juego y el motor grafico para limpiar estos procesos
- * @param game es el puntero que apunta a la estructura tipo Game que contiene los datos de localización de objeto y jugador
- * junto con los espacios del juego y el ultimo comando
- * @param gengine es un puntero que apunta al motor grafico
+ * After the game has stopped, it destroys the game and the graphic engine to clean those processes
+ * @param game Pointer to the game type struct that contains the information of the enemies, player, object, links spaces and the last command
+ * @param gengine pointer to the graphic engine
  */
 void game_loop_cleanup(Game *game, Graphic_engine *gengine)
 {
@@ -254,10 +261,10 @@ void game_loop_cleanup(Game *game, Graphic_engine *gengine)
 }
 
 /**
- * @brief Prints syntax info when running programme.
+ * @brief Prints syntax info when running the  program.
  * @author Miguel Soto
  *
- * @param argv Arguments from the command used to execute programme.
+ * @param argv Arguments from the command used to execute program.
  */
 void print_syntaxinfo(char *argv[])
 {
