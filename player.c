@@ -23,14 +23,14 @@
  */
 
 
-typedef struct _Player
+struct _Player
 {
   Id id;
   char name[Player_Name_lenght];
   Inventory *inventory;
   Id location;
   int health;
-} Player;
+} ;
 
 /** player_create allocates memory for a new player
  * and initializes all its members
