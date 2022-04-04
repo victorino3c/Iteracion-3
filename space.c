@@ -255,12 +255,13 @@ STATUS space_set_description(Space *space, char *description)
  */
 STATUS space_set_link(Space *space, Id link, DIRECTION dir)
 {
+  int n = _dir2i(dir);
+
   if (!space || !link || dir == ND)
   {
     return ERROR;
   }
 
-  int n = _dir2i(dir);
   if (n < 0)
   {
     return ERROR;
@@ -275,12 +276,13 @@ STATUS space_set_link(Space *space, Id link, DIRECTION dir)
  */
 Id space_get_link(Space *space, DIRECTION dir)
 {
+  int n = _dir2i(dir);
+
   if (!space || dir == ND)
   {
     return -1;
   }
 
-  int n = _dir2i(dir);
   if (n < 0)
   {
     return -1;
@@ -561,3 +563,4 @@ Id space_get_id_dest_by_link (Link *l)
   return (Id)link_get_destination(l);
 
 }
+
