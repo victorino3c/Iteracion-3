@@ -49,17 +49,25 @@ run:
 	@echo ">>>>>>Running main"
 	./juego hormiguero.dat
 
-run1:
+runcmd1:
 	@echo ">>>>>>Running main from partida1.cmd"
 	./juego hormiguero.dat < partida1.cmd 
 
-run2:
+runcmd2:
 	@echo ">>>>>>Running main from partida2.cmd"
-	./juego hormiguero.dat < partida2.cmd 
+	./juego hormiguero.dat < partida2.cmd
+	
+runlog:
+	@echo ">>>>>>Running main and saving commands in file.log"
+	./juego hormiguero.dat -l file.log
 
-runv:
+runcmd1log:
+	@echo ">>>>>>Running main from partida1.cmd and saving in file.log"
+	./juego hormiguero.dat -l file.log < partida1.cmd 
+
+runvcmd1log:
 	@echo ">>>>>>Running main with valgrind"
-	valgrind --leak-check=full ./juego hormiguero.dat
+	valgrind --leak-check=full ./juego hormiguero.dat -l file.log < partida1.cmd 
 
 juego_permisos: juego
 	chmod u+x ./juego
