@@ -204,7 +204,7 @@ void test3_obj_set_location()
   Object *obj = NULL;
   Id obj_id = FD_ID_OBJ*10 + 1;
   obj = obj_create(obj_id);
-  PRINT_TEST_RESULT(obj_set_location(obj, NO_ID) == ERROR);
+  PRINT_TEST_RESULT(obj_set_location(obj, NO_ID) == OK);
   obj_destroy(obj);
 }
 
