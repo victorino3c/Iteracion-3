@@ -19,10 +19,10 @@
 typedef struct _Space Space;
 
 #define MAX_SPACES 100
-#define FIRST_SPACE 1
+#define FIRST_SPACE 1   /* <! Establish the position of the first space  */
 
-#define TAM_GDESC_Y 5
-#define TAM_GDESC_X 9
+#define TAM_GDESC_Y 5   /* <! Establish the maximun number of lines space's graphic description (gdesc) will have  */
+#define TAM_GDESC_X 9   /* <! Establish the maximun number of characters each line of space's graphic description (gdesc) will have */
 
 /**
   * @brief It creates a new space
