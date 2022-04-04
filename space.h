@@ -18,7 +18,6 @@
 
 typedef struct _Space Space;
 
-#define MAX_SPACES 100
 #define FIRST_SPACE 1 /* <! Establish the position of the first space  */
 
 #define TAM_GDESC_Y 5 /* <! Establish the maximun number of lines space's graphic description (gdesc) will have  */
