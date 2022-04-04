@@ -145,8 +145,8 @@ void test2_inventory_destroy()
 void test1_inventory_set_objects()
 {
   Inventory *s = NULL;
-  s = inventory_create(4);
   Set *set;
+  s = inventory_create(4);
   set = set_create();
   set_add(set, 80);
   PRINT_TEST_RESULT(inventory_set_objects(s, set) == OK);
@@ -166,8 +166,8 @@ void test2_inventory_set_objects()
 void test3_inventory_set_objects()
 {
   Inventory *s = NULL;
-  s = inventory_create(4);
   Set *set = NULL;
+  s = inventory_create(4);
   PRINT_TEST_RESULT(inventory_set_objects(s, set) == ERROR);
   inventory_destroy(s);
 } 
@@ -176,8 +176,9 @@ void test3_inventory_set_objects()
 void test1_inventory_get_objects()
 {
   Inventory *s = NULL;
-  s = inventory_create();
   Set *set;
+  s = inventory_create();
+
   set = set_create();
   set_add(set, 80);
 	inventory_set_objects(s, set);
