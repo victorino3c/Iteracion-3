@@ -2,7 +2,7 @@
  * @brief It defines the space interface
  *
  * @file space.h
- * @author Profesores PPROG
+ * @author Miguel Soto, Antonio Van-Oers, Nicolas Victorino and Ignacio Nunez
  * @version 2.0
  * @date 29-11-2021
  * @copyright GNU Public License
