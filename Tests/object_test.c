@@ -81,6 +81,8 @@ int main(int argc, char **argv)
   i++;
   if (all || test == i) test2_obj_get_location();
   i++;
+  
+  PRINT_PASSED_PERCENTAGE;
 
   return 0;
 }
