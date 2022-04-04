@@ -375,8 +375,8 @@ void test2_player_set_max_inventory()
 void test1_player_add_object()
 {
   Player *p = NULL;
+  Object *o = NULL;
   p = player_create(24);
-	Object *o = NULL;
 	o = obj_create(31);
   player_set_max_inventory(p, 5);
   PRINT_TEST_RESULT( player_add_object(p, o) == OK);
@@ -387,8 +387,8 @@ void test1_player_add_object()
 void test2_player_add_object()
 {
   Player *p = NULL;
+  Object *o = NULL;
   p = player_create(24);
-	Object *o = NULL;
   player_set_max_inventory(p, 5);
   PRINT_TEST_RESULT( player_add_object(p, o) == ERROR);
   player_destroy(p);
@@ -406,12 +406,13 @@ void test3_player_add_object()
 void test1_player_del_object()
 {
   Player *p = NULL;
+  Object *o = NULL;
+  Id id;
   p = player_create(24);
-	Object *o = NULL;
 	o = obj_create(31);
   player_set_max_inventory(p, 5);
 	player_add_object(p, o);
-	Id id = obj_get_id(o);
+	id = obj_get_id(o);
   PRINT_TEST_RESULT( player_del_object(p, id) == OK);
   player_destroy(p);
 	obj_destroy(o);
@@ -420,8 +421,8 @@ void test1_player_del_object()
 void test2_player_del_object()
 {
   Player *p = NULL;
+	Object *o = NULL;  
   p = player_create(24);
-	Object *o = NULL;
   player_set_max_inventory(p, 5);
 	player_add_object(p, o);
 	Id id = obj_get_id(o);
@@ -441,12 +442,13 @@ void test3_player_del_object()
 void test1_player_has_object()
 {
   Player *p = NULL;
+  Object *o = NULL;
+  Id id;
   p = player_create(24);
-	Object *o = NULL;
 	o = obj_create(31);
   player_set_max_inventory(p, 5);
 	player_add_object(p, o);
-	Id id = obj_get_id(o);
+	id = obj_get_id(o);
   PRINT_TEST_RESULT( player_has_object(p, id) == TRUE);
   player_destroy(p);
 	obj_destroy(o);
