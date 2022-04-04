@@ -5,9 +5,9 @@
  * as unknown, exit, up, down, left, right attack, take, drop or move depending on what string is typed.
  * 
  * @file command.c
- * @author Profesores PPROG
- * @version 2.0 
- * @date 29-11-2021 
+ * @author Miguel Soto, Nicolas Victorino, Ignacio Nunez and Antonio Van-Oers
+ * @version 3.0 
+ * @date 04-04-2022
  * @copyright GNU Public License
  */
 
@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include "command.h"
 
-#define CMD_LENGHT 30
+#define CMD_LENGHT 30 /*!< It defines the maximun lenght from an input command */
 
 char *cmd_to_str[N_CMD]
 [N_CMDT] = {{"", "No command"},    /*!< At the beginning, there is no commands */
@@ -25,14 +25,15 @@ char *cmd_to_str[N_CMD]
       {"e", "Exit"},               /*!< If an e is received, it is interpreted as Exit */
       {"s", "Down"},               /*!< If a s is received, it is interpreted as Down/Next */
       {"a", "Left"},               /*!< If an a is received, it is interpreted as Left */
-      {"w", "Up"},                 /*!<  If a w is received, it is interpreted as Up/Back */
+      {"w", "Up"},                 /*!< If a w is received, it is interpreted as Up/Back */
       {"d", "Right"},              /*!< If a d is received, it is interpreted as Right */
-      {"c", "Take"},               /*!<  If a c is received, it is interpreted as Take */
-      {"v", "Drop"},               /*!<  If a v is received, it is interpreted as Drop */
-      {"q", "Attack"},             /*!<  If a s is received, it is interpreted as Attack */
-      {"m", "Move"},               /*!<  If a m is received, it is interpreted as move */
-      {"i", "Inspect"},            /*!<  If an i is received, it is interpreted as inspect */
-      };           
+      {"c", "Take"},               /*!< If a c is received, it is interpreted as Take */
+      {"v", "Drop"},               /*!< If a v is received, it is interpreted as Drop */
+      {"q", "Attack"},             /*!< If a s is received, it is interpreted as Attack */
+      {"m", "Move"},               /*!< If a m is received, it is interpreted as move */
+      {"i", "Inspect"},            /*!< If an i is received, it is interpreted as inspect */
+      };
+        
 /**It scans the cmd searching for key words introduced by the user 
   *in order to interpret and clasify the info
   */
