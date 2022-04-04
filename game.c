@@ -16,6 +16,11 @@
 #include <time.h>
 #include "game.h"
 
+/**
+ * @brief Game
+ * 
+ * This struct stores all the information of a space.
+ */
 struct _Game
 {
   Player *player[MAX_PLAYERS]; /*!< Pointer to player's array */
