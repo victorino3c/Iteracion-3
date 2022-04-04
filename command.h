@@ -29,18 +29,18 @@ typedef enum enum_CmdType
  */
 typedef enum enum_Command
 {
-  NO_CMD = -1,
-  UNKNOWN,
-  EXIT,
-  DOWN,
-  LEFT,
-  UP,
-  RIGHT,
-  TAKE,
-  DROP,
-  ATTACK,
-  MOVE,
-  INSPECT
+  NO_CMD = -1,  /*!< There is no command or command type is ineffective. */
+  UNKNOWN,      /*!< Command type is unknown. */
+  EXIT,         /*!< Command type is to exit game. */
+  DOWN,         /*!< Command type is to move player down. */
+  LEFT,         /*!< Command type is to move player left. */
+  UP,           /*!< Command type is to move player up. */
+  RIGHT,        /*!< Command type is to move player right. */
+  TAKE,         /*!< Command type is to take object. */
+  DROP,         /*!< Command type is to drop object. */
+  ATTACK,       /*!< Command type is to attack an enemy. */
+  MOVE,         /*!< Command type is to move player (direction specify in another argument). */
+  INSPECT       /*!< Command type is to inspect. */
 } T_Command;
 
 /**
