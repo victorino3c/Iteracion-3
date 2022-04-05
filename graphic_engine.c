@@ -11,16 +11,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "graphic_engine.h"
-#include "libscreen.h"
-#include "command.h"
-#include "space.h"
-#include "types.h"
-#include "enemy.h"
-#include "player.h"
-#include "object.h"
-#include "inventory.h"
-#include "set.h"
+#include "../include/graphic_engine.h"
+#include "../include/libscreen.h"
+#include "../include/command.h"
+#include "../include/space.h"
+#include "../include/types.h"
+#include "../include/enemy.h"
+#include "../include/player.h"
+#include "../include/object.h"
+#include "../include/inventory.h"
+#include "../include/set.h"
 
 
 #define ROWS 37       /*!< Establish screen size in y dimension */
