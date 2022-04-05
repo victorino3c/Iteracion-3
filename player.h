@@ -3,8 +3,8 @@
  * 
  * @file player.h
  * @author Antonio Van-Oers, Nicolas Victorino, Ignacio Nunez and Miguel Soto
- * @version 1.2
- * @date 12-02-2021
+ * @version 3.0
+ * @date 04-04-2022
  * @copyright GNU Public License
  */
 
