@@ -13,7 +13,7 @@
 #include <string.h>
 #include <math.h>
 #include "../include/game_reader.h"
-
+/*
 STATUS game_add_space(Game *game, Space *space);
 STATUS game_add_object(Game *game, Object *obj);
 STATUS game_add_player(Game *game, Player *p);
@@ -23,7 +23,7 @@ Id game_get_space_id_at(Game *game, int position);
 STATUS game_set_player_location(Game *game, Id player_id, Id space_id);
 STATUS game_set_object_location(Game *game, Id obj_id, Id space_id);
 STATUS game_set_enemy_location(Game *game, Id enemy_id, Id space_id);
-
+*/
 /**
  * Funciones privadas
  */
