@@ -16,13 +16,16 @@
 #include "types.h"
 #include "game.h"
 
+/**
+ * @brief It is used to classify ids as a game element which could be any type from a space or player, to an object or enemy
+ */
 typedef enum
 {
-  IS_SPACE = FD_ID_SPACE,
-  IS_PLAYER = FD_ID_PLAYER,
-  IS_OBJECT = FD_ID_OBJ,
-  IS_ENEMY = FD_ID_ENEMY
-} GAME_IS_ELEMENT;  /*!< It defines a game element which could be any type from a space or player, to an object or enemy */
+  IS_SPACE = FD_ID_SPACE,   /*!< Game element is a space */
+  IS_PLAYER = FD_ID_PLAYER, /*!< Game element is a player */
+  IS_OBJECT = FD_ID_OBJ,    /*!< Game element is an object */
+  IS_ENEMY = FD_ID_ENEMY    /*!< Game element is an enemy */
+} GAME_IS_ELEMENT;  
 
 /**
   * @brief Creates and initializes a game from a file
