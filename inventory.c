@@ -3,9 +3,9 @@
 * @brief It implements enemy module in the ant game
 *
 * @file inventory.c
-* @author Ignacio Nunnez
-* @version 1.3
-* @date 19/03/2022
+* @author Ignacio Nunnez, Antonio Van-Oers, Nicolas Victorino and Miguel Soto
+* @version 3.0
+* @date 19-03-2022
 * @copyright GNU Public License
 */
 
@@ -21,8 +21,8 @@
  * informaction of an inventory.
  */
 struct _Inventory {
-  Set* objects;
-  int max_objs;
+  Set* objects;	/*!< Set of objects included in invetory */
+  int max_objs; /*!< Defines the maximun objects of the inventory */
 };
 
 /** inventory_create allocates memory for a new inventory
