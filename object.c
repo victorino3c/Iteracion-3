@@ -12,8 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
-#include "object.h"
+#include "../include/object.h"
 
 /**
  * @brief Object
