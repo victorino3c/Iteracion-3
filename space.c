@@ -12,8 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
-#include "space.h"
+#include "../include/space.h"
 
 #define MAX_LINKS_SPACE 4   /*!< Establish the maximun of links per space. This number is related to the number of the different existing direction (declared in types.h)*/
 
