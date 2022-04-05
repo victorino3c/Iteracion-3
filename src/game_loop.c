@@ -140,6 +140,8 @@ int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name)
  * Cheks in a loop if the last command is not exit or if the game has not ended, to keep executing the game
  * @param game Pointer to the game type struct that contains the information of the enemies, player, object, links spaces and the last command 
  * @param gengine pointer to the graphi engine
+ * @param flog_name string name from file where to write every command executed. It has to be NULL if a log file is not wanted.
+ * @param fcmd_name string name from file where to get every command to be executed. It has to be NULL if a command file is not used.
  */
 void game_loop_run(Game *game, Graphic_engine *gengine, char *flog_name, char *fcmd_name)
 {
