@@ -2,7 +2,7 @@
  * @brief Implements the player's interface
  * 
  * @file player.h
- * @author Antonio Van-Oers
+ * @author Antonio Van-Oers, Nicolas Victorino, Ignacio Nunez and Miguel Soto
  * @version 1.2
  * @date 12-02-2021
  * @copyright GNU Public License
@@ -15,11 +15,9 @@
 #include "object.h"
 #include "inventory.h"
 
-#define Player_Name_lenght 60
-
+#define Player_Name_lenght 60   /*!< Establish player's name length */
 
 typedef struct _Player Player;
-
 
 /**
  * @brief Creates a new player.
