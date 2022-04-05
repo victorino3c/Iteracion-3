@@ -23,7 +23,8 @@
 #define MAX_LINKS 200  /*!< It established the maximun of links that can be in a game */
 #define MAX_SPACES 100  /*!< It established the maximun of spaces that can be in a game */
 #define MAX_ENEMYS 10   /*!< It established the maximun of enemies that can be in a game */
-#define MAX_OBJS 100   /*!< It established the maximun of objects taht can be in a game */
+#define MAX_OBJS 100   /*!< It established the maximun of objects that can be in a game */
+#define MAX_PLAYERS 1  /*!< It established the maximun of players that can be in a game */
 
 /**
  * @brief Game's structucture
