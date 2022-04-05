@@ -1,5 +1,5 @@
 /** 
- * @brief It implements the command interpreter.
+ * @brief It implements the command interpreter module.
  * 
  * It scans the cmd searching for key words introduced by the user in order to interpret and clasify the commands
  * as unknown, exit, up, down, left, right attack, take, drop, move or inspect depending on what string is typed.
