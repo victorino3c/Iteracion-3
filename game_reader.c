@@ -4,7 +4,7 @@
  * @file game_reader.c
  * @author Miguel Soto, Nicolas Victorino, Antonio Van-Oers, Ignacio Nunez
  * @version 3.0
- * @date 12-02-2022
+ * @date 04-04-2022
  * @copyright GNU Public License
  */
 
