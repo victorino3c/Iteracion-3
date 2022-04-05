@@ -3,8 +3,8 @@
  *
  * @file graphic_engine.c
  * @author Miguel Soto, Antonio Van-Oers, Nicolas Victorino and Ignacio Nunez
- * @version 2.0
- * @date 29-11-2021
+ * @version 3.0
+ * @date 04-04-2022
  * @copyright GNU Public License
  */
 
@@ -23,8 +23,8 @@
 #include "set.h"
 
 
-#define ROWS 37
-#define COLUMNS 120
+#define ROWS 37       /*!< Establish screen size in y dimension */
+#define COLUMNS 120   /*!< Establish screen size in x dimension */
 
 /**
  * @brief Motor grafico
