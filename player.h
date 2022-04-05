@@ -16,7 +16,7 @@
 #include "inventory.h"
 
 #define Player_Name_lenght 60
-#define MAX_PLAYERS 1
+
 
 typedef struct _Player Player;
 
