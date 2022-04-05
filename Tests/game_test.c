@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 
   if (argc < 2)
   {
-    printf("Running all test for game inventory:\n");
+    printf("Running all test for module game:\n");
   }
   else
   {
@@ -127,7 +127,7 @@ int main(int argc, char **argv)
   if (all || test == i) test2_game_get_object_id();
   i++;
 
-  /*if (all || test == i) test1_game_get_connection_status();
+  if (all || test == i) test1_game_get_connection_status();
   i++;
   if (all || test == i) test2_game_get_connection_status();
   i++;
@@ -135,7 +135,7 @@ int main(int argc, char **argv)
   if (all || test == i) test1_game_get_connection();
   i++;
   if (all || test == i) test2_game_get_connection();
-  i++;*/
+  i++;
 
   if (all || test == i) test1_game_get_description();
   i++;
@@ -148,6 +148,7 @@ int main(int argc, char **argv)
 void test1_game_alloc2(){
     Game *g = NULL;
     g = game_alloc2();
+    game_create(g);
     PRINT_TEST_RESULT(g != NULL);
     game_destroy(g);
 }
@@ -155,6 +156,7 @@ void test1_game_alloc2(){
 void test1_game_destroy(){
     Game *g = NULL;
     g = game_alloc2();
+    game_create(g);
     PRINT_TEST_RESULT(game_destroy(g) == OK);
 }
 
@@ -179,6 +181,7 @@ void test1_game_update(){
     Game *g = NULL;
     char *arg = NULL;
     g = game_alloc2();
+    game_create(g);
     PRINT_TEST_RESULT(game_update(g, EXIT, arg) > 0);
     game_destroy(g);
 }
@@ -192,6 +195,7 @@ void test2_game_update(){
 void test1_game_is_over(){
     Game *g = NULL;
     g = game_alloc2();
+    game_create(g);
     player_set_health(game_get_player(g, 0), 0);
     PRINT_TEST_RESULT(game_is_over(g) == TRUE);
     game_destroy(g);
@@ -200,6 +204,7 @@ void test1_game_is_over(){
 void test2_game_is_over(){
     Game *g = NULL;
     g = game_alloc2();
+    game_create(g);
     player_set_health(game_get_player(g, 0), 10);
     PRINT_TEST_RESULT(game_is_over(g) == TRUE);
     game_destroy(g);
@@ -349,7 +354,7 @@ void test2_game_get_object_location(){
     Game *g = NULL;
     g = game_alloc2();
     game_create(g);
-    PRINT_TEST_RESULT(game_get_object_location(g, NO_ID) == NO_ID);
+    PRINT_TEST_RESULT(game_get_object_location(g, 31) == NO_ID);
     game_destroy(g);
 }
 
@@ -437,31 +442,27 @@ void test1_game_get_connection_status(){
     g = game_alloc2();
     game_create(g);
     l = link_create(40);
-    link_set_start(l, 11);
-    link_set_destination(l, 12);
-    link_set_direction(l, W);
     s1 = space_create(11);
-    space_set_link(s1, 40, W);
     link_set_status(l, OPEN);
+    space_set_link(s1, 40, W);
     game_add_space(g, s1);
+    game_add_link(g, l);
     PRINT_TEST_RESULT(game_get_connection_status(g, 11, W) == OPEN);
     game_destroy(g);
 }
 
 void test2_game_get_connection_status(){
     Game *g = NULL;
-    Space *s1, *s2;
+    Space *s1;
     Link *l;
     g = game_alloc2();
     game_create(g);
     l = link_create(40);
-    link_set_start(l, 11);
-    link_set_destination(l, 12);
-    link_set_direction(l, W);
-    s1 = space_create(11);
-    s2 = space_create(12);
+    s1 = space_create(11); 
     space_set_link(s1, 40, W);
-    PRINT_TEST_RESULT(game_get_connection_status(g, 11, S) == CLOSE);
+    game_add_space(g, s1);
+    game_add_link(g, l);
+    PRINT_TEST_RESULT(game_get_connection_status(g, 12, W) == CLOSE);
     game_destroy(g);
 }
 
@@ -477,6 +478,8 @@ void test1_game_get_connection(){
     link_set_direction(l, W);
     s1 = space_create(11);
     space_set_link(s1, 40, W);
+    game_add_space(g, s1);
+    game_add_link(g, l);
     PRINT_TEST_RESULT(game_get_connection(g, 11, W) == 12);
     game_destroy(g);
 }
@@ -488,12 +491,11 @@ void test2_game_get_connection(){
     g = game_alloc2();
     game_create(g);
     l = link_create(40);
-    link_set_start(l, 11);
-    link_set_destination(l, 12);
-    link_set_direction(l, W);
     s1 = space_create(11);
     space_set_link(s1, 40, W);
-    PRINT_TEST_RESULT(game_get_connection(g, 11, N) == NO_ID);
+    game_add_space(g, s1);
+    game_add_link(g, l);
+    PRINT_TEST_RESULT(game_get_connection(g, 11, W) == NO_ID);
     game_destroy(g);
 }
 
