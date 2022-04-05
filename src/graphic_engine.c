@@ -27,19 +27,22 @@
 #define COLUMNS 120   /*!< Establish screen size in x dimension */
 
 /**
- * @brief Motor grafico
+ * @brief Graphic engine
  *
- * Esta estructura contiene todos los punteros a los recursos necesarios que gestiona
- * el motor grafico como el mapa, help o feedback
+ * This struct contains all pointer to the different areas shown in graphics
  */
 struct _Graphic_engine
 {
-  Area *map, *descript, *banner, *help, *feedback;   /*!< mapa de juego, descript, icono, menu de ayuda, y feedback para los comandos introducidos */
+  Area *map;      /*!< graphic engine area of the game map */
+  Area *descript; /*!< graphic engine area of the description */
+  Area *banner;   /*!< graphic engine area of the banner */
+  Area *help;     /*!< graphic engine area of help */
+  Area *feedback;   /*!< graphic engine area of feedback */
 };
 
 /**
-  * graphic_engine_create inicializa la pantalla de juego con las dimensiones adecuadas
-  */
+ * graphic_engine_create inicializa la pantalla de juego con las dimensiones adecuadas
+ */
 Graphic_engine *graphic_engine_create()
 {
   static Graphic_engine *ge = NULL;
