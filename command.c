@@ -1,8 +1,8 @@
 /** 
- * @brief It implements the command interpreter
+ * @brief It implements the command interpreter.
  * 
  * It scans the cmd searching for key words introduced by the user in order to interpret and clasify the commands
- * as unknown, exit, up, down, left, right attack, take, drop or move depending on what string is typed.
+ * as unknown, exit, up, down, left, right attack, take, drop, move or inspect depending on what string is typed.
  * 
  * @file command.c
  * @author Miguel Soto, Nicolas Victorino, Ignacio Nunez and Antonio Van-Oers
@@ -19,19 +19,22 @@
 
 #define CMD_LENGHT 30 /*!< It defines the maximun lenght from an input command */
 
+/**
+ * @brief Two dimensional string array where commands names are included. When reading commands case sensitivity is off.
+ */
 char *cmd_to_str[N_CMD]
 [N_CMDT] = {{"", "No command"},    /*!< At the beginning, there is no commands */
       {"", "Unknown"},             /*!< If an empty or unknown string is received, it is interpreted as Unknown */
-      {"e", "Exit"},               /*!< If an e is received, it is interpreted as Exit */
-      {"s", "Down"},               /*!< If a s is received, it is interpreted as Down/Next */
-      {"a", "Left"},               /*!< If an a is received, it is interpreted as Left */
-      {"w", "Up"},                 /*!< If a w is received, it is interpreted as Up/Back */
-      {"d", "Right"},              /*!< If a d is received, it is interpreted as Right */
-      {"c", "Take"},               /*!< If a c is received, it is interpreted as Take */
-      {"v", "Drop"},               /*!< If a v is received, it is interpreted as Drop */
-      {"q", "Attack"},             /*!< If a s is received, it is interpreted as Attack */
-      {"m", "Move"},               /*!< If a m is received, it is interpreted as move */
-      {"i", "Inspect"},            /*!< If an i is received, it is interpreted as inspect */
+      {"e", "Exit"},               /*!< If an "e" or "exit" is received, it is interpreted as Exit */
+      {"s", "Down"},               /*!< If a "s" or "down" is received, it is interpreted as Down/Next */
+      {"a", "Left"},               /*!< If an "a" or "left" is received, it is interpreted as Left */
+      {"w", "Up"},                 /*!< If a "w" or "up" is received, it is interpreted as Up/Back */
+      {"d", "Right"},              /*!< If a "d" or "right" is received, it is interpreted as Right */
+      {"c", "Take"},               /*!< If a "c" or "take" is received, it is interpreted as Take */
+      {"v", "Drop"},               /*!< If a "v" or "drop" is received, it is interpreted as Drop */
+      {"q", "Attack"},             /*!< If a "q" or "attack" is received, it is interpreted as Attack */
+      {"m", "Move"},               /*!< If a "m" or "move" received, it is interpreted as move */
+      {"i", "Inspect"},            /*!< If an "i" or "inspect" received, it is interpreted as inspect */
       };
         
 /**It scans the cmd searching for key words introduced by the user 
