@@ -1,3 +1,16 @@
+/**
+ * @brief It implements a test macro to be used on the test modules. 
+ * Its function is printing both PASS and NOT PASS tests, 
+ * together with the line where the process is running and the 
+ * total porcentage of Passed tests.
+ *
+ * @file space.c
+ * @author Miguel Soto, Antonio Van-Oers, Nicolas Victorino and Ignacio Nunez
+ * @version 2.0
+ * @date 02-04-2022
+ * @copyright GNU Public License
+ */
+
 #ifndef _TEST_H
 #define _TEST_H
 
