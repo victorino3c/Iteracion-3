@@ -1,10 +1,10 @@
 /** 
- * @brief It implements the enemy interface
+ * @brief It implements the enemy interface.
  * 
  * @file enemy.h
- * @author Antonio Van-Oers
- * @version 1.2
- * @date 12-02-2021
+ * @author Antonio Van-Oers, Ignacio Nunez, Nicolas VIctorino and Miguel Soto
+ * @version 2.0
+ * @date 04-04-2022
  * @copyright GNU Public License
  */
 
@@ -13,8 +13,7 @@
 
 #include "types.h"
 
-#define Enemy_Name_lenght 60
-#define MAX_ENEMYS 10
+#define Enemy_Name_lenght 60  /*!< Enemy's name length */
 
 typedef struct _Enemy Enemy;
 
