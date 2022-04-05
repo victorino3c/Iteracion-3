@@ -694,7 +694,7 @@ Id game_get_object_location(Game *game, Id obj_id)
   /* Error control*/
   if (!o)
   {
-    return ERROR;
+    return NO_ID;
   }
 
   return obj_get_location(o);
@@ -775,6 +775,11 @@ Id game_get_connection(Game *game, Id act_spaceid, DIRECTION dir)
 int game_update(Game *game, T_Command cmd, char *arg)
 {
   int st = 0;
+  
+  if(!game){
+    return 0;
+  }
+  
   game->last_cmd = cmd;
   game->description = 0;
 
