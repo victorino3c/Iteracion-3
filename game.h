@@ -1,10 +1,10 @@
-/** 
+ /** 
  * @brief It defines the game interface
  * 
  * @file game.h
  * @author Antonio Van-Oers, Miguel Soto, Nicolas Victorino, Ignacio Nunez
- * @version 2.1
- * @date 12-02-2021 
+ * @version 3.0
+ * @date 04-04-2022
  * @copyright GNU Public License
  */
 
@@ -20,9 +20,9 @@
 #include "enemy.h"
 #include "inventory.h"
 
-#define MAX_LINKS 200
-#define MAX_SPACES 100
-#define MAX_ENEMYS 10
+#define MAX_LINKS 200  /*!< It established the maximun of links that can be in a game */
+#define MAX_SPACES 100  /*!< It established the maximun of spaces that can be in a game */
+#define MAX_ENEMYS 10   /*!< It established the maximun of enemies that can be in a game */
 
 /**
  * @brief Game's structucture
