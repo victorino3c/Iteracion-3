@@ -1,47 +1,52 @@
 CC = gcc 
 FLAGS = -c -Wall -ansi -pedantic
 LIBRARY = -lm
-T = Tests/
+T = test/
+D = doc/
+I = include/
+L = lib/
+O = obj/
+S = src/
 
 all: juego clean
 
-command.o: command.c command.h
-	$(CC) $(FLAGS) $<
+$(O)command.o: $(S)command.c $(I)command.h
+	$(CC) -o $@ $(FLAGS) $<
 	
-enemy.o: enemy.c enemy.h
-	$(CC) $(FLAGS) $< $(LIBRARY)
+$(O)enemy.o: $(S)enemy.c $(I)enemy.h
+	$(CC) -o $@ $(FLAGS) $< $(LIBRARY)
 	
-game_reader.o: game_reader.c game_reader.h command.h space.h types.h game.h
-	$(CC) $(FLAGS) $<
+$(O)game_reader.o: $(S)game_reader.c $(I)game_reader.h $(I)command.h $(I)space.h $(I)types.h $(I)game.h
+	$(CC) -o $@ $(FLAGS) $<
 
-game.o: game.c game.h command.h space.h types.h link.h player.h object.h enemy.h inventory.h
-	$(CC) $(FLAGS) $<
+$(O)game.o: $(S)game.c $(I)game.h $(I)command.h $(I)space.h $(I)types.h $(I)link.h $(I)player.h $(I)object.h $(I)enemy.h $(I)inventory.h
+	$(CC) -o $@ $(FLAGS) $<
 	
-graphic_engine.o: graphic_engine.c graphic_engine.h libscreen.h command.h space.h types.h inventory.h set.h
-	$(CC) $(FLAGS) $< $(LIBRARY)
+$(O)graphic_engine.o: $(S)graphic_engine.c $(I)graphic_engine.h $(I)libscreen.h $(I)command.h $(I)space.h $(I)types.h $(I)inventory.h $(I)set.h
+	$(CC) -o $@ $(FLAGS) $< $(LIBRARY)
 
-link.o: link.c link.h
-	$(CC) $(FLAGS) $<
+$(O)link.o: $(S)link.c $(I)link.h
+	$(CC) -o $@ $(FLAGS) $<
 	
-object.o: object.c object.h types.h
-	$(CC) $(FLAGS) $< $(LIBRARY)
+$(O)object.o: $(S)object.c $(I)object.h $(I)types.h
+	$(CC) -o $@ $(FLAGS) $< $(LIBRARY)
 	
-player.o: player.c player.h object.h inventory.h
-	$(CC) $(FLAGS) $< $(LIBRARY)
+$(O)player.o: $(S)player.c $(I)player.h $(I)object.h $(I)inventory.h
+	$(CC) -o $@ $(FLAGS) $< $(LIBRARY)
 	
-set.o: set.c set.h
-	$(CC) $(FLAGS) $<
+$(O)set.o: $(S)set.c $(I)set.h
+	$(CC) -o $@ $(FLAGS) $<
 
-inventory.o: inventory.c inventory.h set.h
-	$(CC) $(FLAGS) $<
+$(O)inventory.o: $(S)inventory.c $(I)inventory.h $(I)set.h
+	$(CC) -o $@ $(FLAGS) $<
 
-space.o: space.c space.h types.h set.h object.h
-	$(CC) $(FLAGS) $< $(LIBRARY)
+$(O)space.o: $(S)space.c $(I)space.h $(I)types.h $(I)set.h $(I)object.h
+	$(CC) -o $@ $(FLAGS) $< $(LIBRARY)
 
-game_loop.o: game_loop.c game.h command.h graphic_engine.h
-	$(CC) $(FLAGS) $< 
+$(O)game_loop.o: $(S)game_loop.c $(I)game.h $(I)command.h $(I)graphic_engine.h
+	$(CC) -o $@ $(FLAGS) $< 
 
-juego: command.o game.o game_reader.o graphic_engine.o object.o link.o player.o space.o game_loop.o libscreen.a enemy.o set.o inventory.o
+juego: $(O)command.o $(O)game.o $(O)game_reader.o $(O)graphic_engine.o $(O)object.o $(O)link.o $(O)player.o $(O)space.o $(O)game_loop.o $(L)libscreen.a $(O)enemy.o $(O)set.o $(O)inventory.o
 	$(CC) -o $@ -Wall $^ $(LIBRARY)
 
 #GAME
@@ -73,119 +78,108 @@ juego_permisos: juego
 	chmod u+x ./juego
 
 #ENEMY_TEST
-enemy_test.o: $(T)enemy_test.c $(T)enemy_test.h $(T)test.h enemy.h
-	$(CC) $(FLAGS) $<
+$(O)enemy_test.o: $(T)enemy_test.c $(T)enemy_test.h $(T)test.h $(I)enemy.h
+	$(CC) -o $@ $(FLAGS) $<
 
-enemy_test: enemy_test.o enemy.o
+enemy_test: $(O)enemy_test.o $(O)enemy.o
 	$(CC) -o $@ -Wall $^ $(LIBRARY)
-	make testclean
 
 venemy_test: enemy_test
 	valgrind --leak-check=full ./enemy_test
 
 
 #SET_TEST
-set_test.o: $(T)set_test.c $(T)set_test.h $(T)test.h set.h
-	$(CC) $(FLAGS) $<
+$(O)set_test.o: $(T)set_test.c $(T)set_test.h $(T)test.h $(I)set.h
+	$(CC) -o $@ $(FLAGS) $<
 
-set_test: set_test.o set.o 
+set_test: $(O)set_test.o $(O)set.o 
 	$(CC) -o $@ -Wall $^ $(LIBRARY)
-	make testclean
 
 vset_test: set_test
 	valgrind --leak-check=full ./set_test
 
 
 #SPACE_TEST
-space_test.o: $(T)space_test.c $(T)space_test.h $(T)test.h space.h
-	$(CC) $(FLAGS) $<
+$(O)space_test.o: $(T)space_test.c $(T)space_test.h $(T)test.h $(I)space.h
+	$(CC) -o $@ $(FLAGS) $<
 
-space_test: space_test.o space.o object.o set.o link.o
+space_test: $(O)space_test.o $(O)space.o $(O)object.o $(O)set.o $(O)link.o
 	$(CC) -o $@ -Wall $^ $(LIBRARY)
-	make testclean
 
 vspace_test: space_test
 	valgrind --leak-check=full ./space_test
 
 
 #INVENTORY_TEST
-inventory_test.o: $(T)inventory_test.c $(T)inventory_test.h $(T)test.h inventory.h
-	$(CC) $(FLAGS) $<
+$(O)inventory_test.o: $(T)inventory_test.c $(T)inventory_test.h $(T)test.h $(I)inventory.h
+	$(CC) -o $@ $(FLAGS) $<
 
-inventory_test: inventory_test.o inventory.o object.o set.o
+inventory_test: $(O)inventory_test.o $(O)inventory.o $(O)object.o $(O)set.o
 	$(CC) -o $@ -Wall $^ $(LIBRARY)
-	make testclean
 
 vinventory_test: inventory_test
 	valgrind --leak-check=full ./inventory_test
 	
 
 #OBJECT_TEST
-object_test.o: $(T)object_test.c $(T)object_test.h $(T)test.h object.h
-	$(CC) $(FLAGS) $<
+$(O)object_test.o: $(T)object_test.c $(T)object_test.h $(T)test.h $(I)object.h
+	$(CC) -o $@ $(FLAGS) $<
 
-object_test: object_test.o space.o object.o set.o link.o
+object_test: $(O)object_test.o $(O)space.o $(O)object.o $(O)set.o $(O)link.o
 	$(CC) -o $@ -Wall $^ $(LIBRARY)
-	make testclean
 
 vobject_test: object_test
 	valgrind --leak-check=full ./object_test
 	
 	
 #PLAYER_TEST
-player_test.o: $(T)player_test.c $(T)player_test.h $(T)test.h player.h
-	$(CC) $(FLAGS) $<
+$(O)player_test.o: $(T)player_test.c $(T)player_test.h $(T)test.h $(I)player.h
+	$(CC) -o $@ $(FLAGS) $<
 
-player_test: player_test.o player.o object.o set.o inventory.o
+player_test: $(O)player_test.o $(O)player.o $(O)object.o $(O)set.o $(O)inventory.o
 	$(CC) -o $@ -Wall $^ $(LIBRARY)
-	make testclean
 
 vplayer_test: player_test
 	valgrind --leak-check=full ./player_test
 
 
 #LINK_TEST
-link_test.o: $(T)link_test.c $(T)link_test.h $(T)test.h link.h
-	$(CC) $(FLAGS) $<
+$(O)link_test.o: $(T)link_test.c $(T)link_test.h $(T)test.h $(I)link.h
+	$(CC) -o $@ $(FLAGS) $<
 
-link_test: link_test.o link.o space.o set.o
+link_test: $(O)link_test.o $(O)link.o $(O)space.o $(O)set.o
 	$(CC) -o $@ -Wall $^ $(LIBRARY)
-	make testclean
 
 vlink_test: link_test
 	valgrind --leak-check=full ./link_test
 
 
 #GAME_TEST
-game_test.o: $(T)game_test.c $(T)game_test.h $(T)test.h game.h
-	$(CC) $(FLAGS) $<
+$(O)game_test.o: $(T)game_test.c $(T)game_test.h $(T)test.h $(I)game.h
+	$(CC) -o $@ $(FLAGS) $<
 
-game_test: game_test.o game.o object.o space.o player.o enemy.o inventory.o set.o link.o
+game_test: $(O)game_test.o $(O)game.o $(O)object.o $(O)space.o $(O)player.o $(O)enemy.o $(O)inventory.o $(O)set.o $(O)link.o
 	$(CC) -o $@ -Wall $^ $(LIBRARY)
-	make testclean
 
 vgame_test: game_test
 	valgrind --leak-check=full ./game_test
-	
 
-all_test:
-	make player_test
-	make object_test
-	make inventory_test
-	make set_test
-	make enemy_test
-	make link_test
+
+all_test: player_test object_test inventory_test set_test enemy_test link_test game_test space_test
 
 #CLEAN
 clean:
 	rm -f *.o
 	rm -f *.h.gch
 
+oclean:
+	rm -f obj/*.o
+
 xclean:
 	rm -f juego
 	rm -f *_test
 
-sclean: clean xclean
+sclean: oclean xclean
 
 testclean: clean
 	rm -f $(T)*.h.gch
