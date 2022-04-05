@@ -15,7 +15,7 @@
 #include <string.h>
 #include <strings.h>
 #include <stdlib.h>
-#include "command.h"
+#include "../include/command.h"
 
 #define CMD_LENGHT 30 /*!< It defines the maximun lenght from an input command */
 
