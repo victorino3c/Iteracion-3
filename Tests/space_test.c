@@ -2,9 +2,9 @@
  * @brief It tests space module
  *
  * @file space_test.c
- * @author Profesores Pprog
+ * @author Ignacio Nunez, Miguel Soto, Antonio Van-Oers and Nicolas Victorino
  * @version 3.0
- * @date 09-03-2021
+ * @date 04-04-2021
  * @copyright GNU Public License
  */
 
@@ -66,30 +66,25 @@ int main(int argc, char **argv)
   if (all || test == i) test3_space_set_name();
   i++;
 
-  if (all || test == i) test1_space_set_north();
+  if (all || test == i) test1_space_set_link();
   i++;
-  if (all || test == i) test2_space_set_north();
+  if (all || test == i) test1_space_set_link_north();
+  i++;
+  if (all || test == i) test2_space_set_link_north();
+  i++;
+  if (all || test == i) test1_space_set_link_south();
+  i++;
+  if (all || test == i) test2_space_set_link_south();
+  i++;
+  if (all || test == i) test1_space_set_link_east();
+  i++;
+  if (all || test == i) test2_space_set_link_east();
+  i++;
+  if (all || test == i) test1_space_set_link_west();
+  i++;
+  if (all || test == i) test2_space_set_link_west();
   i++;
 
-  if (all || test == i) test1_space_set_south();
-  i++;
-  if (all || test == i) test2_space_set_south();
-  i++;
-
-  if (all || test == i) test1_space_set_east();
-  i++;
-  if (all || test == i) test2_space_set_east();
-  i++;
-
-  if (all || test == i) test1_space_set_west();
-  i++;
-  if (all || test == i) test2_space_set_west();
-  i++;
-
-  if (all || test == i) test2_space_set_west();
-  i++;
-  if (all || test == i) test2_space_set_west();
-  i++;
 
   if (all || test == i) test1_space_add_object();
   i++;
@@ -110,24 +105,23 @@ int main(int argc, char **argv)
   if (all || test == i) test3_space_get_object();
   i++;
 
-  if (all || test == i) test1_space_get_north();
+  if (all || test == i) test1_space_get_link();
   i++;
-  if (all || test == i) test2_space_get_north();
+  if (all || test == i) test1_space_get_link_north();
   i++;
-
-  if (all || test == i) test1_space_get_south();
+  if (all || test == i) test2_space_get_link_north();
   i++;
-  if (all || test == i) test2_space_get_south();
+  if (all || test == i) test1_space_get_link_south();
   i++;
-
-  if (all || test == i) test1_space_get_east();
+  if (all || test == i) test2_space_get_link_south();
   i++;
-  if (all || test == i) test2_space_get_east();
+  if (all || test == i) test1_space_get_link_east();
   i++;
-
-  if (all || test == i) test1_space_get_west();
+  if (all || test == i) test2_space_get_link_east();
   i++;
-  if (all || test == i) test2_space_get_west();
+  if (all || test == i) test1_space_get_link_west();
+  i++;
+  if (all || test == i) test2_space_get_link_west();
   i++;
 
   if (all || test == i) test1_space_get_id();
@@ -150,6 +144,7 @@ int main(int argc, char **argv)
   if (all || test == i) test2_space_get_gdesc();
   i++;
 
+  printf("NUMBER OF TEST = %d\n", i);
   PRINT_PASSED_PERCENTAGE;
 
   return 1;
@@ -207,84 +202,89 @@ void test3_space_set_name()
   space_destroy(s);
 }
 
-/*  space_set_north*/
-void test1_space_set_north()
+/*  space_set_link */
+void test1_space_set_link()
 {
-  Space *s;
+  Space *s = NULL;
   s = space_create(5);
-  PRINT_TEST_RESULT(space_set_north(s, 4) == OK);
+  PRINT_TEST_RESULT(space_set_link(s, 4, ND) == ERROR);
   space_destroy(s);
-}
-void test2_space_set_north()
-{
-  Space *s = NULL;
-  PRINT_TEST_RESULT(space_set_north(s, 4) == ERROR);
-}
-void test3_space_set_north()
-{
-  Space *s = NULL;
-  s = space_create(5);
-  PRINT_TEST_RESULT(space_set_north(s, NO_ID) == ERROR);
 }
 
-/*  space_set_south*/
-void test1_space_set_south()
+void test1_space_set_link_north()
 {
   Space *s;
   s = space_create(5);
-  PRINT_TEST_RESULT(space_set_south(s, 4) == OK);
+  PRINT_TEST_RESULT(space_set_link(s, 4, N) == OK);
   space_destroy(s);
 }
-void test2_space_set_south()
+void test2_space_set_link_north()
 {
   Space *s = NULL;
-  PRINT_TEST_RESULT(space_set_south(s, 4) == ERROR);
+  PRINT_TEST_RESULT(space_set_link(s, 4, N) == ERROR);
 }
-void test3_space_set_south()
+void test3_space_set_link_north()
 {
   Space *s = NULL;
   s = space_create(5);
-  PRINT_TEST_RESULT(space_set_south(s, NO_ID) == ERROR);
+  PRINT_TEST_RESULT(space_set_link(s, NO_ID, N) == ERROR);
 }
 
-/*  space_set_east*/
-void test1_space_set_east()
+void test1_space_set_link_south()
 {
   Space *s;
   s = space_create(5);
-  PRINT_TEST_RESULT(space_set_east(s, 4) == OK);
+  PRINT_TEST_RESULT(space_set_link(s, 4, S) == OK);
   space_destroy(s);
 }
-void test2_space_set_east()
+void test2_space_set_link_south()
 {
   Space *s = NULL;
-  PRINT_TEST_RESULT(space_set_east(s, 4) == ERROR);
+  PRINT_TEST_RESULT(space_set_link(s, 4, S) == ERROR);
 }
-void test3_space_set_east()
+void test3_space_set_link_south()
 {
   Space *s = NULL;
   s = space_create(5);
-  PRINT_TEST_RESULT(space_set_east(s, NO_ID) == ERROR);
+  PRINT_TEST_RESULT(space_set_link(s, NO_ID, S) == ERROR);
 }
 
-/*  space_set_west*/
-void test1_space_set_west()
+void test1_space_set_link_east()
 {
   Space *s;
   s = space_create(5);
-  PRINT_TEST_RESULT(space_set_west(s, 4) == OK);
+  PRINT_TEST_RESULT(space_set_link(s, 4, E) == OK);
   space_destroy(s);
 }
-void test2_space_set_west()
+void test2_space_set_link_east()
 {
   Space *s = NULL;
-  PRINT_TEST_RESULT(space_set_west(s, 4) == ERROR);
+  PRINT_TEST_RESULT(space_set_link(s, 4, E) == ERROR);
 }
-void test3_space_set_west()
+void test3_space_set_link_east()
 {
   Space *s = NULL;
   s = space_create(5);
-  PRINT_TEST_RESULT(space_set_west(s, NO_ID) == ERROR);
+  PRINT_TEST_RESULT(space_set_link(s, NO_ID, E) == ERROR);
+}
+
+void test1_space_set_link_west()
+{
+  Space *s;
+  s = space_create(5);
+  PRINT_TEST_RESULT(space_set_link(s, 4, W) == OK);
+  space_destroy(s);
+}
+void test2_space_set_link_west()
+{
+  Space *s = NULL;
+  PRINT_TEST_RESULT(space_set_link(s, 4, W) == ERROR);
+}
+void test3_space_set_link_west()
+{
+  Space *s = NULL;
+  s = space_create(5);
+  PRINT_TEST_RESULT(space_set_link(s, NO_ID, W) == ERROR);
 }
 
 /*  space_get_id*/
@@ -382,64 +382,70 @@ void test2_space_get_name()
   PRINT_TEST_RESULT(space_get_name(s) == NULL);
 }
 
-/*  space_get_north*/
-void test1_space_get_north()
+
+/*  space_get_link*/
+void test1_space_get_link()
 {
   Space *s;
   s = space_create(5);
-  space_set_north(s, 4);
-  PRINT_TEST_RESULT(space_get_north(s) == 4);
+  PRINT_TEST_RESULT(space_get_link(s, ND) == NO_ID);
   space_destroy(s);
-}
-void test2_space_get_north()
-{
-  Space *s = NULL;
-  PRINT_TEST_RESULT(space_get_north(s) == NO_ID);
 }
 
-/*  space_get_south*/
-void test1_space_get_south()
+void test1_space_get_link_north()
 {
   Space *s;
   s = space_create(5);
-  space_set_south(s, 2);
-  PRINT_TEST_RESULT(space_get_south(s) == 2);
+  space_set_link(s, 4, N);
+  PRINT_TEST_RESULT(space_get_link(s, N) == 4);
   space_destroy(s);
 }
-void test2_space_get_south()
+void test2_space_get_link_north()
 {
   Space *s = NULL;
-  PRINT_TEST_RESULT(space_get_south(s) == NO_ID);
+  PRINT_TEST_RESULT(space_get_link(s, N) == NO_ID);
 }
 
-/*  space_get_east*/
-void test1_space_get_east()
+void test1_space_get_link_south()
 {
   Space *s;
   s = space_create(5);
-  space_set_east(s, 1);
-  PRINT_TEST_RESULT(space_get_east(s) == 1);
+  space_set_link(s, 2, S);
+  PRINT_TEST_RESULT(space_get_link(s, S) == 2);
   space_destroy(s);
 }
-void test2_space_get_east()
+void test2_space_get_link_south()
 {
   Space *s = NULL;
-  PRINT_TEST_RESULT(space_get_east(s) == NO_ID);
+  PRINT_TEST_RESULT(space_get_link(s, S) == NO_ID);
 }
 
-/*  space_get_west*/
-void test1_space_get_west()
+void test1_space_get_link_east()
 {
   Space *s;
   s = space_create(5);
-  space_set_west(s, 6);
-  PRINT_TEST_RESULT(space_get_west(s) == 6);
+  space_set_link(s, 1, E);
+  PRINT_TEST_RESULT(space_get_link(s, E) == 1);
   space_destroy(s);
 }
-void test2_space_get_west()
+void test2_space_get_link_east()
 {
   Space *s = NULL;
-  PRINT_TEST_RESULT(space_get_west(s) == NO_ID);
+  PRINT_TEST_RESULT(space_get_link(s, E) == NO_ID);
+}
+
+void test1_space_get_link_west()
+{
+  Space *s;
+  s = space_create(5);
+  space_set_link(s, 6, W);
+  PRINT_TEST_RESULT(space_get_link(s, W) == 6);
+  space_destroy(s);
+}
+void test2_space_get_link_west()
+{
+  Space *s = NULL;
+  PRINT_TEST_RESULT(space_get_link(s, W) == NO_ID);
 }
 
 /*  space_set_gdesc*/
