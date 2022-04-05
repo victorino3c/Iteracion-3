@@ -137,15 +137,15 @@ STATUS space_destroy(Space *space)
     space->objects = NULL;
   }
 
-  /*
   if (space->gdesc)
   {
     if (space_destroy_gdesc(space->gdesc) == ERROR)
     {
+      /*printf("ERROR liberando memoria gdesc\n");*/
       return ERROR;
     }
   }
-  */
+
   free(space);
   space = NULL;
   return OK;

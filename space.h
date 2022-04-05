@@ -16,11 +16,10 @@
 #include "object.h"
 #include "link.h"
 
-typedef struct _Space Space;
+typedef struct _Space Space; /* <! The space structure, contains everything related to the game's spaces */
 
 #define FIRST_SPACE 1 /* <! Establish the position of the first space  */
-
-#define TAM_GDESC_Y 5 /* <! Establish the maximun number of lines space's graphic description (gdesc) will have  */
+#define TAM_GDESC_Y 5 /* <! Establish the maximun number of litednes space's graphic description (gdesc) will have  */
 #define TAM_GDESC_X 9 /* <! Establish the maximun number of characters each line of space's graphic description (gdesc) will have */
 
 /**
@@ -147,19 +146,19 @@ STATUS space_del_objectid(Space *s, Id id);
  * @brief It gets a pointer to the set of objects in a space
  * @author Miguel Soto
  *
- * @param space a pointer to the space
+ * @param s a pointer to the space
  * @return a pointer to Set with all objects id that are in that space or NULL if there was an error
  */
-Set *space_get_objects(Space *space);
+Set *space_get_objects(Space *s);
 
 /**
  * @brief It gets a pointer to the id array of a set of objects that are in that space
  * @author Miguel Soto
  *
- * @param space a pointer to the space
+ * @param s a pointer to the space
  * @return a pointer to Id with all objects id that are in that spacea or NULL if there was an error
  */
-Id *space_get_objects_ids(Space *space);
+Id *space_get_objects_ids(Space *s);
 
 /**
  * @brief It gets if there is an object with id id in a space s.
@@ -183,7 +182,7 @@ char **space_create_gdesc();
  * @brief It frees memory for the space_gdesc
  * @author Miguel Soto
  *
- * @param s pointer to space that gdesc must be destroy
+ * @param gdesc pointer to the array of pointers to the gdesc field
  * @return OK, if everything goes well or ERROR if there was some mistake
  */
 STATUS space_destroy_gdesc(char **gdesc);
