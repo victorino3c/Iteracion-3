@@ -17,8 +17,8 @@
  */
 struct _Set
 {
-    Id *ids;            /* !< Ids array */
-    int n_ids;          /* !< Number of ids stored*/
+    Id *ids;            /*!< Ids array */
+    int n_ids;          /*!< Number of ids stored*/
 };
 
 /**
