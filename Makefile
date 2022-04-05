@@ -156,6 +156,18 @@ vlink_test: link_test
 	valgrind --leak-check=full ./link_test
 
 
+#GAME_TEST
+game_test.o: $(T)game_test.c $(T)game_test.h $(T)test.h game.h
+	$(CC) $(FLAGS) $<
+
+game_test: game_test.o game.o object.o space.o player.o enemy.o inventory.o set.o link.o
+	$(CC) -o $@ -Wall $^ $(LIBRARY)
+	make testclean
+
+vgame_test: game_test
+	valgrind --leak-check=full ./game_test
+	
+
 all_test:
 	make player_test
 	make object_test
