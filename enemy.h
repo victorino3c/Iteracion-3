@@ -15,6 +15,11 @@
 
 #define Enemy_Name_lenght 60  /*!< Enemy's name length */
 
+/**
+ * @brief Enemy
+ *
+ * This structure stores all info that each enemy has
+ */
 typedef struct _Enemy Enemy;
 
 
