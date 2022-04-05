@@ -100,7 +100,7 @@ vset_test: set_test
 space_test.o: $(T)space_test.c $(T)space_test.h $(T)test.h space.h
 	$(CC) $(FLAGS) $<
 
-space_test: space_test.o space.o object.o set.o
+space_test: space_test.o space.o object.o set.o link.o
 	$(CC) -o $@ -Wall $^ $(LIBRARY)
 	make testclean
 
