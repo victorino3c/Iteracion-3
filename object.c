@@ -1,9 +1,9 @@
-/**
- * @brief Implementa el modulo del objeto.
+  /**
+ * @brief It implements the object module.
  *
  * @file object.c
  * @author Miguel Soto, Antonio Van-Oers, Nicolas Victorino & Ignacio Nunnez
- * @version 2.0
+ * @version 3.0
  * @date 02-04-2022
  * @copyright GNU Public License
  */
@@ -22,10 +22,10 @@
  */
 struct _Object
 {
-  Id id;
-  char name[OBJ_NAME_LEN];
-  char description[WORD_SIZE];
-  Id location;
+  Id id;    /*!< Object's id */
+  char name[OBJ_NAME_LEN];  /*!< Object name */
+  char description[WORD_SIZE];  /*!< Object description */
+  Id location;  /*!< Object space location */
 } ;
 
 /** obj_create reserva memoria para un nuevo objeto e inicializa sus miembros.
