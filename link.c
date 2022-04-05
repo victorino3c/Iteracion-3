@@ -22,9 +22,9 @@ struct _Link
 {
     Id id;                    /*!< Link's id */
     char name[LINK_NAME_LEN]; /*!< Link's name */
-    Id start;
+    Id start;   /*!< Id from the space where link starts*/
     Id destination;      /*!< Id to space destination */
-    DIRECTION direction; /*!< Defines direction (N, S, E, W or ND (Not defined) */
+    DIRECTION direction; /*!< Defines direction (N, S, E, W or ND (Not defined)) */
     LINK_STATUS status;  /*!< Wether link is OPEN or CLOSE */
 };
 
