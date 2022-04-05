@@ -893,19 +893,41 @@ BOOL game_is_over(Game *game)
 /**
  *Calls implementation for each action
  */
+
+/**
+ * @brief It executes UNKNOWN command in game.
+ * 
+ * @param game pointer to game struct
+ * @param arg string with command argument
+ * @return OK if everything goes well or ERROR if there was any mistake
+ */
 int game_command_unknown(Game *game, char *arg)
 {
   return 5;
 }
 
+/**
+ * @brief It executes EXIT command in game.
+ * 
+ * @param game pointer to game struct
+ * @param arg string with command argument
+ * @return OK if everything goes well or ERROR if there was any mistake
+ */
 STATUS game_command_exit(Game *game, char *arg)
 {
   return OK;
 }
 
-/** This command is for the player to take the object located
+/**
+ * @brief It executes TAKE command in game.
+ * 
+ * This command is for the player to take the object located
  * on the current position. It requires the name of the object for it
  * to be taken correctly
+ * 
+ * @param game pointer to game struct
+ * @param arg string with command argument
+ * @return OK if everything goes well or ERROR if there was any mistake
  */
 STATUS game_command_take(Game *game, char *arg)
 {
@@ -965,9 +987,16 @@ STATUS game_command_take(Game *game, char *arg)
   return ERROR;
 }
 
-/** This command is for dropping the object that carries the player
+/**
+ * @brief It executes DROP command in game.
+ * 
+ * This command is for dropping the object that carries the player
  * on the current position. It requires the name of the object to be dropped
  * to work correctly
+ * 
+ * @param game pointer to game struct
+ * @param arg string with command argument
+ * @return OK if everything goes well or ERROR if there was any mistake
  */
 STATUS game_command_drop(Game *game, char *arg)
 {
@@ -1027,9 +1056,16 @@ STATUS game_command_drop(Game *game, char *arg)
   return OK;
 }
 
-/** When the las command is interpreted as down, move
+/**
+ * @brief It executes DOWN command in game.
+ * 
+ * When the last command is interpreted as down, move
  * the player to the space South to its current position,
  * updating it afterwards
+ * 
+ * @param game pointer to game struct
+ * @param arg string with command argument
+ * @return OK if everything goes well or ERROR if there was any mistake
  */
 STATUS game_command_down(Game *game, char *arg)
 {
@@ -1067,9 +1103,16 @@ STATUS game_command_down(Game *game, char *arg)
   }
 }
 
-/** When the las command is interpreted as up, move
+/**
+ * @brief It executes UP command in game.
+ * 
+ * When the last command is interpreted as up, move
  * the player to the space North to its current position,
  * updating it afterwards
+ * 
+ * @param game pointer to game struct
+ * @param arg string with command argument
+ * @return OK if everything goes well or ERROR if there was any mistake
  */
 STATUS game_command_up(Game *game, char *arg)
 {
@@ -1107,10 +1150,17 @@ STATUS game_command_up(Game *game, char *arg)
   }
 }
 
-/** This command allows the player to engage in combat with an enemy.
+/**
+ * @brief It executes ATTACK command in game.
+ * 
+ * This command allows the player to engage in combat with an enemy.
  * The deciding factor is up to chance, a random number will determine
  * whether the player or the enemy won that round resulting in the loser
  * getting his health reduced by 1
+ * 
+ * @param game pointer to game struct
+ * @param arg string with command argument
+ * @return OK if everything goes well or ERROR if there was any mistake
  */
 STATUS game_command_attack(Game *game, char *arg)
 {
@@ -1157,9 +1207,16 @@ STATUS game_command_attack(Game *game, char *arg)
   return OK;
 }
 
-/** When the las command is interpreted as left, move
+/**
+ * @brief It executes LEFT command in game.
+ * 
+ * When the last command is interpreted as left, move
  * the player to the space West to its current position,
  * updating it afterwards
+ * 
+ * @param game pointer to game struct
+ * @param arg string with command argument
+ * @return OK if everything goes well or ERROR if there was any mistake
  */
 STATUS game_command_left(Game *game, char *arg)
 {
@@ -1197,9 +1254,16 @@ STATUS game_command_left(Game *game, char *arg)
   }
 }
 
-/** When the las command is interpreted as right, move
+/**
+ * @brief It executes RIGHT command in game.
+ * 
+ * When the last command is interpreted as right, move
  * the player to the space East to its current position,
  * updating it afterwards
+ * 
+ * @param game pointer to game struct
+ * @param arg string with command argument
+ * @return OK if everything goes well or ERROR if there was any mistake
  */
 STATUS game_command_right(Game *game, char *arg)
 {
@@ -1235,6 +1299,92 @@ STATUS game_command_right(Game *game, char *arg)
   {
     return ERROR;
   }
+}
+
+/**
+ * @brief It executes MOVE command in game.
+ * 
+ * Another way to move, commands move n,s,e,w
+ * to north, south, east or west respectively
+ * 
+ * @param game pointer to game struct
+ * @param arg string with command argument
+ * @return OK if everything goes well or ERROR if there was any mistake
+ */
+STATUS game_command_move(Game *game, char *arg)
+{
+  char *west[2] = {"w", "West"};
+  char *north[2] = {"n", "North"};
+  char *south[2] = {"s", "South"};
+  char *east[2] = {"e", "East"};
+  STATUS st = ERROR;
+
+  if (strcasecmp(arg, west[0]) == 0 || strcasecmp(arg, west[1]) == 0)
+  {
+    st = game_command_left(game, NULL);
+  }
+  else if (strcasecmp(arg, north[0]) == 0 || strcasecmp(arg, north[1]) == 0)
+  {
+    st = game_command_up(game, NULL);
+  }
+  else if (strcasecmp(arg, south[0]) == 0 || strcasecmp(arg, south[1]) == 0)
+  {
+    st = game_command_down(game, NULL);
+  }
+  else if (strcasecmp(arg, east[0]) == 0 || strcasecmp(arg, east[1]) == 0)
+  {
+    st = game_command_right(game, NULL);
+  }
+  else
+  {
+    st = ERROR;
+  }
+
+  return st;
+}
+
+/**
+ * @brief It executes INSPECT command in game.
+ * 
+ * Changes the description of game to the one user wanted
+ * 
+ * @param game pointer to game struct
+ * @param arg string with command argument
+ * @return OK if everything goes well or ERROR if there was any mistake
+ */
+STATUS game_command_inspect(Game *game, char *arg)
+{
+    Object *obj = game_get_object_byName(game, arg);
+
+  /*SPACE CASE*/
+  if (strcmp(arg, "space") == 0 || strcmp(arg, "s") == 0)
+  {
+    game->description = (char *)space_get_description(game_get_space(game, player_get_location(game->player[MAX_PLAYERS - 1])));
+    return OK;
+  }
+
+  /*OBJECT CASE*/
+  else
+  {
+    if (arg == NULL)
+    {
+      game->description = " ";
+      return ERROR;
+    }
+
+    if (obj == NULL)
+    {
+      game->description = " ";
+      return ERROR;
+    }
+    if (player_has_object(game->player[0], obj_get_id(obj)) == FALSE && player_get_location(game->player[0]) != obj_get_location(obj))
+    {
+      return ERROR;
+    }
+    game->description = (char *)obj_get_description(obj);
+    return OK;
+  }
+  return ERROR;
 }
 
 /*Function that gets the enemy id based on the position it is located in the enemy array located in the game structure */
@@ -1294,76 +1444,4 @@ Game *game_alloc2()
   game->description = "\0";
 
   return game;
-}
-
-/** Another way to move, commands move n,s,e,w
- * to north, south, east or west respectively
- */
-STATUS game_command_move(Game *game, char *arg)
-{
-  char *west[2] = {"w", "West"};
-  char *north[2] = {"n", "North"};
-  char *south[2] = {"s", "South"};
-  char *east[2] = {"e", "East"};
-  STATUS st = ERROR;
-
-  if (strcasecmp(arg, west[0]) == 0 || strcasecmp(arg, west[1]) == 0)
-  {
-    st = game_command_left(game, NULL);
-  }
-  else if (strcasecmp(arg, north[0]) == 0 || strcasecmp(arg, north[1]) == 0)
-  {
-    st = game_command_up(game, NULL);
-  }
-  else if (strcasecmp(arg, south[0]) == 0 || strcasecmp(arg, south[1]) == 0)
-  {
-    st = game_command_down(game, NULL);
-  }
-  else if (strcasecmp(arg, east[0]) == 0 || strcasecmp(arg, east[1]) == 0)
-  {
-    st = game_command_right(game, NULL);
-  }
-  else
-  {
-    st = ERROR;
-  }
-
-  return st;
-}
-
-/*Changes the description of game to the one user wanted
- */
-STATUS game_command_inspect(Game *game, char *arg)
-{
-    Object *obj = game_get_object_byName(game, arg);
-
-  /*SPACE CASE*/
-  if (strcmp(arg, "space") == 0 || strcmp(arg, "s") == 0)
-  {
-    game->description = (char *)space_get_description(game_get_space(game, player_get_location(game->player[MAX_PLAYERS - 1])));
-    return OK;
-  }
-
-  /*OBJECT CASE*/
-  else
-  {
-    if (arg == NULL)
-    {
-      game->description = " ";
-      return ERROR;
-    }
-
-    if (obj == NULL)
-    {
-      game->description = " ";
-      return ERROR;
-    }
-    if (player_has_object(game->player[0], obj_get_id(obj)) == FALSE && player_get_location(game->player[0]) != obj_get_location(obj))
-    {
-      return ERROR;
-    }
-    game->description = (char *)obj_get_description(obj);
-    return OK;
-  }
-  return ERROR;
 }
