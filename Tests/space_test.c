@@ -15,7 +15,7 @@
 #include "space_test.h"
 #include "test.h"
 
-#define MAX_TESTS 33
+#define MAX_TESTS 42
 
 /**
  * @brief Main function for SPACE unit tests.
@@ -143,8 +143,7 @@ int main(int argc, char **argv)
   i++;
   if (all || test == i) test2_space_get_gdesc();
   i++;
-
-  printf("NUMBER OF TEST = %d\n", i);
+  
   PRINT_PASSED_PERCENTAGE;
 
   return 1;
