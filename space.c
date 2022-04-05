@@ -137,15 +137,15 @@ STATUS space_destroy(Space *space)
     space->objects = NULL;
   }
 
+  /*
   if (space->gdesc)
   {
     if (space_destroy_gdesc(space->gdesc) == ERROR)
     {
-      /*printf("ERROR liberando memoria gdesc\n");*/
       return ERROR;
     }
   }
-
+  */
   free(space);
   space = NULL;
   return OK;
@@ -553,14 +553,14 @@ STATUS space_print(Space *space)
 
   return OK;
 }
-
+/*
 Id space_get_id_dest_by_link (Link *l)
 {
-  /*Error control*/
+  Error control
   if (!l)
   return -1;
 
   return (Id)link_get_destination(l);
 
 }
-
+*/
