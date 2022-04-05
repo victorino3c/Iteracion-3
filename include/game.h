@@ -35,7 +35,7 @@ typedef struct _Game Game;
 
 /**
   * @brief returns description' pointer
-  * @author Antonio Van-Oers, Miguel Soto, Nicolas Victorino, Ignacio Nunez
+  * @author Antonio Van-Oers
   * 
   * @param game a pointer to game
   * @return description pointer (can be NULL)
@@ -53,7 +53,7 @@ STATUS game_alloc(Game *game);
 
 /**
   * @brief initializes all necessary members to empty values
-  * @author Antonio Van-Oers, Miguel Soto, Nicolas Victorino, Ignacio Nunez
+  * @author Nicolas Victorino
   * 
   * @param game a pointer to game
   * @return OK if everything goes well or ERROR if there was any mistake
@@ -62,7 +62,7 @@ STATUS game_create(Game *game);
 
 /**
   * @brief Checks if there was any update on the game cmd, whenever the user types something
-  * @author Antonio Van-Oers, Miguel Soto, Nicolas Victorino, Ignacio Nunez
+  * @author Miguel Soto
   *
   * game_update updates cmd whenever something is typed in, this is where 
   * every known case gets interpreted as the various actions on the game, 
@@ -71,13 +71,14 @@ STATUS game_create(Game *game);
   * @param game a pointer to game, que contiene los datos de localización de objeto y jugador 
   * junto con los espacios del juego y el ultimo comando
   * @param cmd la variable tipo T_Command del interprete de comandos, varia segun el comando introducido por el usuario
+  * @param arg string which is the argument of an input command.
   * @return 0 if ERROR, 1 if OK, and 5 if OK but dont print condition
   */
 int game_update(Game *game, T_Command cmd, char *arg);
 
 /**
   * @brief frees/destroys the game
-  * @author Antonio Van-Oers, Miguel Soto, Nicolas Victorino, Ignacio Nunez
+  * @author Ignacio Nunez
   *
   * game_destroy frees/destroys all of game's spaces  
   * calling space_destroy for each one of them
@@ -88,7 +89,7 @@ STATUS game_destroy(Game *game);
 
 /**
   * @brief Ends the game
-  * @author Antonio Van-Oers, Miguel Soto, Nicolas Victorino, Ignacio Nunez
+  * @author Antonio Van-Oers
   *
   * False is the output when called, meaning game has ended
   * 
@@ -99,7 +100,7 @@ BOOL game_is_over(Game *game);
 
 /**
   * @brief  Prints all game related relevant data
-  * @author Antonio Van-Oers, Miguel Soto, Nicolas Victorino, Ignacio Nunez
+  * @author Nicolas Victorino
   *
   * @param game a pointer to game
   */
@@ -107,7 +108,7 @@ void game_print_data(Game *game);
 
 /**
   * @brief Gets a space via target id
-  * @author Antonio Van-Oers, Miguel Soto, Nicolas Victorino, Ignacio Nunez
+  * @author Ignacio Nunez
   *
   * Checks wheter a space is on the game by comparing target id with each game's spaces' id
   * @param game a pointer to game  
