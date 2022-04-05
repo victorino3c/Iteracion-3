@@ -1,11 +1,11 @@
 
 /** 
- * @brief Implements the enemy interface
+ * @brief Implements the enemy interface.
  * 
  * @file enemy.c
- * @author Antonio Van-Oers
+ * @author Antonio Van-Oers, Ignacio Nunez, Nicolas Victorino and Miguel Soto.
  * @version 1.3 
- * @date 12-02-2021
+ * @date 04-04-2022
  * @copyright GNU Public License
  */
 
@@ -14,6 +14,7 @@
 #include <string.h>
 #include <math.h>
 #include "enemy.h"
+#include "types.h"
 
 /**
  * @brief Enemy
@@ -22,10 +23,10 @@
  */
 struct _Enemy
 {
-  Id id;
-  char name[Enemy_Name_lenght];
-  Id location;
-  int health;
+  Id id;  /*!< Enemy's id. */
+  char name[Enemy_Name_lenght]; /*!< Enemy's name. */
+  Id location;  /*!< Id to enemy's space location */
+  int health;   /*!< Enemy's health */
 } ;
 
 /**enemy_create allocates memory for a new enemy and initializes all its members .
