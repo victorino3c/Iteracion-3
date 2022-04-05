@@ -14,7 +14,7 @@
 #include <string.h>
 #include <strings.h>
 #include <time.h>
-#include "game.h"
+#include "../include/game.h"
 
 /**
  * @brief Game
