@@ -3,8 +3,8 @@
  * 
  * @file game_reader.h
  * @author Miguel Soto, Nicolas Victorino, Ignacio Nunez, Antonio Van-Oers
- * @version 1.1
- * @date 12-02-2022
+ * @version 3.0
+ * @date 04-04-2022
  * @copyright GNU Public License
  */
 
