@@ -17,12 +17,6 @@
 
 #define MAX_TESTS 36 /*!< It defines the maximun tests in this file */
 
-STATUS game_add_object(Game *game, Object *obj);
-STATUS game_add_space(Game *game, Space *space);
-STATUS game_add_player(Game *game, Player *p);
-STATUS game_add_enemy(Game *game, Enemy *e);
-STATUS game_add_link(Game *game, Link *l);
-
 /**
  * @brief Main function for inventory unit tests.
  *
