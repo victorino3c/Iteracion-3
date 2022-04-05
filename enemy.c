@@ -1,6 +1,5 @@
-
 /** 
- * @brief Implements the enemy interface.
+ * @brief Implements the enemy module.
  * 
  * @file enemy.c
  * @author Antonio Van-Oers, Ignacio Nunez, Nicolas Victorino and Miguel Soto.
