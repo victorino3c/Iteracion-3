@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <limits.h>
-#include "../test.h"
-#include "../link.h"
+#include "test.h"
+#include "../include/link.h"
 #include "link_test.h"
 
 #define MAX_TESTS 30  /*!< It defines the maximun tests in this file */
