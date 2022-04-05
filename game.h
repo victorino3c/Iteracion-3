@@ -22,6 +22,7 @@
 
 #define MAX_LINKS 200
 #define MAX_SPACES 100
+#define MAX_ENEMYS 10
 
 /**
  * @brief Game's structucture
