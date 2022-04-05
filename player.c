@@ -3,9 +3,9 @@
  * @brief Implements the player's interface
  * 
  * @file player.c
- * @author Antonio Van-Oers
- * @version 1.3 
- * @date 12-02-2021
+ * @author Antonio Van-Oers, Ignacio Nunez, Miguel Soto and Nicolas Victorino
+ * @version 3.0
+ * @date 04-04-2022
  * @copyright GNU Public License
  */
 
@@ -21,15 +21,13 @@
  * This structure contains all relevant info 
  * and members of a player
  */
-
-
 struct _Player
 {
-  Id id;
-  char name[Player_Name_lenght];
-  Inventory *inventory;
-  Id location;
-  int health;
+  Id id;	/*!< Player's id */
+  char name[Player_Name_lenght];	/*!< Player's name */
+  Inventory *inventory;		/*!< Player's inventory */
+  Id location;		/*!< Id to player's space location */
+  int health;		/*!< Player's health */
 } ;
 
 /** player_create allocates memory for a new player
