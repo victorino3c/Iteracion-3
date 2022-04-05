@@ -11,10 +11,10 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "graphic_engine.h"
-#include "game.h"
-#include "command.h"
-#include "game_reader.h"
+#include "../include/graphic_engine.h"
+#include "../include/game.h"
+#include "../include/command.h"
+#include "../include/game_reader.h"
 
 int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name);
 void game_loop_run(Game *game, Graphic_engine *gengine, char *flog_name, char *fcmd_name);
