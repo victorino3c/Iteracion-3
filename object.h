@@ -2,9 +2,9 @@
  * @brief Implements the object's interface
  * 
  * @file object.h
- * @author Miguel Soto
- * @version 1.3 
- * @date 12-02-2021
+ * @author Miguel Soto, Antonio Van-Oers, Ignacio Nunez and Nicolas Victorino
+ * @version 3.0
+ * @date 04-04-2022
  * @copyright GNU Public License
  */
 
@@ -13,8 +13,7 @@
 
 #include "types.h"
 
-#define OBJ_NAME_LEN 40
-#define MAX_OBJS 10
+#define OBJ_NAME_LEN 40   /*!< Establish maximun length of object's name */
 
 typedef struct _Object Object;
 
