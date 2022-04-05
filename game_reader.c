@@ -1,9 +1,9 @@
 /**
- * @brief It defines all the game's members loading
+ * @brief It read all game elements from a file.
  *
  * @file game_reader.c
  * @author Miguel Soto, Nicolas Victorino, Antonio Van-Oers, Ignacio Nunez
- * @version 1.1
+ * @version 3.0
  * @date 12-02-2022
  * @copyright GNU Public License
  */
@@ -26,8 +26,8 @@ STATUS game_set_object_location(Game *game, Id obj_id, Id space_id);
 STATUS game_set_enemy_location(Game *game, Id enemy_id, Id space_id);
 
 /**
-  Funciones privadas
-*/
+ * Funciones privadas
+ */
 STATUS game_load_spaces(Game *game, char *filename);
 STATUS game_load_objs(Game *game, char *filename);
 STATUS game_load_players(Game *game, char *filename);
