@@ -2,9 +2,9 @@
  * @brief It declares the tests for the space module
  * 
  * @file space_test.h
- * @author Profesores Pprog
+ * @author Miguel Soto, Ignacio Nunez, Nicolas Victorino and Antonio Van-Oers
  * @version 2.0 
- * @date 09-03-2021
+ * @date 04-04-2022
  * @copyright GNU Public License
  */
 
@@ -58,26 +58,32 @@ void test2_space_set_name();
  */
 void test3_space_set_name();
 
+/**
+ * @test Test function for space link setting
+ * @pre ND (Not defined direction)
+ * @post Output==ERROR
+ */
+void test1_space_set_link();
 
 /**
  * @test Test function for space_north setting
  * @pre Id from the north space (pointer to space != NULL)
  * @post Output==OK
  */
-void test1_space_set_north();
+void test1_space_set_link_north();
 /**
  * @test Test function for space_north setting
  * @pre pointer to space = NULL (Id from north space correct)
  * @post Output==ERROR
  */
-void test2_space_set_north();
+void test2_space_set_link_north();
 /**
  * @test Test function for space_north setting
  * @pre Id = NO_ID (pointer to space != NULL)
  * @post Output==ERROR
  */
-void test3_space_set_north();
-void test4_space_set_north();
+void test3_space_set_link_north();
+void test4_space_set_link_north();
 
 
 /**
@@ -85,20 +91,20 @@ void test4_space_set_north();
  * @pre Id from the south space (pointer to space != NULL)
  * @post Output==OK
  */
-void test1_space_set_south();
+void test1_space_set_link_south();
 /**
  * @test Test function for space_south setting
  * @pre pointer to space = NULL (Id from south space correct)
  * @post Output==ERROR
  */
-void test2_space_set_south();
+void test2_space_set_link_south();
 /**
  * @test Test function for space_south setting
  * @pre Id = NO_ID (pointer to space != NULL)
  * @post Output==ERROR
  */
-void test3_space_set_south();
-void test4_space_set_south();
+void test3_space_set_link_south();
+void test4_space_set_link_south();
 
 
 /**
@@ -106,20 +112,20 @@ void test4_space_set_south();
  * @pre Id from the east space (pointer to space != NULL)
  * @post Output==OK
  */
-void test1_space_set_east();
+void test1_space_set_link_east();
 /**
  * @test Test function for space_east setting
  * @pre pointer to space = NULL (Id from east space correct)
  * @post Output==ERROR
  */
-void test2_space_set_east();
+void test2_space_set_link_east();
 /**
  * @test Test function for space_east setting
  * @pre Id = NO_ID (pointer to space != NULL)
  * @post Output==ERROR
  */
-void test3_space_set_east();
-void test4_space_set_east();
+void test3_space_set_link_east();
+void test4_space_set_link_east();
 
 
 /**
@@ -127,20 +133,20 @@ void test4_space_set_east();
  * @pre Id from the west space (pointer to space != NULL)
  * @post Output==OK
  */
-void test1_space_set_west();
+void test1_space_set_link_west();
 /**
  * @test Test function for space_west setting
  * @pre pointer to space = NULL (Id from west space correct)
  * @post Output==ERROR
  */
-void test2_space_set_west();
+void test2_space_set_link_west();
 /**
  * @test Test function for space_west setting
  * @pre Id = NO_ID (pointer to space != NULL)
  * @post Output==ERROR
  */
-void test3_space_set_west();
-void test4_space_set_west();
+void test3_space_set_link_west();
+void test4_space_set_link_west();
 
 
 /**
@@ -232,17 +238,23 @@ void test2_space_get_name();
 
 
 /**
+ * @test Test function for getting space link
+ * @pre ND (Not defined direction)
+ * @post Output==NO_ID
+ */
+void test1_space_get_link();
+/**
  * @test Test function for getting space_north
  * @pre pointer to space != NULL (space_north = 4)
  * @post Output==4
  */
-void test1_space_get_north();
+void test1_space_get_link_north();
 /**
  * @test Test function for getting space_north
  * @pre pointer to space = NULL
  * @post Output==NO_ID
  */
-void test2_space_get_north();
+void test2_space_get_link_north();
 
 
 /**
@@ -250,13 +262,13 @@ void test2_space_get_north();
  * @pre pointer to space != NULL (space_south = 4)
  * @post Output==FALSE
  */
-void test1_space_get_south();
+void test1_space_get_link_south();
 /**
  * @test Test function for getting space_south
  * @pre pointer to space = NULL
  * @post Output==NO_ID
  */
-void test2_space_get_south();
+void test2_space_get_link_south();
 
 
 /**
@@ -264,13 +276,13 @@ void test2_space_get_south();
  * @pre pointer to space != NULL (space_east = 4)
  * @post Output==FALSE
  */
-void test1_space_get_east();
+void test1_space_get_link_east();
 /**
  * @test Test function for getting space_east
  * @pre pointer to space = NULL
  * @post Output==NO_ID
  */
-void test2_space_get_east();
+void test2_space_get_link_east();
 
 
 /**
@@ -278,13 +290,13 @@ void test2_space_get_east();
  * @pre pointer to space != NULL (space_west = 4)
  * @post Output==FALSE
  */
-void test1_space_get_west();
+void test1_space_get_link_west();
 /**
  * @test Test function for getting space_west
  * @pre pointer to space = NULL
  * @post Output==NO_ID
  */
-void test2_space_get_west();
+void test2_space_get_link_west();
 
 
 /**
