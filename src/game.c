@@ -35,16 +35,6 @@ struct _Game
 /**
    Private functions
 */
-STATUS game_add_space(Game *game, Space *space);
-STATUS game_add_object(Game *game, Object *obj);
-STATUS game_add_player(Game *game, Player *p);
-STATUS game_add_enemy(Game *game, Enemy *e);
-STATUS game_add_link(Game *game, Link *l);
-Id game_get_space_id_at(Game *game, int position);
-STATUS game_set_player_location(Game *game, Id player_id, Id space_id);
-STATUS game_set_object_location(Game *game, Id obj_id, Id space_id);
-STATUS game_set_enemy_location(Game *game, Id enemy_id, Id space_id);
-
 int game_command_unknown(Game *game, char *arg);
 STATUS game_command_exit(Game *game, char *arg);
 STATUS game_command_down(Game *game, char *arg);
@@ -189,13 +179,7 @@ STATUS game_destroy(Game *game)
 }
 
 /**
- * @brief Adds spaces to the game.
- * @author Miguel Soto
- *
  * It adds one space (space) to game's struct.
- * @param game pointer to game.
- * @param space pointer to the target space.
- * @return OK if everything worked correctly and ERROR if there was any mistake.
  */
 STATUS game_add_space(Game *game, Space *space)
 {
@@ -229,12 +213,7 @@ STATUS game_add_space(Game *game, Space *space)
 }
 
 /**
- * @brief Adds objects to the game
- * @author Miguel Soto
- *
- * @param game pointer to game
- * @param obj pointer to target object
- * @return OK if everything worked correctly and ERROR if there was any mistake
+ * Adds objects to the game
  */
 STATUS game_add_object(Game *game, Object *obj)
 {
@@ -262,17 +241,11 @@ STATUS game_add_object(Game *game, Object *obj)
 }
 
 /**
- * @brief Adds game's players.
- * @author Miguel Soto
- *
  * It adds a player to game struct.
- * @param game pointer to game.
- * @param p pointer to player to be added in game.
- * @return OK if everything worked correctly and ERROR if there was any mistake.
  */
 STATUS game_add_player(Game *game, Player *p)
 {
-    int i = 0;
+  int i = 0;
 
   /* Error control*/
   if (!game || !p)
@@ -296,12 +269,7 @@ STATUS game_add_player(Game *game, Player *p)
 }
 
 /**
- * @brief Adds all game's enemies
- * @author Miguel Soto
- *
- * @param game pointer to game
- * @param e pointer to enemy to be added in game
- * @return OK if everything worked correctly and ERROR if there was any mistake
+ * Adds all game's enemies
  */
 STATUS game_add_enemy(Game *game, Enemy *e)
 {
@@ -329,12 +297,7 @@ STATUS game_add_enemy(Game *game, Enemy *e)
 }
 
 /**
- * @brief Adds all game's links
- * @author Miguel Soto
- *
- * @param game pointer to game
- * @param l pointer to target link
- * @return OK if everything worked correctly and ERROR if there was any mistake
+ * Adds all game's links
  */
 STATUS game_add_link(Game *game, Link *l)
 {
@@ -362,15 +325,8 @@ STATUS game_add_link(Game *game, Link *l)
 }
 
 /**
- * @brief Checks if the spaces are within the appropiate range
- * @author Profesores PProg
- *
  * game_get_space_id_at Checks if the spaces are within the appropiate range, output will be No_ID
  * whenever it is located outside this range or its id if it belongs to the game
- * @param game pointer to game
- * @param position integer that marks the position of the space to check
- * @return space_get_id(game->spaces[position]) output will be No_ID
- * whenever it is located outside this range or its id if it belongs to the game.
  */
 Id game_get_space_id_at(Game *game, int position)
 {
@@ -541,13 +497,7 @@ Link *game_get_link(Game *game, Id id)
 }
 
 /**
- * @brief Sets the player's location to target id
- * @author Miguel Soto
- *
- * @param game pointer to game
- * @param player_id player id that location must be change
- * @param space_id space id where the player would be located
- * @return OK if everything worked correctly or ERROR if there was any mistake
+ * Sets the player's location to target id
  */
 STATUS game_set_player_location(Game *game, Id player_id, Id space_id)
 {
@@ -575,13 +525,7 @@ STATUS game_set_player_location(Game *game, Id player_id, Id space_id)
 }
 
 /**
- * @brief Sets the object's location to target id
- * @author Miguel Soto
- *
- * @param game pointer to game
- * @param obj_id object id that changes lcoation
- * @param space_id space id where the object would be located
- * @return OK if everything worked correctly or ERROR if there was any mistake
+ * Sets the object's location to target id
  */
 STATUS game_set_object_location(Game *game, Id obj_id, Id space_id)
 {
@@ -610,13 +554,7 @@ STATUS game_set_object_location(Game *game, Id obj_id, Id space_id)
 }
 
 /**
- * @brief Sets the enemy's location to target id
- * @author Antonio Van-Oers
- *
- * @param game pointer to game
- * @param enemy_id enemy id that would change lcoation
- * @param space_id space id where the enemy would be located
- * @return OK if everything goes well or ERROR if there was any mistake
+ * Sets the enemy's location to target id
  */
 STATUS game_set_enemy_location(Game *game, Id enemy_id, Id space_id)
 {
