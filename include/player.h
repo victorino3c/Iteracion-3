@@ -17,7 +17,7 @@
 
 #define Player_Name_lenght 60   /*!< Establish player's name length */
 
-typedef struct _Player Player;
+typedef struct _Player Player; /*!< It defines the player structure, it can move, attack or take and drop objects */
 
 /**
  * @brief Creates a new player.
@@ -74,7 +74,6 @@ const char *player_get_name(Player *player);
  * 
  * player_get_location obtiene la localizacion de un jugador (player).
  * @param player a pointer to target player
- * @param location is the space's id on which the player is located
  * @return player->location, player's location id or NO_ID if anything goes wrong
  */
 Id player_get_location(Player *player);
@@ -104,6 +103,7 @@ int player_get_health(Player *player);
  * @author Antonio Van-Oers
  * 
  * @param player a pointer to target player
+ * @param health indicates the amount of health to be given to the player
  * @return OK if everything goes well or ERROR if anything goes wrong.
  */
 STATUS player_set_health(Player *player, int health);
@@ -123,7 +123,7 @@ STATUS player_add_object(Player *player, Object *object);
  * @author Antonio Van-Oers
  * 
  * @param player a pointer to target player
- * @param object the object about to be removed from the player's belongings
+ * @param id_obj id to the object about to be removed from the player's belongings
  * @return OK, if the task was successfully completed or ERROR, if anything goes wrong.
  */
 STATUS player_del_object(Player *player, Id id_obj);

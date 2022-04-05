@@ -15,7 +15,7 @@
 
 #define OBJ_NAME_LEN 40   /*!< Establish maximun length of object's name */
 
-typedef struct _Object Object;
+typedef struct _Object Object;  /*!< It defines the object structure, which can be taken or dropped by the player */
 
 
 /**
@@ -91,7 +91,7 @@ const char *obj_get_description(Object *obj);
  * 
  * obj_set_descripcion establece la descripcion (description)) de un Object (obj).
  * @param obj un puntero a Object.
- * @param descripcion un string con la descripcion que se va a establecer al objeto.
+ * @param description un string con la descripcion que se va a establecer al objeto.
  * @return OK, si ha funcionado correctamente o ERROR, si hubo algun error.
  */
 STATUS obj_set_description(Object *obj, char *descripcion);

@@ -22,7 +22,7 @@ typedef enum
   IS_PLAYER = FD_ID_PLAYER,
   IS_OBJECT = FD_ID_OBJ,
   IS_ENEMY = FD_ID_ENEMY
-} GAME_IS_ELEMENT;
+} GAME_IS_ELEMENT;  /*!< It defines a game element which could be any type from a space or player, to an object or enemy */
 
 /**
   * @brief Creates and initializes a game from a file

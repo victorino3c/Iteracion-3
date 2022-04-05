@@ -53,6 +53,7 @@ void graphic_engine_destroy(Graphic_engine *ge);
   * right position for the user to see the info needed to interact with it
   * @param ge pointer to the graphic engine
   * @param game pointer to the already created game
+  * @param st is a integer that indicates the status of the last command
   */
 void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st);
 

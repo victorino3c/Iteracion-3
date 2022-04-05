@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include "types.h"
 
-typedef struct _Set Set;
+typedef struct _Set Set;  /*!< It defines the set structure, making it easier to manage any kind of data sets */
 
 /**
  * @brief Allocates memory for a new set
@@ -135,7 +135,8 @@ int set_print(Set *s);
  * 
  * @author Nicolas Victorino
  * 
- * @param s a pointer to target set @param n the number that determines the id that is returned
+ * @param set a pointer to target set 
+ * @param n the number that determines the id that is returned
  * @return id of the object
  */
 Id set_get_ids_by_number(Set* set, int n);

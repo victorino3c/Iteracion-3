@@ -15,7 +15,7 @@
 #include "set.h"
 #include "object.h"
 
-typedef struct _Inventory Inventory;
+typedef struct _Inventory Inventory; /*!< It defines the inventory structure, used by the player to store the items */
 
 /**
   * @brief It creates a new inventory
@@ -112,7 +112,7 @@ BOOL inventory_has_id(Inventory* inventory, Id object);
   * @author Ignacio Nunnez
   *
   * This fucntion shows the id, name, location and health of the enemy.
-  * @param invnentory a pointer to the inventory
+  * @param inventory a pointer to the inventory
   * @return OK, if everything goes well or ERROR if there was some mistake
   */
 STATUS inventory_print(Inventory* inventory);

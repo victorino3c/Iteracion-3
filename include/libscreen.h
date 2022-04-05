@@ -11,7 +11,7 @@
 #ifndef __LIBSCREEN_H_
 #define __LIBSCREEN_H_
 
-typedef struct _Area Area;
+typedef struct _Area Area; /*!< It defines an Area of the screen */
 
 /**
   * @brief It creates a new screen

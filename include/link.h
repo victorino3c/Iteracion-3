@@ -25,7 +25,7 @@ typedef enum
     OPEN = 1    /*!< Link status is open */
 } LINK_STATUS;
 
-typedef struct _Link Link;
+typedef struct _Link Link; /*!< It defines the link structure that determines whether you can go from an space to another or not */
 
 /**
  * @brief It allocs memory for a new link struct and initialize its members.
