@@ -1,10 +1,10 @@
 /** 
- * @brief Integra la funcionalidad necesaria para el manejo de conjuntos.
+ * @brief It implements the set interface.
  * 
  * @file set.h
- * @author Miguel Soto
- * @version 2.0
- * @date 08-03-2022 
+ * @author Miguel Soto, Nicolas Victorino, Ignacio Nunez and Antonio Van-Oers.
+ * @version 3.0
+ * @date 04-04-2022 
  * @copyright GNU Public License
  */
 
