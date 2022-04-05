@@ -262,4 +262,18 @@ LINK_STATUS game_get_connection_status(Game *game, Id act_spaceid, DIRECTION dir
 Id game_get_connection(Game *game, Id act_spaceid, DIRECTION dir);
 
 
+/**
+ * @brief These functions are usefull for 
+ * debugging, not necesary for game itself
+ * 
+ * @param game, obj, space, player, enemy 
+ * @return STATUS 
+ */
+STATUS game_add_object(Game *game, Object *obj);
+STATUS game_add_space(Game *game, Space *space);
+STATUS game_add_player(Game *game, Player *p);
+STATUS game_add_enemy(Game *game, Enemy *e);
+STATUS game_add_link(Game *game, Link *l);
+
+
 #endif
