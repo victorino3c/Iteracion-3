@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../space.h"
+#include "../include/space.h"
 #include "space_test.h"
 #include "test.h"
 
