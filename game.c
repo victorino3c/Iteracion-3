@@ -1,11 +1,11 @@
 /**
- * @brief It implements the game interface and all the associated calls
+ * @brief It implements the game module and all the associated calls
  * for each command
  *
  * @file game.c
  * @author Antonio Van-Oers, Miguel Soto, Nicolas Victorino, Ignacio Nunez
- * @version 2.1
- * @date 02-04-2022
+ * @version 3.0
+ * @date 04-04-2022
  * @copyright GNU Public License
  */
 
@@ -58,8 +58,8 @@ STATUS game_command_move(Game *game, char *arg);
 STATUS game_command_inspect(Game *game, char *arg);
 
 /**
-  Game interface implementation
-*/
+ * Game interface implementation
+ */
 
 /** game_create allocs memory for some necessary game's members
  */
