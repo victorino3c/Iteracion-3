@@ -1,191 +1,3 @@
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.c:14: warning: Compound _Set is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/link.c:17: warning: Compound _Link is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:20: warning: Compound _Game is not documented.
-
-
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/command.c:20: warning: Member CMD_LENGHT (macro definition) of file command.c is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/command.c:22: warning: Member cmd_to_str[N_CMD][N_CMDT] (variable) of file command.c is not documented.
-Generating docs for file command.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/command.h:16: warning: Member N_CMDT (macro definition) of file command.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/command.h:17: warning: Member N_CMD (macro definition) of file command.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/command.h:21: warning: Member T_CmdType (typedef) of file command.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/command.h:19: warning: Member enum_CmdType (enumeration) of file command.h is not documented.
-Generating docs for file enemy.c...
-Generating docs for file enemy.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.h:16: warning: Member Enemy_Name_lenght (macro definition) of file enemy.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.h:17: warning: Member MAX_ENEMYS (macro definition) of file enemy.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.h:1: warning: Member Enemy (typedef) of file enemy.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.h:58: warning: argument 'id' from the argument list of enemy_test_id has multiple @param documentation sections
-Generating docs for file game.c...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:891: warning: Member game_command_exit(Game *game, char *arg) (function) of file game.c is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:1326: warning: Member game_command_inspect(Game *game, char *arg) (function) of file game.c is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:292: warning: argument 'obj' of command @param is not found in the argument list of game_add_enemy(Game *game, Enemy *e)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:300: warning: The following parameter of game_add_enemy(Game *game, Enemy *e) is not documented:
-  parameter 'e'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:325: warning: argument 'obj' of command @param is not found in the argument list of game_add_link(Game *game, Link *l)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:333: warning: The following parameter of game_add_link(Game *game, Link *l) is not documented:
-  parameter 'l'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:258: warning: argument 'obj' of command @param is not found in the argument list of game_add_player(Game *game, Player *p)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:267: warning: The following parameter of game_add_player(Game *game, Player *p) is not documented:
-  parameter 'p'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:604: warning: argument 'id' of command @param is not found in the argument list of game_set_enemy_location(Game *game, Id enemy_id, Id space_id)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:612: warning: The following parameters of game_set_enemy_location(Game *game, Id enemy_id, Id space_id) are not documented:
-  parameter 'enemy_id'
-  parameter 'space_id'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:570: warning: argument 'id' of command @param is not found in the argument list of game_set_object_location(Game *game, Id obj_id, Id space_id)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:578: warning: The following parameters of game_set_object_location(Game *game, Id obj_id, Id space_id) are not documented:
-  parameter 'obj_id'
-  parameter 'space_id'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:537: warning: argument 'id' of command @param is not found in the argument list of game_set_player_location(Game *game, Id player_id, Id space_id)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:545: warning: The following parameters of game_set_player_location(Game *game, Id player_id, Id space_id) are not documented:
-  parameter 'player_id'
-  parameter 'space_id'
-Generating docs for file game.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.h:23: warning: Member MAX_LINKS (macro definition) of file game.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.h:65: warning: The following parameter of game_update(Game *game, T_Command cmd, char *arg) is not documented:
-  parameter 'arg'
-Generating docs for file game_loop.c...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_loop.c:144: warning: The following parameters of game_loop_run(Game *game, Graphic_engine *gengine, char *flog_name, char *fcmd_name) are not documented:
-  parameter 'flog_name'
-  parameter 'fcmd_name'
-Generating docs for file game_reader.c...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:292: warning: argument 'obj' of command @param is not found in the argument list of game_add_enemy(Game *game, Enemy *e)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.c:21: warning: The following parameter of game_add_enemy(Game *game, Enemy *e) is not documented:
-  parameter 'e'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:325: warning: argument 'obj' of command @param is not found in the argument list of game_add_link(Game *game, Link *l)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.c:22: warning: The following parameter of game_add_link(Game *game, Link *l) is not documented:
-  parameter 'l'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:258: warning: argument 'obj' of command @param is not found in the argument list of game_add_player(Game *game, Player *p)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.c:20: warning: The following parameter of game_add_player(Game *game, Player *p) is not documented:
-  parameter 'p'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:604: warning: argument 'id' of command @param is not found in the argument list of game_set_enemy_location(Game *game, Id enemy_id, Id space_id)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.c:26: warning: The following parameters of game_set_enemy_location(Game *game, Id enemy_id, Id space_id) are not documented:
-  parameter 'enemy_id'
-  parameter 'space_id'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:570: warning: argument 'id' of command @param is not found in the argument list of game_set_object_location(Game *game, Id obj_id, Id space_id)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.c:25: warning: The following parameters of game_set_object_location(Game *game, Id obj_id, Id space_id) are not documented:
-  parameter 'obj_id'
-  parameter 'space_id'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:537: warning: argument 'id' of command @param is not found in the argument list of game_set_player_location(Game *game, Id player_id, Id space_id)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.c:24: warning: The following parameters of game_set_player_location(Game *game, Id player_id, Id space_id) are not documented:
-  parameter 'player_id'
-  parameter 'space_id'
-Generating docs for file game_reader.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.h:20: warning: Member GAME_IS_ELEMENT (enumeration) of file game_reader.h is not documented.
-Generating docs for file graphic_engine.c...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.c:26: warning: Member ROWS (macro definition) of file graphic_engine.c is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.c:27: warning: Member COLUMNS (macro definition) of file graphic_engine.c is not documented.
-Generating docs for file graphic_engine.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.h:57: warning: The following parameter of graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st) is not documented:
-  parameter 'st'
-Generating docs for file inventory.c...
-Generating docs for file inventory.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/inventory.h:1: warning: Member Inventory (typedef) of file inventory.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/inventory.c:166: warning: argument 'invnentory' of command @param is not found in the argument list of inventory_print(Inventory *inventory)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/inventory.h:118: warning: The following parameter of inventory_print(Inventory *inventory) is not documented:
-  parameter 'inventory'
-Generating docs for file libscreen.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/libscreen.h:1: warning: Member Area (typedef) of file libscreen.h is not documented.
-Generating docs for file link.c...
-Generating docs for file link.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/link.h:17: warning: Member LINK_NAME_LEN (macro definition) of file link.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/link.h:1: warning: Member Link (typedef) of file link.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/link.h:21: warning: Member LINK_STATUS (enumeration) of file link.h is not documented.
-Generating docs for file object.c...
-Generating docs for file object.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.h:16: warning: Member OBJ_NAME_LEN (macro definition) of file object.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.h:17: warning: Member MAX_OBJS (macro definition) of file object.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.h:1: warning: Member Object (typedef) of file object.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.c:158: warning: argument 'descripcion' of command @param is not found in the argument list of obj_set_description(Object *obj, char *description)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.h:98: warning: The following parameter of obj_set_description(Object *obj, char *description) is not documented:
-  parameter 'description'
-Generating docs for file player.c...
-Generating docs for file player.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.h:18: warning: Member Player_Name_lenght (macro definition) of file player.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.h:19: warning: Member MAX_PLAYERS (macro definition) of file player.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.h:1: warning: Member Player (typedef) of file player.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.c:214: warning: argument 'object' of command @param is not found in the argument list of player_del_object(Player *player, Id id_obj)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.h:131: warning: The following parameter of player_del_object(Player *player, Id id_obj) is not documented:
-  parameter 'id_obj'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.c:141: warning: argument 'location' of command @param is not found in the argument list of player_get_location(Player *player)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.h:111: warning: The following parameter of player_set_health(Player *player, int health) is not documented:
-  parameter 'health'
-Generating docs for file set.c...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.h:133: warning: argument 's' of command @param is not found in the argument list of set_get_ids_by_number(Set *set, int n)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.c:325: warning: The following parameter of set_get_ids_by_number(Set *set, int n) is not documented:
-  parameter 'set'
-Generating docs for file set.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.h:1: warning: Member Set (typedef) of file set.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.h:133: warning: argument 's' of command @param is not found in the argument list of set_get_ids_by_number(Set *set, int n)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.h:141: warning: The following parameter of set_get_ids_by_number(Set *set, int n) is not documented:
-  parameter 'set'
-Generating docs for file space.c...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.c:18: warning: Member MAX_LINKS_SPACE (macro definition) of file space.c is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:183: warning: argument 's' of command @param is not found in the argument list of space_destroy_gdesc(char **gdesc)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.c:419: warning: The following parameter of space_destroy_gdesc(char **gdesc) is not documented:
-  parameter 'gdesc'
-Generating docs for file space.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:21: warning: Member MAX_SPACES (macro definition) of file space.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:22: warning: Member FIRST_SPACE (macro definition) of file space.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:24: warning: Member TAM_GDESC_Y (macro definition) of file space.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:25: warning: Member TAM_GDESC_X (macro definition) of file space.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:1: warning: Member Space (typedef) of file space.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:183: warning: argument 's' of command @param is not found in the argument list of space_destroy_gdesc(char **gdesc)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:190: warning: The following parameter of space_destroy_gdesc(char **gdesc) is not documented:
-  parameter 'gdesc'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.c:345: warning: argument 'space' of command @param is not found in the argument list of space_get_objects_ids(Space *s)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:163: warning: The following parameter of space_get_objects_ids(Space *s) is not documented:
-  parameter 's'
-Generating docs for file types.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:14: warning: Member WORD_SIZE (macro definition) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:15: warning: Member NO_ID (macro definition) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:16: warning: Member MAX_ARG (macro definition) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:18: warning: Member FD_ID_SPACE (macro definition) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:19: warning: Member FD_ID_PLAYER (macro definition) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:20: warning: Member FD_ID_OBJ (macro definition) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:21: warning: Member FD_ID_ENEMY (macro definition) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:23: warning: Member Id (typedef) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:26: warning: Member BOOL (enumeration) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:32: warning: Member STATUS (enumeration) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:38: warning: Member DIRECTION (enumeration) of file types.h is not documented.
-Generating page documentation...
-Generating group documentation...
-Generating class documentation...
-Generating docs for compound _Enemy...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.c:25: warning: Member id (variable) of class _Enemy is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.c:26: warning: Member name[Enemy_Name_lenght] (variable) of class _Enemy is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.c:27: warning: Member location (variable) of class _Enemy is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.c:28: warning: Member health (variable) of class _Enemy is not documented.
-Generating docs for compound _Game...
-Generating docs for compound _Graphic_engine...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.c:37: warning: Member map (variable) of class _Graphic_engine is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.c:37: warning: Member descript (variable) of class _Graphic_engine is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.c:37: warning: Member banner (variable) of class _Graphic_engine is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.c:37: warning: Member help (variable) of class _Graphic_engine is not documented.
-Generating docs for compound _Inventory...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/inventory.c:24: warning: Member objects (variable) of class _Inventory is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/inventory.c:25: warning: Member max_objs (variable) of class _Inventory is not documented.
-Generating docs for compound _Link...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/link.c:20: warning: Member start (variable) of class _Link is not documented.
-Generating docs for compound _Object...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.c:25: warning: Member id (variable) of class _Object is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.c:26: warning: Member name[OBJ_NAME_LEN] (variable) of class _Object is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.c:27: warning: Member description[WORD_SIZE] (variable) of class _Object is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.c:28: warning: Member location (variable) of class _Object is not documented.
-Generating docs for compound _Player...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.c:28: warning: Member id (variable) of class _Player is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.c:29: warning: Member name[Player_Name_lenght] (variable) of class _Player is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.c:30: warning: Member inventory (variable) of class _Player is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.c:31: warning: Member location (variable) of class _Player is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.c:32: warning: Member health (variable) of class _Player is not documented.
-Generating docs for compound _Set...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.c:15: warning: Member ids (variable) of class _Set is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.c:16: warning: Member n_ids (variable) of class _Set is not documented.
-
-
-
-_______________________________________________________________________________________
-Output:
 Searching for include files...
 Searching for example files...
 Searching for images...
@@ -194,61 +6,96 @@ Searching for msc files...
 Searching for dia files...
 Searching for files to exclude
 Searching INPUT for files to process...
-Searching for files in directory /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main
+Searching for files in directory /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main
+Searching for files in directory /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests
 Reading and parsing tag files
 Parsing files
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/command.c...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/command.c...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/command.h...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/command.h...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.c...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.c...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.h...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.h...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.h...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.h...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_loop.c...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_loop.c...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.c...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.c...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.h...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.h...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.c...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.c...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.h...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.h...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/inventory.c...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/inventory.c...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/inventory.h...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/inventory.h...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/libscreen.h...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/libscreen.h...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/link.c...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/link.c...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/link.h...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/link.h...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.c...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.c...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.h...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.h...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.c...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.c...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.h...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.h...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.c...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.c...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.h...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.h...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.c...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.c...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/test.h...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/test.h...
-Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h...
-Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/command.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/command.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/command.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/command.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/enemy.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/enemy.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/enemy.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/enemy.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game_loop.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game_loop.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game_reader.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game_reader.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game_reader.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game_reader.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/graphic_engine.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/graphic_engine.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/graphic_engine.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/graphic_engine.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/inventory.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/inventory.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/inventory.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/inventory.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/libscreen.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/libscreen.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/link.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/link.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/link.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/link.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/object.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/object.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/object.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/object.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/player.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/player.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/player.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/player.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/set.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/set.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/set.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/set.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/space.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/space.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/space.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/space.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/test.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/test.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/types.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/types.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/enemy_test.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/enemy_test.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/enemy_test.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/enemy_test.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/game_test.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/game_test.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/game_test.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/game_test.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/inventory_test.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/inventory_test.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/inventory_test.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/inventory_test.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/link_test.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/link_test.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/link_test.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/link_test.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/object_test.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/object_test.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/object_test.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/object_test.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/player_test.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/player_test.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/player_test.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/player_test.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/set_test.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/set_test.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/set_test.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/set_test.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/space_test.c...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/space_test.c...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/space_test.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/space_test.h...
+Preprocessing /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/test.h...
+Parsing file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/test.h...
 Building group list...
 Building directory list...
 Building namespace list...
@@ -270,9 +117,6 @@ Computing class inheritance relations...
 Computing class usage relations...
 Flushing cached template relations that have become invalid...
 Computing class relations...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.c:14: warning: Compound _Set is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/link.c:17: warning: Compound _Link is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:20: warning: Compound _Game is not documented.
 Add enum values to enums...
 Searching for member function documentation...
 Creating members for template instances...
@@ -319,187 +163,192 @@ Generating code for file player.h...
 Generating code for file set.h...
 Generating code for file space.h...
 Generating code for file test.h...
+Generating code for file tests/test.h...
+Generating code for file tests/enemy_test.h...
+Generating code for file tests/game_test.h...
+Generating code for file tests/inventory_test.h...
+Generating code for file tests/link_test.h...
+Generating code for file tests/object_test.h...
+Generating code for file tests/player_test.h...
+Generating code for file tests/set_test.h...
+Generating code for file tests/space_test.h...
 Generating code for file types.h...
 Generating file documentation...
 Generating docs for file command.c...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/command.c:20: warning: Member CMD_LENGHT (macro definition) of file command.c is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/command.c:22: warning: Member cmd_to_str[N_CMD][N_CMDT] (variable) of file command.c is not documented.
 Generating docs for file command.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/command.h:16: warning: Member N_CMDT (macro definition) of file command.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/command.h:17: warning: Member N_CMD (macro definition) of file command.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/command.h:21: warning: Member T_CmdType (typedef) of file command.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/command.h:19: warning: Member enum_CmdType (enumeration) of file command.h is not documented.
 Generating docs for file enemy.c...
 Generating docs for file enemy.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.h:16: warning: Member Enemy_Name_lenght (macro definition) of file enemy.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.h:17: warning: Member MAX_ENEMYS (macro definition) of file enemy.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.h:1: warning: Member Enemy (typedef) of file enemy.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.h:58: warning: argument 'id' from the argument list of enemy_test_id has multiple @param documentation sections
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/enemy.h:1: warning: Member Enemy (typedef) of file enemy.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/enemy.h:57: warning: argument 'id' from the argument list of enemy_test_id has multiple @param documentation sections
 Generating docs for file game.c...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:891: warning: Member game_command_exit(Game *game, char *arg) (function) of file game.c is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:1326: warning: Member game_command_inspect(Game *game, char *arg) (function) of file game.c is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:292: warning: argument 'obj' of command @param is not found in the argument list of game_add_enemy(Game *game, Enemy *e)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:300: warning: The following parameter of game_add_enemy(Game *game, Enemy *e) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:901: warning: Member game_command_exit(Game *game, char *arg) (function) of file game.c is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:1336: warning: Member game_command_inspect(Game *game, char *arg) (function) of file game.c is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:297: warning: argument 'obj' of command @param is not found in the argument list of game_add_enemy(Game *game, Enemy *e)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:305: warning: The following parameter of game_add_enemy(Game *game, Enemy *e) is not documented:
   parameter 'e'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:325: warning: argument 'obj' of command @param is not found in the argument list of game_add_link(Game *game, Link *l)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:333: warning: The following parameter of game_add_link(Game *game, Link *l) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:330: warning: argument 'obj' of command @param is not found in the argument list of game_add_link(Game *game, Link *l)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:338: warning: The following parameter of game_add_link(Game *game, Link *l) is not documented:
   parameter 'l'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:258: warning: argument 'obj' of command @param is not found in the argument list of game_add_player(Game *game, Player *p)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:267: warning: The following parameter of game_add_player(Game *game, Player *p) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:263: warning: argument 'obj' of command @param is not found in the argument list of game_add_player(Game *game, Player *p)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:272: warning: The following parameter of game_add_player(Game *game, Player *p) is not documented:
   parameter 'p'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:604: warning: argument 'id' of command @param is not found in the argument list of game_set_enemy_location(Game *game, Id enemy_id, Id space_id)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:612: warning: The following parameters of game_set_enemy_location(Game *game, Id enemy_id, Id space_id) are not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:609: warning: argument 'id' of command @param is not found in the argument list of game_set_enemy_location(Game *game, Id enemy_id, Id space_id)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:617: warning: The following parameters of game_set_enemy_location(Game *game, Id enemy_id, Id space_id) are not documented:
   parameter 'enemy_id'
   parameter 'space_id'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:570: warning: argument 'id' of command @param is not found in the argument list of game_set_object_location(Game *game, Id obj_id, Id space_id)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:578: warning: The following parameters of game_set_object_location(Game *game, Id obj_id, Id space_id) are not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:575: warning: argument 'id' of command @param is not found in the argument list of game_set_object_location(Game *game, Id obj_id, Id space_id)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:583: warning: The following parameters of game_set_object_location(Game *game, Id obj_id, Id space_id) are not documented:
   parameter 'obj_id'
   parameter 'space_id'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:537: warning: argument 'id' of command @param is not found in the argument list of game_set_player_location(Game *game, Id player_id, Id space_id)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:545: warning: The following parameters of game_set_player_location(Game *game, Id player_id, Id space_id) are not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:542: warning: argument 'id' of command @param is not found in the argument list of game_set_player_location(Game *game, Id player_id, Id space_id)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:550: warning: The following parameters of game_set_player_location(Game *game, Id player_id, Id space_id) are not documented:
   parameter 'player_id'
   parameter 'space_id'
 Generating docs for file game.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.h:23: warning: Member MAX_LINKS (macro definition) of file game.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.h:65: warning: The following parameter of game_update(Game *game, T_Command cmd, char *arg) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:297: warning: argument 'obj' of command @param is not found in the argument list of game_add_enemy(Game *game, Enemy *e)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.h:275: warning: The following parameter of game_add_enemy(Game *game, Enemy *e) is not documented:
+  parameter 'e'
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:330: warning: argument 'obj' of command @param is not found in the argument list of game_add_link(Game *game, Link *l)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.h:276: warning: The following parameter of game_add_link(Game *game, Link *l) is not documented:
+  parameter 'l'
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.h:265: warning: argument 'space' of command @param is not found in the argument list of game_add_object(Game *game, Object *obj)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.h:265: warning: argument 'player' of command @param is not found in the argument list of game_add_object(Game *game, Object *obj)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.h:265: warning: argument 'enemy' of command @param is not found in the argument list of game_add_object(Game *game, Object *obj)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.h:272: warning: argument 'game' from the argument list of game_add_object has multiple @param documentation sections
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.h:272: warning: argument 'obj' from the argument list of game_add_object has multiple @param documentation sections
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:263: warning: argument 'obj' of command @param is not found in the argument list of game_add_player(Game *game, Player *p)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.h:274: warning: The following parameter of game_add_player(Game *game, Player *p) is not documented:
+  parameter 'p'
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.h:76: warning: The following parameter of game_update(Game *game, T_Command cmd, char *arg) is not documented:
   parameter 'arg'
 Generating docs for file game_loop.c...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_loop.c:144: warning: The following parameters of game_loop_run(Game *game, Graphic_engine *gengine, char *flog_name, char *fcmd_name) are not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game_loop.c:144: warning: The following parameters of game_loop_run(Game *game, Graphic_engine *gengine, char *flog_name, char *fcmd_name) are not documented:
   parameter 'flog_name'
   parameter 'fcmd_name'
 Generating docs for file game_reader.c...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:292: warning: argument 'obj' of command @param is not found in the argument list of game_add_enemy(Game *game, Enemy *e)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.c:21: warning: The following parameter of game_add_enemy(Game *game, Enemy *e) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:297: warning: argument 'obj' of command @param is not found in the argument list of game_add_enemy(Game *game, Enemy *e)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game_reader.c:21: warning: The following parameter of game_add_enemy(Game *game, Enemy *e) is not documented:
   parameter 'e'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:325: warning: argument 'obj' of command @param is not found in the argument list of game_add_link(Game *game, Link *l)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.c:22: warning: The following parameter of game_add_link(Game *game, Link *l) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:330: warning: argument 'obj' of command @param is not found in the argument list of game_add_link(Game *game, Link *l)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game_reader.c:22: warning: The following parameter of game_add_link(Game *game, Link *l) is not documented:
   parameter 'l'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:258: warning: argument 'obj' of command @param is not found in the argument list of game_add_player(Game *game, Player *p)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.c:20: warning: The following parameter of game_add_player(Game *game, Player *p) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:263: warning: argument 'obj' of command @param is not found in the argument list of game_add_player(Game *game, Player *p)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game_reader.c:20: warning: The following parameter of game_add_player(Game *game, Player *p) is not documented:
   parameter 'p'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:604: warning: argument 'id' of command @param is not found in the argument list of game_set_enemy_location(Game *game, Id enemy_id, Id space_id)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.c:26: warning: The following parameters of game_set_enemy_location(Game *game, Id enemy_id, Id space_id) are not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:609: warning: argument 'id' of command @param is not found in the argument list of game_set_enemy_location(Game *game, Id enemy_id, Id space_id)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game_reader.c:26: warning: The following parameters of game_set_enemy_location(Game *game, Id enemy_id, Id space_id) are not documented:
   parameter 'enemy_id'
   parameter 'space_id'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:570: warning: argument 'id' of command @param is not found in the argument list of game_set_object_location(Game *game, Id obj_id, Id space_id)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.c:25: warning: The following parameters of game_set_object_location(Game *game, Id obj_id, Id space_id) are not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:575: warning: argument 'id' of command @param is not found in the argument list of game_set_object_location(Game *game, Id obj_id, Id space_id)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game_reader.c:25: warning: The following parameters of game_set_object_location(Game *game, Id obj_id, Id space_id) are not documented:
   parameter 'obj_id'
   parameter 'space_id'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game.c:537: warning: argument 'id' of command @param is not found in the argument list of game_set_player_location(Game *game, Id player_id, Id space_id)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.c:24: warning: The following parameters of game_set_player_location(Game *game, Id player_id, Id space_id) are not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game.c:542: warning: argument 'id' of command @param is not found in the argument list of game_set_player_location(Game *game, Id player_id, Id space_id)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game_reader.c:24: warning: The following parameters of game_set_player_location(Game *game, Id player_id, Id space_id) are not documented:
   parameter 'player_id'
   parameter 'space_id'
 Generating docs for file game_reader.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/game_reader.h:20: warning: Member GAME_IS_ELEMENT (enumeration) of file game_reader.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/game_reader.h:20: warning: Member GAME_IS_ELEMENT (enumeration) of file game_reader.h is not documented.
 Generating docs for file graphic_engine.c...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.c:26: warning: Member ROWS (macro definition) of file graphic_engine.c is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.c:27: warning: Member COLUMNS (macro definition) of file graphic_engine.c is not documented.
 Generating docs for file graphic_engine.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.h:57: warning: The following parameter of graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/graphic_engine.h:57: warning: The following parameter of graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st) is not documented:
   parameter 'st'
 Generating docs for file inventory.c...
 Generating docs for file inventory.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/inventory.h:1: warning: Member Inventory (typedef) of file inventory.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/inventory.c:166: warning: argument 'invnentory' of command @param is not found in the argument list of inventory_print(Inventory *inventory)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/inventory.h:118: warning: The following parameter of inventory_print(Inventory *inventory) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/inventory.h:1: warning: Member Inventory (typedef) of file inventory.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/inventory.c:166: warning: argument 'invnentory' of command @param is not found in the argument list of inventory_print(Inventory *inventory)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/inventory.h:118: warning: The following parameter of inventory_print(Inventory *inventory) is not documented:
   parameter 'inventory'
 Generating docs for file libscreen.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/libscreen.h:1: warning: Member Area (typedef) of file libscreen.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/libscreen.h:1: warning: Member Area (typedef) of file libscreen.h is not documented.
 Generating docs for file link.c...
 Generating docs for file link.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/link.h:17: warning: Member LINK_NAME_LEN (macro definition) of file link.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/link.h:1: warning: Member Link (typedef) of file link.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/link.h:21: warning: Member LINK_STATUS (enumeration) of file link.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/link.h:1: warning: Member Link (typedef) of file link.h is not documented.
 Generating docs for file object.c...
 Generating docs for file object.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.h:16: warning: Member OBJ_NAME_LEN (macro definition) of file object.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.h:17: warning: Member MAX_OBJS (macro definition) of file object.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.h:1: warning: Member Object (typedef) of file object.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.c:158: warning: argument 'descripcion' of command @param is not found in the argument list of obj_set_description(Object *obj, char *description)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.h:98: warning: The following parameter of obj_set_description(Object *obj, char *description) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/object.h:1: warning: Member Object (typedef) of file object.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/object.c:158: warning: argument 'descripcion' of command @param is not found in the argument list of obj_set_description(Object *obj, char *description)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/object.h:97: warning: The following parameter of obj_set_description(Object *obj, char *description) is not documented:
   parameter 'description'
 Generating docs for file player.c...
 Generating docs for file player.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.h:18: warning: Member Player_Name_lenght (macro definition) of file player.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.h:19: warning: Member MAX_PLAYERS (macro definition) of file player.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.h:1: warning: Member Player (typedef) of file player.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.c:214: warning: argument 'object' of command @param is not found in the argument list of player_del_object(Player *player, Id id_obj)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.h:131: warning: The following parameter of player_del_object(Player *player, Id id_obj) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/player.h:1: warning: Member Player (typedef) of file player.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/player.c:212: warning: argument 'object' of command @param is not found in the argument list of player_del_object(Player *player, Id id_obj)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/player.h:129: warning: The following parameter of player_del_object(Player *player, Id id_obj) is not documented:
   parameter 'id_obj'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.c:141: warning: argument 'location' of command @param is not found in the argument list of player_get_location(Player *player)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.h:111: warning: The following parameter of player_set_health(Player *player, int health) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/player.c:139: warning: argument 'location' of command @param is not found in the argument list of player_get_location(Player *player)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/player.h:109: warning: The following parameter of player_set_health(Player *player, int health) is not documented:
   parameter 'health'
 Generating docs for file set.c...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.h:133: warning: argument 's' of command @param is not found in the argument list of set_get_ids_by_number(Set *set, int n)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.c:325: warning: The following parameter of set_get_ids_by_number(Set *set, int n) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/set.h:133: warning: argument 's' of command @param is not found in the argument list of set_get_ids_by_number(Set *set, int n)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/set.c:330: warning: The following parameter of set_get_ids_by_number(Set *set, int n) is not documented:
   parameter 'set'
 Generating docs for file set.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.h:1: warning: Member Set (typedef) of file set.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.h:133: warning: argument 's' of command @param is not found in the argument list of set_get_ids_by_number(Set *set, int n)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.h:141: warning: The following parameter of set_get_ids_by_number(Set *set, int n) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/set.h:1: warning: Member Set (typedef) of file set.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/set.h:133: warning: argument 's' of command @param is not found in the argument list of set_get_ids_by_number(Set *set, int n)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/set.h:141: warning: The following parameter of set_get_ids_by_number(Set *set, int n) is not documented:
   parameter 'set'
 Generating docs for file space.c...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.c:18: warning: Member MAX_LINKS_SPACE (macro definition) of file space.c is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:183: warning: argument 's' of command @param is not found in the argument list of space_destroy_gdesc(char **gdesc)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.c:419: warning: The following parameter of space_destroy_gdesc(char **gdesc) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/space.h:182: warning: argument 's' of command @param is not found in the argument list of space_destroy_gdesc(char **gdesc)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/space.c:419: warning: The following parameter of space_destroy_gdesc(char **gdesc) is not documented:
   parameter 'gdesc'
 Generating docs for file space.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:21: warning: Member MAX_SPACES (macro definition) of file space.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:22: warning: Member FIRST_SPACE (macro definition) of file space.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:24: warning: Member TAM_GDESC_Y (macro definition) of file space.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:25: warning: Member TAM_GDESC_X (macro definition) of file space.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:1: warning: Member Space (typedef) of file space.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:183: warning: argument 's' of command @param is not found in the argument list of space_destroy_gdesc(char **gdesc)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:190: warning: The following parameter of space_destroy_gdesc(char **gdesc) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/space.h:21: warning: Member FIRST_SPACE (macro definition) of file space.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/space.h:23: warning: Member TAM_GDESC_Y (macro definition) of file space.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/space.h:24: warning: Member TAM_GDESC_X (macro definition) of file space.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/space.h:1: warning: Member Space (typedef) of file space.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/space.h:182: warning: argument 's' of command @param is not found in the argument list of space_destroy_gdesc(char **gdesc)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/space.h:189: warning: The following parameter of space_destroy_gdesc(char **gdesc) is not documented:
   parameter 'gdesc'
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.c:345: warning: argument 'space' of command @param is not found in the argument list of space_get_objects_ids(Space *s)
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/space.h:163: warning: The following parameter of space_get_objects_ids(Space *s) is not documented:
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/space.c:345: warning: argument 'space' of command @param is not found in the argument list of space_get_objects_ids(Space *s)
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/space.h:162: warning: The following parameter of space_get_objects_ids(Space *s) is not documented:
   parameter 's'
+Generating docs for file tests/enemy_test.c...
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/enemy_test.c:18: warning: Member MAX_TESTS (macro definition) of file enemy_test.c is not documented.
+Generating docs for file tests/enemy_test.h...
+Generating docs for file tests/game_test.c...
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/game_test.c:18: warning: Member MAX_TESTS (macro definition) of file game_test.c is not documented.
+Generating docs for file tests/game_test.h...
+Generating docs for file tests/inventory_test.c...
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/inventory_test.c:18: warning: Member MAX_TESTS (macro definition) of file inventory_test.c is not documented.
+Generating docs for file tests/object_test.h...
+Generating docs for file tests/player_test.c...
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/player_test.c:18: warning: Member MAX_TESTS (macro definition) of file player_test.c is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/player_test.c:273: warning: Member test2_player_set_location() (function) of file player_test.c is not documented.
+Generating docs for file tests/player_test.h...
+Generating docs for file tests/set_test.c...
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/set_test.c:19: warning: Member MAX_TESTS (macro definition) of file set_test.c is not documented.
+Generating docs for file tests/set_test.h...
+Generating docs for file tests/space_test.c...
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/space_test.c:18: warning: Member MAX_TESTS (macro definition) of file space_test.c is not documented.
+Generating docs for file tests/space_test.h...
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/space_test.h:86: warning: Member test4_space_set_link_north() (function) of file space_test.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/space_test.h:107: warning: Member test4_space_set_link_south() (function) of file space_test.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/space_test.h:128: warning: Member test4_space_set_link_east() (function) of file space_test.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/tests/space_test.h:149: warning: Member test4_space_set_link_west() (function) of file space_test.h is not documented.
 Generating docs for file types.h...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:14: warning: Member WORD_SIZE (macro definition) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:15: warning: Member NO_ID (macro definition) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:16: warning: Member MAX_ARG (macro definition) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:18: warning: Member FD_ID_SPACE (macro definition) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:19: warning: Member FD_ID_PLAYER (macro definition) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:20: warning: Member FD_ID_OBJ (macro definition) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:21: warning: Member FD_ID_ENEMY (macro definition) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:23: warning: Member Id (typedef) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:26: warning: Member BOOL (enumeration) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:32: warning: Member STATUS (enumeration) of file types.h is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/types.h:38: warning: Member DIRECTION (enumeration) of file types.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/types.h:18: warning: Member FD_ID_SPACE (macro definition) of file types.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/types.h:19: warning: Member FD_ID_PLAYER (macro definition) of file types.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/types.h:20: warning: Member FD_ID_OBJ (macro definition) of file types.h is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/types.h:21: warning: Member FD_ID_ENEMY (macro definition) of file types.h is not documented.
 Generating page documentation...
+Generating docs for page test...
 Generating group documentation...
 Generating class documentation...
 Generating docs for compound _Enemy...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.c:25: warning: Member id (variable) of class _Enemy is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.c:26: warning: Member name[Enemy_Name_lenght] (variable) of class _Enemy is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.c:27: warning: Member location (variable) of class _Enemy is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/enemy.c:28: warning: Member health (variable) of class _Enemy is not documented.
 Generating docs for compound _Game...
 Generating docs for compound _Graphic_engine...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.c:37: warning: Member map (variable) of class _Graphic_engine is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.c:37: warning: Member descript (variable) of class _Graphic_engine is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.c:37: warning: Member banner (variable) of class _Graphic_engine is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/graphic_engine.c:37: warning: Member help (variable) of class _Graphic_engine is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/graphic_engine.c:37: warning: Member map (variable) of class _Graphic_engine is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/graphic_engine.c:37: warning: Member descript (variable) of class _Graphic_engine is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/graphic_engine.c:37: warning: Member banner (variable) of class _Graphic_engine is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/graphic_engine.c:37: warning: Member help (variable) of class _Graphic_engine is not documented.
 Generating docs for compound _Inventory...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/inventory.c:24: warning: Member objects (variable) of class _Inventory is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/inventory.c:25: warning: Member max_objs (variable) of class _Inventory is not documented.
 Generating docs for compound _Link...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/link.c:20: warning: Member start (variable) of class _Link is not documented.
 Generating docs for compound _Object...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.c:25: warning: Member id (variable) of class _Object is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.c:26: warning: Member name[OBJ_NAME_LEN] (variable) of class _Object is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.c:27: warning: Member description[WORD_SIZE] (variable) of class _Object is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/object.c:28: warning: Member location (variable) of class _Object is not documented.
 Generating docs for compound _Player...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.c:28: warning: Member id (variable) of class _Player is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.c:29: warning: Member name[Player_Name_lenght] (variable) of class _Player is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.c:30: warning: Member inventory (variable) of class _Player is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.c:31: warning: Member location (variable) of class _Player is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/player.c:32: warning: Member health (variable) of class _Player is not documented.
 Generating docs for compound _Set...
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.c:15: warning: Member ids (variable) of class _Set is not documented.
-/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/set.c:16: warning: Member n_ids (variable) of class _Set is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/set.c:20: warning: Member ids (variable) of class _Set is not documented.
+/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/set.c:21: warning: Member n_ids (variable) of class _Set is not documented.
 Generating docs for compound _Space...
 Generating namespace index...
 Generating graph info page...
@@ -522,256 +371,354 @@ writing tag file...
 Running plantuml with JAVA...
 Running dot...
 Generating dot graphs using 3 parallel threads...
-Running dot for graph 1/81
-Running dot for graph 2/81
-Running dot for graph 3/81
 sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/enemy_8c__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/enemy_8c__incl.pdf"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/command_8h__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/command_8h__incl.pdf"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/game__reader_8h__dep__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/game__reader_8h__dep__incl.pdf"'
-sh: 1: dot: not found
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/object_8c__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/object_8c__incl.pdf"'
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/struct__Inventory__coll__graph.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/struct__Inventory__coll__graph.pdf"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__reader_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__reader_8h__incl.png"'
+Running dot for graph 1/52
+Running dot for graph 2/52
+Running dot for graph 3/52
+Running dot for graph 4/52
 sh: 1: sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/link_8h__dep__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/link_8h__dep__incl.pdf"'
 sh: 1: dot: not found
-dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/set_8c__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/set_8c__incl.pdf"'
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/set_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/set_8h__dep__incl.png"'
-sh: 1: dot: not found
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/inventory_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/inventory_8h__incl.png"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/set_8h__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/set_8h__incl.pdf"'
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/inventory_8h__dep__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/inventory_8h__dep__incl.pdf"'
-Running dot for graph 4/81
-Running dot for graph 5/81
-Running dot for graph 6/81
-Running dot for graph 7/81
-Running dot for graph 8/81
-Running dot for graph 9/81
-Running dot for graph 10/81
-Running dot for graph 11/81
-Running dot for graph 12/81
-Running dot for graph 13/81
-Running dot for graph 14/81
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/space_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/space_8h__dep__incl.png"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/enemy_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/enemy_8h__dep__incl.png"'
-sh: 1: sh: 1: dot: not found
-dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/graphic__engine_8h__dep__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/graphic__engine_8h__dep__incl.pdf"'
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/game_8h__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/game_8h__incl.pdf"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/graph_legend.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/graph_legend.png"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/command_8h__dep__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/command_8h__dep__incl.pdf"'
-sh: 1: dot: not found
-sh: 1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/game__reader_8c__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/game__reader_8c__incl.pdf"'
-sh: 1: dot: not found
-dot: not founderror: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/object_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/object_8c__incl.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/inventory_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/inventory_8h__incl.png"'
+dot: not founderror: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/inventory_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/inventory_8c__incl.png"'
 
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/inventory_8c__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/inventory_8c__incl.pdf"'
-sh: 1: dot: not foundsh: 1: sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/inventory_8h__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/inventory_8h__incl.pdf"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/graphic__engine_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/graphic__engine_8h__dep__incl.png"'
+sh: 1: dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/struct__Player__coll__graph.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/struct__Player__coll__graph.png"'
+sh: 1: dot: not found
+sh: 1: dot: not founderror: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/player_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/player_8h__incl.png"'
 
-sh: 1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/object_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/object_8h__incl.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/inventory__test_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/inventory__test_8c__incl.png"'
+sh: 1: dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/set_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/set_8c__incl.png"'
+sh: 1: dot: not found
+sh: 1: dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/space_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/space_8c__incl.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/player_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/player_8c__incl.png"'
+sh: 1: dot: not found
+sh: 1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__loop_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__loop_8c__incl.png"'
 dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__test_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__test_8h__dep__incl.png"'
+sh: 1: dot: not found
+sh: 1: dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/space_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/space_8h__dep__incl.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/object_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/object_8h__incl.png"'
+sh: 1: dot: not found
+sh: 1: dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/set_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/set_8h__incl.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/graph_legend.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/graph_legend.png"'
+sh: 1: dot: not found
+Running dot for graph 5/52
+Running dot for graph 6/52
+Running dot for graph 7/52
+Running dot for graph 8/52
+Running dot for graph 9/52
+Running dot for graph 10/52
+Running dot for graph 11/52
+Running dot for graph 12/52
+Running dot for graph 13/52
+Running dot for graph 14/52
+Running dot for graph 15/52
+Running dot for graph 16/52
+Running dot for graph 17/52
+Running dot for graph 18/52
+Running dot for graph 19/52
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/space_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/space_8h__incl.png"'
+sh: 1: dot: not found
+sh: 1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/enemy__test_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/enemy__test_8h__dep__incl.png"'
 dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/inventory_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/inventory_8h__dep__incl.png"'
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/player_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/player_8c__incl.png"'
-Running dot for graph 15/81
-Running dot for graph 16/81
-Running dot for graph 17/81
-Running dot for graph 18/81
-Running dot for graph 19/81
-Running dot for graph 20/81
-Running dot for graph 21/81
-Running dot for graph 22/81
-Running dot for graph 23/81
-Running dot for graph 24/81
-Running dot for graph 25/81
-Running dot for graph 26/81
-Running dot for graph 27/81
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/struct__Inventory__coll__graph.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/struct__Inventory__coll__graph.png"'
+sh: 1: dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/enemy_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/enemy_8h__incl.png"'
+sh: 1: dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__reader_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__reader_8h__dep__incl.png"'
+sh: 1: dot: not found
+sh: 1: dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/enemy_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/enemy_8h__dep__incl.png"'
+sh: 1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game_8h__dep__incl.png"'
+dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/link_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/link_8h__dep__incl.png"'
 sh: 1: sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/struct__Player__coll__graph.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/struct__Player__coll__graph.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game_8h__incl.png"'
 dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__test_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__test_8c__incl.png"'
 sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/game__reader_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/game__reader_8h__incl.png"'
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/space_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/space_8c__incl.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/types_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/types_8h__dep__incl.png"'
 sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/link_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/link_8h__incl.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/object_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/object_8c__incl.png"'
+sh: 1: sh: 1: dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/graphic__engine_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/graphic__engine_8c__incl.png"'
+dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/player_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/player_8h__dep__incl.png"'
 sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/player_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/player_8h__incl.png"'
+sh: 1: dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/set__test_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/set__test_8c__incl.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/player__test_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/player__test_8c__incl.png"'
+Running dot for graph 20/52
+Running dot for graph 21/52
+Running dot for graph 22/52
+Running dot for graph 23/52
+Running dot for graph 24/52
+Running dot for graph 25/52
+Running dot for graph 26/52
+Running dot for graph 27/52
+Running dot for graph 28/52
+Running dot for graph 29/52
+Running dot for graph 30/52
+Running dot for graph 31/52
+Running dot for graph 32/52
+Running dot for graph 33/52
+Running dot for graph 34/52
+Running dot for graph 35/52
+sh: 1: sh: 1: dot: not found
+dot: not founderror: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/command_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/command_8c__incl.png"'
+
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/set__test_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/set__test_8h__dep__incl.png"'
+sh: 1: dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/struct__Space__coll__graph.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/struct__Space__coll__graph.png"'
+sh: 1: sh: 1: dot: not found
+sh: 1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/inventory_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/inventory_8h__dep__incl.png"'
+dot: not found
+dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/space__test_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/space__test_8c__incl.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/command_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/command_8h__incl.png"'
+sh: 1: dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/struct__Game__coll__graph.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/struct__Game__coll__graph.png"'
+sh: 1: dot: not found
+sh: 1: sh: 1: dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/link_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/link_8c__incl.png"'
+dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/space__test_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/space__test_8h__dep__incl.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__reader_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__reader_8c__incl.png"'
+sh: 1: dot: not found
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/command_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/command_8h__dep__incl.png"'
 sh: 1: sh: 1: sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/game__reader_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/game__reader_8c__incl.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/set_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/set_8h__dep__incl.png"'
 dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/space_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/space_8h__incl.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/graphic__engine_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/graphic__engine_8h__incl.png"'
 dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/game__loop_8c__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/game__loop_8c__incl.pdf"'
 sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/link_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/link_8c__incl.png"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/link_8c__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/link_8c__incl.pdf"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/object_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/object_8h__dep__incl.png"'
-sh: 1: Running dot for graph 28/81
-Running dot for graph 29/81
-Running dot for graph 30/81
-Running dot for graph 31/81
-Running dot for graph 32/81
-Running dot for graph 33/81
-Running dot for graph 34/81
-Running dot for graph 35/81
-Running dot for graph 36/81
-Running dot for graph 37/81
-Running dot for graph 38/81
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/struct__Inventory__coll__graph.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/struct__Inventory__coll__graph.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game_8c__incl.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/libscreen_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/libscreen_8h__dep__incl.png"'
 sh: 1: sh: 1: dot: not found
-dot: not founderror: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/graphic__engine_8c__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/graphic__engine_8c__incl.pdf"'
-
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/inventory_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/inventory_8c__incl.png"'
 dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/object_8h__dep__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/object_8h__dep__incl.pdf"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/object_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/object_8h__dep__incl.png"'
 sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/command_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/command_8h__incl.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/enemy__test_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/enemy__test_8c__incl.png"'
+Running dot for graph 36/52
+Running dot for graph 37/52
+Running dot for graph 38/52
+Running dot for graph 39/52
+Running dot for graph 40/52
+Running dot for graph 41/52
+Running dot for graph 42/52
+Running dot for graph 43/52
+Running dot for graph 44/52
+Running dot for graph 45/52
+Running dot for graph 46/52
+Running dot for graph 47/52
+Running dot for graph 48/52
+Running dot for graph 49/52
+Running dot for graph 50/52
+Running dot for graph 51/52
 sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/game_8c__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/game_8c__incl.pdf"'
-sh: 1: sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/set_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/set_8h__incl.png"'
-dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/set_8h__dep__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/set_8h__dep__incl.pdf"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/enemy_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/enemy_8c__incl.png"'
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/link_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/link_8h__incl.png"'
 sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/libscreen_8h__dep__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/libscreen_8h__dep__incl.pdf"'
-sh: 1: Running dot for graph 39/81
-Running dot for graph 40/81
-Running dot for graph 41/81
-Running dot for graph 42/81
-Running dot for graph 43/81
-Running dot for graph 44/81
-Running dot for graph 45/81
-Running dot for graph 46/81
-Running dot for graph 47/81
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/player_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/player_8h__dep__incl.png"'
-dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/game__reader_8h__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/game__reader_8h__incl.pdf"'
-sh: 1: sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/command_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/command_8c__incl.png"'
-dot: not found
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/struct__Space__coll__graph.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/struct__Space__coll__graph.png"'
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/game_8h__dep__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/game_8h__dep__incl.pdf"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/game_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/game_8c__incl.png"'
-sh: 1: dot: not found
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/struct__Player__coll__graph.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/struct__Player__coll__graph.pdf"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/player_8h__dep__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/player_8h__dep__incl.pdf"'
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/game_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/game_8h__incl.png"'
-Running dot for graph 48/81
-Running dot for graph 49/81
-Running dot for graph 50/81
-Running dot for graph 51/81
-Running dot for graph 52/81
-Running dot for graph 53/81
-Running dot for graph 54/81
-Running dot for graph 55/81
-Running dot for graph 56/81
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/command_8c__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/command_8c__incl.pdf"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/link_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/link_8h__dep__incl.png"'
-sh: 1: dot: not found
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/enemy_8h__dep__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/enemy_8h__dep__incl.pdf"'
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/space_8h__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/space_8h__incl.pdf"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/struct__Game__coll__graph.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/struct__Game__coll__graph.png"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/libscreen_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/libscreen_8h__dep__incl.png"'
-sh: 1: dot: not found
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/link_8h__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/link_8h__incl.pdf"'
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/command_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/command_8h__dep__incl.png"'
-sh: 1: sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/enemy_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/enemy_8c__incl.png"'
-dot: not found
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/types_8h__dep__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/types_8h__dep__incl.pdf"'
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/game_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/game_8h__dep__incl.png"'
-sh: 1: dot: not found
-sh: 1: dot: not founderror: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/space_8h__dep__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/space_8h__dep__incl.pdf"'
-
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/types_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/types_8h__dep__incl.png"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/game__reader_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/game__reader_8h__dep__incl.png"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/enemy_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/enemy_8h__incl.png"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/graphic__engine_8h__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/graphic__engine_8h__incl.pdf"'
-Running dot for graph 57/81
-Running dot for graph 58/81
-Running dot for graph 59/81
-Running dot for graph 60/81
-Running dot for graph 61/81
-Running dot for graph 62/81
-Running dot for graph 63/81
-Running dot for graph 64/81
-Running dot for graph 65/81
-Running dot for graph 66/81
-Running dot for graph 67/81
-Running dot for graph 68/81
-Running dot for graph 69/81
-Running dot for graph 70/81
-Running dot for graph 71/81
-Running dot for graph 72/81
-sh: 1: dot: not found
-sh: 1: sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/set_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/set_8c__incl.png"'
-dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/struct__Game__coll__graph.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/struct__Game__coll__graph.pdf"'
-sh: 1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/graphic__engine_8h__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/graphic__engine_8h__incl.png"'
-dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/player_8h__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/player_8h__incl.pdf"'
-sh: 1: dot: not found
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/graphic__engine_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/graphic__engine_8h__dep__incl.png"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/struct__Space__coll__graph.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/struct__Space__coll__graph.pdf"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/graphic__engine_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/graphic__engine_8c__incl.png"'
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/game__loop_8c__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/game__loop_8c__incl.png"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/object_8h__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/object_8h__incl.pdf"'
-sh: 1: sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/player_8c__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/player_8c__incl.pdf"'
-Running dot for graph 73/81
-Running dot for graph 74/81
-Running dot for graph 75/81
-Running dot for graph 76/81
-Running dot for graph 77/81
-Running dot for graph 78/81
-Running dot for graph 79/81
-Running dot for graph 80/81
-Running dot for graph 81/81
-dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/enemy_8h__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/enemy_8h__incl.pdf"'
-sh: 1: dot: not found
-error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/space_8c__incl.dot" -Tpdf -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/latex/space_8c__incl.pdf"'
-Patching output file 1/58
-error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0404/Iteracion-3-main/html/command_8c__incl.map for inclusion in the docs!
+error: Problems running dot: exit code=127, command='dot', arguments='"/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/player__test_8h__dep__incl.dot" -Tpng -o "/home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/player__test_8h__dep__incl.png"'
+Running dot for graph 52/52
+Patching output file 1/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/command_8c__incl.map for inclusion in the docs!
 If you installed Graphviz/dot after a previous failing run, 
 try deleting the output directory and rerun doxygen.
-Patching output file 2/58
-error: problem writing FIG 0 figure!
-lookup cache used 292/65536 hits=3904 misses=310
+Patching output file 2/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/command_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/command_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 3/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/enemy_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 4/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/enemy_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/enemy_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 5/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 6/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 7/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__loop_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 8/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__reader_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 9/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__reader_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__reader_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 10/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/graphic__engine_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 11/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/graphic__engine_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/graphic__engine_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 12/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/inventory_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 13/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/inventory_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/inventory_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 14/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/libscreen_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 15/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/link_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 16/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/link_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/link_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 17/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/object_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 18/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/object_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/object_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 19/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/player_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 20/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/player_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/player_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 21/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/set_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 22/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/set_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/set_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 23/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/space_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 24/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/space_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/space_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 25/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/enemy__test_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 26/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/enemy__test_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 27/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__test_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 28/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/game__test_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 29/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/inventory__test_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 30/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/player__test_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 31/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/player__test_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 32/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/set__test_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 33/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/set__test_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 34/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/space__test_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 35/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/space__test_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 36/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/types_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 37/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/struct__Game__coll__graph.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 38/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/struct__Inventory__coll__graph.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 39/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/struct__Player__coll__graph.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+Patching output file 40/40
+error: problems opening map file /home/miguel/Documentos/Universidad/Primero/PProg/I3/0405/Iteracion-3-main/doc/html/struct__Space__coll__graph.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+lookup cache used 541/65536 hits=4454 misses=559
 finished...
-
-
