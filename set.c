@@ -2,7 +2,7 @@
  * @brief Implements the necessary functions to work with sets
  * 
  * @file set.c
- * @author Miguel Soto
+ * @author Miguel Soto, Nicolas Victorino, Ignacio Nunez and Antonio Van-Oers
  * @version 2.0
  * @date 08-03-2022 
  * @copyright GNU Public License
