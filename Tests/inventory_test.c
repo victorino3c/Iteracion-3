@@ -15,7 +15,7 @@
 #include "inventory_test.h"
 #include "test.h"
 
-#define MAX_TESTS 23
+#define MAX_TESTS 23 /*!< It defines the maximun tests in this file */
 
 /**
  * @brief Main function for inventory unit tests.

@@ -15,7 +15,7 @@
 #include "enemy_test.h"
 #include "test.h"
 
-#define MAX_TESTS 33
+#define MAX_TESTS 33  /*!< It defines the maximun tests in this file */
 
 /**
  * @brief Main function for enemy unit tests.

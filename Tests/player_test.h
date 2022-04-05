@@ -133,7 +133,7 @@ void test1_player_set_location();
  * @pre	player pointer
  * @post output = ERROR
  */
-void test1_player_set_location();
+void test2_player_set_location();
 
 /**
  * @test Test player

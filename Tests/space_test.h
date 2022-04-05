@@ -83,7 +83,7 @@ void test2_space_set_link_north();
  * @post Output==ERROR
  */
 void test3_space_set_link_north();
-void test4_space_set_link_north();
+
 
 
 /**
@@ -104,7 +104,7 @@ void test2_space_set_link_south();
  * @post Output==ERROR
  */
 void test3_space_set_link_south();
-void test4_space_set_link_south();
+
 
 
 /**
@@ -125,7 +125,7 @@ void test2_space_set_link_east();
  * @post Output==ERROR
  */
 void test3_space_set_link_east();
-void test4_space_set_link_east();
+
 
 
 /**
@@ -146,7 +146,7 @@ void test2_space_set_link_west();
  * @post Output==ERROR
  */
 void test3_space_set_link_west();
-void test4_space_set_link_west();
+
 
 
 /**

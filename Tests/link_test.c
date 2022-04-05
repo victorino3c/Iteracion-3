@@ -6,8 +6,8 @@
 #include "../link.h"
 #include "link_test.h"
 
-#define MAX_TESTS 30
-#define FD_ID_LINK 5
+#define MAX_TESTS 30  /*!< It defines the maximun tests in this file */
+#define FD_ID_LINK 5 /*!< It defines the a valid link id, first digit must be 5 */
 
 /**
  * @brief Main function for Link unit tests.
