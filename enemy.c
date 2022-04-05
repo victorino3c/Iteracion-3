@@ -12,8 +12,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "enemy.h"
-#include "types.h"
+#include "../include/enemy.h"
+#include "../include/types.h"
 
 /**
  * @brief Enemy
