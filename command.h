@@ -16,14 +16,17 @@
 #define N_CMDT 2 /*!< It defines the number of ways each command can be call (the long and the short name). */
 #define N_CMD 12 /*!< It defines the number of arguments. */
 
+/**
+ * @brief It defines the two ways to call a command, by its short name (CMDS) or by its long name (CMDL).
+ */
 typedef enum enum_CmdType
 {
-  CMDS,
-  CMDL
+  CMDS,     /*!< Short for Command Short format. */
+  CMDL      /*!< Short for Command Long format. */
 } T_CmdType;
 
 /**
- * @brief La enumeracion T_Command
+ * @brief Command type enum (T_Command).
  *
  * Intitializes No_CMD to -1 and includes every possible interpretation for the input
  */
@@ -36,9 +39,9 @@ typedef enum enum_Command
   LEFT,         /*!< Command type is to move player left. */
   UP,           /*!< Command type is to move player up. */
   RIGHT,        /*!< Command type is to move player right. */
-  TAKE,         /*!< Command type is to take object. */
-  DROP,         /*!< Command type is to drop object. */
-  ATTACK,       /*!< Command type is to attack an enemy. */
+  TAKE,         /*!< Command type is to take object. Name of the objet must be included as a second argument. */
+  DROP,         /*!< Command type is to drop object. Name of the objet must be included as a second argument. */
+  ATTACK,       /*!< Command type is to attack an enemy. Id of the enemy must be included as a second argument. */
   MOVE,         /*!< Command type is to move player (direction specify in another argument). */
   INSPECT       /*!< Command type is to inspect. */
 } T_Command;
@@ -59,7 +62,7 @@ T_Command command_get_user_input();
  * @author Nicolas Victorino
  *
  * It scans the cmd searching for key words introduced by the file
- * in order to interpret and clasify the info
+ * in order to interpret and clasify the info.
  *
  * @return cmd, a T_Command type variable that changes its value depending on the input
  */
