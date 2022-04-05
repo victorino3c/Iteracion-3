@@ -1,9 +1,9 @@
 /**
  * @file link.h
- * @author Miguel Soto, Antonio Van-Oers, Nicolas VIctorino and Nacho
+ * @author Miguel Soto, Antonio Van-Oers, Nicolas Victorino and Ignacio Nunez
  * @brief It defines the link functions between spaces
- * @version 0.1
- * @date 2022-03-17
+ * @version 3.0
+ * @date 04-04-2022
  * 
  * @copyright Copyright (c) 2022
  */
@@ -14,13 +14,15 @@
 
 #include "types.h"
 
-#define LINK_NAME_LEN 40
+#define LINK_NAME_LEN 40    /*!< Establish link's name length*/
 
-
+/**
+ * @brief Link status enum. A link can be either close or open.
+ */
 typedef enum
 {
-    CLOSE = 0,
-    OPEN = 1
+    CLOSE = 0,  /*!< Link status is close */
+    OPEN = 1    /*!< Link status is open */
 } LINK_STATUS;
 
 typedef struct _Link Link;
