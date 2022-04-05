@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "player.h"
+#include "../include/player.h"
 
 /**
  * @brief Player
