@@ -3,7 +3,7 @@
  * 
  * @file enemy.h
  * @author Antonio Van-Oers, Ignacio Nunez, Nicolas VIctorino and Miguel Soto
- * @version 2.0
+ * @version 3.0
  * @date 04-04-2022
  * @copyright GNU Public License
  */
