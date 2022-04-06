@@ -4,7 +4,7 @@
  * together with the line where the process is running and the 
  * total porcentage of Passed tests.
  *
- * @file space.c
+ * @file test.h
  * @author Miguel Soto, Antonio Van-Oers, Nicolas Victorino and Ignacio Nunez
  * @version 2.0
  * @date 02-04-2022
