@@ -1,5 +1,0 @@
-<map id="include/game_reader.h" name="include/game_reader.h">
-<area shape="rect" id="node1" title="It defines the game&#39;s members loading." alt="" coords="62,5,214,32"/>
-<area shape="rect" id="node2" href="$game__loop_8c.html" title="It defines the game loop." alt="" coords="5,80,124,107"/>
-<area shape="rect" id="node3" href="$game__reader_8c.html" title="It read all game elements from a file." alt="" coords="148,80,277,107"/>
-</map>
