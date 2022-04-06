@@ -168,17 +168,17 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
 
       if (id_up < 100)
       {
-        sprintf(str, "  | gpp0^        %2d |", (int)id_act);
+        sprintf(str, "  | gpp0^        %2d |", (int)id_up);
       }
       else
       {
-        sprintf(str, "  | gpp0^        %2d|", (int)id_act);
+        sprintf(str, "  | gpp0^        %2d|", (int)id_up);
       }
       screen_area_puts(ge->map, str);
 
       sprintf(str, "  |                  |");
       screen_area_puts(ge->map, str);
-      sprintf(str, "  |        %c         |", obj);
+      sprintf(str, "  |        %c       |", obj);
       screen_area_puts(ge->map, str);
       sprintf(str, "  |                 |");
       screen_area_puts(ge->map, str);
@@ -193,15 +193,8 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
       {
         link_up = ' ';
       }
-      if (game_get_connection_status(game, id_up, S) == OPEN)
-      {
-        link_down = 'v';
-      }
-      else
-      {
-        link_down = ' ';
-      }
-      sprintf(str, "      %c  %c", link_up, link_down);
+
+      sprintf(str, "          %c", link_up);
       screen_area_puts(ge->map, str);
     }
 
@@ -406,7 +399,16 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         }
       }
 
-      sprintf(str, "           v");
+      if (game_get_connection_status(game, id_act, S) == OPEN)
+      {
+        link_down = 'v';
+      }
+      else
+      {
+        link_down = ' ';
+      }
+
+      sprintf(str, "           %c", link_down);
       screen_area_puts(ge->map, str);
       sprintf(str, "  +-----------------+");
       screen_area_puts(ge->map, str);
