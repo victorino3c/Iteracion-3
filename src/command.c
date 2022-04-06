@@ -7,7 +7,7 @@
  * @file command.c
  * @author Miguel Soto, Nicolas Victorino, Ignacio Nunez and Antonio Van-Oers
  * @version 3.0 
- * @date 04-04-2022
+ * @date 05-04-2022
  * @copyright GNU Public License
  */
 
