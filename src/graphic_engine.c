@@ -275,14 +275,14 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         }
       }
 
-        sprintf(str, "  +-----------------+    ------------------|");
+        sprintf(str, "  +------------------+   ------------------|");
         screen_area_puts(ge->map, str);
         sprintf(str, "  |                  |   |                 |");
         screen_area_puts(ge->map, str);
         /*\\(\")/ ANT CODIFICATION */
         sprintf(str, "  | gpp0^         %2ld|   |              %2ld|", id_act, id_right);
         screen_area_puts(ge->map, str);
-        sprintf(str, "  |       %c          |   |       %c          |", obj, obj_r);
+        sprintf(str, "  |       %c          |   |       %c         |", obj, obj_r);
         screen_area_puts(ge->map, str);
         gdesc = space_get_gdesc(game_get_space(game, id_act)); 
         gdesc_right = space_get_gdesc(game_get_space(game, id_right)); 
@@ -304,7 +304,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         screen_area_puts(ge->map, str);
         sprintf(str, "  |                  |   |                 |");
         screen_area_puts(ge->map, str);
-        sprintf(str, "  +-----------------+>>  ------------------|");
+        sprintf(str, "  +------------------+>> ------------------|");
         screen_area_puts(ge->map, str);  
       }
       
@@ -612,4 +612,5 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
   screen_paint();
   printf("prompt:> ");
 }
+
 
