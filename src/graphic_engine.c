@@ -41,7 +41,7 @@ struct _Graphic_engine
 };
 
 /**
- * graphic_engine_create inicializa la pantalla de juego con las dimensiones adecuadas
+ * graphic_engine_create initializes game's members
  */
 Graphic_engine *graphic_engine_create()
 {
@@ -65,9 +65,9 @@ Graphic_engine *graphic_engine_create()
 }
 
 /**
-  * graphic_engine_destroy, llamando a las funciones de screen_area_destroy, 
-  * destruye mapa, banner, descript, help y feedback 
-  * Ademas libera la memoria que se habia reservado para ge
+  * graphic_engine_destroy, using the function screen_area_destroy, 
+  * destroys the map, banner, descript, help and feedback 
+  * It also frees all the previosly alloc'd memory
   */
 void graphic_engine_destroy(Graphic_engine *ge)
 {
@@ -85,12 +85,12 @@ void graphic_engine_destroy(Graphic_engine *ge)
 }
 
 /**
-  * El motor grafico dibuja en la inerfaz los componentes del juego para que se visualicen
-  * en la posicion correcta en la pantalla
+  * Prints the game on the screen, with all its components on the 
+  * right position for the user to see the info needed to interact with it
   */
 void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
 {
-  /*Declaracion de variables a utilizar*/
+  /* Variables declaration */
   Id id_act = NO_ID, id_up = NO_ID, id_down = NO_ID, id_left= NO_ID, id_right= NO_ID;
   Id obj_loc[MAX_OBJS] = {NO_ID}, player_loc = NO_ID, en_loc[MAX_ENEMYS] = {NO_ID}, obj_id[MAX_OBJS]= {NO_ID};
   Inventory *player_inventory = NULL;
@@ -106,7 +106,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
   char *obj_name[MAX_OBJS];
   char link_up = '\0', link_down = '\0';
 
-  /*Asignacion de los valores correspondientes a las variables*/
+  /* setting all proper values for each variable */
   player_loc = game_get_player_location(game, 21);
   id_act = player_loc;
   player_inventory = player_get_inventory(game_get_player(game, game_get_player_id(game)));
@@ -115,7 +115,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
 
   for(i=0;i<MAX_ENEMYS;i++)
   { 
-    /* Control de errores */  
+    /* Error Control */
     if (game_get_enemy(game, game_get_enemy_id(game, i))==NULL)
     {
       break;
@@ -126,7 +126,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
 
   for(i=0;i<MAX_OBJS;i++)
   { 
-    /* Control de errores */  
+    /* Error Control */
     if (game_get_object(game, game_get_object_id(game, i))==NULL)
     {
       break;
@@ -149,12 +149,12 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
 
     space_print(space_act);
 
-    /* ESPACIO ARRIBA */
+    /* Space to the north of the current space */
     if (id_up != NO_ID)
     {
       for(i=0;i<MAX_OBJS;i++)
       { 
-        /*Comprobar si el objeto se encuentra en el espacio*/
+        /* Checks whether there is an object or not in that space */
         if (space_has_object(game_get_space(game, id_up), obj_id[i]) == FALSE)
         {         
           obj = ' ';
@@ -205,14 +205,14 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
       screen_area_puts(ge->map, str);
     }
 
-    /* ESPACIO ACTUAL */
+    /* Current space */
   
     if (id_act != NO_ID)
     {
       
       for(i=0;i<MAX_OBJS;i++)
       {   
-        /*Comprobar si el objeto se encuentra en el espacio*/           
+        /* Checks whether there is an object or not in that space */    
         if (space_has_object(game_get_space(game, id_act), obj_id[i]) == FALSE)
         {         
           obj = ' ';
@@ -224,14 +224,14 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         }
       }
 
-      /*Si no hay espacios a derecha o izquierda*/
+       /* Checks that there are no other spaces to the left or right */    
       if(id_left==NO_ID && id_right==NO_ID)  
       {
         sprintf(str, "  +-----------------+");
         screen_area_puts(ge->map, str);
         sprintf(str, "  |                 |");
         screen_area_puts(ge->map, str);
-        /*\\(\")/ CODIFICACION HORMIGA */
+        /*\\(\")/ ANT CODIFICATION */
         if (id_act < 100)
         {
           sprintf(str, "  | gpp0^        %2d |", (int)id_act);
@@ -264,14 +264,14 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         screen_area_puts(ge->map, str);
       } 
       
-      /*Si  hay espacios a derecha y no a izquierda*/
+      /* Checks that there is no space to the left but there is one to the right */    
       if (id_right != NO_ID && id_left == NO_ID)
       {  
         sprintf(str, "  +-----------------+    ------------------|");
         screen_area_puts(ge->map, str);
         sprintf(str, "  |                  |   |                 |");
         screen_area_puts(ge->map, str);
-        /*\\(\")/ CODIFICACION HORMIGA */
+        /*\\(\")/ ANT CODIFICATION */
         sprintf(str, "  | gpp0^         %2ld|   |              %2ld|", id_act, id_right);
         screen_area_puts(ge->map, str);
         sprintf(str, "  |       %c          |   |                 |", obj);
@@ -300,7 +300,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         screen_area_puts(ge->map, str);  
       }
       
-      /*Si hay espacios a derecha e izquierda*/
+      /* Checks that there are both spaces to the left and right */    
       if (id_left != NO_ID && id_right != NO_ID)
       {
         for (i = 0; i < 4; i++) 
@@ -313,7 +313,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         screen_area_puts(ge->map, str);
         sprintf(str, "  |                 |   |                 |   |                 |");
         screen_area_puts(ge->map, str);
-        /*\\(\")/ CODIFICACION HORMIGA */
+        /*\\(\")/ ANT CODIFICATION */
         sprintf(str, "  |              %2ld|   | gpp0^        %2ld|   |              %2ld|",id_left, id_act, id_right);
         screen_area_puts(ge->map, str);
         sprintf(str, "  |                 |   |         %c       |   |                 |", obj);
@@ -345,7 +345,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         screen_area_puts(ge->map, str);
       }
 
-      /*Si no hay espacios a derecha y si a izquierda*/
+      /* Checks that there is no space to the right but there is one to the left */    
       if (id_right == NO_ID && id_left != NO_ID && id_act==14)
       {  
         for (i = 0; i < 4; i++) 
@@ -358,7 +358,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         screen_area_puts(ge->map, str);
         sprintf(str, "  |                 |   |                 |");
         screen_area_puts(ge->map, str);
-        /*\\(\")/ CODIFICACION HORMIGA */
+        /*\\(\")/ ANT CODIFICATION */
         sprintf(str, "  |              %2ld|   |  gpp0^       %2ld |", id_left, id_act);
         screen_area_puts(ge->map, str);
         sprintf(str, "  |                 |   |        %c        |", obj);
@@ -389,12 +389,12 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
           
     }
 
-    /* ESPACIO ABAJO*/
+    /* Space to the south of the current space */
     if (id_down != NO_ID && id_act != 14)
     {
       for(i=0;i<MAX_OBJS;i++)
       {   
-        /*Comprobar si el objeto se encuentra en el espacio*/           
+        /* Checks whether there is an object or not in that space */    
         if (space_has_object(game_get_space(game, id_down), obj_id[i]) == FALSE)
         {         
           obj = ' ';
@@ -422,12 +422,12 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
     
   }
 
-      /* ESPACIO ABAJO EN ESPACIO 14*/
+      /* Space to the south of the current space CASE 14 */
     if (id_down != NO_ID && id_act == 14)
     {
       for(i=0;i<MAX_OBJS;i++)
       {   
-        /*Comprobar si el objeto se encuentra en el espacio*/           
+        /* Checks whether there is an object or not in that space */    
         if (space_has_object(game_get_space(game, id_down), obj_id[i]) == FALSE)
         {         
           obj = ' ';
