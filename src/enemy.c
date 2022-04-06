@@ -23,7 +23,7 @@
 struct _Enemy
 {
   Id id;  /*!< Enemy's id. */
-  char name[Enemy_Name_lenght]; /*!< Enemy's name. */
+  char name[ENEMY_LEN_NAME]; /*!< Enemy's name. */
   Id location;  /*!< Id to enemy's space location */
   int health;   /*!< Enemy's health */
 } ;
@@ -195,6 +195,11 @@ STATUS enemy_set_name(Enemy *enemy, char *name)
 {
 	/* Error control */
   if (!enemy || !name)
+  {
+    return ERROR;
+  }
+  
+  if (strlen(name) >= ENEMY_LEN_NAME)
   {
     return ERROR;
   }
