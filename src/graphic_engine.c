@@ -23,7 +23,7 @@
 #include "../include/set.h"
 
 
-#define ROWS 37       /*!< Establish screen size in y dimension */
+#define ROWS 39       /*!< Establish screen size in y dimension */
 #define COLUMNS 120   /*!< Establish screen size in x dimension */
 
 /**
@@ -55,11 +55,11 @@ Graphic_engine *graphic_engine_create()
   if (ge == NULL)
     return NULL;
 
-  ge->map = screen_area_init(1, 1, 80, 23);
-  ge->descript = screen_area_init(82, 1, 35, 23);
-  ge->banner = screen_area_init(53, 27, 14, 1);
-  ge->help = screen_area_init(1, 28, 115, 3);
-  ge->feedback = screen_area_init(1, 32, 115, 3);
+  ge->map = screen_area_init(1, 1, 80, 25);
+  ge->descript = screen_area_init(82, 1, 35, 25);
+  ge->banner = screen_area_init(53, 29, 14, 1);
+  ge->help = screen_area_init(1, 30, 115, 3);
+  ge->feedback = screen_area_init(1, 34, 115, 3);
 
   return ge;
 }
@@ -168,17 +168,17 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
 
       if (id_up < 100)
       {
-        sprintf(str, "  | gpp0^        %2d |", (int)id_up);
+        sprintf(str, "  |              %2d |", (int)id_up);
       }
       else
       {
-        sprintf(str, "  | gpp0^        %2d|", (int)id_up);
+        sprintf(str, "  |              %2d|", (int)id_up);
       }
       screen_area_puts(ge->map, str);
 
-      sprintf(str, "  |                  |");
+      sprintf(str, "  |                 |");
       screen_area_puts(ge->map, str);
-      sprintf(str, "  |        %c       |", obj);
+      sprintf(str, "  |        %c        |", obj);
       screen_area_puts(ge->map, str);
       sprintf(str, "  |                 |");
       screen_area_puts(ge->map, str);
@@ -476,8 +476,13 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
       screen_area_puts(ge->map, str);
       sprintf(str, "  |                 |");
       screen_area_puts(ge->map, str);
-      sprintf(str, "  |              %2d|", (int)id_down);
-      screen_area_puts(ge->map, str);
+      if (id_down != 13) {
+        sprintf(str, "  |              %2d|", (int)id_down);
+        screen_area_puts(ge->map, str);
+      } else {
+        sprintf(str, "  |              %2d |", (int)id_down);
+        screen_area_puts(ge->map, str);   
+      }
       sprintf(str, "  |        %c        |", obj);
       screen_area_puts(ge->map, str);
       sprintf(str, "  |                 |");
