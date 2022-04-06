@@ -1,7 +1,7 @@
   /**
- * @brief It tests object module
+ * @brief It tests inventory module
  *
- * @file object_test.h
+ * @file inventory_test.h
  * @author Ignacio NUnnez
  * @version 3.0
  * @date 09-03-2021
