@@ -1,0 +1,9 @@
+<map id="src/command.c" name="src/command.c">
+<area shape="rect" id="node1" title="It implements the command interpreter module." alt="" coords="161,5,273,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,67,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="91,80,157,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="181,80,253,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="277,80,341,107"/>
+<area shape="rect" id="node6" href="$command_8h.html" title="It implements the command interpreter interface." alt="" coords="365,80,512,107"/>
+<area shape="rect" id="node7" href="$types_8h.html" title="It defines common types for the whole project." alt="" coords="406,155,471,181"/>
+</map>

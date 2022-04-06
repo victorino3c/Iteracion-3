@@ -1,0 +1,10 @@
+<map id="test/enemy_test.c" name="test/enemy_test.c">
+<area shape="rect" id="node1" title="It tests enemy module." alt="" coords="209,5,335,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,67,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="91,80,155,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="179,80,245,107"/>
+<area shape="rect" id="node5" href="$enemy_8h.html" title="It implements the enemy interface." alt="" coords="269,80,395,107"/>
+<area shape="rect" id="node7" href="$enemy__test_8h.html" title="It declares the tests for the enemy module." alt="" coords="420,80,521,107"/>
+<area shape="rect" id="node8" href="$test_8h_source.html" title=" " alt="" coords="546,80,601,107"/>
+<area shape="rect" id="node6" href="$types_8h.html" title="It defines common types for the whole project." alt="" coords="299,155,365,181"/>
+</map>

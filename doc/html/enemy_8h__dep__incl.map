@@ -1,0 +1,13 @@
+<map id="include/enemy.h" name="include/enemy.h">
+<area shape="rect" id="node1" title="It implements the enemy interface." alt="" coords="534,5,649,32"/>
+<area shape="rect" id="node2" href="$enemy_8c.html" title="Implements the enemy module." alt="" coords="316,80,408,107"/>
+<area shape="rect" id="node3" href="$game_8h.html" title="It defines the game interface." alt="" coords="432,80,543,107"/>
+<area shape="rect" id="node7" href="$graphic__engine_8c.html" title="It defines a textual graphic engine." alt="" coords="463,229,605,256"/>
+<area shape="rect" id="node11" href="$enemy__test_8c.html" title="It tests enemy module." alt="" coords="735,80,861,107"/>
+<area shape="rect" id="node4" href="$game_8c.html" title="It implements the game module and all the associated calls for each command." alt="" coords="572,155,659,181"/>
+<area shape="rect" id="node5" href="$graphic__engine_8h.html" title="It defines the textual graphic engine interface." alt="" coords="238,155,403,181"/>
+<area shape="rect" id="node6" href="$game__loop_8c.html" title="It defines the game loop." alt="" coords="159,229,277,256"/>
+<area shape="rect" id="node8" href="$game__reader_8h.html" title="It defines the game&#39;s members loading." alt="" coords="11,155,163,181"/>
+<area shape="rect" id="node10" href="$game__test_8c.html" title="It tests game module." alt="" coords="427,155,547,181"/>
+<area shape="rect" id="node9" href="$game__reader_8c.html" title="It read all game elements from a file." alt="" coords="5,229,135,256"/>
+</map>
