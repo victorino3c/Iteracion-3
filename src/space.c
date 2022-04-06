@@ -331,14 +331,14 @@ STATUS space_del_objectid(Space *s, Id id)
 /**
  * It gets a pointer to the set of objects in a space
  */
-Set *space_get_objects(Space *space)
+Set *space_get_objects(Space *s)
 {
   /* Error control*/
-  if (!space)
+  if (!s)
   {
     return NULL;
   }
-  return space->objects;
+  return s->objects;
 }
 
 /**
