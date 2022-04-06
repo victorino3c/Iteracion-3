@@ -22,47 +22,6 @@ struct _Set
 };
 
 /**
- * Private functions 
- */
-STATUS reorder_set_ids(Set *s, int pos);
-
-
-/**
- * @brief Removes the last blank space in between sets
- * and it changes it for the last id.
- * @author Miguel Soto
- * 
- * Removes the last blank space in between sets
- * and it changes it for the last id. It doesn't include realloc
- * 
- * @param s a pointer to target set
- * @param pos is a NO_ID known position
- * @return OK if everything goes well, or ERROR if anything doesn't.
- */
-STATUS reorder_set_ids(Set *s, int pos)
-{
-    int i;
-
-    /*Error control*/
-    if (!s || pos < 0 || pos >= s->n_ids || s->n_ids == 0)
-    {
-        return ERROR;
-    }
-    
-    for (i = pos; i < s->n_ids; i++)
-    {
-        if (s->ids[i] == NO_ID)
-        {      
-            s->ids[i] = s->ids[s->n_ids-1];
-        }
-        
-    }
-    
-    return OK;
-}
-
-
-/**
  * set_create Allocates memory for a new set and 
  * has all its members initialized
  */
@@ -112,7 +71,6 @@ STATUS set_destroy(Set *s)
 STATUS set_add(Set *s, Id id)
 {
     Id *aux = NULL;
-    int newlength;
 
     /*Error control*/
     if (!s || id == NO_ID)
@@ -121,8 +79,7 @@ STATUS set_add(Set *s, Id id)
     }
     
     /* increasing the number of ids*/
-    newlength = s->n_ids + 1;
-    aux = (Id *) realloc(s->ids, newlength * sizeof(Id));
+    aux = (Id *) realloc(s->ids, (s->n_ids + 1) * sizeof(Id));
     if (!aux)
     {
         return ERROR;
@@ -155,8 +112,7 @@ STATUS set_del_id(Set *s, Id id)
     {
         if (s->ids[i] == id)
         {
-            s->ids[i] = NO_ID;
-            reorder_set_ids(s, i);
+            s->ids[i] = s->ids[s->n_ids-1];
 
             /*Error control*/
             aux = (Id *) realloc(s->ids, s->n_ids * sizeof(Id));
@@ -204,8 +160,7 @@ STATUS set_del_pos(Set *s, int pos)
         return ERROR;
     }
     
-    s->ids[pos] = NO_ID;
-    reorder_set_ids(s, pos);
+    s->ids[pos] = s->ids[s->n_ids-1];
     
     aux = (Id *) realloc(s->ids, s->n_ids * sizeof(Id));
     if (!aux)
