@@ -1,0 +1,10 @@
+<map id="src/inventory.c" name="src/inventory.c">
+<area shape="rect" id="node1" title="It implements enemy module in the ant game." alt="" coords="87,5,193,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,229,67,256"/>
+<area shape="rect" id="node3" title=" " alt="" coords="91,229,155,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="290,80,355,107"/>
+<area shape="rect" id="node5" href="$inventory_8h.html" title="It defines inventory module." alt="" coords="124,80,265,107"/>
+<area shape="rect" id="node6" href="$types_8h.html" title="It defines common types for the whole project." alt="" coords="179,229,245,256"/>
+<area shape="rect" id="node7" href="$set_8h.html" title="It implements the set interface." alt="" coords="124,155,175,181"/>
+<area shape="rect" id="node8" href="$object_8h.html" title="Implements the object&#39;s interface." alt="" coords="250,155,318,181"/>
+</map>
