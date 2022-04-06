@@ -53,6 +53,10 @@ juego: $(O)command.o $(O)game.o $(O)game_reader.o $(O)graphic_engine.o $(O)objec
 run:
 	@echo ">>>>>>Running main"
 	./juego hormiguero.dat
+	
+vrun:
+	@echo ">>>>>>Running main"
+	valgrind --leak-check=full ./juego hormiguero.dat
 
 runcmd1:
 	@echo ">>>>>>Running main from partida1.cmd"
