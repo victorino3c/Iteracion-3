@@ -81,6 +81,11 @@ runvcmd1log:
 juego_permisos: juego
 	chmod u+x ./juego
 
+#DOXYGEN
+doxygen:
+	@echo ">>>>>Creating project documentation with doxygen"
+	doxygen ./doc/Doxyfile
+
 #ENEMY_TEST
 $(O)enemy_test.o: $(T)enemy_test.c $(T)enemy_test.h $(T)test.h $(I)enemy.h
 	$(CC) -o $@ $(FLAGS) $<
