@@ -13,7 +13,7 @@
 
 #include "types.h"
 
-#define Enemy_Name_lenght 60  /*!< Enemy's name length */
+#define ENEMY_LEN_NAME 60  /*!< Enemy's name length */
 
 /**
  * @brief Enemy
