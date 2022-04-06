@@ -79,12 +79,12 @@ STATUS set_add(Set *s, Id id)
     }
     
     /* increasing the number of ids*/
-    s->n_ids++;
-    aux = (Id *) realloc(s->ids, (s->n_ids) * sizeof(Id));
+    aux = (Id *) realloc(s->ids, (s->n_ids + 1) * sizeof(Id));
     if (!aux)
     {
         return ERROR;
     }
+    s->n_ids++;
     s->ids = aux;
     aux = NULL;
 
@@ -115,7 +115,7 @@ STATUS set_del_id(Set *s, Id id)
             s->ids[i] = s->ids[s->n_ids-1];
 
             /*Error control*/
-            aux = (Id *) realloc(s->ids, s->n_ids * sizeof(Id));
+            aux = (Id *) realloc(s->ids, (s->n_ids) * sizeof(Id));
             if (!aux)
             {
                 return ERROR;
