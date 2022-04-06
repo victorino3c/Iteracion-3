@@ -199,6 +199,11 @@ STATUS space_set_name(Space *space, char *name)
     return ERROR;
   }
 
+  if (strlen(name) > WORD_SIZE)
+  {
+    return ERROR;
+  }
+  
   if (!strcpy(space->name, name))
   {
     return ERROR;
