@@ -1,7 +1,7 @@
 /**
  * @brief It tests link module
  *
- * @file space_test.c
+ * @file link_test.h
  * @author Profesores Pprog
  * @version 3.0
  * @date 09-03-2021
