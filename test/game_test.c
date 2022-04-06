@@ -145,6 +145,7 @@ int main(int argc, char **argv)
   return 1;
 }
 
+/*game_alloc2*/
 void test1_game_alloc2(){
     Game *g = NULL;
     g = game_alloc2();
@@ -153,6 +154,7 @@ void test1_game_alloc2(){
     game_destroy(g);
 }
 
+/*game_destroy*/
 void test1_game_destroy(){
     Game *g = NULL;
     g = game_alloc2();
@@ -165,6 +167,7 @@ void test2_game_destroy(){
     PRINT_TEST_RESULT(game_destroy(g) == ERROR);
 }
 
+/*game_create*/
 void test1_game_create(){
     Game *g = NULL;
     g = game_alloc2();
@@ -177,6 +180,7 @@ void test2_game_create(){
     PRINT_TEST_RESULT(game_create(g) == ERROR);
 }
 
+/*game_update*/
 void test1_game_update(){
     Game *g = NULL;
     char *arg = NULL;
@@ -192,6 +196,7 @@ void test2_game_update(){
     PRINT_TEST_RESULT(game_update(g, EXIT, arg) == 0);
 }
 
+/*game_is_over*/
 void test1_game_is_over(){
     Game *g = NULL;
     g = game_alloc2();
@@ -210,6 +215,7 @@ void test2_game_is_over(){
     game_destroy(g);
 }
 
+/*game_get_space*/
 void test1_game_get_space(){
     Game *g = NULL;
     Space *s = NULL;
@@ -232,6 +238,7 @@ void test2_game_get_space(){
     game_destroy(g);
 }
 
+/*game_get_object*/
 void test1_game_get_object(){
     Game *g = NULL;
     Object *o = NULL;
@@ -254,6 +261,7 @@ void test2_game_get_object(){
     game_destroy(g);
 }
 
+/*game_get_player*/
 void test1_game_get_player(){
     Game *g = NULL;
     Player *p = NULL;
@@ -276,6 +284,7 @@ void test2_game_get_player(){
     game_destroy(g);
 }
 
+/*game_get_enemy*/
 void test1_game_get_enemy(){
     Game *g = NULL;
     Enemy *e = NULL;
@@ -298,6 +307,7 @@ void test2_game_get_enemy(){
     game_destroy(g);
 }
 
+/*game_get_player_location*/
 void test1_game_get_player_location(){
     Game *g = NULL;
     Player *p = NULL;
@@ -318,6 +328,7 @@ void test2_game_get_player_location(){
     game_destroy(g);
 }
 
+/*game_get_enemy_location*/
 void test1_game_get_enemy_location(){
     Game *g = NULL;
     Enemy *e = NULL;
@@ -338,6 +349,7 @@ void test2_game_get_enemy_location(){
     game_destroy(g);
 }
 
+/*game_get_object_location*/
 void test1_game_get_object_location(){
     Game *g = NULL;
     Object *o = NULL;
@@ -358,6 +370,7 @@ void test2_game_get_object_location(){
     game_destroy(g);
 }
 
+/*game_get_last_command*/
 void test1_game_get_last_command(){
     Game *g = NULL;
     char *arg = NULL;
@@ -378,6 +391,7 @@ void test2_game_get_last_command(){
     game_destroy(g);
 }
 
+/*game_get_enemy_id*/
 void test1_game_get_enemy_id(){
     Game *g = NULL;
     Enemy *e = NULL;
@@ -397,6 +411,7 @@ void test2_game_get_enemy_id(){
     game_destroy(g);
 }
 
+/*game_get_player_id*/
 void test1_game_get_player_id(){
     Game *g = NULL;
     Player *p = NULL;
@@ -416,6 +431,7 @@ void test2_game_get_player_id(){
     game_destroy(g);
 }
 
+/*game_get_object_id*/
 void test1_game_get_object_id(){
     Game *g = NULL;
     Object *o = NULL;
@@ -435,6 +451,7 @@ void test2_game_get_object_id(){
     game_destroy(g);
 }
 
+/*game_get_connection_status*/
 void test1_game_get_connection_status(){
     Game *g = NULL;
     Space *s1;
@@ -466,6 +483,7 @@ void test2_game_get_connection_status(){
     game_destroy(g);
 }
 
+/*game_get_connection*/
 void test1_game_get_connection(){
     Game *g = NULL;
     Space *s1;
@@ -499,6 +517,7 @@ void test2_game_get_connection(){
     game_destroy(g);
 }
 
+/*game_get_description*/
 void test1_game_get_description(){
     Game *g = NULL;
     g =  game_alloc2();
