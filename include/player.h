@@ -15,7 +15,7 @@
 #include "object.h"
 #include "inventory.h"
 
-#define Player_Name_lenght 60   /*!< Establish player's name length */
+#define PLAYER_NAME_LEN 60   /*!< Establish player's name length */
 
 typedef struct _Player Player; /*!< It defines the player structure, it can move, attack or take and drop objects */
 
