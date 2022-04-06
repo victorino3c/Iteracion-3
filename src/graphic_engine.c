@@ -4,7 +4,7 @@
  * @file graphic_engine.c
  * @author Miguel Soto, Antonio Van-Oers, Nicolas Victorino and Ignacio Nunez
  * @version 3.0
- * @date 04-04-2022
+ * @date 06-04-2022
  * @copyright GNU Public License
  */
 
