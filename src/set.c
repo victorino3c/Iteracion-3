@@ -71,6 +71,7 @@ STATUS set_destroy(Set *s)
 STATUS set_add(Set *s, Id id)
 {
     Id *aux = NULL;
+    int newlength = s->n_ids + 1;
 
     /*Error control*/
     if (!s || id == NO_ID)
