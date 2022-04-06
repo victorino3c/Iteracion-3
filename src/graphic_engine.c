@@ -96,7 +96,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
   Inventory *player_inventory = NULL;
   int en_health[MAX_ENEMYS] = {0}, player_health = 0;
   Space *space_act = NULL;
-  char obj = '\0';
+  char obj = '\0', obj_l = '\0', obj_r = '\0';
   char str[255];
   T_Command last_cmd = UNKNOWN;
   extern char *cmd_to_str[N_CMD][N_CMDT];
@@ -260,6 +260,21 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
       /* Checks that there is no space to the left but there is one to the right */    
       if (id_right != NO_ID && id_left == NO_ID)
       {  
+
+      for(i=0;i<MAX_OBJS;i++)
+      { 
+        /* Checks whether there is an object or not in that space */
+        if (space_has_object(game_get_space(game, id_right), obj_id[i]) == FALSE)
+        {         
+          obj_r = ' ';
+        }
+        else
+        {
+          obj_r = '*';
+          break;
+        }
+      }
+
         sprintf(str, "  +-----------------+    ------------------|");
         screen_area_puts(ge->map, str);
         sprintf(str, "  |                  |   |                 |");
@@ -267,7 +282,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         /*\\(\")/ ANT CODIFICATION */
         sprintf(str, "  | gpp0^         %2ld|   |              %2ld|", id_act, id_right);
         screen_area_puts(ge->map, str);
-        sprintf(str, "  |       %c          |   |                 |", obj);
+        sprintf(str, "  |       %c          |   |       %c          |", obj, obj_r);
         screen_area_puts(ge->map, str);
         gdesc = space_get_gdesc(game_get_space(game, id_act)); 
         gdesc_right = space_get_gdesc(game_get_space(game, id_right)); 
@@ -301,6 +316,34 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         sprintf(str, " ");
         screen_area_puts(ge->map, str);
         }
+
+      for(i=0;i<MAX_OBJS;i++)
+      { 
+        /* Checks whether there is an object or not in that space */
+        if (space_has_object(game_get_space(game, id_right), obj_id[i]) == FALSE)
+        {         
+          obj_r = ' ';
+        }
+        else
+        {
+          obj_r = '*';
+          break;
+        }
+      }
+
+      for(i=0;i<MAX_OBJS;i++)
+      { 
+        /* Checks whether there is an object or not in that space */
+        if (space_has_object(game_get_space(game, id_left), obj_id[i]) == FALSE)
+        {         
+          obj_l = ' ';
+        }
+        else
+        {
+          obj_l = '*';
+          break;
+        }
+      }
         
         sprintf(str, "  |-----------------    +-----------------+   ------------------|");
         screen_area_puts(ge->map, str);
@@ -314,7 +357,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
           sprintf(str, "  |              %2ld|   | gpp0^        %2ld|   |              %2ld |",id_left, id_act, id_right);
           screen_area_puts(ge->map, str);
         }
-        sprintf(str, "  |                 |   |         %c       |   |                 |", obj);
+        sprintf(str, "  |         %c       |   |         %c       |   |         %c       |", obj_l, obj, obj_r);
         screen_area_puts(ge->map, str);
         gdesc = space_get_gdesc(game_get_space(game, id_act)); 
         gdesc_right = space_get_gdesc(game_get_space(game, id_right)); 
@@ -352,6 +395,20 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         screen_area_puts(ge->map, str);
         }
 
+      for(i=0;i<MAX_OBJS;i++)
+      { 
+        /* Checks whether there is an object or not in that space */
+        if (space_has_object(game_get_space(game, id_left), obj_id[i]) == FALSE)
+        {         
+          obj_l = ' ';
+        }
+        else
+        {
+          obj_l = '*';
+          break;
+        }
+      }
+
         sprintf(str, "  |------------------   +-----------------+");
         screen_area_puts(ge->map, str);
         sprintf(str, "  |                 |   |                 |");
@@ -359,7 +416,7 @@ void graphic_engine_paint_game(Graphic_engine *ge, Game *game, int st)
         /*\\(\")/ ANT CODIFICATION */
         sprintf(str, "  |              %2ld|   |  gpp0^       %2ld |", id_left, id_act);
         screen_area_puts(ge->map, str);
-        sprintf(str, "  |                 |   |        %c        |", obj);
+        sprintf(str, "  |        %c        |   |        %c        |", obj_l, obj);
         screen_area_puts(ge->map, str);
         gdesc = space_get_gdesc(game_get_space(game, id_act)); 
         gdesc_left = space_get_gdesc(game_get_space(game, id_left)); 
