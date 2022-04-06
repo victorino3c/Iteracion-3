@@ -131,7 +131,11 @@ STATUS obj_set_name(Object *obj, char *name)
   {
     return ERROR;
   }
-
+  if (strlen(name) >= OBJ_NAME_LEN)
+  {
+    return ERROR;
+  }
+  
   /* Control de errores */
   if (!strcpy(obj->name, name))
   {
