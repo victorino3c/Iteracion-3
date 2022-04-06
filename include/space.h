@@ -16,11 +16,11 @@
 #include "object.h"
 #include "link.h"
 
-typedef struct _Space Space; /* <! The space structure, contains everything related to the game's spaces */
+typedef struct _Space Space; /*!< The space structure, contains everything related to the game's spaces */
 
-#define FIRST_SPACE 1 /* <! Establish the position of the first space  */
-#define TAM_GDESC_Y 5 /* <! Establish the maximun number of litednes space's graphic description (gdesc) will have  */
-#define TAM_GDESC_X 9 /* <! Establish the maximun number of characters each line of space's graphic description (gdesc) will have */
+#define FIRST_SPACE 1 /*!< Establish the position of the first space  */
+#define TAM_GDESC_Y 5 /*!< Establish the maximun number of litednes space's graphic description (gdesc) will have  */
+#define TAM_GDESC_X 9 /*!< Establish the maximun number of characters each line of space's graphic description (gdesc) will have */
 
 /**
  * @brief It creates a new space
