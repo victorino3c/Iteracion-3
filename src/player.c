@@ -1,4 +1,3 @@
-
 /** 
  * @brief Implements the player's interface
  * 
@@ -24,7 +23,7 @@
 struct _Player
 {
   Id id;	/*!< Player's id */
-  char name[Player_Name_lenght];	/*!< Player's name */
+  char name[PLAYER_NAME_LEN];	/*!< Player's name */
   Inventory *inventory;		/*!< Player's inventory */
   Id location;		/*!< Id to player's space location */
   int health;		/*!< Player's health */
@@ -257,6 +256,11 @@ STATUS player_set_name(Player *player, char *name)
 {
 	/*Error control */
   if (!player || !name)
+  {
+    return ERROR;
+  }
+	
+  if (strlen(name) >= PLAYER_NAME_LEN)
   {
     return ERROR;
   }
