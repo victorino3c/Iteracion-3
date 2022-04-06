@@ -71,7 +71,6 @@ STATUS set_destroy(Set *s)
 STATUS set_add(Set *s, Id id)
 {
     Id *aux = NULL;
-    int newlength = s->n_ids + 1;
 
     /*Error control*/
     if (!s || id == NO_ID)
@@ -80,7 +79,8 @@ STATUS set_add(Set *s, Id id)
     }
     
     /* increasing the number of ids*/
-    aux = (Id *) realloc(s->ids, (s->n_ids + 1) * sizeof(Id));
+    s->n_ids++;
+    aux = (Id *) realloc(s->ids, (s->n_ids) * sizeof(Id));
     if (!aux)
     {
         return ERROR;
@@ -88,8 +88,7 @@ STATUS set_add(Set *s, Id id)
     s->ids = aux;
     aux = NULL;
 
-    s->ids[newlength-1] = id;
-    s->n_ids++;
+    s->ids[s->n_ids-1] = id;
 
     return OK;
 }
