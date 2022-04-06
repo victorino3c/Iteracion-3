@@ -8,7 +8,7 @@ L = lib/
 O = obj/
 S = src/
 
-all: juego clean
+all: juego
 
 $(O)command.o: $(S)command.c $(I)command.h
 	$(CC) -o $@ $(FLAGS) $<
@@ -177,10 +177,6 @@ vgame_test: game_test
 all_test: player_test object_test inventory_test set_test enemy_test link_test game_test space_test
 
 #CLEAN
-clean:
-	rm -f *.o
-	rm -f *.h.gch
-
 oclean:
 	rm -f obj/*.o
 
@@ -189,6 +185,3 @@ xclean:
 	rm -f *_test
 
 sclean: oclean xclean
-
-testclean: clean
-	rm -f $(T)*.h.gch
