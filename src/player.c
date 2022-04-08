@@ -177,7 +177,7 @@ STATUS player_set_health(Player *player, int health)
 
 
 
-/** player_set_name sets a player's location
+/** player_set_location sets a player's location
  */
 STATUS player_set_location(Player *player, Id location)
 {
@@ -262,13 +262,11 @@ STATUS player_set_name(Player *player, char *name)
 	
   if (strlen(name) >= PLAYER_NAME_LEN)
   {
-    return ERROR;
+    strncpy(player->name, name, PLAYER_NAME_LEN);
   }
-  
-	/*Error control */
-  if (!strcpy(player->name, name))
+  else
   {
-    return ERROR;
+    strcpy(player->name, name);
   }
   
   return OK;
@@ -300,5 +298,4 @@ STATUS player_set_max_inventory(Player* player, int num)
   inventory_set_maxObjs(player->inventory, num);
   return OK;
 }
-
 
