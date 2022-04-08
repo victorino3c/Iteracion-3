@@ -201,13 +201,11 @@ STATUS enemy_set_name(Enemy *enemy, char *name)
   
   if (strlen(name) >= ENEMY_LEN_NAME)
   {
-    return ERROR;
+    strncpy(enemy->name, name, ENEMY_LEN_NAME);
   }
-  
-	/* Error control */
-  if (!strcpy(enemy->name, name))
+  else
   {
-    return ERROR;
+    strcpy(enemy->name, name);
   }
   
   return OK;
