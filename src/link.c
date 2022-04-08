@@ -106,9 +106,13 @@ STATUS link_set_name(Link *link, char *name)
         return ERROR;
     }
 
-    if (!strcpy(link->name, name))
+    if (strlen(name) >= LINK_NAME_LEN)
     {
-        return ERROR;
+        strncpy(link->name, name, LINK_NAME_LEN);
+    }
+    else
+    {
+        strcpy(link->name, name);
     }
 
     return OK;
