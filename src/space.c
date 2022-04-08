@@ -199,14 +199,13 @@ STATUS space_set_name(Space *space, char *name)
     return ERROR;
   }
 
-  if (strlen(name) > WORD_SIZE)
+  if (strlen(name) >= WORD_SIZE)
   {
-    return ERROR;
+    strncpy(space->name, name, WORD_SIZE);
   }
-  
-  if (!strcpy(space->name, name))
+  else
   {
-    return ERROR;
+    strcpy(space->name, name);
   }
   return OK;
 }
@@ -567,4 +566,3 @@ Id space_get_id_dest_by_link (Link *l)
   return (Id)link_get_destination(l);
 
 }
-
