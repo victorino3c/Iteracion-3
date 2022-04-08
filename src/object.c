@@ -109,7 +109,7 @@ Id obj_get_id(Object *obj)
   return obj->id;
 }
 
-/** obj_set_name devuelve el nombre (name) de un Object (obj).
+/** obj_get_name devuelve el nombre (name) de un Object (obj).
  */
 const char *obj_get_name(Object *obj)
 {
@@ -131,15 +131,14 @@ STATUS obj_set_name(Object *obj, char *name)
   {
     return ERROR;
   }
+
   if (strlen(name) >= OBJ_NAME_LEN)
   {
-    return ERROR;
+    strncpy(obj->name, name, OBJ_NAME_LEN);
   }
-  
-  /* Control de errores */
-  if (!strcpy(obj->name, name))
+  else
   {
-    return ERROR;
+    strcpy(obj->name, name);
   }
 
   return OK;
