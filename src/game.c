@@ -1328,6 +1328,73 @@ STATUS game_command_inspect(Game *game, char *arg)
   }
   return ERROR;
 }
+/**
+ * @brief It executes TURNON command in game
+ * @author Miguel Soto
+ * 
+ * It turn on an object so it iluminates.
+ * 
+ * @param game pointer to game struct.
+ * @param arg string with command argument.
+ * @return OK if everything goes well or ERROR if there was any mistake 
+ */
+STATUS game_command_turnon(Game *game, char *arg)
+{
+  Object *obj = NULL;
+
+  if (!game || !arg)
+  {
+    return ERROR;
+  }
+  
+  obj = game_get_object_byName(game, arg);
+  if (!obj)
+  {
+    return ERROR;
+  }
+  
+  if (object_get_illuminate(obj) == FALSE || object_get_turnedon(obj) == TRUE)
+  {
+    /* Object has not iluminate attribute or object is already iluminated*/
+    return ERROR;
+  }
+
+  return object_set_turnedon(obj, TRUE);
+}
+
+/**
+ * @brief It executes TURN OFF command in game
+ * @author Miguel Soto
+ * 
+ * It turn off an object so it stop to iluminate.
+ * 
+ * @param game pointer to game struct.
+ * @param arg string with command argument.
+ * @return OK if everything goes well or ERROR if there was any mistake .
+ */
+STATUS game_command_turnoff(Game *game, char *arg)
+{
+  Object *obj = NULL;
+
+  if (!game || !arg)
+  {
+    return ERROR;
+  }
+  
+  obj = game_get_object_byName(game, arg);
+  if (!obj)
+  {
+    return ERROR;
+  }
+  
+  if (object_get_illuminate(obj) == FALSE || object_get_turnedon(obj) == FALSE)
+  {
+    /* Object has not iluminate attribute or object is already not iluminated*/
+    return ERROR;
+  }
+
+  return object_set_turnedon(obj, FALSE);
+}
 
 /*Function that gets the enemy id based on the position it is located in the enemy array located in the game structure */
 Id game_get_enemy_id(Game *game, int num)
